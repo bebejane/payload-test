@@ -15,12 +15,14 @@ export default async function Page() {
     config: configPromise,
   })
 
+  const home = await payload.findGlobal({ slug: 'home' })
   const { docs: posts } = await payload.find({
     collection: 'posts'
   })
 
   return (
     <article>
+      <h1>{home.header}</h1>
       <ul>
         {posts.map(post => (
           <li key={post.slug}>
