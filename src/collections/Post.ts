@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 const afterChangeHook: CollectionAfterChangeHook = async ({ doc }) => {
   console.log('update post', doc.slug)
   revalidatePath(`/posts/${doc.slug}`)
+  revalidatePath('/');
   return doc
 }
 
