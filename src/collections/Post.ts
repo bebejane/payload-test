@@ -10,6 +10,9 @@ const afterChangeHook: CollectionAfterChangeHook = async ({ doc }) => {
 
 export const Post: CollectionConfig = {
   slug: 'posts',
+  admin: {
+    useAsTitle: 'title',
+  },
   fields: [
     { label: 'Title', name: 'title', type: 'text', required: true },
     { label: 'Content', name: 'content', type: 'richText', required: true },

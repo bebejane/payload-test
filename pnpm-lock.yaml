@@ -12,6 +12,9 @@ dependencies:
   '@payloadcms/db-mongodb':
     specifier: latest
     version: 3.0.2(payload@3.0.2)
+  '@payloadcms/live-preview-react':
+    specifier: ^3.0.2
+    version: 3.0.2(react-dom@19.0.0-rc-65a56d0e-20241020)(react@19.0.0-rc-65a56d0e-20241020)
   '@payloadcms/next':
     specifier: latest
     version: 3.0.2(graphql@16.9.0)(monaco-editor@0.52.0)(next@15.0.3)(payload@3.0.2)(react-dom@19.0.0-rc-65a56d0e-20241020)(react@19.0.0-rc-65a56d0e-20241020)(types-react@19.0.0-rc.1)(typescript@5.6.3)
@@ -2040,6 +2043,21 @@ packages:
       tsx: 4.19.2
     transitivePeerDependencies:
       - typescript
+    dev: false
+
+  /@payloadcms/live-preview-react@3.0.2(react-dom@19.0.0-rc-65a56d0e-20241020)(react@19.0.0-rc-65a56d0e-20241020):
+    resolution: {integrity: sha512-n90ub7ymaWJ8K8mMdOKnAa3w9QBfb93aMHoQ2t54cVXtPhSh3Ra87cGl/TMZCOV+s8/cbwzCdreiI414XOzR6A==}
+    peerDependencies:
+      react: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
+      react-dom: ^19.0.0 || ^19.0.0-rc-65a56d0e-20241020
+    dependencies:
+      '@payloadcms/live-preview': 3.0.2
+      react: 19.0.0-rc-65a56d0e-20241020
+      react-dom: 19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020)
+    dev: false
+
+  /@payloadcms/live-preview@3.0.2:
+    resolution: {integrity: sha512-z+Ay4yswHibtaVKzK+q5LAPN97ejc2RGB8bPOExtkdctiYTLZucXYlBL6ymMc/BiARf+9oF7qttv0BC6wwI77A==}
     dev: false
 
   /@payloadcms/next@3.0.2(graphql@16.9.0)(monaco-editor@0.52.0)(next@15.0.3)(payload@3.0.2)(react-dom@19.0.0-rc-65a56d0e-20241020)(react@19.0.0-rc-65a56d0e-20241020)(types-react@19.0.0-rc.1)(typescript@5.6.3):

@@ -9,6 +9,11 @@ const afterChangeHook: GlobalAfterChangeHook = async ({ doc }) => {
 
 export const Home: GlobalConfig = {
   slug: 'home',
+  admin: {
+    livePreview: {
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}`,
+    },
+  },
   fields: [
     { label: 'Header', name: 'header', type: 'text', required: true },
     { label: 'Content', name: 'content', type: 'richText', required: true },

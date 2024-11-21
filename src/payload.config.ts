@@ -22,6 +22,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
+  cors: [process.env.NEXT_PUBLIC_SERVER_URL as string],
   collections: [Users, Media, Post],
   globals: [Home],
   editor: lexicalEditor(),

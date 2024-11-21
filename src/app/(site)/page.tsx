@@ -4,6 +4,7 @@ import { Metadata } from 'next'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import Link from 'next/link'
+import { RefreshRouteOnSave } from '@/lib/RefreshRouteOnSave'
 
 export const metadata: Metadata = {
   title: 'Payload test',
@@ -21,15 +22,18 @@ export default async function Page() {
   })
 
   return (
-    <article>
-      <h1>{home.header}</h1>
-      <ul>
-        {posts.map(post => (
-          <li key={post.slug}>
-            <Link href={`/posts/${post.slug}`}>{post.title}</Link>
-          </li>
-        ))}
-      </ul>
-    </article>
+    <>
+      <article>
+        <h1>{home.header}</h1>
+        <ul>
+          {posts.map(post => (
+            <li key={post.slug}>
+              <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </article>
+      <RefreshRouteOnSave />
+    </>
   )
 }
