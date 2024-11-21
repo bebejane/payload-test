@@ -19,7 +19,7 @@ dependencies:
     specifier: latest
     version: 3.0.2(@aws-sdk/client-sso-oidc@3.696.0)(payload@3.0.2)
   '@payloadcms/richtext-lexical':
-    specifier: latest
+    specifier: ^3.0.2
     version: 3.0.2(@faceless-ui/modal@3.0.0-beta.2)(@faceless-ui/scroll-info@2.0.0-beta.0)(@lexical/headless@0.20.0)(@lexical/link@0.20.0)(@lexical/list@0.20.0)(@lexical/mark@0.20.0)(@lexical/react@0.20.0)(@lexical/rich-text@0.20.0)(@lexical/selection@0.20.0)(@lexical/table@0.20.0)(@lexical/utils@0.20.0)(@payloadcms/next@3.0.2)(lexical@0.20.0)(monaco-editor@0.52.0)(next@15.0.0)(payload@3.0.2)(react-dom@19.0.0-rc-65a56d0e-20241020)(react@19.0.0-rc-65a56d0e-20241020)(types-react@19.0.0-rc.1)(typescript@5.6.3)
   cross-env:
     specifier: ^7.0.3

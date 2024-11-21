@@ -1,5 +1,5 @@
 {
-  "name": "payload",
+  "name": "payload-test",
   "version": "1.0.0",
   "description": "A blank template to get started with Payload 3.0",
   "license": "MIT",
@@ -18,7 +18,7 @@
     "@payloadcms/db-mongodb": "latest",
     "@payloadcms/next": "latest",
     "@payloadcms/payload-cloud": "latest",
-    "@payloadcms/richtext-lexical": "latest",
+    "@payloadcms/richtext-lexical": "^3.0.2",
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
     "next": "15.0.0",
