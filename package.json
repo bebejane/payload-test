@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
-    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
-    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --turbo",
+    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev --turbo",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
@@ -15,6 +15,7 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.698.0",
     "@payloadcms/db-mongodb": "latest",
     "@payloadcms/live-preview-react": "^3.0.2",
     "@payloadcms/next": "latest",
@@ -22,8 +23,12 @@
     "@payloadcms/richtext-lexical": "^3.0.2",
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
+    "mongodb": "^6.10.0",
+    "mongoose": "^8.8.2",
     "next": "15.0.3",
     "payload": "^3.0.2",
+    "pino": "^9.5.0",
+    "pino-pretty": "^13.0.0",
     "react": "19.0.0-rc-65a56d0e-20241020",
     "react-dom": "19.0.0-rc-65a56d0e-20241020",
     "sharp": "0.32.6"
