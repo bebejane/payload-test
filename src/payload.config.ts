@@ -1,7 +1,7 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { buildConfig } from 'payload'
+import { buildConfig, Config } from 'payload'
 import { fileURLToPath } from 'url'
 import path from 'path'
 import sharp from 'sharp'
@@ -17,7 +17,6 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Users.slug,
-
     importMap: {
       baseDir: path.resolve(dirname),
     },
@@ -46,10 +45,6 @@ export default buildConfig({
       {
         name: 'tablet',
         width: 1024,
-        // By specifying `undefined` or leaving a height undefined,
-        // the image will be sized to a certain width,
-        // but it will retain its original aspect ratio
-        // and calculate a height automatically.
         height: undefined,
         position: 'centre',
       },

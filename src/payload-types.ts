@@ -123,7 +123,7 @@ export interface Post {
   };
   content_html?: string | null;
   image?: (string | null) | Media;
-  slug: string;
+  slug?: string | null;
   updatedAt: string;
   createdAt: string;
 }

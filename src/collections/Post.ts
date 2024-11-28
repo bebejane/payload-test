@@ -33,7 +33,21 @@ export const Post: CollectionConfig = {
     },
     lexicalHTML('content', { name: 'content_html' }),
     { label: 'Image', name: 'image', type: 'upload', required: false, relationTo: 'media' },
-    { label: 'Slug', name: 'slug', type: 'text', required: true },
+    {
+      name: 'slug',
+      label: 'Slug',
+      unique: true,
+      type: 'text',
+
+      admin: {
+        //position: '',
+        components: {
+          Field: `/collections/fields/slug/SlugInput`,
+        }
+      },
+
+
+    },
   ],
   hooks: {
     afterChange: [afterChangeHook],
