@@ -25,9 +25,8 @@ export default async function Page(params: { params: { post: string } }) {
     <>
       <article className={s.post}>
         <h1>{post.title}</h1>
-        <img src={post.image.url} />
-
-        <section dangerouslySetInnerHTML={{ __html: post.content_html as string }}></section>
+        {post.image?.url && <img src={post.image.url} alt="hej" />}
+        <section dangerouslySetInnerHTML={{ __html: post.content_html as string }} />
       </article>
       <RefreshRouteOnSave />
     </>

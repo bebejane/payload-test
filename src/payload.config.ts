@@ -24,33 +24,9 @@ export default buildConfig({
       breakpoints: [
         { label: 'Mobile', name: 'mobile', width: 320, height: 480 },
         { label: 'Tablet', name: 'tablet', width: 740, height: 1180 },
-        { label: 'Desktop', name: 'desktop', width: 980, height: 1600 },
+        { label: 'Desktop', name: 'desktop', width: 980, height: 1200 },
       ],
     },
-  },
-  upload: {
-    imageSizes: [
-      {
-        name: 'thumbnail',
-        width: 400,
-        height: 300,
-        position: 'centre',
-      },
-      {
-        name: 'card',
-        width: 768,
-        height: 1024,
-        position: 'centre',
-      },
-      {
-        name: 'tablet',
-        width: 1024,
-        height: undefined,
-        position: 'centre',
-      },
-    ],
-    adminThumbnail: 'thumbnail',
-    mimeTypes: ['image/*'],
   },
   serverURL: process.env.NEXT_PUBLIC_SITE_URL,
   cors: "*",

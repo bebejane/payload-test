@@ -38,15 +38,15 @@ export const Post: CollectionConfig = {
       label: 'Slug',
       unique: true,
       type: 'text',
-
       admin: {
-        //position: '',
         components: {
-          Field: `/collections/fields/slug/SlugInput`,
+          Field: {
+            path: `/collections/components/slug`,
+            clientProps: { trackingField: 'title' }
+          }
+
         }
       },
-
-
     },
   ],
   hooks: {
