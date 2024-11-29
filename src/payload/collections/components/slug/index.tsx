@@ -31,7 +31,7 @@ export default function GetSlugInput({ trackingField = 'title' }: { trackingFiel
   }, [trackingFieldValue]);
 
   return (
-    <div>
+    <div style={{ marginBottom: '1rem' }}>
       <TextInput
         path="slug"
         label="Slug"
@@ -40,7 +40,6 @@ export default function GetSlugInput({ trackingField = 'title' }: { trackingFiel
         onChange={(e: any) => {
           setSlugValue(e.target.value);
           stopTrackingRef.current = true;
-
         }}
       />
     </div>
