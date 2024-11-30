@@ -1,15 +1,9 @@
 import s from './page.module.scss'
 import configPromise from '@payload-config'
-import { LocaleParams } from '@/app/(site)/[locale]/layout';
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import { Metadata } from 'next'
-import { RefreshRouteOnSave } from '@/lib/RefreshRouteOnSave'
 import { JSXConvertersFunction, RichText } from '@payloadcms/richtext-lexical/react'
-import { getPathname } from '@i18n/navigation';
-import { defaultLocale, locales } from '@i18n';
-import { getTranslations } from 'next-intl/server';
-
 
 export const metadata: Metadata = {
   title: 'Payload test',
@@ -54,7 +48,7 @@ export default async function Page(params: { params: { post: string, locale: 'en
           </ul>
         </section>
       </article>
-      <RefreshRouteOnSave />
+
     </>
   )
 }

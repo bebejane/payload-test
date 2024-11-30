@@ -399,7 +399,6 @@ export interface Home {
     };
     [k: string]: unknown;
   };
-  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -410,7 +409,6 @@ export interface Home {
 export interface HomeSelect<T extends boolean = true> {
   header?: T;
   content?: T;
-  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

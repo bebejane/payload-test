@@ -5,11 +5,7 @@ import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import { Metadata } from 'next'
 import { RefreshRouteOnSave } from '@/lib/RefreshRouteOnSave'
-import { JSXConvertersFunction, RichText } from '@payloadcms/richtext-lexical/react'
-import { getPathname, Link } from '@i18n/navigation';
-import { defaultLocale, locales } from '@i18n';
-import { getTranslations } from 'next-intl/server';
-
+import { Link } from '@i18n/navigation';
 
 export default async function Page(params: { params: { post: string, locale: 'en' | 'se' } }) {
 
@@ -18,7 +14,6 @@ export default async function Page(params: { params: { post: string, locale: 'en
   const payload = await getPayload({ config: configPromise })
   const data = await payload.find({ collection: 'posts', locale })
   const posts = data.docs
-
 
   return (
     <>
@@ -31,7 +26,7 @@ export default async function Page(params: { params: { post: string, locale: 'en
           )}
         </ul>
       </article>
-      <RefreshRouteOnSave />
+
     </>
   )
 }

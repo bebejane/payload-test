@@ -5,15 +5,15 @@ export const Home: GlobalConfig = {
   slug: 'home',
   admin: {
     livePreview: {
-      url: process.env.NEXT_PUBLIC_SITE_URL,
-    },
+      url: ({ data, locale }) => `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}`,
+    }
   },
   versions: {
-    drafts: true
+    drafts: false
   },
   fields: [
-    { label: 'Header', name: 'header', type: 'text', required: true },
-    { label: 'Content', name: 'content', type: 'richText', required: true },
+    { label: 'Header', name: 'header', type: 'text', required: true, localized: true },
+    { label: 'Content', name: 'content', type: 'richText', required: true, localized: true },
   ],
   hooks: {
     afterChange: [revalidateHook],

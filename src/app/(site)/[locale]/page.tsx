@@ -5,8 +5,10 @@ import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { getPayload } from 'payload';
 import configPromise from '@payload-config'
+import { RichText } from '@payloadcms/richtext-lexical/react';
 
 export default async function Home({ params }: LocaleParams) {
+
   const { locale } = await params
   setRequestLocale(locale);
 
@@ -20,6 +22,8 @@ export default async function Home({ params }: LocaleParams) {
   return (
     <>
       <article className={cn(s.start)}>
+        <h1>{home.header}</h1>
+        <RichText data={home.content} />
         <Link href={`/${locale}/posts`}>Posts ({locale})</Link>
       </article>
     </>
