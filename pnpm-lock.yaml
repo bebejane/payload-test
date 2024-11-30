@@ -99,9 +99,6 @@ importers:
       postmark:
         specifier: ^4.0.5
         version: 4.0.5
-      prisma:
-        specifier: ^6.0.0
-        version: 6.0.0
       react:
         specifier: 19.0.0-rc-65a56d0e-20241020
         version: 19.0.0-rc-65a56d0e-20241020
@@ -5733,9 +5730,11 @@ snapshots:
     optionalDependencies:
       prisma: 6.0.0
 
-  '@prisma/debug@6.0.0': {}
+  '@prisma/debug@6.0.0':
+    optional: true
 
-  '@prisma/engines-version@5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e': {}
+  '@prisma/engines-version@5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e':
+    optional: true
 
   '@prisma/engines@6.0.0':
     dependencies:
@@ -5743,16 +5742,19 @@ snapshots:
       '@prisma/engines-version': 5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e
       '@prisma/fetch-engine': 6.0.0
       '@prisma/get-platform': 6.0.0
+    optional: true
 
   '@prisma/fetch-engine@6.0.0':
     dependencies:
       '@prisma/debug': 6.0.0
       '@prisma/engines-version': 5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e
       '@prisma/get-platform': 6.0.0
+    optional: true
 
   '@prisma/get-platform@6.0.0':
     dependencies:
       '@prisma/debug': 6.0.0
+    optional: true
 
   '@radix-ui/react-compose-refs@1.1.0(react@19.0.0-rc-65a56d0e-20241020)(types-react@19.0.0-rc.1)':
     dependencies:
@@ -8411,6 +8413,7 @@ snapshots:
       '@prisma/engines': 6.0.0
     optionalDependencies:
       fsevents: 2.3.3
+    optional: true
 
   prismjs@1.29.0: {}
 
