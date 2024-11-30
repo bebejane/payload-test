@@ -1,0 +1,1 @@
+type SiteLocale = 'en' | 'se'

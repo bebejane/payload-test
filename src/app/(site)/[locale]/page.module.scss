@@ -1,0 +1,7 @@
+.start {
+  header {
+    @include mq($from: desktop) {
+      padding: var(--outer-margin);
+    }
+  }
+}

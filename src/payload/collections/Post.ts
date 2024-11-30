@@ -24,7 +24,7 @@ export const Post: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     livePreview: {
-      url: ({ data }) => `${process.env.NEXT_PUBLIC_SITE_URL}/posts/${data.slug}`,
+      url: ({ data, locale }) => `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/posts/${data.slug}`,
     }
   },
   fields: [
@@ -54,6 +54,7 @@ export const Post: CollectionConfig = {
       label: 'Slug',
       unique: true,
       type: 'text',
+      /*
       admin: {
         components: {
           Field: {
@@ -62,6 +63,7 @@ export const Post: CollectionConfig = {
           }
         }
       },
+      */
     }, {
       name: 'date',
       label: {
@@ -78,8 +80,6 @@ export const Post: CollectionConfig = {
       type: 'blocks',
       blocks: [QuoteBlock]
     }
-
-
   ],
   hooks: {
     afterChange: [revalidateHook],

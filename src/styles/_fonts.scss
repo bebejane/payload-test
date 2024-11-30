@@ -1,0 +1,10 @@
+$body-font: "Immortel", Times, Serif;
+$headline-font: "Optima", Helvetica, Sans-Serif;
+$nav-font: "Rom", Helvetica, Sans-Serif;
+
+@font-face {
+  font-family: "Optima";
+  src: url("/fonts/Optima DemiBold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
