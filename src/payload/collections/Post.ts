@@ -2,8 +2,7 @@ import type { CollectionConfig, Block } from 'payload'
 import { revalidateHook } from '@/payload/hooks/revalidate'
 
 export const QuoteBlock: Block = {
-  slug: 'quoteBlock', // required
-  //imageURL: 'https://google.com/path/to/image.jpg',
+  slug: 'quoteBlock',
   imageAltText: 'A nice thumbnail image to show what this block looks like',
   interfaceName: 'QuoteBlock', // optional
   fields: [
@@ -45,7 +44,7 @@ export const Post: CollectionConfig = {
       name: 'content',
       type: 'richText',
       required: true,
-      localized: true,
+      localized: true
     },
     { label: 'Image', name: 'image', type: 'upload', required: false, relationTo: 'media' },
     { label: 'Author', name: 'author', type: 'relationship', relationTo: 'authors', required: false },

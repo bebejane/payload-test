@@ -20,6 +20,8 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
   },
 })
 
+export { jsxConverters }
+
 export default async function Page(params: { params: { post: string, locale: 'en' | 'se' } }) {
 
   const { post: slug, locale } = await params.params

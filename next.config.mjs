@@ -5,6 +5,7 @@ const withNextIntl = createNextIntlPlugin('./src/i18n')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  //basePath: './src',
   sassOptions: {
     includePaths: ['./src/app'],
     prependData: `

@@ -26,12 +26,12 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   setRequestLocale(locale);
 
   return (
-    <html lang={locale}>
+    <>
       <Body locale={locale}>
         {children}
       </Body>
-      <RefreshRouteOnSave />
-    </html>
+
+    </>
   );
 }
 
@@ -39,13 +39,12 @@ function Body({ children, locale, }: BodyProps) {
   const messages = useMessages();
 
   return (
-    <body id="root">
-      <NextIntlClientProvider locale={locale} messages={messages}>
-        <main>
-          {children}
-        </main>
-      </NextIntlClientProvider>
-    </body>
+
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <main>
+        {children}
+      </main>
+    </NextIntlClientProvider>
   )
 }
 

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { getPayload } from 'payload';
 import configPromise from '@payload-config'
 import { RichText } from '@payloadcms/richtext-lexical/react';
+import { jsxConverters } from './posts/[post]/page';
 
 export default async function Home({ params }: LocaleParams) {
 
@@ -23,7 +24,7 @@ export default async function Home({ params }: LocaleParams) {
     <>
       <article className={cn(s.start)}>
         <h1>{home.header}</h1>
-        <RichText data={home.content} />
+        <RichText data={home.content} converters={jsxConverters} />
         <Link href={`/${locale}/posts`}>Posts ({locale})</Link>
       </article>
     </>

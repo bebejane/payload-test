@@ -33,6 +33,7 @@ body {
 	background-color: var(--background);
 	-webkit-font-smoothing: antialiased;
 	font-feature-settings: "liga", "kern";
+	padding: var(--outer-margin);
 }
 
 html {

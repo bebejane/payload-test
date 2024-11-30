@@ -1,14 +1,16 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { BlocksFeature, lexicalEditor, LinkFeature, UploadFeature } from '@payloadcms/richtext-lexical'
+import { BlocksFeature, lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
 import { buildConfig, Config } from 'payload'
 import { fileURLToPath } from 'url'
 import { en } from '@payloadcms/translations/languages/en'
 import { sv } from '@payloadcms/translations/languages/sv'
 
-
 import path from 'path'
 import sharp from 'sharp'
+import nodemailer from 'nodemailer'
+import postmarkTransport from 'nodemailer-postmark-transport'
 
 import { Users } from './payload/collections/Users'
 import { Media } from './payload/collections/Media'
@@ -80,12 +82,24 @@ export default buildConfig({
       }),
     ],
   }),
+  email: nodemailerAdapter({
+    defaultFromAddress: process.env.EMAIL_FROM as string,
+    defaultFromName: process.env.EMAIL_FROM_NAME as string,
+    transportOptions: {
+      transactionLog: true,
+    },
+    transport: nodemailer.createTransport(postmarkTransport({
+      auth: {
+        apiKey: process.env.POSTMARK_API_KEY as string,
+      }
+    })),
+  }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI || '',
+    url: process.env.PAYLOAD_DATABASE_URL || '',
   }),
   sharp,
   plugins: [
