@@ -13,7 +13,6 @@ const intlMiddleware = createMiddleware({
 });
 
 const protectedRoutes = ["/member"];
-const publicRoutes = ["/"];
 const authRoutes = ["/sign-in", "/sign-up"];
 const passwordRoutes = ["/reset-password", "/forgot-password"];
 const adminRoutes = ["/admin"];
@@ -21,12 +20,13 @@ const adminRoutes = ["/admin"];
 export default async function authMiddleware(request: NextRequest) {
   intlMiddleware(request);
 
-  const pathName = request.nextUrl.pathname;
-  const isPublicRoute = publicRoutes.includes(pathName);
-  const isProtectedRoute = protectedRoutes.includes(pathName);
-  const isAuthRoute = authRoutes.includes(pathName);
-  const isPasswordRoute = passwordRoutes.includes(pathName);
-  const isAdminRoute = adminRoutes.includes(pathName);
+  const pathname = request.nextUrl.pathname;
+
+  const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
+  const isAuthRoute = authRoutes.includes(pathname);
+  const isPasswordRoute = passwordRoutes.includes(pathname);
+  const isAdminRoute = adminRoutes.includes(pathname);
+  const isPublicRoute = !isProtectedRoute && !isPasswordRoute && !isAdminRoute;
 
   if (isPublicRoute)
     return NextResponse.next();
