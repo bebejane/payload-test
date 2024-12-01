@@ -33,7 +33,6 @@ body {
 	background-color: var(--background);
 	-webkit-font-smoothing: antialiased;
 	font-feature-settings: "liga", "kern";
-	padding: var(--outer-margin);
 }
 
 html {
@@ -43,34 +42,18 @@ html {
 
 main {
 	min-height: calc(100vh + var(--navbar-height));
+	padding: var(--outer-margin);
 }
 
-.grid {
-	display: flex;
-	flex-direction: column;
 
-	@include mq($from: desktop) {
-		display: grid;
-		column-gap: var(--gutter);
-		grid-template-columns: repeat(12, minmax(0, 1fr));
-	}
-}
-
-.button {
+button {
 	background-color: var(--white);
 	padding: 0.5rem;
-	padding-left: 0.7rem;
-	padding-right: 0.7rem;
 	display: inline-block;
-	margin-top: var(--space-small);
 
 	&:hover {
 		color: var(--foreground) !important;
 	}
-}
-
-button {
-	color: var(--black);
 }
 
 a {
@@ -88,6 +71,11 @@ a {
 	&:active {
 		color: var(--orange);
 	}
+}
+
+form {
+	display: flex;
+	flex-direction: column;
 }
 
 select {
@@ -121,8 +109,4 @@ select {
 *:before,
 *:after {
 	box-sizing: inherit;
-}
-
-figure div {
-	max-width: none !important;
 }
