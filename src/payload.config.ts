@@ -2,7 +2,7 @@ import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { BlocksFeature, lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
-import { buildConfig, Config } from 'payload'
+import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import { en } from '@payloadcms/translations/languages/en'
 import { sv } from '@payloadcms/translations/languages/sv'
@@ -22,6 +22,11 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  db: mongooseAdapter({
+    url: process.env.PAYLOAD_DATABASE_URL || '',
+  }),
+  collections: [Post, Users, Author, Media],
+  globals: [Home],
   admin: {
     user: Users.slug,
     importMap: {
@@ -33,6 +38,14 @@ export default buildConfig({
         { label: 'Tablet', name: 'tablet', width: 740, height: 1180 },
         { label: 'Desktop', name: 'desktop', width: 980, height: 1200 },
       ],
+    },
+
+    components: {
+      views: {
+        dashboard: {
+          Component: '/payload/views/Dashboard',
+        }
+      },
     },
   },
   i18n: {
@@ -54,8 +67,6 @@ export default buildConfig({
   },
   serverURL: process.env.NEXT_PUBLIC_SITE_URL,
   cors: "*",
-  collections: [Users, Media, Post, Author],
-  globals: [Home],
   editor: lexicalEditor({
     features: ({ defaultFeatures, rootFeatures }) => [
       ...defaultFeatures,
@@ -98,9 +109,6 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  db: mongooseAdapter({
-    url: process.env.PAYLOAD_DATABASE_URL || '',
-  }),
   sharp,
   plugins: [
     payloadCloudPlugin(),

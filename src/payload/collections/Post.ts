@@ -1,4 +1,4 @@
-import type { CollectionConfig, Block } from 'payload'
+import type { CollectionConfig, Block, Access } from 'payload'
 import { revalidateHook } from '@/payload/hooks/revalidate'
 
 export const QuoteBlock: Block = {
@@ -23,8 +23,14 @@ export const Post: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     livePreview: {
-      url: ({ data, locale }) => `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/posts/${data.slug}`,
-    }
+      url: ({ data, locale }) => `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/posts/${data.slug}`
+    },
+  },
+  access: {
+    read: ({ req: { user } }) => user?.role === 'user' || user?.role === 'admin',
+    create: ({ req: { user } }) => user?.role === 'admin',
+    update: ({ req: { user } }) => user?.role === 'admin',
+    delete: ({ req: { user } }) => user?.role === 'admin',
   },
   fields: [
     {
@@ -53,7 +59,6 @@ export const Post: CollectionConfig = {
       label: 'Slug',
       unique: true,
       type: 'text',
-      /*
       admin: {
         components: {
           Field: {
@@ -62,7 +67,6 @@ export const Post: CollectionConfig = {
           }
         }
       },
-      */
     }, {
       name: 'date',
       label: {

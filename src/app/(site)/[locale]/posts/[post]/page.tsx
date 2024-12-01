@@ -4,17 +4,18 @@ import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import { Metadata } from 'next'
 import { JSXConvertersFunction, RichText } from '@payloadcms/richtext-lexical/react'
+import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
+import { QuoteBlock } from '../../../../../payload-types'
 
 export const metadata: Metadata = {
   title: 'Payload test',
   description: 'Payload',
 }
+export type NodeTypes = DefaultNodeTypes | SerializedBlockNode<QuoteBlock>
 
-
-const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
+const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
   ...defaultConverters,
   blocks: {
-    // myTextBlock is the slug of the block
     ...defaultConverters.blocks,
     quoteBlock: ({ node }) => <div style={{ backgroundColor: 'pink' }}>{node.fields.quoteHeader}</div>,
   },
@@ -40,7 +41,6 @@ export default async function Page(params: { params: { post: string, locale: 'en
         {typeof post.image === 'object' &&
           <img src={post.image?.url as string} alt={post.image?.alt} />
         }
-        {/* <section dangerouslySetInnerHTML={{ __html: post.content_html as string }} />*/}
         <RichText converters={jsxConverters} data={post.content} />
         <section>
           <ul>
