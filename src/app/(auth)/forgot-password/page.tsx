@@ -41,7 +41,7 @@ export default function ForgotPassword() {
 		}
 		setIsPending(false);
 	};
-	console.log(form)
+
 
 	return (
 		<div>

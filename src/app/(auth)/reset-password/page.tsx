@@ -2,7 +2,6 @@
 
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -64,14 +63,12 @@ function ResetPasswordContent() {
 			<form onSubmit={form.handleSubmit(onSubmit)}>
 				<input
 					type="password"
-					name="password"
 					placeholder="Enter your new password"
 					{...form.register("password")}
 				/>
 
 				<input
 					type="password"
-					name="confirmPassword"
 					placeholder="Enter your new password"
 					{...form.register("confirmPassword")}
 				/>

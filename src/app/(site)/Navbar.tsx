@@ -10,14 +10,14 @@ export default async function Navbar() {
   return (
     <nav className={s.navbar}>
       {!session ? (
-        <div className="flex gap-2 justify-center">
+        <>
           <Link href="/sign-in">
             <button>Sign In</button>
           </Link>
           <Link href="/sign-up">
             <button>Sign Up</button>
           </Link>
-        </div>
+        </>
       ) : (
         <Link href={`/sign-out`}>
           Sign out

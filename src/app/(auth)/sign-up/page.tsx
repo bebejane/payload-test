@@ -10,11 +10,13 @@ import { authClient } from "@/auth-client";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
+type SignUpFormData = z.infer<typeof signUpSchema>;
+
 export default function SignUp() {
 	const [pending, setPending] = useState(false);
 	const { toast } = useToast();
 
-	const form = useForm<z.infer<typeof signUpSchema>>({
+	const form = useForm<SignUpFormData>({
 		resolver: zodResolver(signUpSchema),
 		defaultValues: {
 			name: "",
@@ -24,7 +26,7 @@ export default function SignUp() {
 		},
 	});
 
-	const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
+	const onSubmit = async (values: SignUpFormData) => {
 		await authClient.signUp.email(
 			{
 				email: values.email,
@@ -36,15 +38,13 @@ export default function SignUp() {
 					setPending(true);
 				},
 				onSuccess: () => {
-					console.log('success');
 					toast({
 						title: "Account created",
 						description:
 							"Your account has been created. Check your email for a verification link.",
 					});
 				},
-				onError: (ctx) => {
-					console.log("error", ctx);
+				onError: (ctx: { error: { message?: string } }) => {
 					toast({
 						title: "Something went wrong",
 						description: ctx.error.message ?? "Something went wrong.",
@@ -58,25 +58,38 @@ export default function SignUp() {
 	return (
 		<div>
 			<h1>Create Account</h1>
-			<form onSubmit={form.handleSubmit(onSubmit)} >
-				{["name", "email", "password", "confirmPassword"].map((field) =>
-					<input
-						control={form.control}
-						key={field}
-						name={field as keyof z.infer<typeof signUpSchema>}
-						type={field.includes("password") ? "password" : field === "email" ? "email" : "text"}
-						placeholder={`Enter your ${field}`}
-						autoComplete="off"
-						{...form.register(field)}
-					/>
-				)}
+			<form onSubmit={form.handleSubmit(onSubmit)}>
+				<input
+					type="text"
+					placeholder="Enter your name"
+					autoComplete="off"
+					{...form.register("name")}
+				/>
+				<input
+					type="email"
+					placeholder="Enter your email"
+					autoComplete="off"
+					{...form.register("email")}
+				/>
+				<input
+					type="password"
+					placeholder="Enter your password"
+					autoComplete="off"
+					{...form.register("password")}
+				/>
+				<input
+					type="password"
+					placeholder="Enter your confirm password"
+					autoComplete="off"
+					{...form.register("confirmPassword")}
+				/>
 				<button type="submit" data-pending={pending}>Sign up</button>
 			</form>
-			<div >
-				<Link href="/sign-in" >
+			<div>
+				<Link href="/sign-in">
 					Already have an account? Sign in
 				</Link>
 			</div>
-		</div >
+		</div>
 	);
 }

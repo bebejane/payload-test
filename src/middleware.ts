@@ -27,7 +27,7 @@ export default async function authMiddleware(request: NextRequest) {
   const isAuthRoute = authRoutes.includes(pathName);
   const isPasswordRoute = passwordRoutes.includes(pathName);
   const isAdminRoute = adminRoutes.includes(pathName);
-  console.log('midleware')
+
   if (isPublicRoute)
     return NextResponse.next();
 
@@ -41,7 +41,7 @@ export default async function authMiddleware(request: NextRequest) {
       },
     },
   );
-  console.log(session)
+
 
   if (!session) {
     if (isAuthRoute || isPasswordRoute) {
