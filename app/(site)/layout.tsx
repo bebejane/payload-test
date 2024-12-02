@@ -9,9 +9,12 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
       <body>
         <Navbar />
         <main>
+          {/* 
           <ProgressProvider>
             {children}
           </ProgressProvider>
+           */}
+          {children}
         </main>
       </body>
       <RefreshRouteOnSave />
