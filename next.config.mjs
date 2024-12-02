@@ -1,11 +1,10 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 import createNextIntlPlugin from 'next-intl/plugin'
 
-const withNextIntl = createNextIntlPlugin('./src/i18n')
+const withNextIntl = createNextIntlPlugin('./i18n')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  //basePath: './src',
   images: {
     remotePatterns: [
       {
@@ -17,11 +16,11 @@ const nextConfig = {
     ],
   },
   sassOptions: {
-    includePaths: ['./src/app'],
+    includePaths: ['./app'],
     prependData: `
 			@use "sass:math";
-    	@import "./src/styles/mediaqueries"; 
-    	@import "./src/styles/fonts";
+    	@import "./styles/mediaqueries"; 
+    	@import "./styles/fonts";
   	`,
   },
   typescript: {
