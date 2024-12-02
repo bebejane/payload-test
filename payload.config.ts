@@ -39,7 +39,6 @@ export default buildConfig({
         { label: 'Desktop', name: 'desktop', width: 980, height: 1200 },
       ],
     },
-
     components: {
       views: {
         dashboard: {

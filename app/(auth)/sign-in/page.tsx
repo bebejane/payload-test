@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { authClient } from "@/auth-client";
 import { useRouter } from "next/navigation";
-import { useToast } from "hooks/use-toast";
+import { useToast } from "@/lib/hooks/use-toast";
 
 import { ErrorContext } from "@better-fetch/fetch";
 

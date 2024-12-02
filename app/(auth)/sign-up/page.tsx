@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { authClient } from "@/auth-client";
 import { useState } from "react";
-import { useToast } from "hooks/use-toast";
+import { useToast } from "@/lib/hooks/use-toast";
 
 type SignUpFormData = z.infer<typeof signUpSchema>;
 

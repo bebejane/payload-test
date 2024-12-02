@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { resetPasswordSchema } from "lib/zod";
 import { authClient } from "@/auth-client";
-import { useToast } from "hooks/use-toast";
+import { useToast } from "@/lib/hooks/use-toast";
 import { useRouter } from "next/navigation";
 
 function ResetPasswordContent() {
