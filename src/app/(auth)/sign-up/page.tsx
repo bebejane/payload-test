@@ -68,13 +68,13 @@ export default function SignUp() {
 				<input
 					type="email"
 					placeholder="Enter your email"
-					autoComplete="off"
+					autoComplete={"new-email"}
 					{...form.register("email")}
 				/>
 				<input
 					type="password"
 					placeholder="Enter your password"
-					autoComplete="off"
+					autoComplete={"new-password"}
 					{...form.register("password")}
 				/>
 				<input

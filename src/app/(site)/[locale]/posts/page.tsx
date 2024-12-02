@@ -2,12 +2,14 @@ import s from './page.module.scss'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { Link } from '@i18n/navigation';
+import { setRequestLocale } from 'next-intl/server';
 
-type Props = LocaleParams<"post", string>
+type Props = LocaleParams<{ "post": string }>
 
-export default async function Page(params: Props) {
+export default async function Page({ params }: Props) {
 
-  const { post, locale } = await params.params
+  const { post, locale } = await params
+  setRequestLocale(locale);
 
   const payload = await getPayload({ config: configPromise })
   const data = await payload.find({ collection: 'posts', locale })
@@ -19,12 +21,11 @@ export default async function Page(params: Props) {
         <ul>
           {posts.map(post =>
             <li key={post.slug}>
-              <Link key={post.id} href={`/posts/${post.slug}`}>{post.title}</Link>
+              <Link key={post.id} href={`/posts/${post.slug}`} locale={locale}>{post.title}</Link>
             </li>
           )}
         </ul>
       </article>
-
     </>
   )
 }

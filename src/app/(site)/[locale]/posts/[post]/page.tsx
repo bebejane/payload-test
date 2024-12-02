@@ -1,16 +1,18 @@
 import s from './page.module.scss'
 import configPromise from '@payload-config'
 import { notFound } from 'next/navigation'
-import { getPayload } from 'payload'
+import { Block, getPayload } from 'payload'
 import { Metadata } from 'next'
-import { JSXConvertersFunction, RichText } from '@payloadcms/richtext-lexical/react'
+import { JSXConverters, JSXConvertersFunction, RichText } from '@payloadcms/richtext-lexical/react'
 import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
-import { QuoteBlock } from '../../../../../payload-types'
+import { QuoteBlock } from '@payload-types'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Payload test',
   description: 'Payload',
 }
+
 export type NodeTypes = DefaultNodeTypes | SerializedBlockNode<QuoteBlock>
 
 const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
@@ -23,9 +25,8 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
 
 export { jsxConverters }
 
-export default async function Page(params: { params: { post: string, locale: 'en' | 'se' } }) {
-
-  const { post: slug, locale } = await params.params
+export default async function Page({ params }: { params: { post: string, locale: 'en' | 'se' } }) {
+  const { post: slug, locale } = params
 
   const payload = await getPayload({ config: configPromise })
   const data = await payload.find({ collection: 'posts', locale, where: { slug: { equals: slug } } })
@@ -38,19 +39,28 @@ export default async function Page(params: { params: { post: string, locale: 'en
     <>
       <article className={s.post}>
         <h1>{post.title}</h1>
-        {typeof post.image === 'object' &&
-          <img src={post.image?.url as string} alt={post.image?.alt} />
+        {typeof post.image === 'object' && post.image?.url &&
+          <Image
+            src={post.image.url}
+            width={post.image.width ?? 0}
+            height={post.image.height ?? 0}
+            alt={post.image.alt}
+          />
         }
-        <RichText converters={jsxConverters} data={post.content} />
+
+        <RichText
+          content={post.content}
+          //@ts-ignore
+          converters={jsxConverters}
+        />
         <section>
           <ul>
-            {post.blocks?.map((block: any, index: number) =>
+            {post.blocks?.map((block, index) =>
               <li key={index}>{block.quoteHeader}</li>
             )}
           </ul>
         </section>
       </article>
-
     </>
   )
 }

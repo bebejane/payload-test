@@ -5,30 +5,34 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import Link from 'next/link'
 import { RefreshRouteOnSave } from '@/lib/RefreshRouteOnSave'
+import { defaultLocale } from '@/i18n'
 
 export const metadata: Metadata = {
-  title: 'Payload test',
+  title: 'Payload',
   description: 'Payload',
 }
+type Props = LocaleParams
 
-export default async function Page() {
+export default async function Page({ params }: Props) {
+
+  const { locale = defaultLocale } = await params
   const payload = await getPayload({
     config: configPromise,
   })
 
-  const home = await payload.findGlobal({ slug: 'home' })
+  const home = await payload.findGlobal({ slug: 'home', locale })
   const { docs: posts } = await payload.find({
-    collection: 'posts'
+    collection: 'posts',
+    locale
   })
 
   return (
     <>
       <article>
-        <h1>{home.header}</h1>
         <ul>
           {posts.map(post => (
             <li key={post.slug}>
-              <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+              <Link href={`/${locale}/posts/${post.slug}`}>{post.title}</Link>
             </li>
           ))}
         </ul>

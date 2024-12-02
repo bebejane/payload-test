@@ -21,13 +21,7 @@
     }
 
     button {
-      margin-top: 0.3rem;
       margin-bottom: 1rem;
-
-      &[data-pending="true"] {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
     }
   }
 }

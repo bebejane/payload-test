@@ -20,7 +20,7 @@ export default async function Navbar() {
         </>
       ) : (
         <Link href={`/sign-out`}>
-          Sign out
+          <button>Sign out</button>
         </Link>
       )}
     </nav>

@@ -8,13 +8,11 @@ import { RefreshRouteOnSave } from '@/lib/RefreshRouteOnSave'
 
 export default async function Page() {
 
-
   return (
     <>
       <article>
         Member
       </article>
-
     </>
   )
 }

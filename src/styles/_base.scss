@@ -48,11 +48,17 @@ main {
 
 button {
 	background-color: var(--white);
-	padding: 0.5rem;
+	padding: 0.8rem;
 	display: inline-block;
+	font-size: 0.8rem;
+	background-color: var(--foreground);
+	color: var(--background);
+	border: 1px solid var(--foreground);
+	cursor: pointer;
 
 	&:hover {
 		color: var(--foreground) !important;
+		background-color: var(--background);
 	}
 }
 
