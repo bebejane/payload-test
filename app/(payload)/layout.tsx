@@ -4,6 +4,7 @@ import config from '@payload-config'
 import '@payloadcms/next/css'
 import type { ServerFunctionClient } from 'payload'
 import { handleServerFunctions, RootLayout } from '@payloadcms/next/layouts'
+import ProgressProvider from '@/lib/progress';
 import React from 'react'
 
 import { importMap } from './admin/importMap.js'
@@ -24,7 +25,9 @@ const serverFunction: ServerFunctionClient = async function (args) {
 
 const Layout = ({ children }: Args) => (
   <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
-    {children}
+    <ProgressProvider>
+      {children}
+    </ProgressProvider>
   </RootLayout>
 )
 

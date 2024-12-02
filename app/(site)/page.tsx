@@ -4,7 +4,6 @@ import { Metadata } from 'next'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import Link from 'next/link'
-import { RefreshRouteOnSave } from 'lib/RefreshRouteOnSave'
 import { defaultLocale } from 'i18n'
 
 export const metadata: Metadata = {
@@ -29,6 +28,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <article>
+        <h1>{home.header}</h1>
         <ul>
           {posts.map(post => (
             <li key={post.slug}>
@@ -37,7 +37,6 @@ export default async function Page({ params }: Props) {
           ))}
         </ul>
       </article>
-      <RefreshRouteOnSave />
     </>
   )
 }

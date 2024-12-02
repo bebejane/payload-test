@@ -26,7 +26,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
 export { jsxConverters }
 
 export default async function Page({ params }: { params: { post: string, locale: 'en' | 'se' } }) {
-  const { post: slug, locale } = params
+  const { post: slug, locale } = await params
 
   const payload = await getPayload({ config: configPromise })
   const data = await payload.find({ collection: 'posts', locale, where: { slug: { equals: slug } } })

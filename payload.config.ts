@@ -25,8 +25,8 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.PAYLOAD_DATABASE_URL || '',
   }),
-  collections: [Post, Users, Author, Media],
   globals: [Home],
+  collections: [Post, Users, Author, Media],
   admin: {
     user: Users.slug,
     importMap: {
