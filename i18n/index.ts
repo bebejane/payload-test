@@ -3,7 +3,7 @@ import { getRequestConfig } from 'next-intl/server';
 
 // Can be imported from a shared config
 export const locales = ['se', 'en'];
-export const defaultLocale = 'se';
+export const defaultLocale = 'en';
 
 export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid
