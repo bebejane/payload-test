@@ -3,6 +3,7 @@ import configPromise from '@payload-config'
 import { notFound } from 'next/navigation'
 import { Block, getPayload } from 'payload'
 import { Metadata } from 'next'
+import { draftMode } from 'next/headers'
 import { JSXConverters, JSXConvertersFunction, RichText } from '@payloadcms/richtext-lexical/react'
 import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
 import { QuoteBlock } from '@payload-types'
@@ -28,14 +29,13 @@ export { jsxConverters }
 export default async function Page({ params }: { params: { post: string, locale: SiteLocale } }) {
   const { post: slug, locale } = await params
 
+  const draft = ((await draftMode()).isEnabled)
   const payload = await getPayload({ config: configPromise })
-  const data = await payload.find({ collection: 'posts', locale, where: { slug: { equals: slug } } })
+  const data = await payload.find({ collection: 'posts', locale, draft, where: { slug: { equals: slug } } })
   const post = data.docs[0]
 
   if (!post)
     return notFound()
-
-  console.log(post)
 
   return (
     <>

@@ -7,6 +7,7 @@ import configPromise from '@payload-config'
 import { JSXConverters, RichText } from '@payloadcms/richtext-lexical/react';
 import { jsxConverters } from './posts/[post]/page';
 import { defaultLocale } from '@/i18n';
+import { draftMode } from 'next/headers';
 
 export default async function Home({ params }: LocaleParams) {
 
@@ -14,7 +15,8 @@ export default async function Home({ params }: LocaleParams) {
   setRequestLocale(locale);
 
   const payload = await getPayload({ config: configPromise })
-  const home = await payload.findGlobal({ slug: 'home', locale })
+  const draft = ((await draftMode()).isEnabled)
+  const home = await payload.findGlobal({ slug: 'home', locale, draft })
   const data = await payload.find({ collection: 'posts', locale })
   const posts = data.docs
 

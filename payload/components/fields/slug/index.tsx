@@ -10,7 +10,7 @@ export default function GetSlugInput({ trackingField = 'title' }: { trackingFiel
   const { value: slugValue = '', setValue: setSlugValue } = useField<string>({ path: 'slug' });
   const trackingFieldValue = getDataByPath<string>(trackingField) || '';
   const prevTrackingFieldValueRef = useRef(trackingFieldValue);
-  const stopTrackingRef = useRef(false);
+  const stopTrackingRef = useRef(trackingFieldValue ? true : false);
 
   useEffect(() => {
     if (!trackingField || stopTrackingRef.current) {

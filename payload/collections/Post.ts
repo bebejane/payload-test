@@ -1,5 +1,6 @@
-import type { CollectionConfig, Block, Access } from 'payload'
+import type { CollectionConfig, Block } from 'payload'
 import { revalidateHook } from '@/payload/hooks/revalidate'
+import { exitDraftHook } from '@/payload/hooks/exit-draft'
 
 export const QuoteBlock: Block = {
   slug: 'quoteBlock',
@@ -23,9 +24,16 @@ export const Post: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     livePreview: {
-      url: ({ data, locale }) => `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/posts/${data.slug}`
+      url: ({ data: { slug, _status }, locale }) => {
+        const path = `/${locale}/posts/${slug}`
+        const draftPath = `/api/draft?secret=${process.env.PAYLOAD_SECRET}&slug=${path}`
+        return `${process.env.NEXT_PUBLIC_SITE_URL}${_status !== 'draft' ? path : draftPath}`
+      }
     },
     preview: (doc, { locale }) => doc?.slug ? `/${locale}/posts/${doc.slug}` : null
+  },
+  versions: {
+    drafts: true
   },
   access: {
     read: ({ req: { user } }) => user?.role === 'user' || user?.role === 'admin',
@@ -86,8 +94,6 @@ export const Post: CollectionConfig = {
     }
   ],
   hooks: {
-    afterChange: [revalidateHook],
+    afterChange: [exitDraftHook, revalidateHook],
   },
 }
-
-
