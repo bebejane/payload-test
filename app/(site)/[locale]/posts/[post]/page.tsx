@@ -25,7 +25,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
 
 export { jsxConverters }
 
-export default async function Page({ params }: { params: { post: string, locale: 'en' | 'se' } }) {
+export default async function Page({ params }: { params: { post: string, locale: SiteLocale } }) {
   const { post: slug, locale } = await params
 
   const payload = await getPayload({ config: configPromise })
@@ -35,12 +35,21 @@ export default async function Page({ params }: { params: { post: string, locale:
   if (!post)
     return notFound()
 
+  console.log(post)
+
   return (
     <>
       <article className={s.post}>
         <h1>{post.title}</h1>
+        <RichText
+          data={post.content}
+          //@ts-ignore
+          converters={jsxConverters}
+        />
+
         {typeof post.image === 'object' && post.image?.url &&
           <Image
+            className={s.image}
             src={post.image.url}
             width={post.image.width ?? 0}
             height={post.image.height ?? 0}
@@ -48,11 +57,7 @@ export default async function Page({ params }: { params: { post: string, locale:
           />
         }
 
-        <RichText
-          content={post.content}
-          //@ts-ignore
-          converters={jsxConverters}
-        />
+
         <section>
           <ul>
             {post.blocks?.map((block, index) =>

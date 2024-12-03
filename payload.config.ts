@@ -42,9 +42,10 @@ export default buildConfig({
     components: {
       views: {
         dashboard: {
-          Component: '/payload/views/Dashboard',
+          Component: '/payload/components/views/Dashboard',
         }
       },
+      //Nav: { path: '/payload/components/views/Nav',}
     },
   },
   i18n: {

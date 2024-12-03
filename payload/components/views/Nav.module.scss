@@ -1,0 +1,14 @@
+.nav {
+  ul {
+    all: unset;
+    list-style: none;
+
+    li {
+      text-transform: capitalize;
+
+      &.active {
+        font-weight: bold;
+      }
+    }
+  }
+}

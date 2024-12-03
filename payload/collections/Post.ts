@@ -25,6 +25,7 @@ export const Post: CollectionConfig = {
     livePreview: {
       url: ({ data, locale }) => `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/posts/${data.slug}`
     },
+    preview: (doc, { locale }) => doc?.slug ? `/${locale}/posts/${doc.slug}` : null
   },
   access: {
     read: ({ req: { user } }) => user?.role === 'user' || user?.role === 'admin',
@@ -62,7 +63,7 @@ export const Post: CollectionConfig = {
       admin: {
         components: {
           Field: {
-            path: `/payload/collections/components/slug`,
+            path: `/payload/components/fields/slug`,
             clientProps: { trackingField: 'title' }
           }
         }

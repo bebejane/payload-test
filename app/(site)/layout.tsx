@@ -1,5 +1,5 @@
 import '@styles/index.scss'
-import { RefreshRouteOnSave } from 'lib/RefreshRouteOnSave'
+import { RefreshRouteOnSave } from './RefreshRouteOnSave'
 import ProgressProvider from '@/lib/progress';
 import Navbar from './Navbar'
 
@@ -9,12 +9,9 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
       <body>
         <Navbar />
         <main>
-          {/* 
           <ProgressProvider>
             {children}
           </ProgressProvider>
-           */}
-          {children}
         </main>
       </body>
       <RefreshRouteOnSave />

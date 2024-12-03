@@ -1,5 +1,5 @@
 import '@styles/index.scss'
-import { defaultLocale, locales } from 'i18n';
+import { defaultLocale, locales } from '@/i18n';
 import { setRequestLocale } from 'next-intl/server';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 
@@ -23,7 +23,6 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       <Body locale={locale}>
         {children}
       </Body>
-
     </>
   );
 }
@@ -32,11 +31,8 @@ function Body({ children, locale, }: BodyProps) {
   const messages = useMessages();
 
   return (
-
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <main>
-        {children}
-      </main>
+      {children}
     </NextIntlClientProvider>
   )
 }

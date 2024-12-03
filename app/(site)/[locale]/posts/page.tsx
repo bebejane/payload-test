@@ -3,12 +3,13 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { Link } from 'i18n/navigation';
 import { setRequestLocale } from 'next-intl/server';
+import { useMessages, useTranslations } from 'next-intl';
 
 type Props = LocaleParams<{ "post": string }>
 
 export default async function Page({ params }: Props) {
 
-  const { post, locale } = await params
+  const { locale } = await params
   setRequestLocale(locale);
 
   const payload = await getPayload({ config: configPromise })

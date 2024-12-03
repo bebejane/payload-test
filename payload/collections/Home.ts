@@ -6,7 +6,8 @@ export const Home: GlobalConfig = {
   admin: {
     livePreview: {
       url: ({ data, locale }) => `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}`,
-    }
+    },
+    preview: (doc, { locale }) => `/${locale}`
   },
   versions: {
     drafts: false

@@ -1,1 +1,7 @@
-.post {}
+.post {
+  .image {
+    height: 30vh;
+
+    object-fit: contain;
+  }
+}
