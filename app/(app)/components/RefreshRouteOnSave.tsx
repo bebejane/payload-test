@@ -1,15 +1,18 @@
 'use client'
 
 import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react'
-import { useRouter } from 'next/navigation.js'
+import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 
 export const RefreshRouteOnSave: React.FC = () => {
   const router = useRouter()
+  const pathname = usePathname()
 
   return (
     <PayloadLivePreview
-      refresh={() => router.refresh()}
+      key={pathname}
+      apiRoute={pathname}
+      refresh={() => { router.refresh(); }}
       serverURL={process.env.NEXT_PUBLIC_SITE_URL as string}
     />
   )

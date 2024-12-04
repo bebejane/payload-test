@@ -8,12 +8,14 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '3000',
-        pathname: '/**',
+        protocol: 'https',
+        hostname: 's3.amazonaws.com',
+        port: '',
+        pathname: '/bebedigital/**',
       },
     ],
+    loader: 'custom',
+    loaderFile: './lib/image-loader.js',
   },
   sassOptions: {
     includePaths: ['./app'],

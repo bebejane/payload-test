@@ -1,6 +1,6 @@
 import { revalidatePath } from "next/cache";
 
-export const revalidateHook = async (data: any) => {
+export default async function revalidateHook(data: any) {
   let paths = []
 
   const { doc, collection, global } = data

@@ -9,6 +9,9 @@ export default async function Navbar() {
   });
   return (
     <nav className={s.navbar}>
+      <Link href="/admin">
+        <button>Admin</button>
+      </Link>
       {!session ? (
         <>
           <Link href="/sign-in">

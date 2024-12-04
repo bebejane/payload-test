@@ -1,6 +1,6 @@
 import type { CollectionConfig, Block } from 'payload'
-import { revalidateHook } from '@/payload/hooks/revalidate'
-import { exitDraftHook } from '@/payload/hooks/exit-draft'
+import revalidateHook from '@/payload/hooks/revalidate'
+import draftHook from '@/payload/hooks/draft';
 
 export const QuoteBlock: Block = {
   slug: 'quoteBlock',
@@ -22,15 +22,7 @@ export const QuoteBlock: Block = {
 export const Post: CollectionConfig = {
   slug: 'posts',
   admin: {
-    useAsTitle: 'title',
-    livePreview: {
-      url: ({ data: { slug, _status }, locale }) => {
-        const path = `/${locale}/posts/${slug}`
-        const draftPath = `/api/draft?secret=${process.env.PAYLOAD_SECRET}&slug=${path}`
-        return `${process.env.NEXT_PUBLIC_SITE_URL}${_status !== 'draft' ? path : draftPath}`
-      }
-    },
-    preview: (doc, { locale }) => doc?.slug ? `/${locale}/posts/${doc.slug}` : null
+    useAsTitle: 'title'
   },
   versions: {
     drafts: true
@@ -94,6 +86,6 @@ export const Post: CollectionConfig = {
     }
   ],
   hooks: {
-    afterChange: [exitDraftHook, revalidateHook],
+    //afterChange: [revalidateHook, draftHook],
   },
 }

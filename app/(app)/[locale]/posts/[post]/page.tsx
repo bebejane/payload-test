@@ -6,7 +6,7 @@ import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { JSXConverters, JSXConvertersFunction, RichText } from '@payloadcms/richtext-lexical/react'
 import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
-import { QuoteBlock } from '@payload-types'
+import { Post, QuoteBlock } from '@payload-types'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
@@ -24,6 +24,19 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
   },
 })
 
+const generateSrcSet = (image: Post['image']) => {
+  if (typeof image === 'string')
+    return undefined
+
+  const sizes = image?.sizes
+  const srcset = [
+    `(max-width: ${sizes?.thumbnail?.width}px) 25vw`,
+    `(max-width: ${sizes?.card?.width}px) 50vw`,
+    `(max-width: ${sizes?.tablet?.width}px) 100vw`,
+  ]
+  return srcset.join(', ')
+}
+
 export { jsxConverters }
 
 export default async function Page({ params }: { params: { post: string, locale: SiteLocale } }) {
@@ -34,9 +47,11 @@ export default async function Page({ params }: { params: { post: string, locale:
   const data = await payload.find({ collection: 'posts', locale, draft, where: { slug: { equals: slug } } })
   const post = data.docs[0]
 
+
   if (!post)
     return notFound()
 
+  //console.log(post.image)
   return (
     <>
       <article className={s.post}>
@@ -54,9 +69,9 @@ export default async function Page({ params }: { params: { post: string, locale:
             width={post.image.width ?? 0}
             height={post.image.height ?? 0}
             alt={post.image.alt}
+          //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         }
-
 
         <section>
           <ul>

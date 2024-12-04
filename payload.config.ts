@@ -1,6 +1,8 @@
+import { s3Storage } from '@payloadcms/storage-s3'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
+import { previewPlugin } from '@/payload/plugins/preview'
 import { BlocksFeature, lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -51,6 +53,7 @@ export default buildConfig({
   i18n: {
     supportedLanguages: { en, sv },
   },
+
   localization: {
     locales: [
       {
@@ -111,7 +114,45 @@ export default buildConfig({
   },
   sharp,
   plugins: [
+    previewPlugin({
+      enabled: true,
+      draft: {
+        endpoint: `/api/draft`,
+        secret: process.env.PAYLOAD_SECRET as string
+      },
+      translate: async (doc, slug, locale) => {
+
+        let path = null
+
+        switch (slug) {
+          case 'home':
+            path = `/`;
+            break;
+          case 'posts':
+            path = `/posts/${doc.slug}`
+            break
+          default:
+            path = ''
+            break;
+        }
+
+        path = `/${locale}${path}`
+        return [path]
+      }
+    }),
     payloadCloudPlugin(),
-    // storage-adapter-placeholder
+    s3Storage({
+      collections: {
+        media: true
+      },
+      bucket: process.env.NEXT_PUBLIC_S3_BUCKET as string,
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID as string,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY as string,
+        },
+        region: process.env.NEXT_PUBLIC_S3_REGION,
+      },
+    }),
   ],
 })

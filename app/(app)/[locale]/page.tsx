@@ -8,6 +8,7 @@ import { JSXConverters, RichText } from '@payloadcms/richtext-lexical/react';
 import { jsxConverters } from './posts/[post]/page';
 import { defaultLocale } from '@/i18n';
 import { draftMode } from 'next/headers';
+import Image from 'next/image'
 
 export default async function Home({ params }: LocaleParams) {
 
@@ -28,6 +29,16 @@ export default async function Home({ params }: LocaleParams) {
         {posts.map(post =>
           <Link key={post.id} href={`/${locale}/posts/${post.slug}`}>{post.title}</Link>
         )}
+        {typeof home.image === 'object' && home.image?.url &&
+          <Image
+            className={s.image}
+            src={home.image.url}
+            width={home.image.width ?? 0}
+            height={home.image.height ?? 0}
+            alt={home.image.alt}
+          //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        }
       </article>
     </>
   )
