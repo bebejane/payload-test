@@ -24,9 +24,7 @@ export const Post: CollectionConfig = {
   admin: {
     useAsTitle: 'title'
   },
-  versions: {
-    drafts: true
-  },
+
   access: {
     read: ({ req: { user } }) => user?.role === 'user' || user?.role === 'admin',
     create: ({ req: { user } }) => user?.role === 'admin',
@@ -63,7 +61,7 @@ export const Post: CollectionConfig = {
       admin: {
         components: {
           Field: {
-            path: `/payload/components/fields/slug`,
+            path: `@/payload/components/fields/slug`,
             clientProps: { trackingField: 'title' }
           }
         }

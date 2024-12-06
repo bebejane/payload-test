@@ -1,12 +1,13 @@
 import s from './page.module.scss'
 import configPromise from '@payload-config'
 import { notFound } from 'next/navigation'
-import { Block, getPayload } from 'payload'
+import { getPayload } from 'payload'
 import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
-import { JSXConverters, JSXConvertersFunction, RichText } from '@payloadcms/richtext-lexical/react'
+import { JSXConvertersFunction, RichText } from '@payloadcms/richtext-lexical/react'
 import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
 import { Post, QuoteBlock } from '@payload-types'
+import { RefreshRouteOnSave } from '@/app/(app)/components/RefreshRouteOnSave'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
@@ -47,15 +48,13 @@ export default async function Page({ params }: { params: { post: string, locale:
   const data = await payload.find({ collection: 'posts', locale, draft, where: { slug: { equals: slug } } })
   const post = data.docs[0]
 
-
   if (!post)
     return notFound()
 
-  //console.log(post.image)
   return (
     <>
       <article className={s.post}>
-        <h1>{post.title}</h1>
+        <h1>{post.title} ({post._status})</h1>
         <RichText
           data={post.content}
           //@ts-ignore
@@ -69,10 +68,8 @@ export default async function Page({ params }: { params: { post: string, locale:
             width={post.image.width ?? 0}
             height={post.image.height ?? 0}
             alt={post.image.alt}
-          //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         }
-
         <section>
           <ul>
             {post.blocks?.map((block, index) =>

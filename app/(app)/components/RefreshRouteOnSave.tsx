@@ -1,19 +1,52 @@
 'use client'
 
-import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react'
-import { usePathname, useRouter } from 'next/navigation'
-import React from 'react'
+import type React from 'react'
 
-export const RefreshRouteOnSave: React.FC = () => {
+import { isDocumentEvent, ready } from '@payloadcms/live-preview'
+import { useCallback, useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
+
+export const RefreshRouteOnSave: React.FC<{
+  apiRoute?: string
+  depth?: number
+  refresh?: () => void
+  slug?: string
+  serverURL: string
+}> = (props) => {
+
   const router = useRouter()
-  const pathname = usePathname()
+  const { apiRoute, depth, refresh, serverURL } = props
+  const hasSentReadyMessage = useRef<boolean>(false)
 
-  return (
-    <PayloadLivePreview
-      key={pathname}
-      apiRoute={pathname}
-      refresh={() => { router.refresh(); }}
-      serverURL={process.env.NEXT_PUBLIC_SITE_URL as string}
-    />
+  const onMessage = useCallback(
+    (event: MessageEvent) => {
+
+      if (isDocumentEvent(event, serverURL)) {
+        router.refresh()
+      }
+    },
+    [router, serverURL],
   )
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('message', onMessage)
+    }
+
+    if (!hasSentReadyMessage.current) {
+      hasSentReadyMessage.current = true
+
+      ready({
+        serverURL,
+      })
+    }
+
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('message', onMessage)
+      }
+    }
+  }, [serverURL, onMessage, depth, apiRoute])
+
+  return null
 }

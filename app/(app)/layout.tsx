@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </ProgressProvider>
         </main>
       </body>
-      <RefreshRouteOnSave />
+      <RefreshRouteOnSave serverURL={process.env.NEXT_PUBLIC_SITE_URL as string} />
     </html>
   )
 }

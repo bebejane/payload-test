@@ -1,5 +1,10 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 import createNextIntlPlugin from 'next-intl/plugin'
+import { fileURLToPath } from 'url'
+import path from 'path'
+
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
 
 const withNextIntl = createNextIntlPlugin('./i18n')
 
@@ -36,9 +41,9 @@ const nextConfig = {
   },
   experimental: {
     turbo: {
-      resolveAlias: {
-        'next-intl/config': './i18n/index.ts',
-      },
+      //resolveAlias: {
+      //'next-intl/config': `${dirname}/i18n`,
+      //},
     },
   },
   async headers() {

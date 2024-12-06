@@ -22,24 +22,22 @@ export default async function Home({ params }: LocaleParams) {
   const posts = data.docs
 
   return (
-    <>
-      <article className={cn(s.start)}>
-        <h1>{home.header}</h1>
-        <RichText data={home.content} converters={jsxConverters as unknown as JSXConverters} />
-        {posts.map(post =>
-          <Link key={post.id} href={`/${locale}/posts/${post.slug}`}>{post.title}</Link>
-        )}
-        {typeof home.image === 'object' && home.image?.url &&
-          <Image
-            className={s.image}
-            src={home.image.url}
-            width={home.image.width ?? 0}
-            height={home.image.height ?? 0}
-            alt={home.image.alt}
-          //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-        }
-      </article>
-    </>
+    <article className={cn(s.start)}>
+      <h1>{home.header}</h1>
+      <RichText data={home.content} converters={jsxConverters as unknown as JSXConverters} />
+      {posts.map(post =>
+        <Link key={post.id} href={`/${locale}/posts/${post.slug}`}>{post.title}</Link>
+      )}
+      {typeof home.image === 'object' && home.image?.url &&
+        <Image
+          className={s.image}
+          src={home.image.url}
+          width={home.image.width ?? 0}
+          height={home.image.height ?? 0}
+          alt={home.image.alt}
+        />
+      }
+    </article>
+
   )
 }

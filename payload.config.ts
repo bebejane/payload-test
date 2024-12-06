@@ -44,7 +44,7 @@ export default buildConfig({
     components: {
       views: {
         dashboard: {
-          Component: '/payload/components/views/Dashboard',
+          Component: '@/payload/components/views/Dashboard',
         }
       },
       //Nav: { path: '/payload/components/views/Nav',}
@@ -114,32 +114,6 @@ export default buildConfig({
   },
   sharp,
   plugins: [
-    previewPlugin({
-      enabled: true,
-      draft: {
-        endpoint: `/api/draft`,
-        secret: process.env.PAYLOAD_SECRET as string
-      },
-      translate: async (doc, slug, locale) => {
-
-        let path = null
-
-        switch (slug) {
-          case 'home':
-            path = `/`;
-            break;
-          case 'posts':
-            path = `/posts/${doc.slug}`
-            break
-          default:
-            path = ''
-            break;
-        }
-
-        path = `/${locale}${path}`
-        return [path]
-      }
-    }),
     payloadCloudPlugin(),
     s3Storage({
       collections: {
@@ -154,5 +128,29 @@ export default buildConfig({
         region: process.env.NEXT_PUBLIC_S3_REGION,
       },
     }),
-  ],
+    previewPlugin({
+      enabled: true,
+      baseUrl: process.env.NEXT_PUBLIC_SITE_URL as string,
+      secret: process.env.PAYLOAD_SECRET as string,
+      endpoint: `/api/draft`,
+      slugs: ['home', 'posts'],
+      autosave: true,
+      translate: async (doc, slug, locale) => {
+        let path = null
+        switch (slug) {
+          case 'home':
+            path = `/`;
+            break;
+          case 'posts':
+            if (doc.slug)
+              path = `/posts/${doc.slug}`
+            break
+          default:
+            path = null
+            break;
+        }
+        return path ? [`/${locale}${path}`] : null
+      }
+    })
+  ]
 })
