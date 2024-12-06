@@ -43,13 +43,13 @@ export { jsxConverters }
 export default async function Page({ params }: { params: { post: string, locale: SiteLocale } }) {
   const { post: slug, locale } = await params
 
-  const draft = ((await draftMode()).isEnabled)
+  const draft = (await draftMode()).isEnabled
   const payload = await getPayload({ config: configPromise })
   const data = await payload.find({ collection: 'posts', locale, draft, where: { slug: { equals: slug } } })
   const post = data.docs[0]
 
   if (!post)
-    return null
+    return notFound()
 
   return (
     <>
