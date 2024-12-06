@@ -7,7 +7,6 @@ import { draftMode } from 'next/headers'
 import { JSXConvertersFunction, RichText } from '@payloadcms/richtext-lexical/react'
 import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
 import { Post, QuoteBlock } from '@payload-types'
-import { RefreshRouteOnSave } from '@/app/(app)/components/RefreshRouteOnSave'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
