@@ -92,6 +92,7 @@ export interface Post {
   slug?: string | null;
   date?: string | null;
   blocks?: QuoteBlock[] | null;
+  _pathname?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -268,6 +269,7 @@ export interface PostsSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  _pathname?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -404,6 +406,7 @@ export interface Home {
     [k: string]: unknown;
   };
   image?: (string | null) | Media;
+  _pathname?: string | null;
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -416,6 +419,7 @@ export interface HomeSelect<T extends boolean = true> {
   header?: T;
   content?: T;
   image?: T;
+  _pathname?: T;
   _status?: T;
   updatedAt?: T;
   createdAt?: T;

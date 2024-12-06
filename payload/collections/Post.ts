@@ -1,11 +1,19 @@
 import type { CollectionConfig, Block } from 'payload'
-import revalidateHook from '@/payload/hooks/revalidate'
-import draftHook from '@/payload/hooks/draft';
 
 export const QuoteBlock: Block = {
   slug: 'quoteBlock',
   imageAltText: 'A nice thumbnail image to show what this block looks like',
   interfaceName: 'QuoteBlock', // optional
+  labels: {
+    singular: {
+      en: 'Quote',
+      sv: 'Citat',
+    },
+    plural: {
+      en: 'Quotes',
+      sv: 'Citat',
+    },
+  },
   fields: [
     {
       name: 'quoteHeader',
@@ -82,8 +90,5 @@ export const Post: CollectionConfig = {
       type: 'blocks',
       blocks: [QuoteBlock]
     }
-  ],
-  hooks: {
-    //afterChange: [revalidateHook, draftHook],
-  },
+  ]
 }

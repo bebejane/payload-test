@@ -49,12 +49,13 @@ export default async function Page({ params }: { params: { post: string, locale:
   const post = data.docs[0]
 
   if (!post)
-    return notFound()
+    return null
 
   return (
     <>
       <article className={s.post}>
         <h1>{post.title} ({post._status})</h1>
+
         <RichText
           data={post.content}
           //@ts-ignore
@@ -70,6 +71,7 @@ export default async function Page({ params }: { params: { post: string, locale:
             alt={post.image.alt}
           />
         }
+
         <section>
           <ul>
             {post.blocks?.map((block, index) =>

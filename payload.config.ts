@@ -134,7 +134,7 @@ export default buildConfig({
       secret: process.env.PAYLOAD_SECRET as string,
       endpoint: `/api/draft`,
       slugs: ['home', 'posts'],
-      autosave: true,
+      autosave: false,
       translate: async (doc, slug, locale) => {
         let path = null
         switch (slug) {

@@ -18,15 +18,19 @@ export const RefreshRouteOnSave: React.FC<{
   const { apiRoute, depth, refresh, serverURL } = props
   const hasSentReadyMessage = useRef<boolean>(false)
 
-  const onMessage = useCallback(
-    (event: MessageEvent) => {
-
-      if (isDocumentEvent(event, serverURL)) {
-        router.refresh()
-      }
-    },
-    [router, serverURL],
-  )
+  const onMessage = useCallback((event: MessageEvent) => {
+    if (isDocumentEvent(event, serverURL)) {
+      router.refresh()
+    }
+    /*
+    if (event.data?.data) {
+      //console.log(event.data?.data._pathname, event.data?.data.slug)
+      //if (event.data?.data?._pathname)
+      //router.replace(event.data.data._pathname)
+      //else
+      router.refresh()
+    }*/
+  }, [router, serverURL])
 
   useEffect(() => {
     if (typeof window !== 'undefined') {

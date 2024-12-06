@@ -1,4 +1,4 @@
-import type { CollectionAfterChangeHook, Plugin, CollectionConfig, GlobalConfig, GlobalAfterChangeHook } from 'payload'
+import type { CollectionAfterChangeHook, Plugin, CollectionConfig, GlobalConfig, GlobalAfterChangeHook, Field } from 'payload'
 import { revalidatePath } from "next/cache";
 import draftHook from '@/payload/hooks/draft'
 
@@ -50,7 +50,7 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, pluginOption
   c.admin.preview = async (doc, { locale }) => {
     let path = (await translate(doc, c.slug, locale))?.[0]
     if (!path) return null
-    if (doc._status === 'draft')
+    if (doc?._status === 'draft')
       path = `${endpoint}?secret=${secret}&exit=1&slug=${path}`
     return `${baseUrl}${path}`
   }
@@ -67,16 +67,29 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, pluginOption
 
   }]
 
+  const beforeChange = async (props: any) => {
+
+    const { data: doc, operation, req: { locale } } = props
+    const paths = (await translate(doc, c.slug, locale))
+    if (!paths) return doc
+    doc._pathname = paths[0]
+    console.log('set pathname', doc._pathname, operation)
+    return doc
+  }
+
+
   c.hooks = (c.hooks ?? {
     afterChange: [],
+    beforeChange: [],
     afterRead: [],
   })
 
   //@ts-ignore
+  c.hooks.beforeChange = c.hooks?.beforeChange ? [...c.hooks.beforeChange, beforeChange] : [beforeChange]
+  //@ts-ignore
   c.hooks.afterChange = c.hooks?.afterChange ? [...c.hooks.afterChange, ...hooks] : hooks
   //@ts-ignore
   c.hooks.afterRead = c.hooks?.afterRead ? [...c.hooks.afterRead, draftHook] : [draftHook]
-
 
   c.versions = {
     drafts: {
@@ -85,6 +98,16 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, pluginOption
       }
     }
   }
+
+  c.fields.push({
+    label: 'Pathname',
+    name: '_pathname',
+    type: 'text',
+    admin: {
+      readOnly: true
+    },
+    required: false
+  } as Field)
 
   return c as T
 }
