@@ -67,25 +67,12 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, pluginOption
 
   }]
 
-  const beforeChange = async (props: any) => {
-
-    const { data: doc, operation, req: { locale } } = props
-    const paths = (await translate(doc, c.slug, locale))
-    if (!paths) return doc
-    doc._pathname = paths[0]
-    console.log('set pathname', doc._pathname, operation)
-    return doc
-  }
-
-
   c.hooks = (c.hooks ?? {
     afterChange: [],
     beforeChange: [],
     afterRead: [],
   })
 
-  //@ts-ignore
-  c.hooks.beforeChange = c.hooks?.beforeChange ? [...c.hooks.beforeChange, beforeChange] : [beforeChange]
   //@ts-ignore
   c.hooks.afterChange = c.hooks?.afterChange ? [...c.hooks.afterChange, ...hooks] : hooks
   //@ts-ignore
@@ -98,7 +85,7 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, pluginOption
       }
     }
   }
-
+  /*
   c.fields.push({
     label: 'Pathname',
     name: '_pathname',
@@ -109,6 +96,19 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, pluginOption
     required: false
   } as Field)
 
+  const beforeChange = async (props: any) => {
+
+    const { data: doc, operation, req: { locale } } = props
+    const paths = (await translate(doc, c.slug, locale))
+    if (!paths) return doc
+    doc._pathname = paths[0]
+    console.log('set pathname', doc._pathname, operation)
+    return doc
+  }
+    //@ts-ignore
+  c.hooks.beforeChange = c.hooks?.beforeChange ? [...c.hooks.beforeChange, beforeChange] : [beforeChange]
+  
+  */
   return c as T
 }
 
