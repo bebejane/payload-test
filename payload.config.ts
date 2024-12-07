@@ -1,5 +1,6 @@
 import { s3Storage } from '@payloadcms/storage-s3'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { previewPlugin } from '@/payload/plugins/preview'
@@ -23,8 +24,19 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  db: mongooseAdapter({
-    url: process.env.PAYLOAD_DATABASE_URL || '',
+  //db: mongooseAdapter({
+  //url: process.env.PAYLOAD_DATABASE_URL || '',
+  //}),
+  db: sqliteAdapter({
+    // SQLite-specific arguments go here.
+    // `client.url` is required.
+
+    client: {
+      url: 'file:payload.db',
+      authToken: process.env.DATABASE_AUTH_TOKEN,
+      //      filename: path.join(dirname, 'payload.db'),
+      //authToken: process.env.DATABASE_AUTH_TOKEN,
+    }
   }),
   globals: [Home],
   collections: [Post, Author, Media, User],
