@@ -75,7 +75,7 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
   c.hooks.afterRead = c.hooks?.afterRead ? [...c.hooks.afterRead, draftHook] : [draftHook]
 
   c.versions = {
-    drafts: !autosave ? true : { autosave: { interval: 100 } }
+    drafts: !autosave ? true : { autosave: { interval: 300 } }
   }
 
   return c as T
