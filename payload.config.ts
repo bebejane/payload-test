@@ -23,7 +23,6 @@ import { QuoteBlock } from './payload/models/collections/Post'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-
 export default buildConfig({
   db: mongooseAdapter({
     url: process.env.PAYLOAD_DATABASE_URL || '',
