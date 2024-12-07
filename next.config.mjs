@@ -40,11 +40,11 @@ const nextConfig = {
     buildActivity: false,
   },
   experimental: {
-    turbo: {
-      //resolveAlias: {
-      //'next-intl/config': `${dirname}/i18n`,
-      //},
-    },
+    //turbo: {
+    //resolveAlias: {
+    //'next-intl/config': `${dirname}/i18n`,
+    //},
+    //},
   },
   async headers() {
     return [

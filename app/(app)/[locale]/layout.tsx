@@ -12,7 +12,7 @@ export type BodyProps = {
   children: React.ReactNode,
   locale: string
 }
-export const dynamic = 'force-static'
+//export const dynamic = 'force-static'
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const locale = (await params).locale ?? defaultLocale
