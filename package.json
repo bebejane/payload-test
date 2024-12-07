@@ -10,7 +10,7 @@
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
-    "generate:prisma": "pnpx prisma generate --schema prisma/schema.prisma",
+    "generate:prisma": "prisma generate --schema prisma/schema.prisma",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
@@ -52,6 +52,7 @@
     "pino": "^9.5.0",
     "pino-pretty": "^13.0.0",
     "postmark": "^4.0.5",
+    "prisma": "^6.0.1",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-hook-form": "^7.53.2",
@@ -69,15 +70,5 @@
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "npm:types-react@19.0.0-rc.1",
-      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
-    }
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
   }
 }
