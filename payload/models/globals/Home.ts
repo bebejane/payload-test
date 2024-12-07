@@ -1,6 +1,6 @@
 import type { GlobalConfig } from 'payload'
 import revalidateHook from '@/payload/hooks/revalidate'
-import draftHook from '../../hooks/draft'
+import draftHook from '@/payload/hooks/draft'
 
 export const Home: GlobalConfig = {
   slug: 'home',

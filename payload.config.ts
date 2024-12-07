@@ -14,8 +14,8 @@ import sharp from 'sharp'
 import nodemailer from 'nodemailer'
 import postmarkTransport from 'nodemailer-postmark-transport'
 
-import collections from './payload/models/collections'
-import globals from './payload/models/globals'
+import { Author, Media, Post, User } from './payload/models/collections'
+import { Home } from './payload/models/globals'
 
 import { QuoteBlock } from './payload/models/collections/Post'
 
@@ -26,10 +26,10 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.PAYLOAD_DATABASE_URL || '',
   }),
-  globals,
-  collections,
+  globals: [Home],
+  collections: [Post, Author, Media, User],
   admin: {
-    user: collections.find(c => c.slug === 'users')?.slug,
+    user: User.slug,
     importMap: {
       baseDir: path.resolve(dirname),
     },

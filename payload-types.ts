@@ -11,10 +11,9 @@ export interface Config {
     users: UserAuthOperations;
   };
   collections: {
-    authors: Author;
-    home: Home;
-    media: Media;
     posts: Post;
+    authors: Author;
+    media: Media;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -22,10 +21,9 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
-    authors: AuthorsSelect<false> | AuthorsSelect<true>;
-    home: HomeSelect<false> | HomeSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
+    authors: AuthorsSelect<false> | AuthorsSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -69,22 +67,11 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "authors".
+ * via the `definition` "posts".
  */
-export interface Author {
+export interface Post {
   id: string;
-  name: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home".
- */
-export interface Home {
-  id: string;
-  header: string;
-  image?: (string | null) | Media;
+  title: string;
   content: {
     root: {
       type: string;
@@ -100,9 +87,11 @@ export interface Home {
     };
     [k: string]: unknown;
   };
-  other?: {
-    posts?: (string | Post)[] | null;
-  };
+  image?: (string | null) | Media;
+  author?: (string | null) | Author;
+  slug?: string | null;
+  date?: string | null;
+  blocks?: QuoteBlock[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -154,34 +143,13 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
+ * via the `definition` "authors".
  */
-export interface Post {
+export interface Author {
   id: string;
-  title: string;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  image?: (string | null) | Media;
-  author?: (string | null) | Author;
-  slug?: string | null;
-  date?: string | null;
-  blocks?: QuoteBlock[] | null;
+  name: string;
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -220,20 +188,16 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
+        relationTo: 'posts';
+        value: string | Post;
+      } | null)
+    | ({
         relationTo: 'authors';
         value: string | Author;
       } | null)
     | ({
-        relationTo: 'home';
-        value: string | Home;
-      } | null)
-    | ({
         relationTo: 'media';
         value: string | Media;
-      } | null)
-    | ({
-        relationTo: 'posts';
-        value: string | Post;
       } | null)
     | ({
         relationTo: 'users';
@@ -283,29 +247,39 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  image?: T;
+  author?: T;
+  slug?: T;
+  date?: T;
+  blocks?:
+    | T
+    | {
+        quoteBlock?:
+          | T
+          | {
+              quoteHeader?: T;
+              quoteText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "authors_select".
  */
 export interface AuthorsSelect<T extends boolean = true> {
   name?: T;
   updatedAt?: T;
   createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home_select".
- */
-export interface HomeSelect<T extends boolean = true> {
-  header?: T;
-  image?: T;
-  content?: T;
-  other?:
-    | T
-    | {
-        posts?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -361,33 +335,6 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts_select".
- */
-export interface PostsSelect<T extends boolean = true> {
-  title?: T;
-  content?: T;
-  image?: T;
-  author?: T;
-  slug?: T;
-  date?: T;
-  blocks?:
-    | T
-    | {
-        quoteBlock?:
-          | T
-          | {
-              quoteHeader?: T;
-              quoteText?: T;
-              id?: T;
-              blockName?: T;
-            };
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -433,6 +380,54 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: string;
+  header: string;
+  image?: (string | null) | Media;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  other?: {
+    posts?: (string | Post)[] | null;
+  };
+  _status?: ('draft' | 'published') | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
+  header?: T;
+  image?: T;
+  content?: T;
+  other?:
+    | T
+    | {
+        posts?: T;
+      };
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
