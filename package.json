@@ -18,6 +18,8 @@
   "dependencies": {
     "@better-fetch/fetch": "1.1.12",
     "@hookform/resolvers": "3.9.1",
+    "@payload-enchants/better-localized-fields": "^1.2.2",
+    "@payload-enchants/docs-reorder": "^1.2.2",
     "@payloadcms/db-mongodb": "^3.5.0",
     "@payloadcms/email-nodemailer": "^3.5.0",
     "@payloadcms/live-preview": "^3.5.0",
@@ -28,7 +30,7 @@
     "@payloadcms/richtext-lexical": "^3.5.0",
     "@payloadcms/storage-s3": "^3.5.0",
     "@payloadcms/translations": "^3.5.0",
-    "@payloadcms/ui": "3.4.0",
+    "@payloadcms/ui": "3.5.0",
     "@prisma/client": "6.0.1",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",

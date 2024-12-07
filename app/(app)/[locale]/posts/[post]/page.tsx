@@ -38,6 +38,7 @@ const generateSrcSet = (image: Post['image']) => {
 }
 
 export { jsxConverters }
+export const dynamic = "force-dynamic";
 
 export default async function Page({ params }: { params: { post: string, locale: SiteLocale } }) {
   const { post: slug, locale } = await params

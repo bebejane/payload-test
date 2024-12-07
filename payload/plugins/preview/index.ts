@@ -79,7 +79,7 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, pluginOption
   c.hooks.afterRead = c.hooks?.afterRead ? [...c.hooks.afterRead, draftHook] : [draftHook]
 
   c.versions = {
-    drafts: !autosave ? true : { autosave: { interval: 300 } }
+    drafts: !autosave ? true : { autosave: { interval: 350 } }
   }
   /*
   c.fields.push({
