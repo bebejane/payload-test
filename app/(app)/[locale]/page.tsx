@@ -18,7 +18,7 @@ export default async function Home({ params }: LocaleParams) {
   const payload = await getPayload({ config: configPromise })
   const draft = ((await draftMode()).isEnabled)
   const home = await payload.findGlobal({ slug: 'home', locale, draft })
-  const data = await payload.find({ collection: 'posts', locale })
+  const data = await payload.find({ collection: 'posts', locale, draft })
   const posts = data.docs
 
   return (

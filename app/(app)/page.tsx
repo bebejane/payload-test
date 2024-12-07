@@ -1,5 +1,3 @@
-// empty page component
-
 import { Metadata } from 'next'
 import page from './[locale]/page'
 

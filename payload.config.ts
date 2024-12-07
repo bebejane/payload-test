@@ -43,9 +43,9 @@ export default buildConfig({
     },
     components: {
       views: {
-        dashboard: {
-          Component: '@/payload/components/views/Dashboard',
-        }
+        //dashboard: {
+        //Component: '@/payload/components/views/Dashboard',
+        //}
       },
       //Nav: { path: '/payload/components/views/Nav',}
     },

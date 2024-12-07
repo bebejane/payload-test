@@ -388,6 +388,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Home {
   id: string;
   header: string;
+  image?: (string | null) | Media;
   content: {
     root: {
       type: string;
@@ -403,7 +404,9 @@ export interface Home {
     };
     [k: string]: unknown;
   };
-  image?: (string | null) | Media;
+  other?: {
+    posts?: (string | Post)[] | null;
+  };
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -414,8 +417,13 @@ export interface Home {
  */
 export interface HomeSelect<T extends boolean = true> {
   header?: T;
-  content?: T;
   image?: T;
+  content?: T;
+  other?:
+    | T
+    | {
+        posts?: T;
+      };
   _status?: T;
   updatedAt?: T;
   createdAt?: T;
