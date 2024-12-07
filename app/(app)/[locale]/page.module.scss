@@ -6,8 +6,9 @@
   }
 
   .image {
-    width: 100%;
+    width: auto;
     height: 50vh;
     object-fit: contain;
+    display: block;
   }
 }
