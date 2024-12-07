@@ -23,21 +23,23 @@ import { QuoteBlock } from './payload/models/collections/Post'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-export default buildConfig({
-  //db: mongooseAdapter({
-  //url: process.env.PAYLOAD_DATABASE_URL || '',
-  //}),
-  db: sqliteAdapter({
-    // SQLite-specific arguments go here.
-    // `client.url` is required.
+const PAYLOAD_DATABASE_URL = `mongodb://${process.env.MONGO_INITDB_ROOT_USERNAME}:${process.env.MONGO_INITDB_ROOT_PASSWORD}@${process.env.RAILWAY_TCP_PROXY_DOMAIN}:${process.env.RAILWAY_TCP_PROXY_PORT}/payload`
 
-    client: {
-      url: 'file:payload.db',
-      authToken: process.env.DATABASE_AUTH_TOKEN,
-      //      filename: path.join(dirname, 'payload.db'),
-      //authToken: process.env.DATABASE_AUTH_TOKEN,
-    }
+export default buildConfig({
+  db: mongooseAdapter({
+    url: PAYLOAD_DATABASE_URL || process.env.PAYLOAD_DATABASE_URL || '',
   }),
+  //db: sqliteAdapter({
+  // SQLite-specific arguments go here.
+  // `client.url` is required.
+
+  //client: {
+  //url: 'file:payload.db',
+  //authToken: process.env.DATABASE_AUTH_TOKEN,
+  //      filename: path.join(dirname, 'payload.db'),
+  //authToken: process.env.DATABASE_AUTH_TOKEN,
+  //}
+  //}),
   globals: [Home],
   collections: [Post, Author, Media, User],
   admin: {
