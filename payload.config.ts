@@ -23,12 +23,10 @@ import { QuoteBlock } from './payload/models/collections/Post'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const RAILWAY_PAYLOAD_DATABASE_URL = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_URL}:${process.env.MONGOPORT}/payload`
-console.log(RAILWAY_PAYLOAD_DATABASE_URL);
 
 export default buildConfig({
   db: mongooseAdapter({
-    url: RAILWAY_PAYLOAD_DATABASE_URL || process.env.PAYLOAD_DATABASE_URL || '',
+    url: process.env.PAYLOAD_DATABASE_URL || '',
   }),
   //db: sqliteAdapter({
   // SQLite-specific arguments go here.
