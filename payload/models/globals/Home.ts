@@ -1,6 +1,6 @@
 import type { GlobalConfig } from 'payload'
 import revalidateHook from '@/payload/hooks/revalidate'
-import draftHook from '../hooks/draft'
+import draftHook from '../../hooks/draft'
 
 export const Home: GlobalConfig = {
   slug: 'home',
@@ -21,7 +21,6 @@ export const Home: GlobalConfig = {
         { label: 'Posts', name: 'posts', type: 'relationship', relationTo: 'posts', required: false, hasMany: true },
       ]
     },
-
   ],
   hooks: {
     afterChange: [revalidateHook, draftHook],

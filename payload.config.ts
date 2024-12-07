@@ -14,11 +14,10 @@ import sharp from 'sharp'
 import nodemailer from 'nodemailer'
 import postmarkTransport from 'nodemailer-postmark-transport'
 
-import { Users } from './payload/collections/Users'
-import { Media } from './payload/collections/Media'
-import { Post, QuoteBlock } from './payload/collections/Post'
-import { Home } from './payload/collections/Home'
-import { Author } from './payload/collections/Author'
+import collections from './payload/models/collections'
+import globals from './payload/models/globals'
+
+import { QuoteBlock } from './payload/models/collections/Post'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -27,10 +26,10 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.PAYLOAD_DATABASE_URL || '',
   }),
-  globals: [Home],
-  collections: [Post, Users, Author, Media],
+  globals,
+  collections,
   admin: {
-    user: Users.slug,
+    user: collections.find(c => c.slug === 'users')?.slug,
     importMap: {
       baseDir: path.resolve(dirname),
     },
