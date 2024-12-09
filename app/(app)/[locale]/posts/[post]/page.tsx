@@ -9,6 +9,7 @@ import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexi
 import { Post, QuoteBlock } from '@/payload/payload-types'
 import Image from 'next/image'
 import { Suspense } from 'react'
+import { PageClient } from '../../../components/PageClient'
 
 export const metadata: Metadata = {
   title: 'Payload test',
@@ -31,10 +32,10 @@ export default async function Page({ params }: { params: { post: string; locale:
 
   const post = data.docs[0]
 
-  if (!post) return notFound()
+  if (!post) return notFound
 
   return (
-    <Suspense>
+    <>
       <article className={s.post}>
         <h1>
           {post.title} ({post._status})
@@ -56,6 +57,6 @@ export default async function Page({ params }: { params: { post: string; locale:
           <ul>{post.blocks?.map((block, index) => <li key={index}>{block.quoteHeader}</li>)}</ul>
         </section>
       </article>
-    </Suspense>
+    </>
   )
 }

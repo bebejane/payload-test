@@ -91,6 +91,13 @@ export const Post: CollectionConfig = {
       },
       type: 'blocks',
       blocks: [QuoteBlock]
+    }, {
+      name: '_pathname',
+      type: "text",
+      label: {
+        en: 'Pathname',
+        sv: 'Pathname',
+      }
     }
   ]
 }

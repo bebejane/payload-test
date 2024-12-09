@@ -92,6 +92,7 @@ export interface Post {
   slug?: string | null;
   date?: string | null;
   blocks?: QuoteBlock[] | null;
+  _pathname?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -103,6 +104,13 @@ export interface Post {
 export interface Media {
   id: string;
   alt: string;
+  cloudinary?: {
+    public_id?: string | null;
+    original_filename?: string | null;
+    format?: string | null;
+    secure_url?: string | null;
+    resource_type?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -268,6 +276,7 @@ export interface PostsSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  _pathname?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -287,6 +296,15 @@ export interface AuthorsSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  cloudinary?:
+    | T
+    | {
+        public_id?: T;
+        original_filename?: T;
+        format?: T;
+        secure_url?: T;
+        resource_type?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   url?: T;

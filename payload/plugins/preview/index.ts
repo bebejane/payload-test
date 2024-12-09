@@ -1,7 +1,11 @@
 import type { CollectionAfterChangeHook, Plugin, CollectionConfig, GlobalConfig, GlobalAfterChangeHook, Field } from 'payload'
 import { revalidatePath } from "next/cache";
 import draftHook from '@/payload/hooks/draft'
-import { after } from 'node:test';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
 
 export interface PluginOptions {
   enabled?: boolean,
@@ -34,6 +38,7 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
   c.admin.livePreview = {
     ...c.admin.livePreview,
     url: async ({ data: doc, locale }) => {
+      console.log(doc._pathname)
       //let path = doc._pathname ?? (await translate(doc, c.slug, locale.code))?.[0] ?? '/_'
       let path = (await translate(doc, c.slug, locale.code))?.[0] ?? '/_'
 
@@ -52,7 +57,7 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
     return `${baseUrl}${path}`
   }
 
-  const hooks: CollectionAfterChangeHook[] | GlobalAfterChangeHook[] = [draftHook, async (props: any) => {
+  const revalidateHook: CollectionAfterChangeHook | GlobalAfterChangeHook = async (props: any) => {
     const { doc, req: { locale } } = props
     if (doc?._status !== 'published') return
 
@@ -62,7 +67,7 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
     console.log('revalidate', paths)
     paths.forEach(path => revalidatePath(path))
 
-  }]
+  }
 
   c.hooks = (c.hooks ?? {
     afterChange: [],
@@ -71,22 +76,45 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
   })
 
   //@ts-ignore
-  c.hooks.afterChange = c.hooks?.afterChange ? [...c.hooks.afterChange, ...hooks] : hooks
+  c.hooks.afterChange = c.hooks?.afterChange ? [...c.hooks.afterChange, revalidateHook] : [revalidateHook]
 
-  const afterReadHook = async (props: any) => {
+  const pathnameHook = async (props: any) => {
     const { doc, req: { locale } } = props
     const paths = await translate(doc, c.slug, locale)
     if (paths?.[0])
       doc._pathname = paths[0]
     return doc
   }
+
   //@ts-ignore
-  c.hooks.afterRead = c.hooks?.afterRead ? [...c.hooks.afterRead, draftHook, afterReadHook] : [draftHook, afterReadHook]
+  c.hooks.afterRead = c.hooks?.afterRead ? [...c.hooks.afterRead, draftHook, pathnameHook] : [draftHook, pathnameHook]
 
   c.versions = {
     drafts: !autosave ? true : { autosave: { interval: 300 } }
   }
 
+  /*
+  const fields = c.fields.filter((field: Field) => field.name !== '_pathname')
+  console.log(dirname)
+  fields.push({
+    label: "Pathname",
+    name: "_pathname",
+    type: "text",
+    admin: {
+      components: {
+        Field: {
+          path: `./pathname`,
+          clientProps: { slug: c.slug }
+        }
+      }
+    }
+  })
+  c.fields = fields;
+
+  /*
+    
+  },
+  */
   return c as T
 }
 

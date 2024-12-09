@@ -13,24 +13,19 @@ export const RefreshRouteOnSave: React.FC<{
   slug?: string
   serverURL: string
 }> = (props) => {
-
   const router = useRouter()
-  const { apiRoute, depth, refresh, serverURL } = props
+  const { apiRoute, depth, serverURL } = props
   const hasSentReadyMessage = useRef<boolean>(false)
 
-  const onMessage = useCallback((event: MessageEvent) => {
-    if (isDocumentEvent(event, serverURL)) {
+  const onMessage = useCallback(
+    (event: MessageEvent) => {
+      if (event.data?.data?._pathname) {
+        router.replace(event.data?.data?._pathname)
+      }
       router.refresh()
-    }
-    /*
-    if (event.data?.data) {
-      //console.log(event.data?.data._pathname, event.data?.data.slug)
-      //if (event.data?.data?._pathname)
-      //router.replace(event.data.data._pathname)
-      //else
-      router.refresh()
-    }*/
-  }, [router, serverURL])
+    },
+    [router, serverURL],
+  )
 
   useEffect(() => {
     if (typeof window !== 'undefined') {

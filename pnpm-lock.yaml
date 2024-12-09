@@ -108,7 +108,7 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0(nodemailer@6.9.16)
       payload:
-        specifier: ^3.5.0
+        specifier: 3.5.0
         version: 3.5.0(graphql@16.9.0)(monaco-editor@0.52.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.6.3)
       pino:
         specifier: ^9.5.0

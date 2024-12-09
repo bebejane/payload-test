@@ -1,6 +1,6 @@
 import '@styles/index.scss'
 import { RefreshRouteOnSave } from './components/RefreshRouteOnSave'
-import ProgressProvider from '@/lib/progress';
+import ProgressProvider from '@/lib/progress'
 import Navbar from './components/Navbar'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -9,9 +9,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Navbar />
         <main>
-          <ProgressProvider>
-            {children}
-          </ProgressProvider>
+          <ProgressProvider>{children}</ProgressProvider>
         </main>
       </body>
       <RefreshRouteOnSave serverURL={process.env.NEXT_PUBLIC_SITE_URL as string} />

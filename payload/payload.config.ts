@@ -3,6 +3,7 @@ import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { previewPlugin } from '@/payload/plugins/preview'
+import { cloudinaryPlugin } from '@/payload/plugins/cloudinary'
 import { BlocksFeature, lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -113,6 +114,8 @@ export default buildConfig({
   sharp,
   plugins: [
     payloadCloudPlugin(),
+    cloudinaryPlugin(),
+    /*
     s3Storage({
       collections: {
         media: true
@@ -126,6 +129,7 @@ export default buildConfig({
         region: process.env.NEXT_PUBLIC_S3_REGION,
       },
     }),
+    */
     previewPlugin({
       enabled: true,
       baseUrl: process.env.NEXT_PUBLIC_SITE_URL as string,

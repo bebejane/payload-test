@@ -1,10 +1,5 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 import createNextIntlPlugin from 'next-intl/plugin'
-import { fileURLToPath } from 'url'
-import path from 'path'
-
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
 
 const withNextIntl = createNextIntlPlugin('./i18n')
 
@@ -14,13 +9,13 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 's3.amazonaws.com',
+        hostname: 'res.cloudinary.com',
         port: '',
-        pathname: '/bebedigital/**',
+        pathname: '/**',
       },
     ],
     loader: 'custom',
-    loaderFile: './lib/image-loader.js',
+    loaderFile: './payload/image-loaders/cloudinary.ts',
   },
   sassOptions: {
     includePaths: ['./app'],
