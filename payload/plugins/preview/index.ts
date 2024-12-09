@@ -37,8 +37,9 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
       let path = (await translate(doc, c.slug, locale.code))?.[0] ?? '/_'
 
       if (doc._status === 'draft')
-        path = `${endpoint}?secret=${secret}&exit=1&slug=${path}&collection=${c.slug}&global=${c.slug}`
+        path = `${endpoint}?secret=${secret}&slug=${path}&collection=${c.slug}&global=${c.slug}`
 
+      console.log(path)
       return `${baseUrl}${path}`
     }
   }

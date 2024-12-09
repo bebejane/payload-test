@@ -9,7 +9,7 @@ import configPromise from '@payload-config'
 
 export const GET = async (request: Request): Promise<Response | void> => {
 
-  const payload = await getPayload({ config: configPromise })
+  //  const payload = await getPayload({ config: configPromise })
   const { searchParams } = new URL(request.url)
   const secret = searchParams.get('secret')
   const slug = searchParams.get('slug') as string
@@ -29,21 +29,11 @@ export const GET = async (request: Request): Promise<Response | void> => {
 
   if (!exit) {
     console.log('enter draft mode');
-
-    if (await slugExists(slug, (collection ?? global))) {
-      console.log('enter draft mode');
-      draft.enable()
-    }
-    else {
-      return new Response('Not found', { status: 404 })
-    }
-
-
+    draft.enable()
   } else {
     console.log('exit draft mode');
     draft.disable()
   }
-
 
   if (maxAge !== null) {
     const bypassCookie = (await cookies()).get('__prerender_bypass');
@@ -68,7 +58,7 @@ export const GET = async (request: Request): Promise<Response | void> => {
 
 const slugExists = async (slug: string, collection: string): Promise<boolean> => {
   const payload = await getPayload({ config: configPromise })
-  const { docs: collectionDocs } = await payload.find({
+  const { docs } = await payload.find({
     collection: collection as CollectionSlug,
     limit: 1,
     pagination: false,
@@ -80,11 +70,15 @@ const slugExists = async (slug: string, collection: string): Promise<boolean> =>
       },
     },
   })
-  const { id: globalDocId } = await payload.findGlobal({
+
+  if (docs.length === 1) return true
+
+  const doc = await payload.findGlobal({
     slug: collection as GlobalSlug,
     depth: 0,
     select: {},
-  })
+  }).catch(() => { })
 
-  return collectionDocs.length === 1 || typeof globalDocId === 'string'
+
+  return doc?.id ? true : false
 }

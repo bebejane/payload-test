@@ -1,12 +1,12 @@
-import s from "./Navbar.module.scss";
-import Link from "next/link";
-import { headers } from "next/headers";
-import { auth } from "@/auth";
+import s from './Navbar.module.scss'
+import Link from 'next/link'
+import { headers } from 'next/headers'
+import { auth } from '@/auth/auth'
 
 export default async function Navbar() {
   const session = await auth.api.getSession({
     headers: await headers(),
-  });
+  })
   return (
     <nav className={s.navbar}>
       <Link href="/admin">
@@ -27,5 +27,5 @@ export default async function Navbar() {
         </Link>
       )}
     </nav>
-  );
+  )
 }

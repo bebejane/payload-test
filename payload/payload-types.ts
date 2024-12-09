@@ -30,7 +30,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: number;
+    defaultIDType: string;
   };
   globals: {
     home: Home;
@@ -70,7 +70,7 @@ export interface UserAuthOperations {
  * via the `definition` "posts".
  */
 export interface Post {
-  id: number;
+  id: string;
   title: string;
   content: {
     root: {
@@ -87,8 +87,8 @@ export interface Post {
     };
     [k: string]: unknown;
   };
-  image?: (number | null) | Media;
-  author?: (number | null) | Author;
+  image?: (string | null) | Media;
+  author?: (string | null) | Author;
   slug?: string | null;
   date?: string | null;
   blocks?: QuoteBlock[] | null;
@@ -101,7 +101,7 @@ export interface Post {
  * via the `definition` "media".
  */
 export interface Media {
-  id: number;
+  id: string;
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -146,7 +146,7 @@ export interface Media {
  * via the `definition` "authors".
  */
 export interface Author {
-  id: number;
+  id: string;
   name: string;
   updatedAt: string;
   createdAt: string;
@@ -167,7 +167,7 @@ export interface QuoteBlock {
  * via the `definition` "users".
  */
 export interface User {
-  id: number;
+  id: string;
   role: 'admin' | 'user';
   updatedAt: string;
   createdAt: string;
@@ -185,28 +185,28 @@ export interface User {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: number;
+  id: string;
   document?:
     | ({
         relationTo: 'posts';
-        value: number | Post;
+        value: string | Post;
       } | null)
     | ({
         relationTo: 'authors';
-        value: number | Author;
+        value: string | Author;
       } | null)
     | ({
         relationTo: 'media';
-        value: number | Media;
+        value: string | Media;
       } | null)
     | ({
         relationTo: 'users';
-        value: number | User;
+        value: string | User;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -216,10 +216,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: number;
+  id: string;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   key?: string | null;
   value?:
@@ -239,7 +239,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: number;
+  id: string;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -386,9 +386,9 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  * via the `definition` "home".
  */
 export interface Home {
-  id: number;
+  id: string;
   header: string;
-  image?: (number | null) | Media;
+  image?: (string | null) | Media;
   content: {
     root: {
       type: string;
@@ -405,7 +405,7 @@ export interface Home {
     [k: string]: unknown;
   };
   other?: {
-    posts?: (number | Post)[] | null;
+    posts?: (string | Post)[] | null;
   };
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;

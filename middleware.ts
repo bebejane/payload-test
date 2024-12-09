@@ -3,7 +3,7 @@ import { defaultLocale } from './i18n';
 import createMiddleware from 'next-intl/middleware';
 import { betterFetch } from '@better-fetch/fetch';
 import { NextResponse, type NextRequest } from "next/server";
-import type { Session } from "@/auth";
+import type { Session } from "@/auth/auth";
 
 const intlMiddleware = createMiddleware({
   locales,
