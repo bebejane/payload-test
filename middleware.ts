@@ -21,7 +21,6 @@ export default async function authMiddleware(request: NextRequest) {
   intlMiddleware(request);
 
   const pathname = request.nextUrl.pathname;
-
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
   const isAuthRoute = authRoutes.includes(pathname);
   const isPasswordRoute = passwordRoutes.includes(pathname);
@@ -36,12 +35,10 @@ export default async function authMiddleware(request: NextRequest) {
     {
       baseURL: process.env.NEXT_PUBLIC_SITE_URL,
       headers: {
-        //get the cookie from the request
         cookie: request.headers.get("cookie") || "",
       },
     },
   );
-
 
   if (!session) {
     if (isAuthRoute || isPasswordRoute) {

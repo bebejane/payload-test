@@ -195,22 +195,22 @@ export interface User {
 export interface PayloadLockedDocument {
   id: string;
   document?:
-    | ({
-        relationTo: 'posts';
-        value: string | Post;
-      } | null)
-    | ({
-        relationTo: 'authors';
-        value: string | Author;
-      } | null)
-    | ({
-        relationTo: 'media';
-        value: string | Media;
-      } | null)
-    | ({
-        relationTo: 'users';
-        value: string | User;
-      } | null);
+  | ({
+    relationTo: 'posts';
+    value: string | Post;
+  } | null)
+  | ({
+    relationTo: 'authors';
+    value: string | Author;
+  } | null)
+  | ({
+    relationTo: 'media';
+    value: string | Media;
+  } | null)
+  | ({
+    relationTo: 'users';
+    value: string | User;
+  } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
@@ -231,14 +231,14 @@ export interface PayloadPreference {
   };
   key?: string | null;
   value?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
+  | {
+    [k: string]: unknown;
+  }
+  | unknown[]
+  | string
+  | number
+  | boolean
+  | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -265,17 +265,17 @@ export interface PostsSelect<T extends boolean = true> {
   slug?: T;
   date?: T;
   blocks?:
+  | T
+  | {
+    quoteBlock?:
     | T
     | {
-        quoteBlock?:
-          | T
-          | {
-              quoteHeader?: T;
-              quoteText?: T;
-              id?: T;
-              blockName?: T;
-            };
-      };
+      quoteHeader?: T;
+      quoteText?: T;
+      id?: T;
+      blockName?: T;
+    };
+  };
   _pathname?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -297,14 +297,14 @@ export interface AuthorsSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   cloudinary?:
-    | T
-    | {
-        public_id?: T;
-        original_filename?: T;
-        format?: T;
-        secure_url?: T;
-        resource_type?: T;
-      };
+  | T
+  | {
+    public_id?: T;
+    original_filename?: T;
+    format?: T;
+    secure_url?: T;
+    resource_type?: T;
+  };
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -317,39 +317,39 @@ export interface MediaSelect<T extends boolean = true> {
   focalX?: T;
   focalY?: T;
   sizes?:
+  | T
+  | {
+    thumbnail?:
     | T
     | {
-        thumbnail?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        card?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        tablet?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-      };
+      url?: T;
+      width?: T;
+      height?: T;
+      mimeType?: T;
+      filesize?: T;
+      filename?: T;
+    };
+    card?:
+    | T
+    | {
+      url?: T;
+      width?: T;
+      height?: T;
+      mimeType?: T;
+      filesize?: T;
+      filename?: T;
+    };
+    tablet?:
+    | T
+    | {
+      url?: T;
+      width?: T;
+      height?: T;
+      mimeType?: T;
+      filesize?: T;
+      filename?: T;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -438,10 +438,10 @@ export interface HomeSelect<T extends boolean = true> {
   image?: T;
   content?: T;
   other?:
-    | T
-    | {
-        posts?: T;
-      };
+  | T
+  | {
+    posts?: T;
+  };
   _status?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -457,5 +457,5 @@ export interface Auth {
 
 
 declare module 'payload' {
-  export interface GeneratedTypes extends Config {}
+  export interface GeneratedTypes extends Config { }
 }
