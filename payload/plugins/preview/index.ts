@@ -1,6 +1,7 @@
 import type { CollectionAfterChangeHook, Plugin, CollectionConfig, GlobalConfig, GlobalAfterChangeHook, Field } from 'payload'
 import { revalidatePath } from "next/cache";
 import draftHook from '@/payload/hooks/draft'
+import { after } from 'node:test';
 
 export interface PluginOptions {
   enabled?: boolean,
@@ -33,13 +34,12 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
   c.admin.livePreview = {
     ...c.admin.livePreview,
     url: async ({ data: doc, locale }) => {
-
+      //let path = doc._pathname ?? (await translate(doc, c.slug, locale.code))?.[0] ?? '/_'
       let path = (await translate(doc, c.slug, locale.code))?.[0] ?? '/_'
 
       if (doc._status === 'draft')
         path = `${endpoint}?secret=${secret}&slug=${path}&collection=${c.slug}&global=${c.slug}`
 
-      console.log(path)
       return `${baseUrl}${path}`
     }
   }
@@ -72,8 +72,16 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
 
   //@ts-ignore
   c.hooks.afterChange = c.hooks?.afterChange ? [...c.hooks.afterChange, ...hooks] : hooks
+
+  const afterReadHook = async (props: any) => {
+    const { doc, req: { locale } } = props
+    const paths = await translate(doc, c.slug, locale)
+    if (paths?.[0])
+      doc._pathname = paths[0]
+    return doc
+  }
   //@ts-ignore
-  c.hooks.afterRead = c.hooks?.afterRead ? [...c.hooks.afterRead, draftHook] : [draftHook]
+  c.hooks.afterRead = c.hooks?.afterRead ? [...c.hooks.afterRead, draftHook, afterReadHook] : [draftHook, afterReadHook]
 
   c.versions = {
     drafts: !autosave ? true : { autosave: { interval: 300 } }
