@@ -1,8 +1,9 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { previewPlugin } from '@/payload/plugins/preview'
-import { cloudinaryPlugin } from '@/payload/plugins/cloudinary'
+import { previewPlugin, settingsPlugin, cloudinaryPlugin } from '@/payload/plugins'
+import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
+
 import { BlocksFeature, lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -14,10 +15,10 @@ import sharp from 'sharp'
 import nodemailer from 'nodemailer'
 import postmarkTransport from 'nodemailer-postmark-transport'
 
-import { Author, Media, Post, User } from './models/collections'
+import { Author, Media, Post, User, File } from './models/collections'
 import { Home } from './models/globals'
-
 import { QuoteBlock } from './models/collections/Post'
+import { themePlugin } from './plugins/theme'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -27,7 +28,7 @@ export default buildConfig({
     url: process.env.PAYLOAD_DATABASE_URL || ''
   }),
   globals: [Home],
-  collections: [Post, Author, Media, User],
+  collections: [Post, Author, Media, File, User],
   admin: {
     user: User.slug,
     importMap: {
@@ -112,23 +113,19 @@ export default buildConfig({
   },
   sharp,
   plugins: [
-    payloadCloudPlugin(),
-    cloudinaryPlugin(),
-    /*
-    s3Storage({
-      collections: {
-        media: true
-      },
-      bucket: process.env.NEXT_PUBLIC_S3_BUCKET as string,
-      config: {
-        credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID as string,
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY as string,
-        },
-        region: process.env.NEXT_PUBLIC_S3_REGION,
-      },
+    settingsPlugin({
+      enabled: true,
+      fields: [
+        { label: 'Setting 1', name: 'setting1', type: 'checkbox', required: false, localized: false },
+      ]
     }),
-    */
+    themePlugin({
+      enabled: true,
+    }),
+    payloadCloudPlugin(),
+    cloudinaryPlugin({
+      folder: 'payload-test'
+    }),
     previewPlugin({
       enabled: true,
       baseUrl: process.env.NEXT_PUBLIC_SITE_URL as string,
@@ -153,5 +150,20 @@ export default buildConfig({
         return path ? [`/${locale}${path}`] : null
       }
     })
+    /*
+    s3Storage({
+      collections: {
+        media: true
+      },
+      bucket: process.env.NEXT_PUBLIC_S3_BUCKET as string,
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID as string,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY as string,
+        },
+        region: process.env.NEXT_PUBLIC_S3_REGION,
+      },
+    }),
+    */
   ]
 })

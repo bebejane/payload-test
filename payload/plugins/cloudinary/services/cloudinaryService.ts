@@ -53,7 +53,7 @@ export default class CloudinaryService {
     await fs.promises.writeFile(tmpFileName, buffer);
     const _opts = {
       ...this.options,
-      folder: this.options?.folder || folder,
+      folder,
     };
     let _resourceType = this.options?.resource_type;
     if (!_resourceType) {
@@ -77,8 +77,8 @@ export default class CloudinaryService {
       invalidate?: boolean;
     }
   ): Promise<any> {
+    console.log('DELETE', public_id, options)
     return await cloudinary.uploader.destroy(public_id, options)
-
   }
 }
 export function mediaManagement(

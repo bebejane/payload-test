@@ -14,6 +14,7 @@ export interface Config {
     posts: Post;
     authors: Author;
     media: Media;
+    file: File;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -24,6 +25,7 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     authors: AuthorsSelect<false> | AuthorsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    file: FileSelect<false> | FileSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -34,9 +36,13 @@ export interface Config {
   };
   globals: {
     home: Home;
+    settings: Setting;
+    theme: Theme;
   };
   globalsSelect: {
     home: HomeSelect<false> | HomeSelect<true>;
+    settings: SettingsSelect<false> | SettingsSelect<true>;
+    theme: ThemeSelect<false> | ThemeSelect<true>;
   };
   locale: 'en' | 'se';
   user: User & {
@@ -103,7 +109,7 @@ export interface Post {
  */
 export interface Media {
   id: string;
-  alt: string;
+  alt?: string | null;
   cloudinary?: {
     public_id?: string | null;
     original_filename?: string | null;
@@ -172,6 +178,31 @@ export interface QuoteBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "file".
+ */
+export interface File {
+  id: string;
+  cloudinary?: {
+    public_id?: string | null;
+    original_filename?: string | null;
+    format?: string | null;
+    secure_url?: string | null;
+    resource_type?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -195,22 +226,26 @@ export interface User {
 export interface PayloadLockedDocument {
   id: string;
   document?:
-  | ({
-    relationTo: 'posts';
-    value: string | Post;
-  } | null)
-  | ({
-    relationTo: 'authors';
-    value: string | Author;
-  } | null)
-  | ({
-    relationTo: 'media';
-    value: string | Media;
-  } | null)
-  | ({
-    relationTo: 'users';
-    value: string | User;
-  } | null);
+    | ({
+        relationTo: 'posts';
+        value: string | Post;
+      } | null)
+    | ({
+        relationTo: 'authors';
+        value: string | Author;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'file';
+        value: string | File;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: string | User;
+      } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
@@ -231,14 +266,14 @@ export interface PayloadPreference {
   };
   key?: string | null;
   value?:
-  | {
-    [k: string]: unknown;
-  }
-  | unknown[]
-  | string
-  | number
-  | boolean
-  | null;
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -265,17 +300,17 @@ export interface PostsSelect<T extends boolean = true> {
   slug?: T;
   date?: T;
   blocks?:
-  | T
-  | {
-    quoteBlock?:
     | T
     | {
-      quoteHeader?: T;
-      quoteText?: T;
-      id?: T;
-      blockName?: T;
-    };
-  };
+        quoteBlock?:
+          | T
+          | {
+              quoteHeader?: T;
+              quoteText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   _pathname?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -297,14 +332,14 @@ export interface AuthorsSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   cloudinary?:
-  | T
-  | {
-    public_id?: T;
-    original_filename?: T;
-    format?: T;
-    secure_url?: T;
-    resource_type?: T;
-  };
+    | T
+    | {
+        public_id?: T;
+        original_filename?: T;
+        format?: T;
+        secure_url?: T;
+        resource_type?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -317,39 +352,65 @@ export interface MediaSelect<T extends boolean = true> {
   focalX?: T;
   focalY?: T;
   sizes?:
-  | T
-  | {
-    thumbnail?:
     | T
     | {
-      url?: T;
-      width?: T;
-      height?: T;
-      mimeType?: T;
-      filesize?: T;
-      filename?: T;
-    };
-    card?:
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        card?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        tablet?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "file_select".
+ */
+export interface FileSelect<T extends boolean = true> {
+  cloudinary?:
     | T
     | {
-      url?: T;
-      width?: T;
-      height?: T;
-      mimeType?: T;
-      filesize?: T;
-      filename?: T;
-    };
-    tablet?:
-    | T
-    | {
-      url?: T;
-      width?: T;
-      height?: T;
-      mimeType?: T;
-      filesize?: T;
-      filename?: T;
-    };
-  };
+        public_id?: T;
+        original_filename?: T;
+        format?: T;
+        secure_url?: T;
+        resource_type?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -431,6 +492,27 @@ export interface Home {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings".
+ */
+export interface Setting {
+  id: string;
+  setting1?: boolean | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "theme".
+ */
+export interface Theme {
+  id: string;
+  background?: string | null;
+  text?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home_select".
  */
 export interface HomeSelect<T extends boolean = true> {
@@ -438,11 +520,32 @@ export interface HomeSelect<T extends boolean = true> {
   image?: T;
   content?: T;
   other?:
-  | T
-  | {
-    posts?: T;
-  };
+    | T
+    | {
+        posts?: T;
+      };
   _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings_select".
+ */
+export interface SettingsSelect<T extends boolean = true> {
+  setting1?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "theme_select".
+ */
+export interface ThemeSelect<T extends boolean = true> {
+  background?: T;
+  text?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -457,5 +560,5 @@ export interface Auth {
 
 
 declare module 'payload' {
-  export interface GeneratedTypes extends Config { }
+  export interface GeneratedTypes extends Config {}
 }

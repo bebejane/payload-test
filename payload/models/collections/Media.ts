@@ -6,8 +6,7 @@ export const Media: CollectionConfig = {
     read: () => true,
   },
   upload: {
-    staticDir: 'media',
-    disableLocalStorage: false,
+    disableLocalStorage: true,
     imageSizes: [
       {
         name: 'thumbnail',
@@ -35,7 +34,7 @@ export const Media: CollectionConfig = {
     {
       name: 'alt',
       type: 'text',
-      required: true,
+      required: false,
     },
   ],
 }

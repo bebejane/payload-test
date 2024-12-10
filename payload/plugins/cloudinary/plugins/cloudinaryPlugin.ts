@@ -3,15 +3,13 @@ import { Config, Plugin, UploadConfig } from "payload";
 import { FieldBase } from "payload";
 import { APIError } from "payload";
 import CloudinaryService from '../services/cloudinaryService'
-
 import {
   Field,
   CollectionBeforeChangeHook,
   CollectionAfterDeleteHook,
   CollectionAfterReadHook,
 } from "payload";
-
-import { CloudinaryPluginRequest, PluginConfig } from "../types";
+import { PluginConfig } from "../types";
 
 export const GROUP_NAME = "cloudinary";
 export const DEFAULT_REQUIRED_FIELDS = [
@@ -21,6 +19,8 @@ export const DEFAULT_REQUIRED_FIELDS = [
   { name: "secure_url", label: "URL" },
   { name: "resource_type", label: "Resource Type" },
 ];
+
+let cloudinaryService: CloudinaryService
 
 const setCloudinaryField = (inputField: Partial<Field> | string): Field => {
   const numberField = ["height", "width", "size"];
@@ -46,6 +46,7 @@ export const getPartialField = (field: string | Partial<Field>) => {
     }
     : field;
 };
+
 export const mapRequiredFields = (
   additionalFields?: Array<Partial<Field> | string>
 ): Field[] => {
@@ -61,14 +62,14 @@ export const mapRequiredFields = (
     )
     .map((name) => setCloudinaryField(name));
 };
+
 export const beforeChangeHook: CollectionBeforeChangeHook = async (args) => {
   const file = args.req.file;
-  console.log(file)
   if (!(file && args.data?.filename)) {
     return;
   }
   try {
-    const cloudinaryService = new CloudinaryService()
+
     const uploadResponse = await cloudinaryService.upload(
       args.data.filename,
       file.data,
@@ -94,16 +95,18 @@ export const afterDeleteHook: CollectionAfterDeleteHook = async ({
   }
   try {
     const apiResponse = doc[GROUP_NAME] as UploadApiResponse;
-    await (req as CloudinaryPluginRequest).cloudinaryService.delete(
+    cloudinaryService.delete(
       apiResponse.public_id,
       {
         resource_type: apiResponse.resource_type,
       }
     );
   } catch (e) {
+    console.log(e)
     throw new APIError(`Cloudinary: ${JSON.stringify(e)}`);
   }
 };
+
 export const afterReadHook: CollectionAfterReadHook = ({ doc }) => {
   const newDoc = {
     ...doc,
@@ -112,11 +115,14 @@ export const afterReadHook: CollectionAfterReadHook = ({ doc }) => {
       filename: doc.filename,
     },
     url: doc.cloudinary.secure_url,
-    filename: doc.cloudinary.public_id,
   };
   return newDoc;
 };
-const cloudinaryPlugin = (pluginConfig?: PluginConfig) => {
+
+const cloudinaryPlugin = (pluginConfig: PluginConfig = {}) => {
+
+  cloudinaryService = new CloudinaryService(undefined, { ...pluginConfig })
+
   return ((incomingConfig: Config): Config => {
     const config: Config = {
       ...incomingConfig,
@@ -159,4 +165,5 @@ const cloudinaryPlugin = (pluginConfig?: PluginConfig) => {
     return config;
   }) as Plugin;
 };
+
 export default cloudinaryPlugin;
