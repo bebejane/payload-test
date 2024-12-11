@@ -25,7 +25,7 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   db: mongooseAdapter({
-    url: process.env.PAYLOAD_DATABASE_URL || ''
+    url: process.env.DATABASE_URI || ''
   }),
   globals: [Home],
   collections: [Post, Author, Media, File, User],
