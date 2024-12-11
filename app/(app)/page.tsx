@@ -7,6 +7,8 @@ export const metadata: Metadata = {
 }
 type Props = LocaleParams
 
+export const dynamic = 'force-static'
+
 export default async function Page(params: Props) {
   return page(params)
 }

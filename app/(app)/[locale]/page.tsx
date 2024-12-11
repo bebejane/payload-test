@@ -11,6 +11,8 @@ import { HomeDocument, AllPostsDocument } from '@/graphql'
 import { notFound } from 'next/navigation'
 import { DocumentNode } from 'graphql/language'
 
+export const dynamic = 'force-static'
+
 export default async function Home({ params }: LocaleParams) {
   const { locale = defaultLocale } = await params
   setRequestLocale(locale)
