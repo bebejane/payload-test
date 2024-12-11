@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Payload',
   description: 'Payload',
 }
+
 type Props = LocaleParams
 
 export default async function Page(params: Props) {
