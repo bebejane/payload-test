@@ -2,7 +2,7 @@ import '@/styles/index.scss'
 import { RefreshRouteOnSave } from './components/RefreshRouteOnSave'
 import ProgressProvider from '@/lib/progress'
 import Navbar from './components/Navbar'
-import { defaultLocale, locales } from '../../i18n'
+import { defaultLocale, locales } from '@/i18n'
 import { notFound } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
 
@@ -14,14 +14,6 @@ export type RootLayoutProps = {
 }
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
-  const locale = (await params).locale ?? defaultLocale
-
-  if (!locales.includes(locale as any)) {
-    return notFound()
-  }
-
-  setRequestLocale(locale)
-
   return (
     <html>
       <body>
