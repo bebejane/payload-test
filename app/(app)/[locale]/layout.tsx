@@ -20,7 +20,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
     return notFound()
   }
   setRequestLocale(locale)
-  console.log(locale)
+
   return (
     <>
       <Body locale={locale}>{children}</Body>
