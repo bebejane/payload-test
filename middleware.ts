@@ -17,8 +17,7 @@ const authRoutes = ["/sign-in", "/sign-up"];
 const passwordRoutes = ["/reset-password", "/forgot-password"];
 const adminRoutes = ["/admin"];
 
-export default async function authMiddleware(request: NextRequest) {
-  intlMiddleware(request);
+const betterAuthMiddleware = async (request: NextRequest) => {
 
   const pathname = request.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
@@ -56,6 +55,16 @@ export default async function authMiddleware(request: NextRequest) {
   }
 
   return NextResponse.next();
+}
+
+export default async function authMiddleware(request: NextRequest) {
+
+  let res = intlMiddleware(request);
+  //res = await betterAuthMiddleware(request);
+  //res.headers.set('Access-Control-Allow-Origin', '*');
+  return res;
+
+
 }
 
 export const config = {
