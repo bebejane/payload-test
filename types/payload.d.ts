@@ -5450,31 +5450,37 @@ type MutationdeleteUserArgs = {
 
 
 type MutationduplicateAuthorArgs = {
+  data: mutationAuthorInput;
   id: Scalars['Int']['input'];
 };
 
 
 type MutationduplicateFileArgs = {
+  data: mutationFileInput;
   id: Scalars['Int']['input'];
 };
 
 
 type MutationduplicateMediaArgs = {
+  data: mutationMediaInput;
   id: Scalars['Int']['input'];
 };
 
 
 type MutationduplicatePayloadLockedDocumentArgs = {
+  data: mutationPayloadLockedDocumentInput;
   id: Scalars['Int']['input'];
 };
 
 
 type MutationduplicatePayloadPreferenceArgs = {
+  data: mutationPayloadPreferenceInput;
   id: Scalars['Int']['input'];
 };
 
 
 type MutationduplicatePostArgs = {
+  data: mutationPostInput;
   id: Scalars['Int']['input'];
 };
 

@@ -19,6 +19,8 @@ const adminRoutes = ["/admin"];
 
 export default async function authMiddleware(request: NextRequest) {
   intlMiddleware(request);
+  return NextResponse.next();
+  return
 
   const pathname = request.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
@@ -63,6 +65,6 @@ export const config = {
     // Match all pathnames except for
     // - … if they start with `/api`, `/_next` or `/_vercel`
     // - … the ones containing a dot (e.g. `favicon.ico`)
-    '/((?!api|favicon|_next|_vercel|admin|.*\\..*).*)',
+    '/((?!api|favicon|_next|_vercel|admin|.*\\..*).*)'
   ]
 };
