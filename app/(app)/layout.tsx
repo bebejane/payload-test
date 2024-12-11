@@ -3,6 +3,8 @@ import { RefreshRouteOnSave } from './components/RefreshRouteOnSave'
 import ProgressProvider from '@/lib/progress'
 import Navbar from './components/Navbar'
 
+export const dynamic = 'force-dynamic'
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html>

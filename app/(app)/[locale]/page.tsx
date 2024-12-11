@@ -9,6 +9,7 @@ import Image from 'next/image'
 import apiQuery from '@/lib/client'
 import { HomeDocument, AllPostsDocument } from '@/graphql'
 import { notFound } from 'next/navigation'
+import React from 'react'
 
 export default async function Home({ params }: LocaleParams) {
   const { locale = defaultLocale } = await params
@@ -42,13 +43,13 @@ export default async function Home({ params }: LocaleParams) {
       <RichText data={Home.content} />
       <h2>Latest posts</h2>
 
-      {Posts?.docs?.map((post) => (
-        <>
+      {Posts?.docs?.map((post, i) => (
+        <React.Fragment key={i}>
           <Link key={post?.id} href={`/${locale}/posts/${post?.slug}`}>
             {post?.title}
           </Link>
           <br />
-        </>
+        </React.Fragment>
       ))}
     </article>
   )
