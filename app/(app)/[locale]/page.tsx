@@ -3,7 +3,7 @@ import cn from 'classnames'
 import { setRequestLocale } from 'next-intl/server'
 import Link from 'next/link'
 import RichText from '@/lib/rich-text'
-import { defaultLocale } from '@/i18n'
+import { defaultLocale, locales } from '@/i18n'
 import { draftMode } from 'next/headers'
 import Image from 'next/image'
 import apiQuery from '@/lib/client'
@@ -13,7 +13,12 @@ import React from 'react'
 
 export default async function Home({ params }: LocaleParams) {
   const { locale = defaultLocale } = await params
-  //setRequestLocale(locale)
+
+  if (!locales.includes(locale as any)) {
+    return notFound()
+  }
+
+  setRequestLocale(locale)
 
   const draft = (await draftMode()).isEnabled
 

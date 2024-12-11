@@ -13,14 +13,13 @@ export type BodyProps = {
   locale: string
 }
 
-export const dynamic = 'force-dynamic'
-
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const locale = (await params).locale ?? defaultLocale
 
   if (!locales.includes(locale as any)) {
     return notFound()
   }
+
   setRequestLocale(locale)
 
   return (
