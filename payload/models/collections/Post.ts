@@ -32,12 +32,12 @@ export const Post: CollectionConfig = {
   admin: {
     useAsTitle: 'title'
   },
-
   access: {
-    read: ({ req: { user } }) => user?.role === 'user' || user?.role === 'admin',
-    create: ({ req: { user } }) => user?.role === 'admin',
-    update: ({ req: { user } }) => user?.role === 'admin',
-    delete: ({ req: { user } }) => user?.role === 'admin',
+    read: ({ req: { user } }) => true,
+  },
+  graphQL: {
+    singularName: 'Post',
+    pluralName: 'Posts',
   },
   fields: [
     {
@@ -97,7 +97,11 @@ export const Post: CollectionConfig = {
       label: {
         en: 'Pathname',
         sv: 'Pathname',
-      }
+      },
+      admin: {
+        readOnly: true,
+
+      },
     }
   ]
 }

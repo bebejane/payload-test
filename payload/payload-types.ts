@@ -32,7 +32,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   globals: {
     home: Home;
@@ -76,7 +76,7 @@ export interface UserAuthOperations {
  * via the `definition` "posts".
  */
 export interface Post {
-  id: string;
+  id: number;
   title: string;
   content: {
     root: {
@@ -93,8 +93,8 @@ export interface Post {
     };
     [k: string]: unknown;
   };
-  image?: (string | null) | Media;
-  author?: (string | null) | Author;
+  image?: (number | null) | Media;
+  author?: (number | null) | Author;
   slug?: string | null;
   date?: string | null;
   blocks?: QuoteBlock[] | null;
@@ -108,7 +108,7 @@ export interface Post {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt?: string | null;
   cloudinary?: {
     public_id?: string | null;
@@ -160,7 +160,7 @@ export interface Media {
  * via the `definition` "authors".
  */
 export interface Author {
-  id: string;
+  id: number;
   name: string;
   updatedAt: string;
   createdAt: string;
@@ -181,7 +181,7 @@ export interface QuoteBlock {
  * via the `definition` "file".
  */
 export interface File {
-  id: string;
+  id: number;
   cloudinary?: {
     public_id?: string | null;
     original_filename?: string | null;
@@ -206,7 +206,7 @@ export interface File {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   role: 'admin' | 'user';
   updatedAt: string;
   createdAt: string;
@@ -224,32 +224,32 @@ export interface User {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'posts';
-        value: string | Post;
+        value: number | Post;
       } | null)
     | ({
         relationTo: 'authors';
-        value: string | Author;
+        value: number | Author;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'file';
-        value: string | File;
+        value: number | File;
       } | null)
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -259,10 +259,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -282,7 +282,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -465,9 +465,9 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  * via the `definition` "home".
  */
 export interface Home {
-  id: string;
+  id: number;
   header: string;
-  image?: (string | null) | Media;
+  image?: (number | null) | Media;
   content: {
     root: {
       type: string;
@@ -484,7 +484,7 @@ export interface Home {
     [k: string]: unknown;
   };
   other?: {
-    posts?: (string | Post)[] | null;
+    posts?: (number | Post)[] | null;
   };
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
@@ -495,7 +495,7 @@ export interface Home {
  * via the `definition` "settings".
  */
 export interface Setting {
-  id: string;
+  id: number;
   setting1?: boolean | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -505,7 +505,7 @@ export interface Setting {
  * via the `definition` "theme".
  */
 export interface Theme {
-  id: string;
+  id: number;
   background?: string | null;
   text?: string | null;
   updatedAt?: string | null;

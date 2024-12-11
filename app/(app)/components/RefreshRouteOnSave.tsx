@@ -19,10 +19,9 @@ export const RefreshRouteOnSave: React.FC<{
 
   const onMessage = useCallback(
     (event: MessageEvent) => {
-      if (event.data?.data?._pathname) {
-        router.replace(event.data?.data?._pathname)
+      if (isDocumentEvent(event, serverURL)) {
+        router.refresh()
       }
-      router.refresh()
     },
     [router, serverURL],
   )

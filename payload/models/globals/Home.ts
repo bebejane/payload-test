@@ -4,11 +4,12 @@ import draftHook from '@/payload/hooks/draft'
 
 export const Home: GlobalConfig = {
   slug: 'home',
-  admin: {
-
-  },
   versions: {
     drafts: true
+  },
+  access: { read: () => true },
+  graphQL: {
+    name: 'Home',
   },
   fields: [
     { label: 'Header', name: 'header', type: 'text', required: true, localized: true },

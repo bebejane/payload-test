@@ -1,9 +1,8 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { sql, sqliteAdapter } from '@payloadcms/db-sqlite'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { previewPlugin, settingsPlugin, cloudinaryPlugin } from '@/payload/plugins'
-import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
-
 import { BlocksFeature, lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -24,8 +23,12 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  db: mongooseAdapter({
-    url: process.env.DATABASE_URI || ''
+  //db: mongooseAdapter({url: process.env.DATABASE_URI || ''}),
+  db: sqliteAdapter({
+    client: {
+      url: process.env.DATABASE_URI || '',
+      authToken: process.env.DATABASE_AUTH_TOKEN || '',
+    }
   }),
   globals: [Home],
   collections: [Post, Author, Media, File, User],

@@ -1,0 +1,15 @@
+query Home($draft: Boolean! = false, $locale: LocaleInputType!) {
+  Home(draft: $draft, locale: $locale) {
+    _status
+    header
+    content
+    other {
+      posts {
+        ...PostFragment
+      }
+    }
+    image {
+      ...MediaFragment
+    }
+  }
+}

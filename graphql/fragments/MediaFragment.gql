@@ -1,0 +1,7 @@
+fragment MediaFragment on Media {
+  id
+  url
+  alt
+  width
+  height
+}

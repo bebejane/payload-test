@@ -1,7 +1,9 @@
-import '@styles/index.scss'
+import '@/styles/index.scss'
 import { RefreshRouteOnSave } from './components/RefreshRouteOnSave'
 import ProgressProvider from '@/lib/progress'
 import Navbar from './components/Navbar'
+
+export const dynamic = 'force-static'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

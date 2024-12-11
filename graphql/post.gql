@@ -1,0 +1,31 @@
+query Post($id: Int!, $draft: Boolean = false, $locale: LocaleInputType) {
+  Post(id: $id, draft: $draft, locale: $locale) {
+    ...PostFragment
+  }
+}
+
+query AllPosts($draft: Boolean = false, $locale: LocaleInputType) {
+  Posts(draft: $draft, locale: $locale) {
+    docs {
+      ...PostFragment
+    }
+  }
+}
+
+fragment PostFragment on Post {
+  id
+  title
+  content
+  _status
+  slug
+  blocks {
+    __typename
+    ... on QuoteBlock {
+      quoteHeader
+      quoteText
+    }
+  }
+  image {
+    ...MediaFragment
+  }
+}
