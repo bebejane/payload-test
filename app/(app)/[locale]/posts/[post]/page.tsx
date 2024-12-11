@@ -5,21 +5,17 @@ import { getPayload } from 'payload'
 import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import RichText from '@/lib/rich-text'
-import { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
-import { Post, QuoteBlock } from '@/payload/payload-types'
 import Image from 'next/image'
-import { Suspense } from 'react'
-import { PageClient } from '../../../components/PageClient'
+import { setRequestLocale } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Payload test',
   description: 'Payload',
 }
 
-export const dynamic = 'force-dynamic'
-
-export default async function Page({ params }: { params: { post: string; locale: SiteLocale } }) {
+export default async function Post({ params }: { params: { post: string; locale: SiteLocale } }) {
   const { post: slug, locale } = await params
+  setRequestLocale(locale)
 
   const draft = (await draftMode()).isEnabled
   const payload = await getPayload({ config: configPromise })
@@ -49,7 +45,7 @@ export default async function Page({ params }: { params: { post: string; locale:
             src={post.image.url}
             width={post.image.width ?? 0}
             height={post.image.height ?? 0}
-            alt={post.image.alt}
+            alt={post.image.alt ?? 'alt'}
           />
         )}
 
