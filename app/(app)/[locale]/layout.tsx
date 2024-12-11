@@ -1,6 +1,7 @@
 import { defaultLocale, locales } from '@/i18n'
 import { setRequestLocale } from 'next-intl/server'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
+import { notFound } from 'next/navigation'
 
 export type RootLayoutProps = {
   children: React.ReactNode
@@ -16,6 +17,10 @@ export const dynamic = 'force-dynamic'
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const locale = (await params).locale ?? defaultLocale
+
+  if (!locales.includes(locale as any)) {
+    return notFound()
+  }
   setRequestLocale(locale)
 
   return (

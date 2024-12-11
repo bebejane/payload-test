@@ -13,7 +13,7 @@ import React from 'react'
 
 export default async function Home({ params }: LocaleParams) {
   const { locale = defaultLocale } = await params
-  setRequestLocale(locale)
+  //setRequestLocale(locale)
 
   const draft = (await draftMode()).isEnabled
 
