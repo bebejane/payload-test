@@ -1,5 +1,5 @@
-import { locales, localePrefix } from './i18n/navigation';
-import { defaultLocale } from './i18n';
+import { locales, localePrefix } from './i18n/routing';
+import { defaultLocale } from '@/i18n/request';
 import createMiddleware from 'next-intl/middleware';
 import { betterFetch } from '@better-fetch/fetch';
 import { NextResponse, type NextRequest } from "next/server";
@@ -19,8 +19,6 @@ const adminRoutes = ["/admin"];
 
 export default async function authMiddleware(request: NextRequest) {
   intlMiddleware(request);
-  return NextResponse.next();
-  return
 
   const pathname = request.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
@@ -62,6 +60,7 @@ export default async function authMiddleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    '/',
     // Match all pathnames except for
     // - … if they start with `/api`, `/_next` or `/_vercel`
     // - … the ones containing a dot (e.g. `favicon.ico`)

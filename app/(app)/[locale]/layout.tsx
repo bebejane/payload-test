@@ -1,4 +1,4 @@
-import { defaultLocale, locales } from '@/i18n'
+import { defaultLocale, locales } from '@/i18n/request'
 import { setRequestLocale } from 'next-intl/server'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { notFound } from 'next/navigation'

@@ -2,11 +2,9 @@ import '@/styles/index.scss'
 import { RefreshRouteOnSave } from './components/RefreshRouteOnSave'
 import ProgressProvider from '@/lib/progress'
 import Navbar from './components/Navbar'
-import { defaultLocale, locales } from '@/i18n'
+import { defaultLocale, locales } from '@/i18n/request'
 import { notFound } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
-
-export const dynamic = 'force-dynamic'
 
 export type RootLayoutProps = {
   children: React.ReactNode

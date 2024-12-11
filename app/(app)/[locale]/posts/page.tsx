@@ -1,7 +1,7 @@
 import s from './page.module.scss'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
-import { Link } from 'i18n/navigation'
+import { Link } from '@/i18n/routing'
 import { setRequestLocale } from 'next-intl/server'
 import { useMessages, useTranslations } from 'next-intl'
 
