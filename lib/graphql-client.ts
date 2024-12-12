@@ -67,8 +67,8 @@ export default async function apiQuery<T, V = void>(query: any, options?: ApiQue
   const res = await dedupedFetch({ ...dedupeOptions, tags });
 
   if (opt.all) {
-    //const paginatedData = await paginatedQuery<T, V>(query, opt, res.data, queryId)
-    //return { ...paginatedData, draftUrl: res.url ?? null }
+    const paginatedData = await paginatedQuery<T, V>(query, opt, res.data, queryId)
+    return { ...paginatedData, draftUrl: res.url ?? null }
   }
 
   return { ...res.data, draftUrl: res.url ?? null }
