@@ -1,9 +1,8 @@
 import { draftMode, headers } from 'next/headers'
-import type { RequestInit } from 'next/dist/server/web/spec-extension/request.js'
-import type { FieldNode, OperationDefinitionNode, VariableDefinitionNode } from 'node_modules/graphql'
-import { DocumentNode } from 'graphql/language';
-import { print } from 'graphql/language/printer.js'
-import { defaultLocale } from '../i18n/request';
+import type { RequestInit } from 'next/dist/server/web/spec-extension/request'
+import { DocumentNode, FieldNode, OperationDefinitionNode, VariableDefinitionNode } from 'graphql/language';
+import { print } from 'graphql/language/printer'
+import { defaultLocale } from '@/i18n/request';
 
 export type ApiQueryOptions<V = void> = {
   variables?: V;
