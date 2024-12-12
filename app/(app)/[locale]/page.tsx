@@ -13,7 +13,7 @@ import React from 'react'
 
 export default async function Home({ params }: LocaleParams) {
   const { locale = defaultLocale } = await params
-  console.log(locale)
+
   if (!locales.includes(locale as any)) {
     return notFound()
   }

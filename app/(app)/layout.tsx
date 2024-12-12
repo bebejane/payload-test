@@ -12,6 +12,13 @@ export type RootLayoutProps = {
 }
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
+  const { locale = defaultLocale } = await params
+
+  if (!locales.includes(locale as any)) {
+    return notFound()
+  }
+  setRequestLocale(locale)
+
   return (
     <html>
       <body>
