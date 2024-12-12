@@ -1,7 +1,11 @@
+import '@/styles/index.scss'
 import { defaultLocale, locales } from '@/i18n/request'
 import { setRequestLocale } from 'next-intl/server'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { notFound } from 'next/navigation'
+import Navbar from '../components/Navbar'
+import ProgressProvider from '@/lib/progress'
+import { RefreshRouteOnSave } from '@/payload/components/draft/RefreshRouteOnSave'
 
 export type RootLayoutProps = {
   children: React.ReactNode
@@ -10,7 +14,7 @@ export type RootLayoutProps = {
 
 export type BodyProps = {
   children: React.ReactNode
-  locale: string
+  locale?: string
 }
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
@@ -22,9 +26,15 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   setRequestLocale(locale)
 
   return (
-    <>
-      <Body locale={locale}>{children}</Body>
-    </>
+    <html>
+      <body lang={locale}>
+        <Navbar />
+        <main>
+          <Body locale={locale}>{children}</Body>
+        </main>
+      </body>
+      <RefreshRouteOnSave serverURL={process.env.NEXT_PUBLIC_SITE_URL as string} />
+    </html>
   )
 }
 
@@ -32,9 +42,11 @@ function Body({ children, locale }: BodyProps) {
   const messages = useMessages()
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      {children}
-    </NextIntlClientProvider>
+    <ProgressProvider>
+      <NextIntlClientProvider locale={locale} messages={messages}>
+        {children}
+      </NextIntlClientProvider>
+    </ProgressProvider>
   )
 }
 
