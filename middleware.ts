@@ -59,17 +59,18 @@ const betterAuthMiddleware = async (request: NextRequest) => {
 
 export default async function authMiddleware(request: NextRequest) {
 
+
+  await betterAuthMiddleware(request);
   let res = intlMiddleware(request);
-  //res = await betterAuthMiddleware(request);
   //res.headers.set('Access-Control-Allow-Origin', '*');
-  return res;
+  return res
 
 
 }
 
 export const config = {
   matcher: [
-    //'/',
+
     // Match all pathnames except for
     // - … if they start with `/api`, `/_next` or `/_vercel`
     // - … the ones containing a dot (e.g. `favicon.ico`)

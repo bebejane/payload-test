@@ -1,4 +1,4 @@
-query Home($draft: Boolean! = false, $locale: LocaleInputType!) {
+query Home($draft: Boolean = false, $locale: LocaleInputType) {
   Home(draft: $draft, locale: $locale) {
     _status
     header

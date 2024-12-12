@@ -10270,8 +10270,8 @@ type versionsTheme_where_or = {
 type MediaFragment = { __typename?: 'Media', id: number, url?: string | null, alt?: string | null, width?: number | null, height?: number | null };
 
 type HomeQueryVariables = Exact<{
-  draft?: Scalars['Boolean']['input'];
-  locale: LocaleInputType;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  locale?: InputMaybe<LocaleInputType>;
 }>;
 
 

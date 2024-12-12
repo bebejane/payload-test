@@ -1,8 +1,9 @@
-import { draftMode } from 'next/headers.js'
+import { draftMode, headers } from 'next/headers'
 import type { RequestInit } from 'next/dist/server/web/spec-extension/request.js'
 import type { FieldNode, OperationDefinitionNode, VariableDefinitionNode } from 'node_modules/graphql'
 import { DocumentNode } from 'graphql/language';
 import { print } from 'graphql/language/printer.js'
+import { defaultLocale } from '../i18n/request';
 
 export type ApiQueryOptions<V = void> = {
   variables?: V;
@@ -50,11 +51,13 @@ export default async function apiQuery<T, V = void>(query: any, options?: ApiQue
 
   const opt = { ...defaultOptions, ...(options ?? {}) };
   const queryId = (query.definitions?.[0] as any).name?.value as string
-  let draft = false
 
-  try { draft = (await draftMode()).isEnabled } catch (e) { }
+  const variables = {
+    ...(options?.variables ?? {}),
+    draft: (await draftMode()).isEnabled,
+    locale: (await headers()).get('x-next-intl-locale') ?? defaultLocale
+  }
 
-  const variables = { ...(options?.variables ?? {}), draft: draft }
   const dedupeOptions: DedupeOptions = {
     body: JSON.stringify({ query: print(query), variables }) as string,
     ...opt,
@@ -175,10 +178,6 @@ const dedupedFetch = async (options: DedupeOptions) => {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'credentials': 'include',
-      //'X-Payload-GraphQL-Query-Id': queryId,
-      //'X-Payload-GraphQL-Logs': logs,
-      //'X-Payload-GraphQL-Tags': tags,
-      //'X-Payload-GraphQL-Revalidate': revalidate,
     },
     next: {
       revalidate,
