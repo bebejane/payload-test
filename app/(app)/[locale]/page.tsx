@@ -20,11 +20,33 @@ export default async function Home({ params }: LocaleParams) {
   const { Home } = await apiQuery<HomeQuery, HomeQueryVariables>(HomeDocument)
   const { Posts } = await apiQuery<AllPostsQuery, AllPostsQueryVariables>(AllPostsDocument)
 
-  //if (!Home) return notFound()
+  if (!Home) return notFound()
 
   return (
     <article className={cn(s.start)}>
-      <h1>home</h1>
+      <h1>
+        {Home.header} {Home._status}
+      </h1>
+      {typeof Home.image === 'object' && Home.image?.url && (
+        <Image
+          className={s.image}
+          src={Home.image.url}
+          width={Home.image.width ?? 0}
+          height={Home.image.height ?? 0}
+          alt={Home.image.alt ?? ''}
+        />
+      )}
+      <RichText data={Home.content} />
+      <h2>Latest posts</h2>
+
+      {Posts?.docs?.map((post, i) => (
+        <React.Fragment key={i}>
+          <Link key={post?.id} href={`/${locale}/posts/${post?.slug}`}>
+            {post?.title}
+          </Link>
+          <br />
+        </React.Fragment>
+      ))}
     </article>
   )
 }

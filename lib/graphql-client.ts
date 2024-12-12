@@ -170,7 +170,7 @@ const dedupedFetch = async (options: DedupeOptions) => {
     logs
   } = options;
 
-  const response = await fetch(process.env.GRAPHQL_API_ENDPOINT as string, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/graphql` as string, {
     method: 'POST',
     body,
     headers: {
