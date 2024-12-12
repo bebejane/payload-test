@@ -1,6 +1,8 @@
-query Post($id: Int!, $draft: Boolean = false, $locale: LocaleInputType) {
-  Post(id: $id, draft: $draft, locale: $locale) {
-    ...PostFragment
+query Post($slug: String, $draft: Boolean = false, $locale: LocaleInputType) {
+  Posts(draft: $draft, locale: $locale, limit: 1, where: { slug: { equals: $slug } }) {
+    docs {
+      ...PostFragment
+    }
   }
 }
 

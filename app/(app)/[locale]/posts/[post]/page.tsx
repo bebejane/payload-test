@@ -1,34 +1,28 @@
 import s from './page.module.scss'
-import configPromise from '@payload-config'
 import { notFound } from 'next/navigation'
-import { getPayload } from 'payload'
 import { Metadata } from 'next'
-import { draftMode } from 'next/headers'
+import executeQuery from '@/lib/graphql-client'
 import RichText from '@/lib/rich-text'
 import Image from 'next/image'
 import { setRequestLocale } from 'next-intl/server'
+import { PostDocument } from '@/graphql'
 
 export const metadata: Metadata = {
   title: 'Payload test',
   description: 'Payload',
 }
+type Props = LocaleParams<{ post: string }>
 
-export default async function Post({ params }: { params: { post: string; locale: SiteLocale } }) {
+export default async function Post({ params }: Props) {
   const { post: slug, locale } = await params
   setRequestLocale(locale)
 
-  const draft = (await draftMode()).isEnabled
-  const payload = await getPayload({ config: configPromise })
-  const data = await payload.find({
-    collection: 'posts',
-    locale,
-    draft,
-    where: { slug: { equals: slug } },
+  const { Posts } = await executeQuery<PostQuery, PostQueryVariables>(PostDocument, {
+    variables: { slug },
   })
 
-  const post = data.docs[0]
-
-  if (!post) return notFound
+  const post = Posts?.docs?.[0]
+  if (!post) return notFound()
 
   return (
     <>

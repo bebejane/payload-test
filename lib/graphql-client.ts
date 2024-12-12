@@ -44,7 +44,7 @@ const defaultOptions: DefaultApiQueryOptions = {
 };
 
 
-export default async function apiQuery<T, V = void>(query: any, options?: ApiQueryOptions<V>): Promise<T & { draftUrl: string | null }> {
+export default async function executeQuery<T, V = void>(query: any, options?: ApiQueryOptions<V>): Promise<T & { draftUrl: string | null }> {
 
   query = query as DocumentNode
 
@@ -122,7 +122,7 @@ const paginatedQuery = async <T, V = void>(query: DocumentNode, options: ApiQuer
       const maxPageKey = pageKeyMap[Object.keys(pageKeyMap).sort((a, b) => data[a].count > data[b].count ? -1 : 1)[0]]
       const skip = data[maxPageKey].length
 
-      const pageData: any = await apiQuery(query, {
+      const pageData: any = await executeQuery(query, {
         ...options,
         all: false,
         variables: {

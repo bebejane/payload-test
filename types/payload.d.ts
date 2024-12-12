@@ -10278,13 +10278,13 @@ type HomeQueryVariables = Exact<{
 type HomeQuery = { __typename?: 'Query', Home?: { __typename?: 'Home', _status?: Home__status | null, header?: string | null, content?: any | null, other?: { __typename?: 'Home_Other', posts?: Array<{ __typename?: 'Post', id: number, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: number, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null }> | null } | null, image?: { __typename?: 'Media', id: number, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null } | null };
 
 type PostQueryVariables = Exact<{
-  id: Scalars['Int']['input'];
+  slug?: InputMaybe<Scalars['String']['input']>;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   locale?: InputMaybe<LocaleInputType>;
 }>;
 
 
-type PostQuery = { __typename?: 'Query', Post?: { __typename?: 'Post', id: number, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: number, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null } | null };
+type PostQuery = { __typename?: 'Query', Posts?: { __typename?: 'Posts', docs?: Array<{ __typename?: 'Post', id: number, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: number, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null } | null> | null } | null };
 
 type AllPostsQueryVariables = Exact<{
   draft?: InputMaybe<Scalars['Boolean']['input']>;

@@ -6,7 +6,7 @@ import RichText from '@/lib/rich-text'
 import { defaultLocale, locales } from '@/i18n/request'
 import { draftMode } from 'next/headers'
 import Image from 'next/image'
-import apiQuery from '@/lib/graphql-client'
+import executeQuery from '@/lib/graphql-client'
 import { HomeDocument, AllPostsDocument } from '@/graphql'
 import { notFound } from 'next/navigation'
 import React from 'react'
@@ -17,8 +17,8 @@ export default async function Home({ params }: LocaleParams) {
 
   setRequestLocale(locale)
 
-  const { Home } = await apiQuery<HomeQuery, HomeQueryVariables>(HomeDocument)
-  const { Posts } = await apiQuery<AllPostsQuery, AllPostsQueryVariables>(AllPostsDocument)
+  const { Home } = await executeQuery<HomeQuery, HomeQueryVariables>(HomeDocument)
+  const { Posts } = await executeQuery<AllPostsQuery, AllPostsQueryVariables>(AllPostsDocument)
 
   if (!Home) return notFound()
 
