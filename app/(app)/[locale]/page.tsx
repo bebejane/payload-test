@@ -17,10 +17,12 @@ export default async function Home({ params }: LocaleParams) {
   setRequestLocale(locale)
 
   const draft = (await draftMode()).isEnabled
-  /*
+
   const { Home } = await apiQuery<HomeQuery, HomeQueryVariables>(HomeDocument, {
     variables: { draft, locale: locale as LocaleInputType },
   })
+  console.log(locale, Home)
+  /*
   const { Posts } = await apiQuery<AllPostsQuery, AllPostsQueryVariables>(AllPostsDocument, {
     variables: { draft, locale: locale as LocaleInputType },
   })
