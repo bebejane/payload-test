@@ -13,9 +13,9 @@ const intlMiddleware = createMiddleware({
 });
 
 const protectedRoutes = ["/member"];
-const authRoutes = ["/sign-in", "/sign-up"];
+const authRoutes = ["/sign-in", "/sign-up", "/sign-out"];
 const passwordRoutes = ["/reset-password", "/forgot-password"];
-const adminRoutes = ["/admin"];
+const payloadRoutes = ["/admin"];
 
 const betterAuthMiddleware = async (request: NextRequest) => {
 
@@ -23,11 +23,11 @@ const betterAuthMiddleware = async (request: NextRequest) => {
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
   const isAuthRoute = authRoutes.includes(pathname);
   const isPasswordRoute = passwordRoutes.includes(pathname);
-  const isAdminRoute = adminRoutes.includes(pathname);
-  const isPublicRoute = !isProtectedRoute && !isPasswordRoute && !isAdminRoute;
+  const isAdminRoute = payloadRoutes.includes(pathname);
+  const isPublicRoute = isAuthRoute || (!isProtectedRoute && !isPasswordRoute && !isAdminRoute);
 
   if (isPublicRoute)
-    return NextResponse.next();
+    return NextResponse.next()
 
   const { data: session } = await betterFetch<Session>(
     "/api/auth/get-session",
@@ -40,9 +40,7 @@ const betterAuthMiddleware = async (request: NextRequest) => {
   );
 
   if (!session) {
-    if (isAuthRoute || isPasswordRoute) {
-      return NextResponse.next();
-    }
+    console.log('redirect to sign in', request.url)
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 
@@ -59,9 +57,12 @@ const betterAuthMiddleware = async (request: NextRequest) => {
 
 export default async function authMiddleware(request: NextRequest) {
   console.log('middleware');
-  await betterAuthMiddleware(request);
-  let res = intlMiddleware(request);
-  return res
+
+  const res = await betterAuthMiddleware(request);
+
+  if (res.status !== 200) return res;
+  const r = intlMiddleware(request);
+  return r;
 }
 
 export const config = {
@@ -69,6 +70,6 @@ export const config = {
     // Match all pathnames except for
     // - … if they start with `/api`, `/_next` or `/_vercel`
     // - … the ones containing a dot (e.g. `favicon.ico`)
-    '/((?!api|favicon|_next|_vercel|admin|.*\\..*).*)'
+    '/((?!api|favicon|_next|_vercel|admin|sign-in|sign-up|sign-out|.*\\..*).*)',
   ]
 };
