@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import {
   ConfigOptions,
   DeliveryType,
@@ -7,8 +9,6 @@ import {
   v2 as cloudinary,
 } from "cloudinary";
 import { CollectionConfig, Payload } from "payload";
-import fs from "fs";
-import path from "path";
 import { CloudinaryPluginRequest } from "../types";
 
 export default class CloudinaryService {
@@ -34,7 +34,7 @@ export default class CloudinaryService {
       ...this.config,
       api_key: this.config?.api_key || process.env.CLOUDINARY_API_KEY,
       api_secret: this.config?.api_secret || process.env.CLOUDINARY_API_SECRET,
-      cloud_name: this.config?.cloud_name || process.env.CLOUDINARY_CLOUD_NAME,
+      cloud_name: this.config?.cloud_name || process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
     };
 
     cloudinary.config(_cfg);
