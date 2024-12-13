@@ -50,7 +50,7 @@ export default function Nav({ items: _items }: Props) {
       setItems((items) => {
         const oldIndex = items.findIndex((i) => i.id === active.id)
         const newIndex = items.findIndex((i) => i.id === over.id)
-        return arrayMove(items, oldIndex, newIndex)
+        return arrayMove(items, oldIndex, newIndex).map((item, i) => ({ ...item, position: i }))
       })
     }
   }
@@ -63,7 +63,7 @@ export default function Nav({ items: _items }: Props) {
       .catch((e) => {
         console.log('error', e)
       })
-  }, [items])
+  }, [router, items])
 
   return (
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>

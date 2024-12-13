@@ -16,9 +16,8 @@ export type NavItemType = {
   label: string
   href: string
   icon?: string
-  active?: boolean
   position?: number
-  type: 'collection' | 'global'
+  type: string
 }
 
 type Props = {

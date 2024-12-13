@@ -16,6 +16,7 @@ export interface Config {
     media: Media;
     file: File;
     users: User;
+    nav: Nav;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -27,6 +28,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     file: FileSelect<false> | FileSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    nav: NavSelect<false> | NavSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -38,13 +40,11 @@ export interface Config {
     home: Home;
     settings: Setting;
     theme: Theme;
-    nav: Nav;
   };
   globalsSelect: {
     home: HomeSelect<false> | HomeSelect<true>;
     settings: SettingsSelect<false> | SettingsSelect<true>;
     theme: ThemeSelect<false> | ThemeSelect<true>;
-    nav: NavSelect<false> | NavSelect<true>;
   };
   locale: 'en' | 'se';
   user: User & {
@@ -223,6 +223,21 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav".
+ */
+export interface Nav {
+  id: number;
+  label: string;
+  slug: string;
+  href: string;
+  type: string;
+  icon?: string | null;
+  position?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -247,6 +262,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: number | User;
+      } | null)
+    | ({
+        relationTo: 'nav';
+        value: number | Nav;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -432,6 +451,20 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav_select".
+ */
+export interface NavSelect<T extends boolean = true> {
+  label?: T;
+  slug?: T;
+  href?: T;
+  type?: T;
+  icon?: T;
+  position?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -515,24 +548,6 @@ export interface Theme {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "nav".
- */
-export interface Nav {
-  id: number;
-  data?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home_select".
  */
 export interface HomeSelect<T extends boolean = true> {
@@ -566,16 +581,6 @@ export interface SettingsSelect<T extends boolean = true> {
 export interface ThemeSelect<T extends boolean = true> {
   background?: T;
   text?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "nav_select".
- */
-export interface NavSelect<T extends boolean = true> {
-  data?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

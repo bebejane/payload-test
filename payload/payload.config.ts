@@ -24,7 +24,12 @@ const dirname = path.dirname(filename)
 const isMongo = process.env.DATABASE_URI?.includes('mongodb')
 
 const db = isMongo ?
-  mongooseAdapter({ url: process.env.DATABASE_URI || '' })
+  mongooseAdapter({
+    url: process.env.DATABASE_URI || '',
+    connectOptions: {
+      maxIdleTimeMS: 10000,
+    }
+  })
   :
   sqliteAdapter({
     client: {
@@ -53,7 +58,7 @@ export default buildConfig({
       views: {
         //dashboard: {
         //Component: '@/payload/components/views/Dashboard',
-        //}        
+        //}
       },
     },
   },

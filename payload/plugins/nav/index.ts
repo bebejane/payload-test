@@ -1,6 +1,8 @@
-import type { Plugin, Config } from 'payload'
+import { Plugin, Config, getPayload, CollectionBeforeChangeHook, CollectionAfterChangeHook } from 'payload'
 import { fileURLToPath } from 'url';
+import configPromise from '@payload-config'
 import path from 'path';
+import { NavItemType } from './Nav/NavItem';
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -14,6 +16,15 @@ export const navPlugin = (pluginOptions: PluginOptions): Plugin => (incomingConf
   if (pluginOptions?.enabled === false)
     return config
 
+  const afterChange: CollectionAfterChangeHook = async (props: any) => {
+    const { doc, req: { locale } } = props
+    const payload = await getPayload({ config: configPromise })
+    const { docs } = await payload.find({ collection: 'nav' })
+
+    console.log('afterChange', docs)
+
+  }
+
   return {
     ...config,
     admin: {
@@ -26,20 +37,51 @@ export const navPlugin = (pluginOptions: PluginOptions): Plugin => (incomingConf
         }
       }
     },
-    globals: [...config.globals ?? []].concat([
+    collections: [...config.collections ?? []].concat([
       {
         slug: 'nav',
         admin: {
           description: 'Navigation',
-          hidden: true,
+          hidden: false,
         },
         fields: [{
-          name: 'data',
-          label: 'Data',
-          type: 'json',
-          defaultValue: [],
+          name: 'label',
+          label: 'Label',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'slug',
+          label: 'Slug',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'href',
+          label: 'Href',
+          type: 'text',
+          required: true,
+        }, {
+          name: 'type',
+          label: 'Type',
+          type: 'text',
+          required: true,
+          validate: (value: string) => ['collection', 'global'].includes(value),
+        }, {
+          name: 'icon',
+          label: 'Icon',
+          type: 'text',
+          required: false,
+        }, {
+          name: 'position',
+          label: 'Position',
+          type: 'number',
+          required: false,
         }]
       }
-    ])
+    ]).map(g => ({
+      ...g,
+      hooks: { ...g.hooks, afterChange: [...(g.hooks?.afterChange ?? [afterChange]), afterChange] }
+    }))
   }
 }
