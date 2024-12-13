@@ -5,6 +5,9 @@ export const Media: CollectionConfig = {
   access: {
     read: () => true,
   },
+  admin: {
+    description: 'Media Library',
+  },
   upload: {
     disableLocalStorage: true,
     imageSizes: [

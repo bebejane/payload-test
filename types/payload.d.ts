@@ -25,6 +25,7 @@ type Access = {
   file?: Maybe<fileAccess>;
   home?: Maybe<homeAccess>;
   media?: Maybe<mediaAccess>;
+  nav?: Maybe<navAccess>;
   payload_locked_documents?: Maybe<payload_locked_documentsAccess>;
   payload_preferences?: Maybe<payload_preferencesAccess>;
   posts?: Maybe<postsAccess>;
@@ -5355,6 +5356,7 @@ type Mutation = {
   updateFile?: Maybe<File>;
   updateHome?: Maybe<Home>;
   updateMedia?: Maybe<Media>;
+  updateNav?: Maybe<Nav>;
   updatePayloadLockedDocument?: Maybe<PayloadLockedDocument>;
   updatePayloadPreference?: Maybe<PayloadPreference>;
   updatePost?: Maybe<Post>;
@@ -5567,6 +5569,13 @@ type MutationupdateMediaArgs = {
 };
 
 
+type MutationupdateNavArgs = {
+  data: mutationNavInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  locale?: InputMaybe<LocaleInputType>;
+};
+
+
 type MutationupdatePayloadLockedDocumentArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: mutationPayloadLockedDocumentUpdateInput;
@@ -5619,6 +5628,219 @@ type MutationupdateUserArgs = {
 
 type MutationverifyEmailUserArgs = {
   token?: InputMaybe<Scalars['String']['input']>;
+};
+
+type Nav = {
+  __typename?: 'Nav';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  data?: Maybe<Scalars['JSON']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+type NavDocAccessFields = {
+  __typename?: 'NavDocAccessFields';
+  createdAt?: Maybe<NavDocAccessFields_createdAt>;
+  data?: Maybe<NavDocAccessFields_data>;
+  updatedAt?: Maybe<NavDocAccessFields_updatedAt>;
+};
+
+type NavDocAccessFields_createdAt = {
+  __typename?: 'NavDocAccessFields_createdAt';
+  create?: Maybe<NavDocAccessFields_createdAt_Create>;
+  delete?: Maybe<NavDocAccessFields_createdAt_Delete>;
+  read?: Maybe<NavDocAccessFields_createdAt_Read>;
+  update?: Maybe<NavDocAccessFields_createdAt_Update>;
+};
+
+type NavDocAccessFields_createdAt_Create = {
+  __typename?: 'NavDocAccessFields_createdAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_createdAt_Delete = {
+  __typename?: 'NavDocAccessFields_createdAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_createdAt_Read = {
+  __typename?: 'NavDocAccessFields_createdAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_createdAt_Update = {
+  __typename?: 'NavDocAccessFields_createdAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_data = {
+  __typename?: 'NavDocAccessFields_data';
+  create?: Maybe<NavDocAccessFields_data_Create>;
+  delete?: Maybe<NavDocAccessFields_data_Delete>;
+  read?: Maybe<NavDocAccessFields_data_Read>;
+  update?: Maybe<NavDocAccessFields_data_Update>;
+};
+
+type NavDocAccessFields_data_Create = {
+  __typename?: 'NavDocAccessFields_data_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_data_Delete = {
+  __typename?: 'NavDocAccessFields_data_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_data_Read = {
+  __typename?: 'NavDocAccessFields_data_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_data_Update = {
+  __typename?: 'NavDocAccessFields_data_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_updatedAt = {
+  __typename?: 'NavDocAccessFields_updatedAt';
+  create?: Maybe<NavDocAccessFields_updatedAt_Create>;
+  delete?: Maybe<NavDocAccessFields_updatedAt_Delete>;
+  read?: Maybe<NavDocAccessFields_updatedAt_Read>;
+  update?: Maybe<NavDocAccessFields_updatedAt_Update>;
+};
+
+type NavDocAccessFields_updatedAt_Create = {
+  __typename?: 'NavDocAccessFields_updatedAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_updatedAt_Delete = {
+  __typename?: 'NavDocAccessFields_updatedAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_updatedAt_Read = {
+  __typename?: 'NavDocAccessFields_updatedAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_updatedAt_Update = {
+  __typename?: 'NavDocAccessFields_updatedAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields = {
+  __typename?: 'NavFields';
+  createdAt?: Maybe<NavFields_createdAt>;
+  data?: Maybe<NavFields_data>;
+  updatedAt?: Maybe<NavFields_updatedAt>;
+};
+
+type NavFields_createdAt = {
+  __typename?: 'NavFields_createdAt';
+  create?: Maybe<NavFields_createdAt_Create>;
+  delete?: Maybe<NavFields_createdAt_Delete>;
+  read?: Maybe<NavFields_createdAt_Read>;
+  update?: Maybe<NavFields_createdAt_Update>;
+};
+
+type NavFields_createdAt_Create = {
+  __typename?: 'NavFields_createdAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_createdAt_Delete = {
+  __typename?: 'NavFields_createdAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_createdAt_Read = {
+  __typename?: 'NavFields_createdAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_createdAt_Update = {
+  __typename?: 'NavFields_createdAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_data = {
+  __typename?: 'NavFields_data';
+  create?: Maybe<NavFields_data_Create>;
+  delete?: Maybe<NavFields_data_Delete>;
+  read?: Maybe<NavFields_data_Read>;
+  update?: Maybe<NavFields_data_Update>;
+};
+
+type NavFields_data_Create = {
+  __typename?: 'NavFields_data_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_data_Delete = {
+  __typename?: 'NavFields_data_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_data_Read = {
+  __typename?: 'NavFields_data_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_data_Update = {
+  __typename?: 'NavFields_data_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_updatedAt = {
+  __typename?: 'NavFields_updatedAt';
+  create?: Maybe<NavFields_updatedAt_Create>;
+  delete?: Maybe<NavFields_updatedAt_Delete>;
+  read?: Maybe<NavFields_updatedAt_Read>;
+  update?: Maybe<NavFields_updatedAt_Update>;
+};
+
+type NavFields_updatedAt_Create = {
+  __typename?: 'NavFields_updatedAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_updatedAt_Delete = {
+  __typename?: 'NavFields_updatedAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_updatedAt_Read = {
+  __typename?: 'NavFields_updatedAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_updatedAt_Update = {
+  __typename?: 'NavFields_updatedAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavReadAccess = {
+  __typename?: 'NavReadAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type NavReadDocAccess = {
+  __typename?: 'NavReadDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type NavUpdateAccess = {
+  __typename?: 'NavUpdateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type NavUpdateDocAccess = {
+  __typename?: 'NavUpdateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
 };
 
 type PayloadLockedDocument = {
@@ -7683,6 +7905,7 @@ type Query = {
   Files?: Maybe<Files>;
   Home?: Maybe<Home>;
   Media?: Maybe<Media>;
+  Nav?: Maybe<Nav>;
   PayloadLockedDocument?: Maybe<PayloadLockedDocument>;
   PayloadLockedDocuments?: Maybe<PayloadLockedDocuments>;
   PayloadPreference?: Maybe<PayloadPreference>;
@@ -7705,6 +7928,7 @@ type Query = {
   docAccessFile?: Maybe<fileDocAccess>;
   docAccessHome?: Maybe<homeDocAccess>;
   docAccessMedia?: Maybe<mediaDocAccess>;
+  docAccessNav?: Maybe<navDocAccess>;
   docAccessPayloadLockedDocument?: Maybe<payload_locked_documentsDocAccess>;
   docAccessPayloadPreference?: Maybe<payload_preferencesDocAccess>;
   docAccessPost?: Maybe<postsDocAccess>;
@@ -7773,6 +7997,13 @@ type QueryMediaArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   id: Scalars['Int']['input'];
+  locale?: InputMaybe<LocaleInputType>;
+};
+
+
+type QueryNavArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -9319,6 +9550,12 @@ type mutationMedia_Sizes_ThumbnailInput = {
   width?: InputMaybe<Scalars['Float']['input']>;
 };
 
+type mutationNavInput = {
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  data?: InputMaybe<Scalars['JSON']['input']>;
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
 type mutationPayloadLockedDocumentInput = {
   createdAt?: InputMaybe<Scalars['String']['input']>;
   document?: InputMaybe<PayloadLockedDocument_DocumentRelationshipInput>;
@@ -9418,6 +9655,20 @@ type mutationUserUpdateInput = {
   role?: InputMaybe<UserUpdate_role_MutationInput>;
   salt?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+type navAccess = {
+  __typename?: 'navAccess';
+  fields?: Maybe<NavFields>;
+  read?: Maybe<NavReadAccess>;
+  update?: Maybe<NavUpdateAccess>;
+};
+
+type navDocAccess = {
+  __typename?: 'navDocAccess';
+  fields?: Maybe<NavDocAccessFields>;
+  read?: Maybe<NavReadDocAccess>;
+  update?: Maybe<NavUpdateDocAccess>;
 };
 
 type payload_locked_documentsAccess = {

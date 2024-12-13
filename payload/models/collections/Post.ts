@@ -30,7 +30,8 @@ export const QuoteBlock: Block = {
 export const Post: CollectionConfig = {
   slug: 'posts',
   admin: {
-    useAsTitle: 'title'
+    useAsTitle: 'title',
+    description: 'Posts',
   },
   access: {
     read: ({ req: { user } }) => true,

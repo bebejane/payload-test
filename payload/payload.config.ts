@@ -1,8 +1,8 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { sql, sqliteAdapter } from '@payloadcms/db-sqlite'
+import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { previewPlugin, settingsPlugin, cloudinaryPlugin } from '@/payload/plugins'
+import { previewPlugin, settingsPlugin, cloudinaryPlugin, navPlugin } from '@/payload/plugins'
 import { BlocksFeature, lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -48,9 +48,8 @@ export default buildConfig({
       views: {
         //dashboard: {
         //Component: '@/payload/components/views/Dashboard',
-        //}
+        //}        
       },
-      //Nav: { path: '/payload/components/views/Nav',}
     },
   },
   i18n: {
@@ -124,6 +123,9 @@ export default buildConfig({
     }),
     themePlugin({
       enabled: true,
+    }),
+    navPlugin({
+      enabled: true
     }),
     payloadCloudPlugin(),
     cloudinaryPlugin({

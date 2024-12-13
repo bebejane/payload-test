@@ -7,6 +7,7 @@ export const Author: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
+    description: 'Authors',
   },
   fields: [
     {

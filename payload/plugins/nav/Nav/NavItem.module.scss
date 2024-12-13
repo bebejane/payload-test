@@ -1,0 +1,11 @@
+.item {
+
+  &.active {
+    font-weight: bold;
+  }
+
+  &.dragging {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

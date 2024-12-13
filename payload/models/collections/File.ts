@@ -5,6 +5,9 @@ export const File: CollectionConfig = {
   access: {
     read: () => true,
   },
+  admin: {
+    description: 'Files',
+  },
   upload: {
     disableLocalStorage: true,
   },

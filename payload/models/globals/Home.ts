@@ -4,6 +4,9 @@ import draftHook from '@/payload/hooks/draft'
 
 export const Home: GlobalConfig = {
   slug: 'home',
+  admin: {
+    description: 'Home',
+  },
   versions: {
     drafts: true
   },

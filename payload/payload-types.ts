@@ -38,11 +38,13 @@ export interface Config {
     home: Home;
     settings: Setting;
     theme: Theme;
+    nav: Nav;
   };
   globalsSelect: {
     home: HomeSelect<false> | HomeSelect<true>;
     settings: SettingsSelect<false> | SettingsSelect<true>;
     theme: ThemeSelect<false> | ThemeSelect<true>;
+    nav: NavSelect<false> | NavSelect<true>;
   };
   locale: 'en' | 'se';
   user: User & {
@@ -513,6 +515,24 @@ export interface Theme {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav".
+ */
+export interface Nav {
+  id: number;
+  data?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home_select".
  */
 export interface HomeSelect<T extends boolean = true> {
@@ -546,6 +566,16 @@ export interface SettingsSelect<T extends boolean = true> {
 export interface ThemeSelect<T extends boolean = true> {
   background?: T;
   text?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav_select".
+ */
+export interface NavSelect<T extends boolean = true> {
+  data?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
