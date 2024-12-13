@@ -14,7 +14,7 @@ import { getPayload } from 'payload'
 
 export default async function Home({ params }: LocaleParams) {
   const { locale = defaultLocale } = await params
-
+  console.log(locale)
   setRequestLocale(locale)
 
   const { Home } = await executeQuery<HomeQuery, HomeQueryVariables>(HomeDocument)

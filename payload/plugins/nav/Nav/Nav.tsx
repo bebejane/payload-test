@@ -29,7 +29,6 @@ type Props = {
 
 export default function Nav({ items: _items }: Props) {
   const router = useRouter()
-  const pathname = usePathname()
   const [items, setItems] = useState<NavItemType[]>(_items)
 
   const sensors = useSensors(

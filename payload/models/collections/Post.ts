@@ -68,14 +68,12 @@ export const Post: CollectionConfig = {
       unique: true,
       type: 'text',
       admin: {
-        /*
         components: {
           Field: {
-            path: `./payload/components/fields/slug`,
+            path: `@/payload/components/fields/slug`,
             clientProps: { trackingField: 'title' }
           }
         }
-          */
       },
     }, {
       name: 'date',

@@ -21,15 +21,20 @@ import { themePlugin } from './plugins/theme'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+const isMongo = process.env.DATABASE_URI?.includes('mongodb')
 
-export default buildConfig({
-  //db: mongooseAdapter({url: process.env.DATABASE_URI || ''}),
-  db: sqliteAdapter({
+const db = isMongo ?
+  mongooseAdapter({ url: process.env.DATABASE_URI || '' })
+  :
+  sqliteAdapter({
     client: {
       url: process.env.DATABASE_URI || '',
       authToken: process.env.DATABASE_AUTH_TOKEN || '',
     }
-  }),
+  })
+
+export default buildConfig({
+  db,
   globals: [Home],
   collections: [Post, Author, Media, File, User],
   admin: {

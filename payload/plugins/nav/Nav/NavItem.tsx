@@ -6,6 +6,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+import { Popup } from '@payloadcms/ui'
 
 import { usePathname } from 'next/navigation'
 
@@ -37,16 +38,20 @@ export default function NavItem({ id, href, label, icon }: NavItemType) {
   } as React.CSSProperties
 
   return (
-    <li
-      key={href}
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      className={cn(s.item, currentPath === href && s.active)}
-      suppressHydrationWarning={true}
-    >
-      <Link href={href}>{label}</Link>
-    </li>
+    <>
+      <li
+        key={href}
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
+        {...listeners}
+        className={cn(s.item, currentPath === href && s.active)}
+        suppressHydrationWarning={true}
+      >
+        <div className={s.label}>
+          <Link href={href}>{label}</Link>
+        </div>
+      </li>
+    </>
   )
 }
