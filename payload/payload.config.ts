@@ -162,7 +162,7 @@ export default buildConfig({
             path = null
             break;
         }
-        return path ? [`/${locale}${path}`] : null
+        return path ? [`/${locale}${path === '/' ? '' : path}`] : null
       }
     })
     /*

@@ -521,6 +521,7 @@ export interface Home {
   other?: {
     posts?: (number | Post)[] | null;
   };
+  _pathname?: string | null;
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -559,6 +560,7 @@ export interface HomeSelect<T extends boolean = true> {
     | {
         posts?: T;
       };
+  _pathname?: T;
   _status?: T;
   updatedAt?: T;
   createdAt?: T;

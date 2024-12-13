@@ -1,5 +1,3 @@
-// nextjs client componet
-
 'use client'
 
 import s from './Nav.module.scss'
@@ -68,12 +66,17 @@ export default function Nav({ items: _items }: Props) {
   return (
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
-        <div className="nav__scroll">
-          <nav className={cn('nav__wrap', s.nav)}>
+        <div className={cn('nav__scroll', s.nav)}>
+          <nav className="nav__wrap">
             <ul>
               {items.map((item, i) => (
                 <NavItem key={item?.id} {...item} />
               ))}
+              {/*
+              <li>
+                <button className={s.add}>+ Add item</button>
+              </li>
+              */}
             </ul>
           </nav>
         </div>

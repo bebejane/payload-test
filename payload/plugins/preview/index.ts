@@ -93,28 +93,24 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
     drafts: !autosave ? true : { autosave: { interval: 300 } }
   }
 
-  /*
-  const fields = c.fields.filter((field: Field) => field.name !== '_pathname')
-  console.log(dirname)
+  const fields = c.fields.filter((field: any) => field.name !== '_pathname')
   fields.push({
     label: "Pathname",
     name: "_pathname",
     type: "text",
     admin: {
+      readOnly: true,
       components: {
         Field: {
-          path: `./pathname`,
-          clientProps: { slug: c.slug }
+          path: `@/payload/plugins/preview/Pathname`,
+          exportName: 'default',
+          clientProps: { path: '_pathname' }
         }
       }
     }
   })
   c.fields = fields;
 
-  /*
-    
-  },
-  */
   return c as T
 }
 
