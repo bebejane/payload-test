@@ -6,7 +6,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { Popup } from '@payloadcms/ui'
+import { Modal, ModalToggler } from '@faceless-ui/modal'
 
 import { usePathname } from 'next/navigation'
 

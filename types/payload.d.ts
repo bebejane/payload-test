@@ -1704,6 +1704,7 @@ type Files = {
 
 type Home = {
   __typename?: 'Home';
+  _pathname?: Maybe<Scalars['String']['output']>;
   _status?: Maybe<Home__status>;
   content?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -1726,6 +1727,7 @@ type HomeimageArgs = {
 
 type HomeDocAccessFields = {
   __typename?: 'HomeDocAccessFields';
+  _pathname?: Maybe<HomeDocAccessFields__pathname>;
   _status?: Maybe<HomeDocAccessFields__status>;
   content?: Maybe<HomeDocAccessFields_content>;
   createdAt?: Maybe<HomeDocAccessFields_createdAt>;
@@ -1733,6 +1735,34 @@ type HomeDocAccessFields = {
   image?: Maybe<HomeDocAccessFields_image>;
   other?: Maybe<HomeDocAccessFields_other>;
   updatedAt?: Maybe<HomeDocAccessFields_updatedAt>;
+};
+
+type HomeDocAccessFields__pathname = {
+  __typename?: 'HomeDocAccessFields__pathname';
+  create?: Maybe<HomeDocAccessFields__pathname_Create>;
+  delete?: Maybe<HomeDocAccessFields__pathname_Delete>;
+  read?: Maybe<HomeDocAccessFields__pathname_Read>;
+  update?: Maybe<HomeDocAccessFields__pathname_Update>;
+};
+
+type HomeDocAccessFields__pathname_Create = {
+  __typename?: 'HomeDocAccessFields__pathname_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeDocAccessFields__pathname_Delete = {
+  __typename?: 'HomeDocAccessFields__pathname_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeDocAccessFields__pathname_Read = {
+  __typename?: 'HomeDocAccessFields__pathname_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeDocAccessFields__pathname_Update = {
+  __typename?: 'HomeDocAccessFields__pathname_Update';
+  permission: Scalars['Boolean']['output'];
 };
 
 type HomeDocAccessFields__status = {
@@ -1967,6 +1997,7 @@ type HomeDocAccessFields_updatedAt_Update = {
 
 type HomeFields = {
   __typename?: 'HomeFields';
+  _pathname?: Maybe<HomeFields__pathname>;
   _status?: Maybe<HomeFields__status>;
   content?: Maybe<HomeFields_content>;
   createdAt?: Maybe<HomeFields_createdAt>;
@@ -1974,6 +2005,34 @@ type HomeFields = {
   image?: Maybe<HomeFields_image>;
   other?: Maybe<HomeFields_other>;
   updatedAt?: Maybe<HomeFields_updatedAt>;
+};
+
+type HomeFields__pathname = {
+  __typename?: 'HomeFields__pathname';
+  create?: Maybe<HomeFields__pathname_Create>;
+  delete?: Maybe<HomeFields__pathname_Delete>;
+  read?: Maybe<HomeFields__pathname_Read>;
+  update?: Maybe<HomeFields__pathname_Update>;
+};
+
+type HomeFields__pathname_Create = {
+  __typename?: 'HomeFields__pathname_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeFields__pathname_Delete = {
+  __typename?: 'HomeFields__pathname_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeFields__pathname_Read = {
+  __typename?: 'HomeFields__pathname_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeFields__pathname_Update = {
+  __typename?: 'HomeFields__pathname_Update';
+  permission: Scalars['Boolean']['output'];
 };
 
 type HomeFields__status = {
@@ -2256,6 +2315,7 @@ type HomeVersion = {
 
 type HomeVersion_Version = {
   __typename?: 'HomeVersion_Version';
+  _pathname?: Maybe<Scalars['String']['output']>;
   _status?: Maybe<HomeVersion_Version__status>;
   content?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -5325,6 +5385,7 @@ type Mutation = {
   createAuthor?: Maybe<Author>;
   createFile?: Maybe<File>;
   createMedia?: Maybe<Media>;
+  createNav?: Maybe<Nav>;
   createPayloadLockedDocument?: Maybe<PayloadLockedDocument>;
   createPayloadPreference?: Maybe<PayloadPreference>;
   createPost?: Maybe<Post>;
@@ -5332,6 +5393,7 @@ type Mutation = {
   deleteAuthor?: Maybe<Author>;
   deleteFile?: Maybe<File>;
   deleteMedia?: Maybe<Media>;
+  deleteNav?: Maybe<Nav>;
   deletePayloadLockedDocument?: Maybe<PayloadLockedDocument>;
   deletePayloadPreference?: Maybe<PayloadPreference>;
   deletePost?: Maybe<Post>;
@@ -5339,6 +5401,7 @@ type Mutation = {
   duplicateAuthor?: Maybe<Author>;
   duplicateFile?: Maybe<File>;
   duplicateMedia?: Maybe<Media>;
+  duplicateNav?: Maybe<Nav>;
   duplicatePayloadLockedDocument?: Maybe<PayloadLockedDocument>;
   duplicatePayloadPreference?: Maybe<PayloadPreference>;
   duplicatePost?: Maybe<Post>;
@@ -5388,6 +5451,13 @@ type MutationcreateMediaArgs = {
 };
 
 
+type MutationcreateNavArgs = {
+  data: mutationNavInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  locale?: InputMaybe<LocaleInputType>;
+};
+
+
 type MutationcreatePayloadLockedDocumentArgs = {
   data: mutationPayloadLockedDocumentInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
@@ -5431,6 +5501,11 @@ type MutationdeleteMediaArgs = {
 };
 
 
+type MutationdeleteNavArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
 type MutationdeletePayloadLockedDocumentArgs = {
   id: Scalars['Int']['input'];
 };
@@ -5465,6 +5540,12 @@ type MutationduplicateFileArgs = {
 
 type MutationduplicateMediaArgs = {
   data: mutationMediaInput;
+  id: Scalars['Int']['input'];
+};
+
+
+type MutationduplicateNavArgs = {
+  data: mutationNavInput;
   id: Scalars['Int']['input'];
 };
 
@@ -5570,8 +5651,10 @@ type MutationupdateMediaArgs = {
 
 
 type MutationupdateNavArgs = {
-  data: mutationNavInput;
+  autosave?: InputMaybe<Scalars['Boolean']['input']>;
+  data: mutationNavUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['Int']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -5633,14 +5716,49 @@ type MutationverifyEmailUserArgs = {
 type Nav = {
   __typename?: 'Nav';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  data?: Maybe<Scalars['JSON']['output']>;
+  href: Scalars['String']['output'];
+  icon?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Int']['output'];
+  label: Scalars['String']['output'];
+  position?: Maybe<Scalars['Float']['output']>;
+  slug: Scalars['String']['output'];
+  type: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+type NavCreateAccess = {
+  __typename?: 'NavCreateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type NavCreateDocAccess = {
+  __typename?: 'NavCreateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type NavDeleteAccess = {
+  __typename?: 'NavDeleteAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type NavDeleteDocAccess = {
+  __typename?: 'NavDeleteDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
 };
 
 type NavDocAccessFields = {
   __typename?: 'NavDocAccessFields';
   createdAt?: Maybe<NavDocAccessFields_createdAt>;
-  data?: Maybe<NavDocAccessFields_data>;
+  href?: Maybe<NavDocAccessFields_href>;
+  icon?: Maybe<NavDocAccessFields_icon>;
+  label?: Maybe<NavDocAccessFields_label>;
+  position?: Maybe<NavDocAccessFields_position>;
+  slug?: Maybe<NavDocAccessFields_slug>;
+  type?: Maybe<NavDocAccessFields_type>;
   updatedAt?: Maybe<NavDocAccessFields_updatedAt>;
 };
 
@@ -5672,31 +5790,171 @@ type NavDocAccessFields_createdAt_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
-type NavDocAccessFields_data = {
-  __typename?: 'NavDocAccessFields_data';
-  create?: Maybe<NavDocAccessFields_data_Create>;
-  delete?: Maybe<NavDocAccessFields_data_Delete>;
-  read?: Maybe<NavDocAccessFields_data_Read>;
-  update?: Maybe<NavDocAccessFields_data_Update>;
+type NavDocAccessFields_href = {
+  __typename?: 'NavDocAccessFields_href';
+  create?: Maybe<NavDocAccessFields_href_Create>;
+  delete?: Maybe<NavDocAccessFields_href_Delete>;
+  read?: Maybe<NavDocAccessFields_href_Read>;
+  update?: Maybe<NavDocAccessFields_href_Update>;
 };
 
-type NavDocAccessFields_data_Create = {
-  __typename?: 'NavDocAccessFields_data_Create';
+type NavDocAccessFields_href_Create = {
+  __typename?: 'NavDocAccessFields_href_Create';
   permission: Scalars['Boolean']['output'];
 };
 
-type NavDocAccessFields_data_Delete = {
-  __typename?: 'NavDocAccessFields_data_Delete';
+type NavDocAccessFields_href_Delete = {
+  __typename?: 'NavDocAccessFields_href_Delete';
   permission: Scalars['Boolean']['output'];
 };
 
-type NavDocAccessFields_data_Read = {
-  __typename?: 'NavDocAccessFields_data_Read';
+type NavDocAccessFields_href_Read = {
+  __typename?: 'NavDocAccessFields_href_Read';
   permission: Scalars['Boolean']['output'];
 };
 
-type NavDocAccessFields_data_Update = {
-  __typename?: 'NavDocAccessFields_data_Update';
+type NavDocAccessFields_href_Update = {
+  __typename?: 'NavDocAccessFields_href_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_icon = {
+  __typename?: 'NavDocAccessFields_icon';
+  create?: Maybe<NavDocAccessFields_icon_Create>;
+  delete?: Maybe<NavDocAccessFields_icon_Delete>;
+  read?: Maybe<NavDocAccessFields_icon_Read>;
+  update?: Maybe<NavDocAccessFields_icon_Update>;
+};
+
+type NavDocAccessFields_icon_Create = {
+  __typename?: 'NavDocAccessFields_icon_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_icon_Delete = {
+  __typename?: 'NavDocAccessFields_icon_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_icon_Read = {
+  __typename?: 'NavDocAccessFields_icon_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_icon_Update = {
+  __typename?: 'NavDocAccessFields_icon_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_label = {
+  __typename?: 'NavDocAccessFields_label';
+  create?: Maybe<NavDocAccessFields_label_Create>;
+  delete?: Maybe<NavDocAccessFields_label_Delete>;
+  read?: Maybe<NavDocAccessFields_label_Read>;
+  update?: Maybe<NavDocAccessFields_label_Update>;
+};
+
+type NavDocAccessFields_label_Create = {
+  __typename?: 'NavDocAccessFields_label_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_label_Delete = {
+  __typename?: 'NavDocAccessFields_label_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_label_Read = {
+  __typename?: 'NavDocAccessFields_label_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_label_Update = {
+  __typename?: 'NavDocAccessFields_label_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_position = {
+  __typename?: 'NavDocAccessFields_position';
+  create?: Maybe<NavDocAccessFields_position_Create>;
+  delete?: Maybe<NavDocAccessFields_position_Delete>;
+  read?: Maybe<NavDocAccessFields_position_Read>;
+  update?: Maybe<NavDocAccessFields_position_Update>;
+};
+
+type NavDocAccessFields_position_Create = {
+  __typename?: 'NavDocAccessFields_position_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_position_Delete = {
+  __typename?: 'NavDocAccessFields_position_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_position_Read = {
+  __typename?: 'NavDocAccessFields_position_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_position_Update = {
+  __typename?: 'NavDocAccessFields_position_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_slug = {
+  __typename?: 'NavDocAccessFields_slug';
+  create?: Maybe<NavDocAccessFields_slug_Create>;
+  delete?: Maybe<NavDocAccessFields_slug_Delete>;
+  read?: Maybe<NavDocAccessFields_slug_Read>;
+  update?: Maybe<NavDocAccessFields_slug_Update>;
+};
+
+type NavDocAccessFields_slug_Create = {
+  __typename?: 'NavDocAccessFields_slug_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_slug_Delete = {
+  __typename?: 'NavDocAccessFields_slug_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_slug_Read = {
+  __typename?: 'NavDocAccessFields_slug_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_slug_Update = {
+  __typename?: 'NavDocAccessFields_slug_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_type = {
+  __typename?: 'NavDocAccessFields_type';
+  create?: Maybe<NavDocAccessFields_type_Create>;
+  delete?: Maybe<NavDocAccessFields_type_Delete>;
+  read?: Maybe<NavDocAccessFields_type_Read>;
+  update?: Maybe<NavDocAccessFields_type_Update>;
+};
+
+type NavDocAccessFields_type_Create = {
+  __typename?: 'NavDocAccessFields_type_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_type_Delete = {
+  __typename?: 'NavDocAccessFields_type_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_type_Read = {
+  __typename?: 'NavDocAccessFields_type_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_type_Update = {
+  __typename?: 'NavDocAccessFields_type_Update';
   permission: Scalars['Boolean']['output'];
 };
 
@@ -5731,7 +5989,12 @@ type NavDocAccessFields_updatedAt_Update = {
 type NavFields = {
   __typename?: 'NavFields';
   createdAt?: Maybe<NavFields_createdAt>;
-  data?: Maybe<NavFields_data>;
+  href?: Maybe<NavFields_href>;
+  icon?: Maybe<NavFields_icon>;
+  label?: Maybe<NavFields_label>;
+  position?: Maybe<NavFields_position>;
+  slug?: Maybe<NavFields_slug>;
+  type?: Maybe<NavFields_type>;
   updatedAt?: Maybe<NavFields_updatedAt>;
 };
 
@@ -5763,31 +6026,171 @@ type NavFields_createdAt_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
-type NavFields_data = {
-  __typename?: 'NavFields_data';
-  create?: Maybe<NavFields_data_Create>;
-  delete?: Maybe<NavFields_data_Delete>;
-  read?: Maybe<NavFields_data_Read>;
-  update?: Maybe<NavFields_data_Update>;
+type NavFields_href = {
+  __typename?: 'NavFields_href';
+  create?: Maybe<NavFields_href_Create>;
+  delete?: Maybe<NavFields_href_Delete>;
+  read?: Maybe<NavFields_href_Read>;
+  update?: Maybe<NavFields_href_Update>;
 };
 
-type NavFields_data_Create = {
-  __typename?: 'NavFields_data_Create';
+type NavFields_href_Create = {
+  __typename?: 'NavFields_href_Create';
   permission: Scalars['Boolean']['output'];
 };
 
-type NavFields_data_Delete = {
-  __typename?: 'NavFields_data_Delete';
+type NavFields_href_Delete = {
+  __typename?: 'NavFields_href_Delete';
   permission: Scalars['Boolean']['output'];
 };
 
-type NavFields_data_Read = {
-  __typename?: 'NavFields_data_Read';
+type NavFields_href_Read = {
+  __typename?: 'NavFields_href_Read';
   permission: Scalars['Boolean']['output'];
 };
 
-type NavFields_data_Update = {
-  __typename?: 'NavFields_data_Update';
+type NavFields_href_Update = {
+  __typename?: 'NavFields_href_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_icon = {
+  __typename?: 'NavFields_icon';
+  create?: Maybe<NavFields_icon_Create>;
+  delete?: Maybe<NavFields_icon_Delete>;
+  read?: Maybe<NavFields_icon_Read>;
+  update?: Maybe<NavFields_icon_Update>;
+};
+
+type NavFields_icon_Create = {
+  __typename?: 'NavFields_icon_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_icon_Delete = {
+  __typename?: 'NavFields_icon_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_icon_Read = {
+  __typename?: 'NavFields_icon_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_icon_Update = {
+  __typename?: 'NavFields_icon_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_label = {
+  __typename?: 'NavFields_label';
+  create?: Maybe<NavFields_label_Create>;
+  delete?: Maybe<NavFields_label_Delete>;
+  read?: Maybe<NavFields_label_Read>;
+  update?: Maybe<NavFields_label_Update>;
+};
+
+type NavFields_label_Create = {
+  __typename?: 'NavFields_label_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_label_Delete = {
+  __typename?: 'NavFields_label_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_label_Read = {
+  __typename?: 'NavFields_label_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_label_Update = {
+  __typename?: 'NavFields_label_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_position = {
+  __typename?: 'NavFields_position';
+  create?: Maybe<NavFields_position_Create>;
+  delete?: Maybe<NavFields_position_Delete>;
+  read?: Maybe<NavFields_position_Read>;
+  update?: Maybe<NavFields_position_Update>;
+};
+
+type NavFields_position_Create = {
+  __typename?: 'NavFields_position_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_position_Delete = {
+  __typename?: 'NavFields_position_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_position_Read = {
+  __typename?: 'NavFields_position_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_position_Update = {
+  __typename?: 'NavFields_position_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_slug = {
+  __typename?: 'NavFields_slug';
+  create?: Maybe<NavFields_slug_Create>;
+  delete?: Maybe<NavFields_slug_Delete>;
+  read?: Maybe<NavFields_slug_Read>;
+  update?: Maybe<NavFields_slug_Update>;
+};
+
+type NavFields_slug_Create = {
+  __typename?: 'NavFields_slug_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_slug_Delete = {
+  __typename?: 'NavFields_slug_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_slug_Read = {
+  __typename?: 'NavFields_slug_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_slug_Update = {
+  __typename?: 'NavFields_slug_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_type = {
+  __typename?: 'NavFields_type';
+  create?: Maybe<NavFields_type_Create>;
+  delete?: Maybe<NavFields_type_Delete>;
+  read?: Maybe<NavFields_type_Read>;
+  update?: Maybe<NavFields_type_Update>;
+};
+
+type NavFields_type_Create = {
+  __typename?: 'NavFields_type_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_type_Delete = {
+  __typename?: 'NavFields_type_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_type_Read = {
+  __typename?: 'NavFields_type_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_type_Update = {
+  __typename?: 'NavFields_type_Update';
   permission: Scalars['Boolean']['output'];
 };
 
@@ -5843,6 +6246,156 @@ type NavUpdateDocAccess = {
   where?: Maybe<Scalars['JSONObject']['output']>;
 };
 
+type Nav_createdAt_operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+type Nav_href_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+type Nav_icon_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+type Nav_id_operator = {
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Int']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
+  less_than?: InputMaybe<Scalars['Int']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
+  not_equals?: InputMaybe<Scalars['Int']['input']>;
+};
+
+type Nav_label_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+type Nav_position_operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+type Nav_slug_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+type Nav_type_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+type Nav_updatedAt_operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+type Nav_where = {
+  AND?: InputMaybe<Array<InputMaybe<Nav_where_and>>>;
+  OR?: InputMaybe<Array<InputMaybe<Nav_where_or>>>;
+  createdAt?: InputMaybe<Nav_createdAt_operator>;
+  href?: InputMaybe<Nav_href_operator>;
+  icon?: InputMaybe<Nav_icon_operator>;
+  id?: InputMaybe<Nav_id_operator>;
+  label?: InputMaybe<Nav_label_operator>;
+  position?: InputMaybe<Nav_position_operator>;
+  slug?: InputMaybe<Nav_slug_operator>;
+  type?: InputMaybe<Nav_type_operator>;
+  updatedAt?: InputMaybe<Nav_updatedAt_operator>;
+};
+
+type Nav_where_and = {
+  AND?: InputMaybe<Array<InputMaybe<Nav_where_and>>>;
+  OR?: InputMaybe<Array<InputMaybe<Nav_where_or>>>;
+  createdAt?: InputMaybe<Nav_createdAt_operator>;
+  href?: InputMaybe<Nav_href_operator>;
+  icon?: InputMaybe<Nav_icon_operator>;
+  id?: InputMaybe<Nav_id_operator>;
+  label?: InputMaybe<Nav_label_operator>;
+  position?: InputMaybe<Nav_position_operator>;
+  slug?: InputMaybe<Nav_slug_operator>;
+  type?: InputMaybe<Nav_type_operator>;
+  updatedAt?: InputMaybe<Nav_updatedAt_operator>;
+};
+
+type Nav_where_or = {
+  AND?: InputMaybe<Array<InputMaybe<Nav_where_and>>>;
+  OR?: InputMaybe<Array<InputMaybe<Nav_where_or>>>;
+  createdAt?: InputMaybe<Nav_createdAt_operator>;
+  href?: InputMaybe<Nav_href_operator>;
+  icon?: InputMaybe<Nav_icon_operator>;
+  id?: InputMaybe<Nav_id_operator>;
+  label?: InputMaybe<Nav_label_operator>;
+  position?: InputMaybe<Nav_position_operator>;
+  slug?: InputMaybe<Nav_slug_operator>;
+  type?: InputMaybe<Nav_type_operator>;
+  updatedAt?: InputMaybe<Nav_updatedAt_operator>;
+};
+
+type Navs = {
+  __typename?: 'Navs';
+  docs?: Maybe<Array<Maybe<Nav>>>;
+  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
+  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
+  limit?: Maybe<Scalars['Int']['output']>;
+  nextPage?: Maybe<Scalars['Int']['output']>;
+  offset?: Maybe<Scalars['Int']['output']>;
+  page?: Maybe<Scalars['Int']['output']>;
+  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  prevPage?: Maybe<Scalars['Int']['output']>;
+  totalDocs?: Maybe<Scalars['Int']['output']>;
+  totalPages?: Maybe<Scalars['Int']['output']>;
+};
+
 type PayloadLockedDocument = {
   __typename?: 'PayloadLockedDocument';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -5875,6 +6428,7 @@ enum PayloadLockedDocumentUpdate_DocumentRelationshipInputRelationTo {
   authors = 'authors',
   file = 'file',
   media = 'media',
+  nav = 'nav',
   posts = 'posts',
   users = 'users'
 }
@@ -5888,7 +6442,7 @@ enum PayloadLockedDocumentUpdate_UserRelationshipInputRelationTo {
   users = 'users'
 }
 
-type PayloadLockedDocument_Document = Author | File | Media | Post | User;
+type PayloadLockedDocument_Document = Author | File | Media | Nav | Post | User;
 
 type PayloadLockedDocument_DocumentRelationshipInput = {
   relationTo?: InputMaybe<PayloadLockedDocument_DocumentRelationshipInputRelationTo>;
@@ -5899,6 +6453,7 @@ enum PayloadLockedDocument_DocumentRelationshipInputRelationTo {
   authors = 'authors',
   file = 'file',
   media = 'media',
+  nav = 'nav',
   posts = 'posts',
   users = 'users'
 }
@@ -5907,6 +6462,7 @@ enum PayloadLockedDocument_Document_RelationTo {
   authors = 'authors',
   file = 'file',
   media = 'media',
+  nav = 'nav',
   posts = 'posts',
   users = 'users'
 }
@@ -5958,6 +6514,7 @@ enum PayloadLockedDocument_document_Relation_RelationTo {
   authors = 'authors',
   file = 'file',
   media = 'media',
+  nav = 'nav',
   posts = 'posts',
   users = 'users'
 }
@@ -7906,6 +8463,7 @@ type Query = {
   Home?: Maybe<Home>;
   Media?: Maybe<Media>;
   Nav?: Maybe<Nav>;
+  Navs?: Maybe<Navs>;
   PayloadLockedDocument?: Maybe<PayloadLockedDocument>;
   PayloadLockedDocuments?: Maybe<PayloadLockedDocuments>;
   PayloadPreference?: Maybe<PayloadPreference>;
@@ -7919,6 +8477,7 @@ type Query = {
   allMedia?: Maybe<allMedia>;
   countAuthors?: Maybe<countAuthors>;
   countFiles?: Maybe<countFiles>;
+  countNavs?: Maybe<countNavs>;
   countPayloadLockedDocuments?: Maybe<countPayloadLockedDocuments>;
   countPayloadPreferences?: Maybe<countPayloadPreferences>;
   countPosts?: Maybe<countPosts>;
@@ -8004,7 +8563,19 @@ type QueryMediaArgs = {
 type QueryNavArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
+  id: Scalars['Int']['input'];
   locale?: InputMaybe<LocaleInputType>;
+};
+
+
+type QueryNavsArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<LocaleInputType>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  where?: InputMaybe<Nav_where>;
 };
 
 
@@ -8123,6 +8694,13 @@ type QuerycountFilesArgs = {
 };
 
 
+type QuerycountNavsArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  locale?: InputMaybe<LocaleInputType>;
+  where?: InputMaybe<Nav_where>;
+};
+
+
 type QuerycountPayloadLockedDocumentsArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   locale?: InputMaybe<LocaleInputType>;
@@ -8169,6 +8747,11 @@ type QuerydocAccessFileArgs = {
 
 
 type QuerydocAccessMediaArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+type QuerydocAccessNavArgs = {
   id: Scalars['Int']['input'];
 };
 
@@ -9285,6 +9868,11 @@ type countFiles = {
   totalDocs?: Maybe<Scalars['Int']['output']>;
 };
 
+type countNavs = {
+  __typename?: 'countNavs';
+  totalDocs?: Maybe<Scalars['Int']['output']>;
+};
+
 type countPayloadLockedDocuments = {
   __typename?: 'countPayloadLockedDocuments';
   totalDocs?: Maybe<Scalars['Int']['output']>;
@@ -9421,6 +10009,7 @@ type mutationFile_CloudinaryInput = {
 };
 
 type mutationHomeInput = {
+  _pathname?: InputMaybe<Scalars['String']['input']>;
   _status?: InputMaybe<Home__status_MutationInput>;
   content?: InputMaybe<Scalars['JSON']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
@@ -9552,7 +10141,23 @@ type mutationMedia_Sizes_ThumbnailInput = {
 
 type mutationNavInput = {
   createdAt?: InputMaybe<Scalars['String']['input']>;
-  data?: InputMaybe<Scalars['JSON']['input']>;
+  href: Scalars['String']['input'];
+  icon?: InputMaybe<Scalars['String']['input']>;
+  label: Scalars['String']['input'];
+  position?: InputMaybe<Scalars['Float']['input']>;
+  slug: Scalars['String']['input'];
+  type: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+type mutationNavUpdateInput = {
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  href?: InputMaybe<Scalars['String']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  position?: InputMaybe<Scalars['Float']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -9659,6 +10264,8 @@ type mutationUserUpdateInput = {
 
 type navAccess = {
   __typename?: 'navAccess';
+  create?: Maybe<NavCreateAccess>;
+  delete?: Maybe<NavDeleteAccess>;
   fields?: Maybe<NavFields>;
   read?: Maybe<NavReadAccess>;
   update?: Maybe<NavUpdateAccess>;
@@ -9666,6 +10273,8 @@ type navAccess = {
 
 type navDocAccess = {
   __typename?: 'navDocAccess';
+  create?: Maybe<NavCreateDocAccess>;
+  delete?: Maybe<NavDeleteDocAccess>;
   fields?: Maybe<NavDocAccessFields>;
   read?: Maybe<NavReadDocAccess>;
   update?: Maybe<NavUpdateDocAccess>;
@@ -9894,6 +10503,17 @@ type versionsHome_updatedAt_operator = {
   not_equals?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
+type versionsHome_version___pathname_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 enum versionsHome_version___status_Input {
   draft = 'draft',
   published = 'published'
@@ -9975,6 +10595,7 @@ type versionsHome_where = {
   publishedLocale?: InputMaybe<versionsHome_publishedLocale_operator>;
   snapshot?: InputMaybe<versionsHome_snapshot_operator>;
   updatedAt?: InputMaybe<versionsHome_updatedAt_operator>;
+  version___pathname?: InputMaybe<versionsHome_version___pathname_operator>;
   version___status?: InputMaybe<versionsHome_version___status_operator>;
   version__content?: InputMaybe<versionsHome_version__content_operator>;
   version__createdAt?: InputMaybe<versionsHome_version__createdAt_operator>;
@@ -9994,6 +10615,7 @@ type versionsHome_where_and = {
   publishedLocale?: InputMaybe<versionsHome_publishedLocale_operator>;
   snapshot?: InputMaybe<versionsHome_snapshot_operator>;
   updatedAt?: InputMaybe<versionsHome_updatedAt_operator>;
+  version___pathname?: InputMaybe<versionsHome_version___pathname_operator>;
   version___status?: InputMaybe<versionsHome_version___status_operator>;
   version__content?: InputMaybe<versionsHome_version__content_operator>;
   version__createdAt?: InputMaybe<versionsHome_version__createdAt_operator>;
@@ -10013,6 +10635,7 @@ type versionsHome_where_or = {
   publishedLocale?: InputMaybe<versionsHome_publishedLocale_operator>;
   snapshot?: InputMaybe<versionsHome_snapshot_operator>;
   updatedAt?: InputMaybe<versionsHome_updatedAt_operator>;
+  version___pathname?: InputMaybe<versionsHome_version___pathname_operator>;
   version___status?: InputMaybe<versionsHome_version___status_operator>;
   version__content?: InputMaybe<versionsHome_version__content_operator>;
   version__createdAt?: InputMaybe<versionsHome_version__createdAt_operator>;

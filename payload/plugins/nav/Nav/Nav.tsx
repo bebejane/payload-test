@@ -3,23 +3,12 @@
 import s from './Nav.module.scss'
 import cn from 'classnames'
 import React, { useEffect, useState } from 'react'
-import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core'
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable'
+import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
+import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { updatePositions } from './update-position'
 import NavItem, { NavItemType } from './NavItem'
 import { usePathname, useRouter } from 'next/navigation'
+import { ModalContainer, ModalContext, ModalProvider } from '@faceless-ui/modal'
 
 type Props = {
   items: NavItemType[]
