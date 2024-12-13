@@ -6,11 +6,13 @@ import RichText from '@/lib/rich-text'
 import Image from 'next/image'
 import { setRequestLocale } from 'next-intl/server'
 import { PostDocument } from '@/graphql'
+import { LivePreview } from '@/payload/plugins/preview'
 
 export const metadata: Metadata = {
   title: 'Payload test',
   description: 'Payload',
 }
+
 type Props = LocaleParams<{ post: string }>
 
 export default async function Post({ params }: Props) {
@@ -30,9 +32,7 @@ export default async function Post({ params }: Props) {
         <h1>
           {post.title} ({post._status})
         </h1>
-
         <RichText data={post.content} />
-
         {typeof post.image === 'object' && post.image?.url && (
           <Image
             className={s.image}
@@ -42,11 +42,11 @@ export default async function Post({ params }: Props) {
             alt={post.image.alt ?? 'alt'}
           />
         )}
-
         <section>
           <ul>{post.blocks?.map((block, index) => <li key={index}>{block.quoteHeader}</li>)}</ul>
         </section>
       </article>
+      <LivePreview />
     </>
   )
 }

@@ -6,15 +6,16 @@ import { isDocumentEvent, ready } from '@payloadcms/live-preview'
 import { useCallback, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 
-export const PreviewRoute: React.FC<{
+export const LivePreview: React.FC<{
   apiRoute?: string
   depth?: number
   refresh?: () => void
   slug?: string
-  serverURL: string
+  serverURL?: string
 }> = (props) => {
   const router = useRouter()
-  const { apiRoute, depth, serverURL } = props
+  const { apiRoute, depth } = props
+  const serverURL = (props.serverURL ?? process.env.NEXT_PUBLIC_SITE_URL) as string
   const hasSentReadyMessage = useRef<boolean>(false)
 
   const onMessage = useCallback(
@@ -27,9 +28,7 @@ export const PreviewRoute: React.FC<{
   )
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('message', onMessage)
-    }
+    if (typeof window !== 'undefined') window.addEventListener('message', onMessage)
 
     if (!hasSentReadyMessage.current) {
       hasSentReadyMessage.current = true

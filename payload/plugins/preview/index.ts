@@ -4,8 +4,6 @@ import draftHook from '@/payload/hooks/draft'
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-export { PreviewRoute } from './PreviewRoute'
-
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -68,7 +66,6 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
     if (!paths) return
     console.log('revalidate', paths)
     paths.forEach(path => revalidatePath(path))
-
   }
 
   c.hooks = (c.hooks ?? {
@@ -105,7 +102,6 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
       components: {
         Field: {
           path: `@/payload/plugins/preview/Pathname`,
-          exportName: 'default',
           clientProps: { path: '_pathname' }
         }
       }
@@ -116,3 +112,4 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
   return c as T
 }
 
+export { LivePreview } from './LivePreview'

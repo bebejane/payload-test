@@ -7141,6 +7141,7 @@ type QueryAuthorsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
+  pagination?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<Author_where>;
 };
@@ -7175,6 +7176,7 @@ type QueryNavsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
+  pagination?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<Nav_where>;
 };
@@ -7194,6 +7196,7 @@ type QueryPayloadLockedDocumentsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
+  pagination?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<PayloadLockedDocument_where>;
 };
@@ -7213,6 +7216,7 @@ type QueryPayloadPreferencesArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
+  pagination?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<PayloadPreference_where>;
 };
@@ -7232,6 +7236,7 @@ type QueryPostsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
+  pagination?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<Post_where>;
 };
@@ -7265,6 +7270,7 @@ type QueryUsersArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
+  pagination?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<User_where>;
 };
@@ -7276,6 +7282,7 @@ type QueryallMediaArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
+  pagination?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<Media_where>;
 };
@@ -7401,6 +7408,7 @@ type QueryversionsHomeArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
+  pagination?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<versionsHome_where>;
 };
@@ -7411,6 +7419,7 @@ type QueryversionsPostsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
+  pagination?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<versionsPost_where>;
 };
@@ -7421,6 +7430,7 @@ type QueryversionsSettingArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
+  pagination?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<versionsSetting_where>;
 };
@@ -7431,6 +7441,7 @@ type QueryversionsThemeArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
+  pagination?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<versionsTheme_where>;
 };

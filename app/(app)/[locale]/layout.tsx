@@ -5,7 +5,6 @@ import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { notFound } from 'next/navigation'
 import Navbar from '../components/Navbar'
 import ProgressProvider from '@/lib/progress'
-import { RefreshRouteOnSave } from '@/payload/components/draft/RefreshRouteOnSave'
 
 export type RootLayoutProps = {
   children: React.ReactNode
@@ -33,7 +32,6 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
           <Body locale={locale}>{children}</Body>
         </main>
       </body>
-      <RefreshRouteOnSave serverURL={process.env.NEXT_PUBLIC_SITE_URL as string} />
     </html>
   )
 }
