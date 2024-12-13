@@ -2,8 +2,6 @@
 
 import s from './NavItem.module.scss'
 import cn from 'classnames'
-import type { AdminViewProps, VisibleEntities } from 'payload'
-import { DefaultTemplate } from '@payloadcms/next/templates'
 import React from 'react'
 import Link from 'next/link'
 import { useSortable } from '@dnd-kit/sortable'
@@ -26,7 +24,7 @@ type Props = {
   items: NavItemType[]
 }
 
-export default function NavItem({ id, href, label }: NavItemType) {
+export default function NavItem({ id, href, label, icon }: NavItemType) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id,
   })
