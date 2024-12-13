@@ -2,7 +2,7 @@ import { draftMode, headers } from 'next/headers'
 import type { RequestInit } from 'next/dist/server/web/spec-extension/request'
 import { DocumentNode, FieldNode, OperationDefinitionNode, VariableDefinitionNode } from 'graphql/language';
 import { print } from 'graphql/language/printer'
-import { defaultLocale } from '@/i18n/request';
+import { routing } from '@/i18n/routing'
 
 export type ApiQueryOptions<V = void> = {
   variables?: V;
@@ -54,7 +54,7 @@ export default async function executeQuery<T, V = void>(query: any, options?: Ap
   const variables = {
     ...(options?.variables ?? {}),
     draft: (await draftMode()).isEnabled,
-    locale: (await headers()).get('x-next-intl-locale') ?? defaultLocale
+    locale: (await headers()).get('x-next-intl-locale') ?? routing.defaultLocale
   }
 
   const dedupeOptions: DedupeOptions = {

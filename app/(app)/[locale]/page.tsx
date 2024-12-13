@@ -3,18 +3,16 @@ import cn from 'classnames'
 import { setRequestLocale } from 'next-intl/server'
 import Link from 'next/link'
 import RichText from '@/lib/rich-text'
-import { defaultLocale, locales } from '@/i18n/request'
-import { draftMode } from 'next/headers'
+import { routing } from '@/i18n/routing'
 import Image from 'next/image'
 import executeQuery from '@/lib/graphql-client'
 import { HomeDocument, AllPostsDocument } from '@/graphql'
 import { notFound } from 'next/navigation'
 import React from 'react'
-import { getPayload } from 'payload'
 
 export default async function Home({ params }: LocaleParams) {
-  const { locale = defaultLocale } = await params
-  console.log(locale)
+  const { locale = routing.defaultLocale } = await params
+
   setRequestLocale(locale)
 
   const { Home } = await executeQuery<HomeQuery, HomeQueryVariables>(HomeDocument)

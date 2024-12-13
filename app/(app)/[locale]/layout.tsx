@@ -1,5 +1,5 @@
 import '@/styles/index.scss'
-import { defaultLocale, locales } from '@/i18n/request'
+import { routing } from '@/i18n/routing'
 import { setRequestLocale } from 'next-intl/server'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { notFound } from 'next/navigation'
@@ -18,9 +18,9 @@ export type BodyProps = {
 }
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
-  const { locale = defaultLocale } = await params
+  const { locale = routing.defaultLocale } = await params
 
-  if (!locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as any)) {
     return notFound()
   }
   setRequestLocale(locale)
@@ -51,5 +51,5 @@ function Body({ children, locale }: BodyProps) {
 }
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }))
+  return routing.locales.map((locale) => ({ locale }))
 }

@@ -1,14 +1,13 @@
-import { locales, localePrefix } from './i18n/routing';
-import { defaultLocale } from '@/i18n/request';
+import { routing } from '@/i18n/routing'
 import createMiddleware from 'next-intl/middleware';
 import { betterFetch } from '@better-fetch/fetch';
 import { NextResponse, type NextRequest } from "next/server";
 import type { Session } from "@/auth/auth";
 
 const intlMiddleware = createMiddleware({
-  locales,
-  localePrefix,
-  defaultLocale,
+  locales: routing.locales,
+  localePrefix: routing.localePrefix,
+  defaultLocale: routing.defaultLocale,
   localeDetection: false,
 });
 
@@ -59,9 +58,12 @@ export default async function authMiddleware(request: NextRequest) {
   console.log('middleware');
 
   let intlRes = intlMiddleware(request);
+  //console.log(intlRes)
   let authRes = await betterAuthMiddleware(request);
-
-  return Object.assign(authRes, intlRes);
+  //console.log(authRes)
+  const res = Object.assign(authRes, intlRes);
+  //console.log(res)
+  return res;
 }
 
 export const config = {

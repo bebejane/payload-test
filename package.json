@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--no-deprecation pnpm run generate:prisma && next build",
-    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --turbo & sleep 2 && npm run codegen",
-    "dev:local": "cross-env NODE_OPTIONS=--no-deprecation DATABASE_URI=\"mongodb://localhost:27017/payload?retryWrites=true&w=majority\" next dev & sleep 5 && pnpm codegen",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --turbo & npm run codegen",
+    "dev:local": "cross-env NODE_OPTIONS=--no-deprecation DATABASE_URI=\"mongodb://localhost:27017/payload?retryWrites=true&w=majority\" next dev & pnpm codegen",
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",

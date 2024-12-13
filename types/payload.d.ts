@@ -22,7 +22,6 @@ type Access = {
   __typename?: 'Access';
   authors?: Maybe<authorsAccess>;
   canAccessAdmin: Scalars['Boolean']['output'];
-  file?: Maybe<fileAccess>;
   home?: Maybe<homeAccess>;
   media?: Maybe<mediaAccess>;
   nav?: Maybe<navAccess>;
@@ -361,1346 +360,6 @@ enum FallbackLocaleInputType {
   none = 'none',
   se = 'se'
 }
-
-type File = {
-  __typename?: 'File';
-  cloudinary?: Maybe<File_Cloudinary>;
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  filename?: Maybe<Scalars['String']['output']>;
-  filesize?: Maybe<Scalars['Float']['output']>;
-  focalX?: Maybe<Scalars['Float']['output']>;
-  focalY?: Maybe<Scalars['Float']['output']>;
-  height?: Maybe<Scalars['Float']['output']>;
-  id: Scalars['Int']['output'];
-  mimeType?: Maybe<Scalars['String']['output']>;
-  thumbnailURL?: Maybe<Scalars['String']['output']>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  url?: Maybe<Scalars['String']['output']>;
-  width?: Maybe<Scalars['Float']['output']>;
-};
-
-type FileCreateAccess = {
-  __typename?: 'FileCreateAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type FileCreateDocAccess = {
-  __typename?: 'FileCreateDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type FileDeleteAccess = {
-  __typename?: 'FileDeleteAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type FileDeleteDocAccess = {
-  __typename?: 'FileDeleteDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type FileDocAccessFields = {
-  __typename?: 'FileDocAccessFields';
-  cloudinary?: Maybe<FileDocAccessFields_cloudinary>;
-  createdAt?: Maybe<FileDocAccessFields_createdAt>;
-  filename?: Maybe<FileDocAccessFields_filename>;
-  filesize?: Maybe<FileDocAccessFields_filesize>;
-  focalX?: Maybe<FileDocAccessFields_focalX>;
-  focalY?: Maybe<FileDocAccessFields_focalY>;
-  height?: Maybe<FileDocAccessFields_height>;
-  mimeType?: Maybe<FileDocAccessFields_mimeType>;
-  thumbnailURL?: Maybe<FileDocAccessFields_thumbnailURL>;
-  updatedAt?: Maybe<FileDocAccessFields_updatedAt>;
-  url?: Maybe<FileDocAccessFields_url>;
-  width?: Maybe<FileDocAccessFields_width>;
-};
-
-type FileDocAccessFields_cloudinary = {
-  __typename?: 'FileDocAccessFields_cloudinary';
-  create?: Maybe<FileDocAccessFields_cloudinary_Create>;
-  delete?: Maybe<FileDocAccessFields_cloudinary_Delete>;
-  fields?: Maybe<FileDocAccessFields_cloudinary_Fields>;
-  read?: Maybe<FileDocAccessFields_cloudinary_Read>;
-  update?: Maybe<FileDocAccessFields_cloudinary_Update>;
-};
-
-type FileDocAccessFields_cloudinary_Create = {
-  __typename?: 'FileDocAccessFields_cloudinary_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_Delete = {
-  __typename?: 'FileDocAccessFields_cloudinary_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_Fields = {
-  __typename?: 'FileDocAccessFields_cloudinary_Fields';
-  format?: Maybe<FileDocAccessFields_cloudinary_format>;
-  original_filename?: Maybe<FileDocAccessFields_cloudinary_original_filename>;
-  public_id?: Maybe<FileDocAccessFields_cloudinary_public_id>;
-  resource_type?: Maybe<FileDocAccessFields_cloudinary_resource_type>;
-  secure_url?: Maybe<FileDocAccessFields_cloudinary_secure_url>;
-};
-
-type FileDocAccessFields_cloudinary_Read = {
-  __typename?: 'FileDocAccessFields_cloudinary_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_Update = {
-  __typename?: 'FileDocAccessFields_cloudinary_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_format = {
-  __typename?: 'FileDocAccessFields_cloudinary_format';
-  create?: Maybe<FileDocAccessFields_cloudinary_format_Create>;
-  delete?: Maybe<FileDocAccessFields_cloudinary_format_Delete>;
-  read?: Maybe<FileDocAccessFields_cloudinary_format_Read>;
-  update?: Maybe<FileDocAccessFields_cloudinary_format_Update>;
-};
-
-type FileDocAccessFields_cloudinary_format_Create = {
-  __typename?: 'FileDocAccessFields_cloudinary_format_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_format_Delete = {
-  __typename?: 'FileDocAccessFields_cloudinary_format_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_format_Read = {
-  __typename?: 'FileDocAccessFields_cloudinary_format_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_format_Update = {
-  __typename?: 'FileDocAccessFields_cloudinary_format_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_original_filename = {
-  __typename?: 'FileDocAccessFields_cloudinary_original_filename';
-  create?: Maybe<FileDocAccessFields_cloudinary_original_filename_Create>;
-  delete?: Maybe<FileDocAccessFields_cloudinary_original_filename_Delete>;
-  read?: Maybe<FileDocAccessFields_cloudinary_original_filename_Read>;
-  update?: Maybe<FileDocAccessFields_cloudinary_original_filename_Update>;
-};
-
-type FileDocAccessFields_cloudinary_original_filename_Create = {
-  __typename?: 'FileDocAccessFields_cloudinary_original_filename_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_original_filename_Delete = {
-  __typename?: 'FileDocAccessFields_cloudinary_original_filename_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_original_filename_Read = {
-  __typename?: 'FileDocAccessFields_cloudinary_original_filename_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_original_filename_Update = {
-  __typename?: 'FileDocAccessFields_cloudinary_original_filename_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_public_id = {
-  __typename?: 'FileDocAccessFields_cloudinary_public_id';
-  create?: Maybe<FileDocAccessFields_cloudinary_public_id_Create>;
-  delete?: Maybe<FileDocAccessFields_cloudinary_public_id_Delete>;
-  read?: Maybe<FileDocAccessFields_cloudinary_public_id_Read>;
-  update?: Maybe<FileDocAccessFields_cloudinary_public_id_Update>;
-};
-
-type FileDocAccessFields_cloudinary_public_id_Create = {
-  __typename?: 'FileDocAccessFields_cloudinary_public_id_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_public_id_Delete = {
-  __typename?: 'FileDocAccessFields_cloudinary_public_id_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_public_id_Read = {
-  __typename?: 'FileDocAccessFields_cloudinary_public_id_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_public_id_Update = {
-  __typename?: 'FileDocAccessFields_cloudinary_public_id_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_resource_type = {
-  __typename?: 'FileDocAccessFields_cloudinary_resource_type';
-  create?: Maybe<FileDocAccessFields_cloudinary_resource_type_Create>;
-  delete?: Maybe<FileDocAccessFields_cloudinary_resource_type_Delete>;
-  read?: Maybe<FileDocAccessFields_cloudinary_resource_type_Read>;
-  update?: Maybe<FileDocAccessFields_cloudinary_resource_type_Update>;
-};
-
-type FileDocAccessFields_cloudinary_resource_type_Create = {
-  __typename?: 'FileDocAccessFields_cloudinary_resource_type_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_resource_type_Delete = {
-  __typename?: 'FileDocAccessFields_cloudinary_resource_type_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_resource_type_Read = {
-  __typename?: 'FileDocAccessFields_cloudinary_resource_type_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_resource_type_Update = {
-  __typename?: 'FileDocAccessFields_cloudinary_resource_type_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_secure_url = {
-  __typename?: 'FileDocAccessFields_cloudinary_secure_url';
-  create?: Maybe<FileDocAccessFields_cloudinary_secure_url_Create>;
-  delete?: Maybe<FileDocAccessFields_cloudinary_secure_url_Delete>;
-  read?: Maybe<FileDocAccessFields_cloudinary_secure_url_Read>;
-  update?: Maybe<FileDocAccessFields_cloudinary_secure_url_Update>;
-};
-
-type FileDocAccessFields_cloudinary_secure_url_Create = {
-  __typename?: 'FileDocAccessFields_cloudinary_secure_url_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_secure_url_Delete = {
-  __typename?: 'FileDocAccessFields_cloudinary_secure_url_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_secure_url_Read = {
-  __typename?: 'FileDocAccessFields_cloudinary_secure_url_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_cloudinary_secure_url_Update = {
-  __typename?: 'FileDocAccessFields_cloudinary_secure_url_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_createdAt = {
-  __typename?: 'FileDocAccessFields_createdAt';
-  create?: Maybe<FileDocAccessFields_createdAt_Create>;
-  delete?: Maybe<FileDocAccessFields_createdAt_Delete>;
-  read?: Maybe<FileDocAccessFields_createdAt_Read>;
-  update?: Maybe<FileDocAccessFields_createdAt_Update>;
-};
-
-type FileDocAccessFields_createdAt_Create = {
-  __typename?: 'FileDocAccessFields_createdAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_createdAt_Delete = {
-  __typename?: 'FileDocAccessFields_createdAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_createdAt_Read = {
-  __typename?: 'FileDocAccessFields_createdAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_createdAt_Update = {
-  __typename?: 'FileDocAccessFields_createdAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_filename = {
-  __typename?: 'FileDocAccessFields_filename';
-  create?: Maybe<FileDocAccessFields_filename_Create>;
-  delete?: Maybe<FileDocAccessFields_filename_Delete>;
-  read?: Maybe<FileDocAccessFields_filename_Read>;
-  update?: Maybe<FileDocAccessFields_filename_Update>;
-};
-
-type FileDocAccessFields_filename_Create = {
-  __typename?: 'FileDocAccessFields_filename_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_filename_Delete = {
-  __typename?: 'FileDocAccessFields_filename_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_filename_Read = {
-  __typename?: 'FileDocAccessFields_filename_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_filename_Update = {
-  __typename?: 'FileDocAccessFields_filename_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_filesize = {
-  __typename?: 'FileDocAccessFields_filesize';
-  create?: Maybe<FileDocAccessFields_filesize_Create>;
-  delete?: Maybe<FileDocAccessFields_filesize_Delete>;
-  read?: Maybe<FileDocAccessFields_filesize_Read>;
-  update?: Maybe<FileDocAccessFields_filesize_Update>;
-};
-
-type FileDocAccessFields_filesize_Create = {
-  __typename?: 'FileDocAccessFields_filesize_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_filesize_Delete = {
-  __typename?: 'FileDocAccessFields_filesize_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_filesize_Read = {
-  __typename?: 'FileDocAccessFields_filesize_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_filesize_Update = {
-  __typename?: 'FileDocAccessFields_filesize_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_focalX = {
-  __typename?: 'FileDocAccessFields_focalX';
-  create?: Maybe<FileDocAccessFields_focalX_Create>;
-  delete?: Maybe<FileDocAccessFields_focalX_Delete>;
-  read?: Maybe<FileDocAccessFields_focalX_Read>;
-  update?: Maybe<FileDocAccessFields_focalX_Update>;
-};
-
-type FileDocAccessFields_focalX_Create = {
-  __typename?: 'FileDocAccessFields_focalX_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_focalX_Delete = {
-  __typename?: 'FileDocAccessFields_focalX_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_focalX_Read = {
-  __typename?: 'FileDocAccessFields_focalX_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_focalX_Update = {
-  __typename?: 'FileDocAccessFields_focalX_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_focalY = {
-  __typename?: 'FileDocAccessFields_focalY';
-  create?: Maybe<FileDocAccessFields_focalY_Create>;
-  delete?: Maybe<FileDocAccessFields_focalY_Delete>;
-  read?: Maybe<FileDocAccessFields_focalY_Read>;
-  update?: Maybe<FileDocAccessFields_focalY_Update>;
-};
-
-type FileDocAccessFields_focalY_Create = {
-  __typename?: 'FileDocAccessFields_focalY_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_focalY_Delete = {
-  __typename?: 'FileDocAccessFields_focalY_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_focalY_Read = {
-  __typename?: 'FileDocAccessFields_focalY_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_focalY_Update = {
-  __typename?: 'FileDocAccessFields_focalY_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_height = {
-  __typename?: 'FileDocAccessFields_height';
-  create?: Maybe<FileDocAccessFields_height_Create>;
-  delete?: Maybe<FileDocAccessFields_height_Delete>;
-  read?: Maybe<FileDocAccessFields_height_Read>;
-  update?: Maybe<FileDocAccessFields_height_Update>;
-};
-
-type FileDocAccessFields_height_Create = {
-  __typename?: 'FileDocAccessFields_height_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_height_Delete = {
-  __typename?: 'FileDocAccessFields_height_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_height_Read = {
-  __typename?: 'FileDocAccessFields_height_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_height_Update = {
-  __typename?: 'FileDocAccessFields_height_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_mimeType = {
-  __typename?: 'FileDocAccessFields_mimeType';
-  create?: Maybe<FileDocAccessFields_mimeType_Create>;
-  delete?: Maybe<FileDocAccessFields_mimeType_Delete>;
-  read?: Maybe<FileDocAccessFields_mimeType_Read>;
-  update?: Maybe<FileDocAccessFields_mimeType_Update>;
-};
-
-type FileDocAccessFields_mimeType_Create = {
-  __typename?: 'FileDocAccessFields_mimeType_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_mimeType_Delete = {
-  __typename?: 'FileDocAccessFields_mimeType_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_mimeType_Read = {
-  __typename?: 'FileDocAccessFields_mimeType_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_mimeType_Update = {
-  __typename?: 'FileDocAccessFields_mimeType_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_thumbnailURL = {
-  __typename?: 'FileDocAccessFields_thumbnailURL';
-  create?: Maybe<FileDocAccessFields_thumbnailURL_Create>;
-  delete?: Maybe<FileDocAccessFields_thumbnailURL_Delete>;
-  read?: Maybe<FileDocAccessFields_thumbnailURL_Read>;
-  update?: Maybe<FileDocAccessFields_thumbnailURL_Update>;
-};
-
-type FileDocAccessFields_thumbnailURL_Create = {
-  __typename?: 'FileDocAccessFields_thumbnailURL_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_thumbnailURL_Delete = {
-  __typename?: 'FileDocAccessFields_thumbnailURL_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_thumbnailURL_Read = {
-  __typename?: 'FileDocAccessFields_thumbnailURL_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_thumbnailURL_Update = {
-  __typename?: 'FileDocAccessFields_thumbnailURL_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_updatedAt = {
-  __typename?: 'FileDocAccessFields_updatedAt';
-  create?: Maybe<FileDocAccessFields_updatedAt_Create>;
-  delete?: Maybe<FileDocAccessFields_updatedAt_Delete>;
-  read?: Maybe<FileDocAccessFields_updatedAt_Read>;
-  update?: Maybe<FileDocAccessFields_updatedAt_Update>;
-};
-
-type FileDocAccessFields_updatedAt_Create = {
-  __typename?: 'FileDocAccessFields_updatedAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_updatedAt_Delete = {
-  __typename?: 'FileDocAccessFields_updatedAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_updatedAt_Read = {
-  __typename?: 'FileDocAccessFields_updatedAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_updatedAt_Update = {
-  __typename?: 'FileDocAccessFields_updatedAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_url = {
-  __typename?: 'FileDocAccessFields_url';
-  create?: Maybe<FileDocAccessFields_url_Create>;
-  delete?: Maybe<FileDocAccessFields_url_Delete>;
-  read?: Maybe<FileDocAccessFields_url_Read>;
-  update?: Maybe<FileDocAccessFields_url_Update>;
-};
-
-type FileDocAccessFields_url_Create = {
-  __typename?: 'FileDocAccessFields_url_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_url_Delete = {
-  __typename?: 'FileDocAccessFields_url_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_url_Read = {
-  __typename?: 'FileDocAccessFields_url_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_url_Update = {
-  __typename?: 'FileDocAccessFields_url_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_width = {
-  __typename?: 'FileDocAccessFields_width';
-  create?: Maybe<FileDocAccessFields_width_Create>;
-  delete?: Maybe<FileDocAccessFields_width_Delete>;
-  read?: Maybe<FileDocAccessFields_width_Read>;
-  update?: Maybe<FileDocAccessFields_width_Update>;
-};
-
-type FileDocAccessFields_width_Create = {
-  __typename?: 'FileDocAccessFields_width_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_width_Delete = {
-  __typename?: 'FileDocAccessFields_width_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_width_Read = {
-  __typename?: 'FileDocAccessFields_width_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileDocAccessFields_width_Update = {
-  __typename?: 'FileDocAccessFields_width_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields = {
-  __typename?: 'FileFields';
-  cloudinary?: Maybe<FileFields_cloudinary>;
-  createdAt?: Maybe<FileFields_createdAt>;
-  filename?: Maybe<FileFields_filename>;
-  filesize?: Maybe<FileFields_filesize>;
-  focalX?: Maybe<FileFields_focalX>;
-  focalY?: Maybe<FileFields_focalY>;
-  height?: Maybe<FileFields_height>;
-  mimeType?: Maybe<FileFields_mimeType>;
-  thumbnailURL?: Maybe<FileFields_thumbnailURL>;
-  updatedAt?: Maybe<FileFields_updatedAt>;
-  url?: Maybe<FileFields_url>;
-  width?: Maybe<FileFields_width>;
-};
-
-type FileFields_cloudinary = {
-  __typename?: 'FileFields_cloudinary';
-  create?: Maybe<FileFields_cloudinary_Create>;
-  delete?: Maybe<FileFields_cloudinary_Delete>;
-  fields?: Maybe<FileFields_cloudinary_Fields>;
-  read?: Maybe<FileFields_cloudinary_Read>;
-  update?: Maybe<FileFields_cloudinary_Update>;
-};
-
-type FileFields_cloudinary_Create = {
-  __typename?: 'FileFields_cloudinary_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_Delete = {
-  __typename?: 'FileFields_cloudinary_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_Fields = {
-  __typename?: 'FileFields_cloudinary_Fields';
-  format?: Maybe<FileFields_cloudinary_format>;
-  original_filename?: Maybe<FileFields_cloudinary_original_filename>;
-  public_id?: Maybe<FileFields_cloudinary_public_id>;
-  resource_type?: Maybe<FileFields_cloudinary_resource_type>;
-  secure_url?: Maybe<FileFields_cloudinary_secure_url>;
-};
-
-type FileFields_cloudinary_Read = {
-  __typename?: 'FileFields_cloudinary_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_Update = {
-  __typename?: 'FileFields_cloudinary_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_format = {
-  __typename?: 'FileFields_cloudinary_format';
-  create?: Maybe<FileFields_cloudinary_format_Create>;
-  delete?: Maybe<FileFields_cloudinary_format_Delete>;
-  read?: Maybe<FileFields_cloudinary_format_Read>;
-  update?: Maybe<FileFields_cloudinary_format_Update>;
-};
-
-type FileFields_cloudinary_format_Create = {
-  __typename?: 'FileFields_cloudinary_format_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_format_Delete = {
-  __typename?: 'FileFields_cloudinary_format_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_format_Read = {
-  __typename?: 'FileFields_cloudinary_format_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_format_Update = {
-  __typename?: 'FileFields_cloudinary_format_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_original_filename = {
-  __typename?: 'FileFields_cloudinary_original_filename';
-  create?: Maybe<FileFields_cloudinary_original_filename_Create>;
-  delete?: Maybe<FileFields_cloudinary_original_filename_Delete>;
-  read?: Maybe<FileFields_cloudinary_original_filename_Read>;
-  update?: Maybe<FileFields_cloudinary_original_filename_Update>;
-};
-
-type FileFields_cloudinary_original_filename_Create = {
-  __typename?: 'FileFields_cloudinary_original_filename_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_original_filename_Delete = {
-  __typename?: 'FileFields_cloudinary_original_filename_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_original_filename_Read = {
-  __typename?: 'FileFields_cloudinary_original_filename_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_original_filename_Update = {
-  __typename?: 'FileFields_cloudinary_original_filename_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_public_id = {
-  __typename?: 'FileFields_cloudinary_public_id';
-  create?: Maybe<FileFields_cloudinary_public_id_Create>;
-  delete?: Maybe<FileFields_cloudinary_public_id_Delete>;
-  read?: Maybe<FileFields_cloudinary_public_id_Read>;
-  update?: Maybe<FileFields_cloudinary_public_id_Update>;
-};
-
-type FileFields_cloudinary_public_id_Create = {
-  __typename?: 'FileFields_cloudinary_public_id_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_public_id_Delete = {
-  __typename?: 'FileFields_cloudinary_public_id_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_public_id_Read = {
-  __typename?: 'FileFields_cloudinary_public_id_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_public_id_Update = {
-  __typename?: 'FileFields_cloudinary_public_id_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_resource_type = {
-  __typename?: 'FileFields_cloudinary_resource_type';
-  create?: Maybe<FileFields_cloudinary_resource_type_Create>;
-  delete?: Maybe<FileFields_cloudinary_resource_type_Delete>;
-  read?: Maybe<FileFields_cloudinary_resource_type_Read>;
-  update?: Maybe<FileFields_cloudinary_resource_type_Update>;
-};
-
-type FileFields_cloudinary_resource_type_Create = {
-  __typename?: 'FileFields_cloudinary_resource_type_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_resource_type_Delete = {
-  __typename?: 'FileFields_cloudinary_resource_type_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_resource_type_Read = {
-  __typename?: 'FileFields_cloudinary_resource_type_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_resource_type_Update = {
-  __typename?: 'FileFields_cloudinary_resource_type_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_secure_url = {
-  __typename?: 'FileFields_cloudinary_secure_url';
-  create?: Maybe<FileFields_cloudinary_secure_url_Create>;
-  delete?: Maybe<FileFields_cloudinary_secure_url_Delete>;
-  read?: Maybe<FileFields_cloudinary_secure_url_Read>;
-  update?: Maybe<FileFields_cloudinary_secure_url_Update>;
-};
-
-type FileFields_cloudinary_secure_url_Create = {
-  __typename?: 'FileFields_cloudinary_secure_url_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_secure_url_Delete = {
-  __typename?: 'FileFields_cloudinary_secure_url_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_secure_url_Read = {
-  __typename?: 'FileFields_cloudinary_secure_url_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_cloudinary_secure_url_Update = {
-  __typename?: 'FileFields_cloudinary_secure_url_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_createdAt = {
-  __typename?: 'FileFields_createdAt';
-  create?: Maybe<FileFields_createdAt_Create>;
-  delete?: Maybe<FileFields_createdAt_Delete>;
-  read?: Maybe<FileFields_createdAt_Read>;
-  update?: Maybe<FileFields_createdAt_Update>;
-};
-
-type FileFields_createdAt_Create = {
-  __typename?: 'FileFields_createdAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_createdAt_Delete = {
-  __typename?: 'FileFields_createdAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_createdAt_Read = {
-  __typename?: 'FileFields_createdAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_createdAt_Update = {
-  __typename?: 'FileFields_createdAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_filename = {
-  __typename?: 'FileFields_filename';
-  create?: Maybe<FileFields_filename_Create>;
-  delete?: Maybe<FileFields_filename_Delete>;
-  read?: Maybe<FileFields_filename_Read>;
-  update?: Maybe<FileFields_filename_Update>;
-};
-
-type FileFields_filename_Create = {
-  __typename?: 'FileFields_filename_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_filename_Delete = {
-  __typename?: 'FileFields_filename_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_filename_Read = {
-  __typename?: 'FileFields_filename_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_filename_Update = {
-  __typename?: 'FileFields_filename_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_filesize = {
-  __typename?: 'FileFields_filesize';
-  create?: Maybe<FileFields_filesize_Create>;
-  delete?: Maybe<FileFields_filesize_Delete>;
-  read?: Maybe<FileFields_filesize_Read>;
-  update?: Maybe<FileFields_filesize_Update>;
-};
-
-type FileFields_filesize_Create = {
-  __typename?: 'FileFields_filesize_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_filesize_Delete = {
-  __typename?: 'FileFields_filesize_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_filesize_Read = {
-  __typename?: 'FileFields_filesize_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_filesize_Update = {
-  __typename?: 'FileFields_filesize_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_focalX = {
-  __typename?: 'FileFields_focalX';
-  create?: Maybe<FileFields_focalX_Create>;
-  delete?: Maybe<FileFields_focalX_Delete>;
-  read?: Maybe<FileFields_focalX_Read>;
-  update?: Maybe<FileFields_focalX_Update>;
-};
-
-type FileFields_focalX_Create = {
-  __typename?: 'FileFields_focalX_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_focalX_Delete = {
-  __typename?: 'FileFields_focalX_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_focalX_Read = {
-  __typename?: 'FileFields_focalX_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_focalX_Update = {
-  __typename?: 'FileFields_focalX_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_focalY = {
-  __typename?: 'FileFields_focalY';
-  create?: Maybe<FileFields_focalY_Create>;
-  delete?: Maybe<FileFields_focalY_Delete>;
-  read?: Maybe<FileFields_focalY_Read>;
-  update?: Maybe<FileFields_focalY_Update>;
-};
-
-type FileFields_focalY_Create = {
-  __typename?: 'FileFields_focalY_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_focalY_Delete = {
-  __typename?: 'FileFields_focalY_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_focalY_Read = {
-  __typename?: 'FileFields_focalY_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_focalY_Update = {
-  __typename?: 'FileFields_focalY_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_height = {
-  __typename?: 'FileFields_height';
-  create?: Maybe<FileFields_height_Create>;
-  delete?: Maybe<FileFields_height_Delete>;
-  read?: Maybe<FileFields_height_Read>;
-  update?: Maybe<FileFields_height_Update>;
-};
-
-type FileFields_height_Create = {
-  __typename?: 'FileFields_height_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_height_Delete = {
-  __typename?: 'FileFields_height_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_height_Read = {
-  __typename?: 'FileFields_height_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_height_Update = {
-  __typename?: 'FileFields_height_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_mimeType = {
-  __typename?: 'FileFields_mimeType';
-  create?: Maybe<FileFields_mimeType_Create>;
-  delete?: Maybe<FileFields_mimeType_Delete>;
-  read?: Maybe<FileFields_mimeType_Read>;
-  update?: Maybe<FileFields_mimeType_Update>;
-};
-
-type FileFields_mimeType_Create = {
-  __typename?: 'FileFields_mimeType_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_mimeType_Delete = {
-  __typename?: 'FileFields_mimeType_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_mimeType_Read = {
-  __typename?: 'FileFields_mimeType_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_mimeType_Update = {
-  __typename?: 'FileFields_mimeType_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_thumbnailURL = {
-  __typename?: 'FileFields_thumbnailURL';
-  create?: Maybe<FileFields_thumbnailURL_Create>;
-  delete?: Maybe<FileFields_thumbnailURL_Delete>;
-  read?: Maybe<FileFields_thumbnailURL_Read>;
-  update?: Maybe<FileFields_thumbnailURL_Update>;
-};
-
-type FileFields_thumbnailURL_Create = {
-  __typename?: 'FileFields_thumbnailURL_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_thumbnailURL_Delete = {
-  __typename?: 'FileFields_thumbnailURL_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_thumbnailURL_Read = {
-  __typename?: 'FileFields_thumbnailURL_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_thumbnailURL_Update = {
-  __typename?: 'FileFields_thumbnailURL_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_updatedAt = {
-  __typename?: 'FileFields_updatedAt';
-  create?: Maybe<FileFields_updatedAt_Create>;
-  delete?: Maybe<FileFields_updatedAt_Delete>;
-  read?: Maybe<FileFields_updatedAt_Read>;
-  update?: Maybe<FileFields_updatedAt_Update>;
-};
-
-type FileFields_updatedAt_Create = {
-  __typename?: 'FileFields_updatedAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_updatedAt_Delete = {
-  __typename?: 'FileFields_updatedAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_updatedAt_Read = {
-  __typename?: 'FileFields_updatedAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_updatedAt_Update = {
-  __typename?: 'FileFields_updatedAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_url = {
-  __typename?: 'FileFields_url';
-  create?: Maybe<FileFields_url_Create>;
-  delete?: Maybe<FileFields_url_Delete>;
-  read?: Maybe<FileFields_url_Read>;
-  update?: Maybe<FileFields_url_Update>;
-};
-
-type FileFields_url_Create = {
-  __typename?: 'FileFields_url_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_url_Delete = {
-  __typename?: 'FileFields_url_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_url_Read = {
-  __typename?: 'FileFields_url_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_url_Update = {
-  __typename?: 'FileFields_url_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_width = {
-  __typename?: 'FileFields_width';
-  create?: Maybe<FileFields_width_Create>;
-  delete?: Maybe<FileFields_width_Delete>;
-  read?: Maybe<FileFields_width_Read>;
-  update?: Maybe<FileFields_width_Update>;
-};
-
-type FileFields_width_Create = {
-  __typename?: 'FileFields_width_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_width_Delete = {
-  __typename?: 'FileFields_width_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_width_Read = {
-  __typename?: 'FileFields_width_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileFields_width_Update = {
-  __typename?: 'FileFields_width_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type FileReadAccess = {
-  __typename?: 'FileReadAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type FileReadDocAccess = {
-  __typename?: 'FileReadDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type FileUpdateAccess = {
-  __typename?: 'FileUpdateAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type FileUpdateDocAccess = {
-  __typename?: 'FileUpdateDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type File_Cloudinary = {
-  __typename?: 'File_Cloudinary';
-  format?: Maybe<Scalars['String']['output']>;
-  original_filename?: Maybe<Scalars['String']['output']>;
-  public_id?: Maybe<Scalars['String']['output']>;
-  resource_type?: Maybe<Scalars['String']['output']>;
-  secure_url?: Maybe<Scalars['String']['output']>;
-};
-
-type File_cloudinary__format_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type File_cloudinary__original_filename_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type File_cloudinary__public_id_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type File_cloudinary__resource_type_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type File_cloudinary__secure_url_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type File_createdAt_operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-type File_filename_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type File_filesize_operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-type File_focalX_operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-type File_focalY_operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-type File_height_operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-type File_id_operator = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Int']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  less_than?: InputMaybe<Scalars['Int']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  not_equals?: InputMaybe<Scalars['Int']['input']>;
-};
-
-type File_mimeType_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type File_thumbnailURL_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type File_updatedAt_operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-type File_url_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type File_where = {
-  AND?: InputMaybe<Array<InputMaybe<File_where_and>>>;
-  OR?: InputMaybe<Array<InputMaybe<File_where_or>>>;
-  cloudinary__format?: InputMaybe<File_cloudinary__format_operator>;
-  cloudinary__original_filename?: InputMaybe<File_cloudinary__original_filename_operator>;
-  cloudinary__public_id?: InputMaybe<File_cloudinary__public_id_operator>;
-  cloudinary__resource_type?: InputMaybe<File_cloudinary__resource_type_operator>;
-  cloudinary__secure_url?: InputMaybe<File_cloudinary__secure_url_operator>;
-  createdAt?: InputMaybe<File_createdAt_operator>;
-  filename?: InputMaybe<File_filename_operator>;
-  filesize?: InputMaybe<File_filesize_operator>;
-  focalX?: InputMaybe<File_focalX_operator>;
-  focalY?: InputMaybe<File_focalY_operator>;
-  height?: InputMaybe<File_height_operator>;
-  id?: InputMaybe<File_id_operator>;
-  mimeType?: InputMaybe<File_mimeType_operator>;
-  thumbnailURL?: InputMaybe<File_thumbnailURL_operator>;
-  updatedAt?: InputMaybe<File_updatedAt_operator>;
-  url?: InputMaybe<File_url_operator>;
-  width?: InputMaybe<File_width_operator>;
-};
-
-type File_where_and = {
-  AND?: InputMaybe<Array<InputMaybe<File_where_and>>>;
-  OR?: InputMaybe<Array<InputMaybe<File_where_or>>>;
-  cloudinary__format?: InputMaybe<File_cloudinary__format_operator>;
-  cloudinary__original_filename?: InputMaybe<File_cloudinary__original_filename_operator>;
-  cloudinary__public_id?: InputMaybe<File_cloudinary__public_id_operator>;
-  cloudinary__resource_type?: InputMaybe<File_cloudinary__resource_type_operator>;
-  cloudinary__secure_url?: InputMaybe<File_cloudinary__secure_url_operator>;
-  createdAt?: InputMaybe<File_createdAt_operator>;
-  filename?: InputMaybe<File_filename_operator>;
-  filesize?: InputMaybe<File_filesize_operator>;
-  focalX?: InputMaybe<File_focalX_operator>;
-  focalY?: InputMaybe<File_focalY_operator>;
-  height?: InputMaybe<File_height_operator>;
-  id?: InputMaybe<File_id_operator>;
-  mimeType?: InputMaybe<File_mimeType_operator>;
-  thumbnailURL?: InputMaybe<File_thumbnailURL_operator>;
-  updatedAt?: InputMaybe<File_updatedAt_operator>;
-  url?: InputMaybe<File_url_operator>;
-  width?: InputMaybe<File_width_operator>;
-};
-
-type File_where_or = {
-  AND?: InputMaybe<Array<InputMaybe<File_where_and>>>;
-  OR?: InputMaybe<Array<InputMaybe<File_where_or>>>;
-  cloudinary__format?: InputMaybe<File_cloudinary__format_operator>;
-  cloudinary__original_filename?: InputMaybe<File_cloudinary__original_filename_operator>;
-  cloudinary__public_id?: InputMaybe<File_cloudinary__public_id_operator>;
-  cloudinary__resource_type?: InputMaybe<File_cloudinary__resource_type_operator>;
-  cloudinary__secure_url?: InputMaybe<File_cloudinary__secure_url_operator>;
-  createdAt?: InputMaybe<File_createdAt_operator>;
-  filename?: InputMaybe<File_filename_operator>;
-  filesize?: InputMaybe<File_filesize_operator>;
-  focalX?: InputMaybe<File_focalX_operator>;
-  focalY?: InputMaybe<File_focalY_operator>;
-  height?: InputMaybe<File_height_operator>;
-  id?: InputMaybe<File_id_operator>;
-  mimeType?: InputMaybe<File_mimeType_operator>;
-  thumbnailURL?: InputMaybe<File_thumbnailURL_operator>;
-  updatedAt?: InputMaybe<File_updatedAt_operator>;
-  url?: InputMaybe<File_url_operator>;
-  width?: InputMaybe<File_width_operator>;
-};
-
-type File_width_operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-type Files = {
-  __typename?: 'Files';
-  docs?: Maybe<Array<Maybe<File>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
-  nextPage?: Maybe<Scalars['Int']['output']>;
-  offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
-  prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
-};
 
 type Home = {
   __typename?: 'Home';
@@ -5383,7 +4042,6 @@ type Media_width_operator = {
 type Mutation = {
   __typename?: 'Mutation';
   createAuthor?: Maybe<Author>;
-  createFile?: Maybe<File>;
   createMedia?: Maybe<Media>;
   createNav?: Maybe<Nav>;
   createPayloadLockedDocument?: Maybe<PayloadLockedDocument>;
@@ -5391,7 +4049,6 @@ type Mutation = {
   createPost?: Maybe<Post>;
   createUser?: Maybe<User>;
   deleteAuthor?: Maybe<Author>;
-  deleteFile?: Maybe<File>;
   deleteMedia?: Maybe<Media>;
   deleteNav?: Maybe<Nav>;
   deletePayloadLockedDocument?: Maybe<PayloadLockedDocument>;
@@ -5399,7 +4056,6 @@ type Mutation = {
   deletePost?: Maybe<Post>;
   deleteUser?: Maybe<User>;
   duplicateAuthor?: Maybe<Author>;
-  duplicateFile?: Maybe<File>;
   duplicateMedia?: Maybe<Media>;
   duplicateNav?: Maybe<Nav>;
   duplicatePayloadLockedDocument?: Maybe<PayloadLockedDocument>;
@@ -5416,7 +4072,6 @@ type Mutation = {
   restoreVersionTheme?: Maybe<Theme>;
   unlockUser: Scalars['Boolean']['output'];
   updateAuthor?: Maybe<Author>;
-  updateFile?: Maybe<File>;
   updateHome?: Maybe<Home>;
   updateMedia?: Maybe<Media>;
   updateNav?: Maybe<Nav>;
@@ -5432,13 +4087,6 @@ type Mutation = {
 
 type MutationcreateAuthorArgs = {
   data: mutationAuthorInput;
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  locale?: InputMaybe<LocaleInputType>;
-};
-
-
-type MutationcreateFileArgs = {
-  data: mutationFileInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   locale?: InputMaybe<LocaleInputType>;
 };
@@ -5491,11 +4139,6 @@ type MutationdeleteAuthorArgs = {
 };
 
 
-type MutationdeleteFileArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
 type MutationdeleteMediaArgs = {
   id: Scalars['Int']['input'];
 };
@@ -5528,12 +4171,6 @@ type MutationdeleteUserArgs = {
 
 type MutationduplicateAuthorArgs = {
   data: mutationAuthorInput;
-  id: Scalars['Int']['input'];
-};
-
-
-type MutationduplicateFileArgs = {
-  data: mutationFileInput;
   id: Scalars['Int']['input'];
 };
 
@@ -5619,15 +4256,6 @@ type MutationunlockUserArgs = {
 type MutationupdateAuthorArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: mutationAuthorUpdateInput;
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['Int']['input'];
-  locale?: InputMaybe<LocaleInputType>;
-};
-
-
-type MutationupdateFileArgs = {
-  autosave?: InputMaybe<Scalars['Boolean']['input']>;
-  data: mutationFileUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['Int']['input'];
   locale?: InputMaybe<LocaleInputType>;
@@ -6426,7 +5054,6 @@ type PayloadLockedDocumentUpdate_DocumentRelationshipInput = {
 
 enum PayloadLockedDocumentUpdate_DocumentRelationshipInputRelationTo {
   authors = 'authors',
-  file = 'file',
   media = 'media',
   nav = 'nav',
   posts = 'posts',
@@ -6442,7 +5069,7 @@ enum PayloadLockedDocumentUpdate_UserRelationshipInputRelationTo {
   users = 'users'
 }
 
-type PayloadLockedDocument_Document = Author | File | Media | Nav | Post | User;
+type PayloadLockedDocument_Document = Author | Media | Nav | Post | User;
 
 type PayloadLockedDocument_DocumentRelationshipInput = {
   relationTo?: InputMaybe<PayloadLockedDocument_DocumentRelationshipInputRelationTo>;
@@ -6451,7 +5078,6 @@ type PayloadLockedDocument_DocumentRelationshipInput = {
 
 enum PayloadLockedDocument_DocumentRelationshipInputRelationTo {
   authors = 'authors',
-  file = 'file',
   media = 'media',
   nav = 'nav',
   posts = 'posts',
@@ -6460,7 +5086,6 @@ enum PayloadLockedDocument_DocumentRelationshipInputRelationTo {
 
 enum PayloadLockedDocument_Document_RelationTo {
   authors = 'authors',
-  file = 'file',
   media = 'media',
   nav = 'nav',
   posts = 'posts',
@@ -6512,7 +5137,6 @@ type PayloadLockedDocument_document_Relation = {
 
 enum PayloadLockedDocument_document_Relation_RelationTo {
   authors = 'authors',
-  file = 'file',
   media = 'media',
   nav = 'nav',
   posts = 'posts',
@@ -8458,8 +7082,6 @@ type Query = {
   Access?: Maybe<Access>;
   Author?: Maybe<Author>;
   Authors?: Maybe<Authors>;
-  File?: Maybe<File>;
-  Files?: Maybe<Files>;
   Home?: Maybe<Home>;
   Media?: Maybe<Media>;
   Nav?: Maybe<Nav>;
@@ -8476,7 +7098,6 @@ type Query = {
   Users?: Maybe<Users>;
   allMedia?: Maybe<allMedia>;
   countAuthors?: Maybe<countAuthors>;
-  countFiles?: Maybe<countFiles>;
   countNavs?: Maybe<countNavs>;
   countPayloadLockedDocuments?: Maybe<countPayloadLockedDocuments>;
   countPayloadPreferences?: Maybe<countPayloadPreferences>;
@@ -8484,7 +7105,6 @@ type Query = {
   countUsers?: Maybe<countUsers>;
   countallMedia?: Maybe<countallMedia>;
   docAccessAuthor?: Maybe<authorsDocAccess>;
-  docAccessFile?: Maybe<fileDocAccess>;
   docAccessHome?: Maybe<homeDocAccess>;
   docAccessMedia?: Maybe<mediaDocAccess>;
   docAccessNav?: Maybe<navDocAccess>;
@@ -8523,25 +7143,6 @@ type QueryAuthorsArgs = {
   page?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<Author_where>;
-};
-
-
-type QueryFileArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  id: Scalars['Int']['input'];
-  locale?: InputMaybe<LocaleInputType>;
-};
-
-
-type QueryFilesArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale?: InputMaybe<LocaleInputType>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  where?: InputMaybe<File_where>;
 };
 
 
@@ -8687,13 +7288,6 @@ type QuerycountAuthorsArgs = {
 };
 
 
-type QuerycountFilesArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  locale?: InputMaybe<LocaleInputType>;
-  where?: InputMaybe<File_where>;
-};
-
-
 type QuerycountNavsArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   locale?: InputMaybe<LocaleInputType>;
@@ -8737,11 +7331,6 @@ type QuerycountallMediaArgs = {
 
 
 type QuerydocAccessAuthorArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
-type QuerydocAccessFileArgs = {
   id: Scalars['Int']['input'];
 };
 
@@ -9863,11 +8452,6 @@ type countAuthors = {
   totalDocs?: Maybe<Scalars['Int']['output']>;
 };
 
-type countFiles = {
-  __typename?: 'countFiles';
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-};
-
 type countNavs = {
   __typename?: 'countNavs';
   totalDocs?: Maybe<Scalars['Int']['output']>;
@@ -9896,24 +8480,6 @@ type countUsers = {
 type countallMedia = {
   __typename?: 'countallMedia';
   totalDocs?: Maybe<Scalars['Int']['output']>;
-};
-
-type fileAccess = {
-  __typename?: 'fileAccess';
-  create?: Maybe<FileCreateAccess>;
-  delete?: Maybe<FileDeleteAccess>;
-  fields?: Maybe<FileFields>;
-  read?: Maybe<FileReadAccess>;
-  update?: Maybe<FileUpdateAccess>;
-};
-
-type fileDocAccess = {
-  __typename?: 'fileDocAccess';
-  create?: Maybe<FileCreateDocAccess>;
-  delete?: Maybe<FileDeleteDocAccess>;
-  fields?: Maybe<FileDocAccessFields>;
-  read?: Maybe<FileReadDocAccess>;
-  update?: Maybe<FileUpdateDocAccess>;
 };
 
 type homeAccess = {
@@ -9960,52 +8526,6 @@ type mutationAuthorUpdateInput = {
   createdAt?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
-};
-
-type mutationFileInput = {
-  cloudinary?: InputMaybe<mutationFile_CloudinaryInput>;
-  createdAt?: InputMaybe<Scalars['String']['input']>;
-  filename?: InputMaybe<Scalars['String']['input']>;
-  filesize?: InputMaybe<Scalars['Float']['input']>;
-  focalX?: InputMaybe<Scalars['Float']['input']>;
-  focalY?: InputMaybe<Scalars['Float']['input']>;
-  height?: InputMaybe<Scalars['Float']['input']>;
-  mimeType?: InputMaybe<Scalars['String']['input']>;
-  thumbnailURL?: InputMaybe<Scalars['String']['input']>;
-  updatedAt?: InputMaybe<Scalars['String']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
-  width?: InputMaybe<Scalars['Float']['input']>;
-};
-
-type mutationFileUpdateInput = {
-  cloudinary?: InputMaybe<mutationFileUpdate_CloudinaryInput>;
-  createdAt?: InputMaybe<Scalars['String']['input']>;
-  filename?: InputMaybe<Scalars['String']['input']>;
-  filesize?: InputMaybe<Scalars['Float']['input']>;
-  focalX?: InputMaybe<Scalars['Float']['input']>;
-  focalY?: InputMaybe<Scalars['Float']['input']>;
-  height?: InputMaybe<Scalars['Float']['input']>;
-  mimeType?: InputMaybe<Scalars['String']['input']>;
-  thumbnailURL?: InputMaybe<Scalars['String']['input']>;
-  updatedAt?: InputMaybe<Scalars['String']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
-  width?: InputMaybe<Scalars['Float']['input']>;
-};
-
-type mutationFileUpdate_CloudinaryInput = {
-  format?: InputMaybe<Scalars['String']['input']>;
-  original_filename?: InputMaybe<Scalars['String']['input']>;
-  public_id?: InputMaybe<Scalars['String']['input']>;
-  resource_type?: InputMaybe<Scalars['String']['input']>;
-  secure_url?: InputMaybe<Scalars['String']['input']>;
-};
-
-type mutationFile_CloudinaryInput = {
-  format?: InputMaybe<Scalars['String']['input']>;
-  original_filename?: InputMaybe<Scalars['String']['input']>;
-  public_id?: InputMaybe<Scalars['String']['input']>;
-  resource_type?: InputMaybe<Scalars['String']['input']>;
-  secure_url?: InputMaybe<Scalars['String']['input']>;
 };
 
 type mutationHomeInput = {
