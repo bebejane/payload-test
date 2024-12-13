@@ -4,6 +4,8 @@ import draftHook from '@/payload/hooks/draft'
 import { fileURLToPath } from 'url';
 import path from 'path';
 
+export { PreviewRoute } from './PreviewRoute'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 

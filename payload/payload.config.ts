@@ -14,7 +14,7 @@ import sharp from 'sharp'
 import nodemailer from 'nodemailer'
 import postmarkTransport from 'nodemailer-postmark-transport'
 
-import { Author, Media, Post, User, File } from './models/collections'
+import { Author, Media, Post, User } from './models/collections'
 import { Home } from './models/globals'
 import { QuoteBlock } from './models/collections/Post'
 import { themePlugin } from './plugins/theme'
@@ -27,7 +27,7 @@ const db = isMongo ?
   mongooseAdapter({
     url: process.env.DATABASE_URI || '',
     connectOptions: {
-      maxIdleTimeMS: 10000,
+      maxIdleTimeMS: 1000 * 60 * 5,
     }
   })
   :
@@ -41,7 +41,7 @@ const db = isMongo ?
 export default buildConfig({
   db,
   globals: [Home],
-  collections: [Post, Author, Media, File, User],
+  collections: [Post, Author, Media, User],
   admin: {
     user: User.slug,
     importMap: {

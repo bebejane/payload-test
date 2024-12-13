@@ -1,11 +1,5 @@
-import { Plugin, Config, getPayload, CollectionBeforeChangeHook, CollectionAfterChangeHook } from 'payload'
-import { fileURLToPath } from 'url';
+import { Plugin, Config, getPayload, CollectionAfterChangeHook } from 'payload'
 import configPromise from '@payload-config'
-import path from 'path';
-import { NavItemType } from './Nav/NavItem';
-
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
 
 export interface PluginOptions {
   enabled?: boolean
@@ -20,9 +14,7 @@ export const navPlugin = (pluginOptions: PluginOptions): Plugin => (incomingConf
     const { doc, req: { locale } } = props
     const payload = await getPayload({ config: configPromise })
     const { docs } = await payload.find({ collection: 'nav' })
-
-    console.log('afterChange', docs)
-
+    //console.log('afterChange', docs)
   }
 
   return {
@@ -66,6 +58,7 @@ export const navPlugin = (pluginOptions: PluginOptions): Plugin => (incomingConf
           label: 'Type',
           type: 'text',
           required: true,
+          //@ts-ignore
           validate: (value: string) => ['collection', 'global'].includes(value),
         }, {
           name: 'icon',

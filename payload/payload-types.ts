@@ -14,7 +14,6 @@ export interface Config {
     posts: Post;
     authors: Author;
     media: Media;
-    file: File;
     users: User;
     nav: Nav;
     'payload-locked-documents': PayloadLockedDocument;
@@ -26,7 +25,6 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     authors: AuthorsSelect<false> | AuthorsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    file: FileSelect<false> | FileSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     nav: NavSelect<false> | NavSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -180,31 +178,6 @@ export interface QuoteBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "file".
- */
-export interface File {
-  id: number;
-  cloudinary?: {
-    public_id?: string | null;
-    original_filename?: string | null;
-    format?: string | null;
-    secure_url?: string | null;
-    resource_type?: string | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -254,10 +227,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
-      } | null)
-    | ({
-        relationTo: 'file';
-        value: number | File;
       } | null)
     | ({
         relationTo: 'users';
@@ -406,32 +375,6 @@ export interface MediaSelect<T extends boolean = true> {
               filename?: T;
             };
       };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "file_select".
- */
-export interface FileSelect<T extends boolean = true> {
-  cloudinary?:
-    | T
-    | {
-        public_id?: T;
-        original_filename?: T;
-        format?: T;
-        secure_url?: T;
-        resource_type?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
