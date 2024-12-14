@@ -15,7 +15,7 @@ const nextConfig = {
       },
     ],
     loader: 'custom',
-    loaderFile: './payload/image-loaders/cloudinary.ts',
+    loaderFile: './payload/plugins/cloudinary/loader.ts',
   },
   sassOptions: {
     includePaths: ['./app'],
