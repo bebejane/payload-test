@@ -4343,6 +4343,7 @@ type MutationverifyEmailUserArgs = {
 
 type Nav = {
   __typename?: 'Nav';
+  children?: Maybe<Array<Nav>>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   href: Scalars['String']['output'];
   icon?: Maybe<Scalars['String']['output']>;
@@ -4352,6 +4353,12 @@ type Nav = {
   slug: Scalars['String']['output'];
   type: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+type NavchildrenArgs = {
+  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
+  locale?: InputMaybe<LocaleInputType>;
 };
 
 type NavCreateAccess = {
@@ -4380,6 +4387,7 @@ type NavDeleteDocAccess = {
 
 type NavDocAccessFields = {
   __typename?: 'NavDocAccessFields';
+  children?: Maybe<NavDocAccessFields_children>;
   createdAt?: Maybe<NavDocAccessFields_createdAt>;
   href?: Maybe<NavDocAccessFields_href>;
   icon?: Maybe<NavDocAccessFields_icon>;
@@ -4388,6 +4396,34 @@ type NavDocAccessFields = {
   slug?: Maybe<NavDocAccessFields_slug>;
   type?: Maybe<NavDocAccessFields_type>;
   updatedAt?: Maybe<NavDocAccessFields_updatedAt>;
+};
+
+type NavDocAccessFields_children = {
+  __typename?: 'NavDocAccessFields_children';
+  create?: Maybe<NavDocAccessFields_children_Create>;
+  delete?: Maybe<NavDocAccessFields_children_Delete>;
+  read?: Maybe<NavDocAccessFields_children_Read>;
+  update?: Maybe<NavDocAccessFields_children_Update>;
+};
+
+type NavDocAccessFields_children_Create = {
+  __typename?: 'NavDocAccessFields_children_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_children_Delete = {
+  __typename?: 'NavDocAccessFields_children_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_children_Read = {
+  __typename?: 'NavDocAccessFields_children_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavDocAccessFields_children_Update = {
+  __typename?: 'NavDocAccessFields_children_Update';
+  permission: Scalars['Boolean']['output'];
 };
 
 type NavDocAccessFields_createdAt = {
@@ -4616,6 +4652,7 @@ type NavDocAccessFields_updatedAt_Update = {
 
 type NavFields = {
   __typename?: 'NavFields';
+  children?: Maybe<NavFields_children>;
   createdAt?: Maybe<NavFields_createdAt>;
   href?: Maybe<NavFields_href>;
   icon?: Maybe<NavFields_icon>;
@@ -4624,6 +4661,34 @@ type NavFields = {
   slug?: Maybe<NavFields_slug>;
   type?: Maybe<NavFields_type>;
   updatedAt?: Maybe<NavFields_updatedAt>;
+};
+
+type NavFields_children = {
+  __typename?: 'NavFields_children';
+  create?: Maybe<NavFields_children_Create>;
+  delete?: Maybe<NavFields_children_Delete>;
+  read?: Maybe<NavFields_children_Read>;
+  update?: Maybe<NavFields_children_Update>;
+};
+
+type NavFields_children_Create = {
+  __typename?: 'NavFields_children_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_children_Delete = {
+  __typename?: 'NavFields_children_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_children_Read = {
+  __typename?: 'NavFields_children_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type NavFields_children_Update = {
+  __typename?: 'NavFields_children_Update';
+  permission: Scalars['Boolean']['output'];
 };
 
 type NavFields_createdAt = {
@@ -4874,6 +4939,15 @@ type NavUpdateDocAccess = {
   where?: Maybe<Scalars['JSONObject']['output']>;
 };
 
+type Nav_children_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  equals?: InputMaybe<Scalars['JSON']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  not_equals?: InputMaybe<Scalars['JSON']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+};
+
 type Nav_createdAt_operator = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -4970,6 +5044,7 @@ type Nav_updatedAt_operator = {
 type Nav_where = {
   AND?: InputMaybe<Array<InputMaybe<Nav_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<Nav_where_or>>>;
+  children?: InputMaybe<Nav_children_operator>;
   createdAt?: InputMaybe<Nav_createdAt_operator>;
   href?: InputMaybe<Nav_href_operator>;
   icon?: InputMaybe<Nav_icon_operator>;
@@ -4984,6 +5059,7 @@ type Nav_where = {
 type Nav_where_and = {
   AND?: InputMaybe<Array<InputMaybe<Nav_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<Nav_where_or>>>;
+  children?: InputMaybe<Nav_children_operator>;
   createdAt?: InputMaybe<Nav_createdAt_operator>;
   href?: InputMaybe<Nav_href_operator>;
   icon?: InputMaybe<Nav_icon_operator>;
@@ -4998,6 +5074,7 @@ type Nav_where_and = {
 type Nav_where_or = {
   AND?: InputMaybe<Array<InputMaybe<Nav_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<Nav_where_or>>>;
+  children?: InputMaybe<Nav_children_operator>;
   createdAt?: InputMaybe<Nav_createdAt_operator>;
   href?: InputMaybe<Nav_href_operator>;
   icon?: InputMaybe<Nav_icon_operator>;
@@ -8671,6 +8748,7 @@ type mutationMedia_Sizes_ThumbnailInput = {
 };
 
 type mutationNavInput = {
+  children?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   href: Scalars['String']['input'];
   icon?: InputMaybe<Scalars['String']['input']>;
@@ -8682,6 +8760,7 @@ type mutationNavInput = {
 };
 
 type mutationNavUpdateInput = {
+  children?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   href?: InputMaybe<Scalars['String']['input']>;
   icon?: InputMaybe<Scalars['String']['input']>;

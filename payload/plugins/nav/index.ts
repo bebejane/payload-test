@@ -34,6 +34,7 @@ export const navPlugin = (pluginOptions: PluginOptions): Plugin => (incomingConf
         slug: 'nav',
         admin: {
           description: 'Navigation',
+          useAsTitle: 'label',
           hidden: false,
         },
         fields: [{
@@ -70,11 +71,18 @@ export const navPlugin = (pluginOptions: PluginOptions): Plugin => (incomingConf
           label: 'Position',
           type: 'number',
           required: false,
+        }, {
+          name: 'children',
+          label: 'Children',
+          type: 'relationship',
+          relationTo: 'nav',
+          hasMany: true,
+          required: false,
         }]
       }
     ]).map(g => ({
       ...g,
-      hooks: { ...g.hooks, afterChange: [...(g.hooks?.afterChange ?? [afterChange]), afterChange] }
+      hooks: { ...g.hooks, afterChange: [...(g.hooks?.afterChange ?? []), afterChange] }
     }))
   }
 }

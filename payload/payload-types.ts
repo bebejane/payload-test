@@ -206,6 +206,7 @@ export interface Nav {
   type: string;
   icon?: string | null;
   position?: number | null;
+  children?: (number | Nav)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -292,19 +293,22 @@ export interface PostsSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
-        quoteBlock?:
-          | T
-          | {
-              quoteHeader?: T;
-              quoteText?: T;
-              id?: T;
-              blockName?: T;
-            };
+        quoteBlock?: T | QuoteBlockSelect<T>;
       };
   _pathname?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteBlock_select".
+ */
+export interface QuoteBlockSelect<T extends boolean = true> {
+  quoteHeader?: T;
+  quoteText?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -403,6 +407,7 @@ export interface NavSelect<T extends boolean = true> {
   type?: T;
   icon?: T;
   position?: T;
+  children?: T;
   updatedAt?: T;
   createdAt?: T;
 }

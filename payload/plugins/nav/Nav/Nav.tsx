@@ -20,7 +20,9 @@ export default function Nav({ items: _items }: Props) {
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
-      onActivation: (e) => {},
+      onActivation: (e) => {
+        //console.log('active', e)
+      },
       activationConstraint: {
         distance: 1,
       },

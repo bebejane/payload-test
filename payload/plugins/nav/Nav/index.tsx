@@ -1,5 +1,6 @@
 import React from 'react'
 import Nav from './Nav'
+import { NavTree } from './NavTree'
 import { getPayload } from 'payload'
 import type { ServerProps } from 'payload'
 import { NavItemType } from './NavItem'
@@ -12,9 +13,7 @@ const Navigation = async (props: { clientProps: ServerProps }) => {
 
   const payload = await getPayload({ config })
   const { docs } = await payload.find({ collection: 'nav' })
-  const saved = docs.sort((a, b) =>
-    a.position === b.position ? 1 : a.position > b.position ? -1 : 1,
-  )
+  const saved = docs.sort((a, b) => (a.position === b.position ? 1 : (a.position ?? 0) > (b.position ?? 0) ? -1 : 1))
 
   const collections = payload.config.collections
     .filter(({ slug }) => visibleEntities.collections.includes(slug))

@@ -1,0 +1,23 @@
+.nav {
+
+  .add {
+    all: unset;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+
+  .item {
+    border: 0 !important;
+    cursor: pointer;
+    padding: 0;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+
+}
