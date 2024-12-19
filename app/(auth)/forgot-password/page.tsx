@@ -12,6 +12,7 @@ import Link from 'next/link'
 export default function ForgotPassword() {
   const { toast } = useToast()
   const [isPending, setIsPending] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
 
   const form = useForm<z.infer<typeof forgotPasswordSchema>>({
     resolver: zodResolver(forgotPasswordSchema),
@@ -22,6 +23,8 @@ export default function ForgotPassword() {
 
   const onSubmit = async (data: z.infer<typeof forgotPasswordSchema>) => {
     setIsPending(true)
+    setIsSuccess(false)
+
     const { error } = await authClient.forgetPassword({
       email: data.email,
       redirectTo: '/reset-password',
@@ -36,22 +39,26 @@ export default function ForgotPassword() {
     } else {
       toast({
         title: 'Success',
-        description:
-          'If an account exists with this email, you will receive a password reset link.',
+        description: 'If an account exists with this email, you will receive a password reset link.',
       })
     }
+    setIsSuccess(error === null)
     setIsPending(false)
   }
 
   return (
     <div>
       <h1>Forgot Password</h1>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <input type="email" placeholder="Enter your email" {...form.register('email')} />
-        <button type="submit" data-pending={isPending}>
-          Send Reset Link
-        </button>
-      </form>
+      {isSuccess ? (
+        <p>Check your email for a password reset link. If you don&apos;t see it, check your spam folder.</p>
+      ) : (
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <input type="email" placeholder="Enter your email" {...form.register('email')} />
+          <button type="submit" data-pending={isPending}>
+            Send Reset Link
+          </button>
+        </form>
+      )}
       <div>
         Already have an account? <Link href="/sign-in">Sign in</Link>
       </div>

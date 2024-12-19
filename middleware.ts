@@ -12,8 +12,8 @@ const intlMiddleware = createMiddleware({
 });
 
 const protectedRoutes = ["/member"];
-const authRoutes = ["/sign-in", "/sign-up", "/sign-out"];
-const passwordRoutes = ["/reset-password", "/forgot-password"];
+const authRoutes = ["/sign-in", "/sign-up", "/sign-out", "/forgot-password"];
+const passwordRoutes = ["/reset-password"];
 const payloadRoutes = ["/admin"];
 
 const betterAuthMiddleware = async (request: NextRequest) => {
@@ -37,7 +37,7 @@ const betterAuthMiddleware = async (request: NextRequest) => {
       },
     },
   );
-  console.log(session)
+
   if (!session) {
     console.log('redirect to sign in', request.url)
     return NextResponse.redirect(new URL("/sign-in", request.url));
@@ -66,6 +66,6 @@ export const config = {
     // Match all pathnames except for
     // - … if they start with `/api`, `/_next` or `/_vercel`
     // - … the ones containing a dot (e.g. `favicon.ico`)
-    '/((?!api|favicon|_next|_vercel|admin|sign-in|sign-up|sign-out|.*\\..*).*)',
+    '/((?!api|favicon|_next|_vercel|admin|sign-in|sign-up|sign-out|forgot-password|.*\\..*).*)',
   ]
 };
