@@ -58,11 +58,13 @@ export default async function authMiddleware(request: NextRequest) {
   console.log('middleware');
 
   let intlRes = intlMiddleware(request);
+  console.log(intlRes)
   //console.log(intlRes)
   let authRes = await betterAuthMiddleware(request);
   //console.log(authRes)
+  console.log(authRes)
   const res = Object.assign(authRes, intlRes);
-  //console.log(res)
+  console.log(res)
   return res;
 }
 
