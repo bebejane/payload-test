@@ -37,7 +37,7 @@ const betterAuthMiddleware = async (request: NextRequest) => {
       },
     },
   );
-
+  console.log(session)
   if (!session) {
     console.log('redirect to sign in', request.url)
     return NextResponse.redirect(new URL("/sign-in", request.url));
@@ -55,16 +55,10 @@ const betterAuthMiddleware = async (request: NextRequest) => {
 }
 
 export default async function authMiddleware(request: NextRequest) {
-  console.log('middleware');
-
-  let intlRes = intlMiddleware(request);
-  //console.log(intlRes)
-  let authRes = await betterAuthMiddleware(request);
-  //console.log(authRes)
-  const res = Object.assign(authRes, intlRes);
-  //let res = { ...authRes, ...intlRes };
-  console.log(res)
-  return res
+  const intlRes = intlMiddleware(request);
+  const authRes = await betterAuthMiddleware(request);
+  if (!authRes.ok) return authRes;
+  return intlRes
 }
 
 export const config = {
