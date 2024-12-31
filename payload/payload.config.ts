@@ -17,7 +17,6 @@ import postmarkTransport from 'nodemailer-postmark-transport'
 import { Author, Media, Post, User } from './models/collections'
 import { Home } from './models/globals'
 import { QuoteBlock } from './models/collections/Post'
-import { themePlugin } from './plugins/theme'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -130,9 +129,6 @@ export default buildConfig({
       fields: [
         { label: 'Setting 1', name: 'setting1', type: 'checkbox', required: false, localized: false },
       ]
-    }),
-    themePlugin({
-      enabled: true,
     }),
     navPlugin({
       enabled: true

@@ -29,7 +29,6 @@ type Access = {
   payload_preferences?: Maybe<payload_preferencesAccess>;
   posts?: Maybe<postsAccess>;
   settings?: Maybe<settingsAccess>;
-  theme?: Maybe<themeAccess>;
   users?: Maybe<usersAccess>;
 };
 
@@ -4069,7 +4068,6 @@ type Mutation = {
   restoreVersionHome?: Maybe<Home>;
   restoreVersionPost?: Maybe<Post>;
   restoreVersionSetting?: Maybe<Setting>;
-  restoreVersionTheme?: Maybe<Theme>;
   unlockUser: Scalars['Boolean']['output'];
   updateAuthor?: Maybe<Author>;
   updateHome?: Maybe<Home>;
@@ -4079,7 +4077,6 @@ type Mutation = {
   updatePayloadPreference?: Maybe<PayloadPreference>;
   updatePost?: Maybe<Post>;
   updateSetting?: Maybe<Setting>;
-  updateTheme?: Maybe<Theme>;
   updateUser?: Maybe<User>;
   verifyEmailUser?: Maybe<Scalars['Boolean']['output']>;
 };
@@ -4242,12 +4239,6 @@ type MutationrestoreVersionSettingArgs = {
 };
 
 
-type MutationrestoreVersionThemeArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
 type MutationunlockUserArgs = {
   email: Scalars['String']['input'];
 };
@@ -4316,13 +4307,6 @@ type MutationupdatePostArgs = {
 
 type MutationupdateSettingArgs = {
   data: mutationSettingInput;
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  locale?: InputMaybe<LocaleInputType>;
-};
-
-
-type MutationupdateThemeArgs = {
-  data: mutationThemeInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   locale?: InputMaybe<LocaleInputType>;
 };
@@ -7170,7 +7154,6 @@ type Query = {
   Post?: Maybe<Post>;
   Posts?: Maybe<Posts>;
   Setting?: Maybe<Setting>;
-  Theme?: Maybe<Theme>;
   User?: Maybe<User>;
   Users?: Maybe<Users>;
   allMedia?: Maybe<allMedia>;
@@ -7189,18 +7172,15 @@ type Query = {
   docAccessPayloadPreference?: Maybe<payload_preferencesDocAccess>;
   docAccessPost?: Maybe<postsDocAccess>;
   docAccessSetting?: Maybe<settingsDocAccess>;
-  docAccessTheme?: Maybe<themeDocAccess>;
   docAccessUser?: Maybe<usersDocAccess>;
   initializedUser?: Maybe<Scalars['Boolean']['output']>;
   meUser?: Maybe<usersMe>;
   versionHome?: Maybe<HomeVersion>;
   versionPost?: Maybe<PostVersion>;
   versionSetting?: Maybe<SettingVersion>;
-  versionTheme?: Maybe<ThemeVersion>;
   versionsHome?: Maybe<versionsHome>;
   versionsPosts?: Maybe<versionsPosts>;
   versionsSetting?: Maybe<versionsSetting>;
-  versionsTheme?: Maybe<versionsTheme>;
 };
 
 
@@ -7320,13 +7300,6 @@ type QueryPostsArgs = {
 
 
 type QuerySettingArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  locale?: InputMaybe<LocaleInputType>;
-};
-
-
-type QueryThemeArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   locale?: InputMaybe<LocaleInputType>;
@@ -7472,14 +7445,6 @@ type QueryversionSettingArgs = {
 };
 
 
-type QueryversionThemeArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  locale?: InputMaybe<LocaleInputType>;
-};
-
-
 type QueryversionsHomeArgs = {
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -7510,17 +7475,6 @@ type QueryversionsSettingArgs = {
   pagination?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<versionsSetting_where>;
-};
-
-
-type QueryversionsThemeArgs = {
-  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale?: InputMaybe<LocaleInputType>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  pagination?: InputMaybe<Scalars['Boolean']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  where?: InputMaybe<versionsTheme_where>;
 };
 
 type QuoteBlock = {
@@ -7770,306 +7724,6 @@ type SettingsUpdateDocAccess = {
   __typename?: 'SettingsUpdateDocAccess';
   permission: Scalars['Boolean']['output'];
   where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type Theme = {
-  __typename?: 'Theme';
-  background?: Maybe<Scalars['String']['output']>;
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-type ThemeDocAccessFields = {
-  __typename?: 'ThemeDocAccessFields';
-  background?: Maybe<ThemeDocAccessFields_background>;
-  createdAt?: Maybe<ThemeDocAccessFields_createdAt>;
-  text?: Maybe<ThemeDocAccessFields_text>;
-  updatedAt?: Maybe<ThemeDocAccessFields_updatedAt>;
-};
-
-type ThemeDocAccessFields_background = {
-  __typename?: 'ThemeDocAccessFields_background';
-  create?: Maybe<ThemeDocAccessFields_background_Create>;
-  delete?: Maybe<ThemeDocAccessFields_background_Delete>;
-  read?: Maybe<ThemeDocAccessFields_background_Read>;
-  update?: Maybe<ThemeDocAccessFields_background_Update>;
-};
-
-type ThemeDocAccessFields_background_Create = {
-  __typename?: 'ThemeDocAccessFields_background_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_background_Delete = {
-  __typename?: 'ThemeDocAccessFields_background_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_background_Read = {
-  __typename?: 'ThemeDocAccessFields_background_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_background_Update = {
-  __typename?: 'ThemeDocAccessFields_background_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_createdAt = {
-  __typename?: 'ThemeDocAccessFields_createdAt';
-  create?: Maybe<ThemeDocAccessFields_createdAt_Create>;
-  delete?: Maybe<ThemeDocAccessFields_createdAt_Delete>;
-  read?: Maybe<ThemeDocAccessFields_createdAt_Read>;
-  update?: Maybe<ThemeDocAccessFields_createdAt_Update>;
-};
-
-type ThemeDocAccessFields_createdAt_Create = {
-  __typename?: 'ThemeDocAccessFields_createdAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_createdAt_Delete = {
-  __typename?: 'ThemeDocAccessFields_createdAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_createdAt_Read = {
-  __typename?: 'ThemeDocAccessFields_createdAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_createdAt_Update = {
-  __typename?: 'ThemeDocAccessFields_createdAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_text = {
-  __typename?: 'ThemeDocAccessFields_text';
-  create?: Maybe<ThemeDocAccessFields_text_Create>;
-  delete?: Maybe<ThemeDocAccessFields_text_Delete>;
-  read?: Maybe<ThemeDocAccessFields_text_Read>;
-  update?: Maybe<ThemeDocAccessFields_text_Update>;
-};
-
-type ThemeDocAccessFields_text_Create = {
-  __typename?: 'ThemeDocAccessFields_text_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_text_Delete = {
-  __typename?: 'ThemeDocAccessFields_text_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_text_Read = {
-  __typename?: 'ThemeDocAccessFields_text_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_text_Update = {
-  __typename?: 'ThemeDocAccessFields_text_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_updatedAt = {
-  __typename?: 'ThemeDocAccessFields_updatedAt';
-  create?: Maybe<ThemeDocAccessFields_updatedAt_Create>;
-  delete?: Maybe<ThemeDocAccessFields_updatedAt_Delete>;
-  read?: Maybe<ThemeDocAccessFields_updatedAt_Read>;
-  update?: Maybe<ThemeDocAccessFields_updatedAt_Update>;
-};
-
-type ThemeDocAccessFields_updatedAt_Create = {
-  __typename?: 'ThemeDocAccessFields_updatedAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_updatedAt_Delete = {
-  __typename?: 'ThemeDocAccessFields_updatedAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_updatedAt_Read = {
-  __typename?: 'ThemeDocAccessFields_updatedAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeDocAccessFields_updatedAt_Update = {
-  __typename?: 'ThemeDocAccessFields_updatedAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields = {
-  __typename?: 'ThemeFields';
-  background?: Maybe<ThemeFields_background>;
-  createdAt?: Maybe<ThemeFields_createdAt>;
-  text?: Maybe<ThemeFields_text>;
-  updatedAt?: Maybe<ThemeFields_updatedAt>;
-};
-
-type ThemeFields_background = {
-  __typename?: 'ThemeFields_background';
-  create?: Maybe<ThemeFields_background_Create>;
-  delete?: Maybe<ThemeFields_background_Delete>;
-  read?: Maybe<ThemeFields_background_Read>;
-  update?: Maybe<ThemeFields_background_Update>;
-};
-
-type ThemeFields_background_Create = {
-  __typename?: 'ThemeFields_background_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_background_Delete = {
-  __typename?: 'ThemeFields_background_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_background_Read = {
-  __typename?: 'ThemeFields_background_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_background_Update = {
-  __typename?: 'ThemeFields_background_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_createdAt = {
-  __typename?: 'ThemeFields_createdAt';
-  create?: Maybe<ThemeFields_createdAt_Create>;
-  delete?: Maybe<ThemeFields_createdAt_Delete>;
-  read?: Maybe<ThemeFields_createdAt_Read>;
-  update?: Maybe<ThemeFields_createdAt_Update>;
-};
-
-type ThemeFields_createdAt_Create = {
-  __typename?: 'ThemeFields_createdAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_createdAt_Delete = {
-  __typename?: 'ThemeFields_createdAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_createdAt_Read = {
-  __typename?: 'ThemeFields_createdAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_createdAt_Update = {
-  __typename?: 'ThemeFields_createdAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_text = {
-  __typename?: 'ThemeFields_text';
-  create?: Maybe<ThemeFields_text_Create>;
-  delete?: Maybe<ThemeFields_text_Delete>;
-  read?: Maybe<ThemeFields_text_Read>;
-  update?: Maybe<ThemeFields_text_Update>;
-};
-
-type ThemeFields_text_Create = {
-  __typename?: 'ThemeFields_text_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_text_Delete = {
-  __typename?: 'ThemeFields_text_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_text_Read = {
-  __typename?: 'ThemeFields_text_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_text_Update = {
-  __typename?: 'ThemeFields_text_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_updatedAt = {
-  __typename?: 'ThemeFields_updatedAt';
-  create?: Maybe<ThemeFields_updatedAt_Create>;
-  delete?: Maybe<ThemeFields_updatedAt_Delete>;
-  read?: Maybe<ThemeFields_updatedAt_Read>;
-  update?: Maybe<ThemeFields_updatedAt_Update>;
-};
-
-type ThemeFields_updatedAt_Create = {
-  __typename?: 'ThemeFields_updatedAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_updatedAt_Delete = {
-  __typename?: 'ThemeFields_updatedAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_updatedAt_Read = {
-  __typename?: 'ThemeFields_updatedAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeFields_updatedAt_Update = {
-  __typename?: 'ThemeFields_updatedAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type ThemeReadAccess = {
-  __typename?: 'ThemeReadAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type ThemeReadDocAccess = {
-  __typename?: 'ThemeReadDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type ThemeReadVersionsAccess = {
-  __typename?: 'ThemeReadVersionsAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type ThemeReadVersionsDocAccess = {
-  __typename?: 'ThemeReadVersionsDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type ThemeUpdateAccess = {
-  __typename?: 'ThemeUpdateAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type ThemeUpdateDocAccess = {
-  __typename?: 'ThemeUpdateDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type ThemeVersion = {
-  __typename?: 'ThemeVersion';
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  version?: Maybe<ThemeVersion_Version>;
-};
-
-type ThemeVersion_Version = {
-  __typename?: 'ThemeVersion_Version';
-  background?: Maybe<Scalars['String']['output']>;
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 type User = {
@@ -8837,13 +8491,6 @@ type mutationSettingInput = {
   updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
 
-type mutationThemeInput = {
-  background?: InputMaybe<Scalars['String']['input']>;
-  createdAt?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
-  updatedAt?: InputMaybe<Scalars['String']['input']>;
-};
-
 type mutationUserInput = {
   createdAt?: InputMaybe<Scalars['String']['input']>;
   email: Scalars['String']['input'];
@@ -8960,22 +8607,6 @@ type settingsDocAccess = {
   read?: Maybe<SettingsReadDocAccess>;
   readVersions?: Maybe<SettingsReadVersionsDocAccess>;
   update?: Maybe<SettingsUpdateDocAccess>;
-};
-
-type themeAccess = {
-  __typename?: 'themeAccess';
-  fields?: Maybe<ThemeFields>;
-  read?: Maybe<ThemeReadAccess>;
-  readVersions?: Maybe<ThemeReadVersionsAccess>;
-  update?: Maybe<ThemeUpdateAccess>;
-};
-
-type themeDocAccess = {
-  __typename?: 'themeDocAccess';
-  fields?: Maybe<ThemeDocAccessFields>;
-  read?: Maybe<ThemeReadDocAccess>;
-  readVersions?: Maybe<ThemeReadVersionsDocAccess>;
-  update?: Maybe<ThemeUpdateDocAccess>;
 };
 
 type usersAccess = {
@@ -9622,133 +9253,6 @@ type versionsSetting_where_or = {
   version__createdAt?: InputMaybe<versionsSetting_version__createdAt_operator>;
   version__setting1?: InputMaybe<versionsSetting_version__setting1_operator>;
   version__updatedAt?: InputMaybe<versionsSetting_version__updatedAt_operator>;
-};
-
-type versionsTheme = {
-  __typename?: 'versionsTheme';
-  docs?: Maybe<Array<Maybe<ThemeVersion>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
-  nextPage?: Maybe<Scalars['Int']['output']>;
-  offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
-  prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
-};
-
-type versionsTheme_createdAt_operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-type versionsTheme_id_operator = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Int']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  less_than?: InputMaybe<Scalars['Int']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  not_equals?: InputMaybe<Scalars['Int']['input']>;
-};
-
-type versionsTheme_updatedAt_operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-type versionsTheme_version__background_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type versionsTheme_version__createdAt_operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-type versionsTheme_version__text_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type versionsTheme_version__updatedAt_operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-type versionsTheme_where = {
-  AND?: InputMaybe<Array<InputMaybe<versionsTheme_where_and>>>;
-  OR?: InputMaybe<Array<InputMaybe<versionsTheme_where_or>>>;
-  createdAt?: InputMaybe<versionsTheme_createdAt_operator>;
-  id?: InputMaybe<versionsTheme_id_operator>;
-  updatedAt?: InputMaybe<versionsTheme_updatedAt_operator>;
-  version__background?: InputMaybe<versionsTheme_version__background_operator>;
-  version__createdAt?: InputMaybe<versionsTheme_version__createdAt_operator>;
-  version__text?: InputMaybe<versionsTheme_version__text_operator>;
-  version__updatedAt?: InputMaybe<versionsTheme_version__updatedAt_operator>;
-};
-
-type versionsTheme_where_and = {
-  AND?: InputMaybe<Array<InputMaybe<versionsTheme_where_and>>>;
-  OR?: InputMaybe<Array<InputMaybe<versionsTheme_where_or>>>;
-  createdAt?: InputMaybe<versionsTheme_createdAt_operator>;
-  id?: InputMaybe<versionsTheme_id_operator>;
-  updatedAt?: InputMaybe<versionsTheme_updatedAt_operator>;
-  version__background?: InputMaybe<versionsTheme_version__background_operator>;
-  version__createdAt?: InputMaybe<versionsTheme_version__createdAt_operator>;
-  version__text?: InputMaybe<versionsTheme_version__text_operator>;
-  version__updatedAt?: InputMaybe<versionsTheme_version__updatedAt_operator>;
-};
-
-type versionsTheme_where_or = {
-  AND?: InputMaybe<Array<InputMaybe<versionsTheme_where_and>>>;
-  OR?: InputMaybe<Array<InputMaybe<versionsTheme_where_or>>>;
-  createdAt?: InputMaybe<versionsTheme_createdAt_operator>;
-  id?: InputMaybe<versionsTheme_id_operator>;
-  updatedAt?: InputMaybe<versionsTheme_updatedAt_operator>;
-  version__background?: InputMaybe<versionsTheme_version__background_operator>;
-  version__createdAt?: InputMaybe<versionsTheme_version__createdAt_operator>;
-  version__text?: InputMaybe<versionsTheme_version__text_operator>;
-  version__updatedAt?: InputMaybe<versionsTheme_version__updatedAt_operator>;
 };
 
 type MediaFragment = { __typename?: 'Media', id: number, url?: string | null, alt?: string | null, width?: number | null, height?: number | null };

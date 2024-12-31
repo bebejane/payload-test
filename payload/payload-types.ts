@@ -37,12 +37,10 @@ export interface Config {
   globals: {
     home: Home;
     settings: Setting;
-    theme: Theme;
   };
   globalsSelect: {
     home: HomeSelect<false> | HomeSelect<true>;
     settings: SettingsSelect<false> | SettingsSelect<true>;
-    theme: ThemeSelect<false> | ThemeSelect<true>;
   };
   locale: 'en' | 'se';
   user: User & {
@@ -72,6 +70,8 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Posts
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts".
  */
@@ -104,6 +104,8 @@ export interface Post {
   _status?: ('draft' | 'published') | null;
 }
 /**
+ * Media Library
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
@@ -156,6 +158,8 @@ export interface Media {
   };
 }
 /**
+ * Authors
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "authors".
  */
@@ -177,6 +181,8 @@ export interface QuoteBlock {
   blockType: 'quoteBlock';
 }
 /**
+ * Users
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -195,6 +201,8 @@ export interface User {
   password?: string | null;
 }
 /**
+ * Navigation
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "nav".
  */
@@ -444,6 +452,8 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
+ * Home
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home".
  */
@@ -475,23 +485,14 @@ export interface Home {
   createdAt?: string | null;
 }
 /**
+ * Settings
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "settings".
  */
 export interface Setting {
   id: number;
   setting1?: boolean | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "theme".
- */
-export interface Theme {
-  id: number;
-  background?: string | null;
-  text?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -520,17 +521,6 @@ export interface HomeSelect<T extends boolean = true> {
  */
 export interface SettingsSelect<T extends boolean = true> {
   setting1?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "theme_select".
- */
-export interface ThemeSelect<T extends boolean = true> {
-  background?: T;
-  text?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
