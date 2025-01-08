@@ -78,15 +78,19 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
   c.hooks.afterChange = c.hooks?.afterChange ? [...c.hooks.afterChange, revalidateHook] : [revalidateHook]
 
   const pathnameHook = async (props: any) => {
-    const { doc, req: { locale } } = props
-    const paths = await translate(doc, c.slug, locale)
+
+    const { data, req: { locale } } = props
+    const paths = await translate(data, c.slug, locale)
     if (paths?.[0])
-      doc._pathname = paths[0]
-    return doc
+      data._pathname = paths[0]
+    console.log(data._pathname)
+    return data
   }
 
   //@ts-ignore
-  c.hooks.afterRead = c.hooks?.afterRead ? [...c.hooks.afterRead, draftHook, pathnameHook] : [draftHook, pathnameHook]
+  c.hooks.afterRead = c.hooks?.afterRead ? [...c.hooks.afterRead, draftHook] : [draftHook]
+  //@ts-ignore
+  c.hooks.beforeChange = c.hooks?.beforeChange ? [...c.hooks.beforeChange, pathnameHook] : [pathnameHook]
 
   c.versions = {
     drafts: !autosave ? true : { autosave: { interval: 300 } }

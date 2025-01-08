@@ -8,6 +8,7 @@ type Props = {
 
 export default function Pathname({ field }: Props) {
   const { value = '', setValue } = useField<string>({ path: field.name })
+
   return (
     <div style={{ marginBottom: '1rem' }}>
       <TextInput

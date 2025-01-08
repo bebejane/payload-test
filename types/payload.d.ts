@@ -961,7 +961,6 @@ type HomeUpdateDocAccess = {
 
 type HomeVersion = {
   __typename?: 'HomeVersion';
-  autosave?: Maybe<Scalars['Boolean']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   latest?: Maybe<Scalars['Boolean']['output']>;
@@ -6181,7 +6180,6 @@ enum PostUpdate__status_MutationInput {
 
 type PostVersion = {
   __typename?: 'PostVersion';
-  autosave?: Maybe<Scalars['Boolean']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   latest?: Maybe<Scalars['Boolean']['output']>;
@@ -8680,12 +8678,6 @@ type versionsHome = {
   totalPages?: Maybe<Scalars['Int']['output']>;
 };
 
-type versionsHome_autosave_operator = {
-  equals?: InputMaybe<Scalars['Boolean']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  not_equals?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
 type versionsHome_createdAt_operator = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -8829,7 +8821,6 @@ type versionsHome_version__updatedAt_operator = {
 type versionsHome_where = {
   AND?: InputMaybe<Array<InputMaybe<versionsHome_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<versionsHome_where_or>>>;
-  autosave?: InputMaybe<versionsHome_autosave_operator>;
   createdAt?: InputMaybe<versionsHome_createdAt_operator>;
   id?: InputMaybe<versionsHome_id_operator>;
   latest?: InputMaybe<versionsHome_latest_operator>;
@@ -8849,7 +8840,6 @@ type versionsHome_where = {
 type versionsHome_where_and = {
   AND?: InputMaybe<Array<InputMaybe<versionsHome_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<versionsHome_where_or>>>;
-  autosave?: InputMaybe<versionsHome_autosave_operator>;
   createdAt?: InputMaybe<versionsHome_createdAt_operator>;
   id?: InputMaybe<versionsHome_id_operator>;
   latest?: InputMaybe<versionsHome_latest_operator>;
@@ -8869,7 +8859,6 @@ type versionsHome_where_and = {
 type versionsHome_where_or = {
   AND?: InputMaybe<Array<InputMaybe<versionsHome_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<versionsHome_where_or>>>;
-  autosave?: InputMaybe<versionsHome_autosave_operator>;
   createdAt?: InputMaybe<versionsHome_createdAt_operator>;
   id?: InputMaybe<versionsHome_id_operator>;
   latest?: InputMaybe<versionsHome_latest_operator>;
@@ -8884,12 +8873,6 @@ type versionsHome_where_or = {
   version__image?: InputMaybe<versionsHome_version__image_operator>;
   version__other__posts?: InputMaybe<versionsHome_version__other__posts_operator>;
   version__updatedAt?: InputMaybe<versionsHome_version__updatedAt_operator>;
-};
-
-type versionsPost_autosave_operator = {
-  equals?: InputMaybe<Scalars['Boolean']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  not_equals?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 type versionsPost_createdAt_operator = {
@@ -9066,7 +9049,6 @@ type versionsPost_version__updatedAt_operator = {
 type versionsPost_where = {
   AND?: InputMaybe<Array<InputMaybe<versionsPost_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<versionsPost_where_or>>>;
-  autosave?: InputMaybe<versionsPost_autosave_operator>;
   createdAt?: InputMaybe<versionsPost_createdAt_operator>;
   id?: InputMaybe<versionsPost_id_operator>;
   latest?: InputMaybe<versionsPost_latest_operator>;
@@ -9089,7 +9071,6 @@ type versionsPost_where = {
 type versionsPost_where_and = {
   AND?: InputMaybe<Array<InputMaybe<versionsPost_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<versionsPost_where_or>>>;
-  autosave?: InputMaybe<versionsPost_autosave_operator>;
   createdAt?: InputMaybe<versionsPost_createdAt_operator>;
   id?: InputMaybe<versionsPost_id_operator>;
   latest?: InputMaybe<versionsPost_latest_operator>;
@@ -9112,7 +9093,6 @@ type versionsPost_where_and = {
 type versionsPost_where_or = {
   AND?: InputMaybe<Array<InputMaybe<versionsPost_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<versionsPost_where_or>>>;
-  autosave?: InputMaybe<versionsPost_autosave_operator>;
   createdAt?: InputMaybe<versionsPost_createdAt_operator>;
   id?: InputMaybe<versionsPost_id_operator>;
   latest?: InputMaybe<versionsPost_latest_operator>;
