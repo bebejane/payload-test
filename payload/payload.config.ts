@@ -1,4 +1,5 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { postgresAdapter } from '@payloadcms/db-postgres'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
@@ -21,6 +22,7 @@ import { QuoteBlock } from './models/collections/Post'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 const isMongo = process.env.DATABASE_URI?.includes('mongodb')
+const isPostgres = process.env.DATABASE_URI?.includes('postgres')
 
 const db = isMongo ?
   mongooseAdapter({
@@ -30,12 +32,19 @@ const db = isMongo ?
     }
   })
   :
-  sqliteAdapter({
-    client: {
-      url: process.env.DATABASE_URI || '',
-      authToken: process.env.DATABASE_AUTH_TOKEN || '',
-    }
-  })
+  isPostgres ?
+    postgresAdapter({
+      pool: {
+        connectionString: process.env.DATABASE_URI,
+      }
+    })
+    :
+    sqliteAdapter({
+      client: {
+        url: process.env.DATABASE_URI || '',
+        authToken: process.env.DATABASE_AUTH_TOKEN || '',
+      }
+    })
 
 export default buildConfig({
   db,

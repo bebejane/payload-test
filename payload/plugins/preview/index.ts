@@ -80,10 +80,12 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
   const pathnameHook = async (props: any) => {
 
     const { data, req: { locale } } = props
+
     const paths = await translate(data, c.slug, locale)
     if (paths?.[0])
       data._pathname = paths[0]
-    console.log(data._pathname)
+
+    console.log(paths)
     return data
   }
 

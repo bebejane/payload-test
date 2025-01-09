@@ -20,6 +20,7 @@ export const LivePreview: React.FC<{
 
   const onMessage = useCallback(
     (event: MessageEvent) => {
+      console.log(event.data?.data?._pathname)
       if (isDocumentEvent(event, serverURL)) {
         router.refresh()
       }
