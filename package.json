@@ -32,6 +32,7 @@
     "@payload-enchants/better-localized-fields": "^1.2.2",
     "@payload-enchants/docs-reorder": "^1.2.2",
     "@payloadcms/db-mongodb": "^3.15.1",
+    "@payloadcms/db-postgres": "^3.15.1",
     "@payloadcms/db-sqlite": "^3.15.1",
     "@payloadcms/email-nodemailer": "^3.15.1",
     "@payloadcms/live-preview": "^3.15.1",
