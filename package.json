@@ -17,7 +17,10 @@
     "codegen": "graphql-codegen --watch",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "mongo:start": "brew services start mongodb-community",
-    "mongo:stop": "brew services stop mongodb-community"
+    "mongo:stop": "brew services stop mongodb-community",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "preview": "npm run pages:build && wrangler pages dev",
+    "deploy": "npm run pages:build && wrangler pages deploy"
   },
   "dependencies": {
     "@better-fetch/fetch": "1.1.12",
@@ -80,6 +83,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.7",
     "@graphql-codegen/cli": "^5.0.3",
     "@graphql-codegen/import-types-preset": "^3.0.0",
     "@graphql-codegen/introspection": "^4.0.3",

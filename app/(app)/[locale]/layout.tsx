@@ -16,6 +16,8 @@ export type BodyProps = {
   locale?: string
 }
 
+export const runtime = 'edge'
+
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { locale = routing.defaultLocale } = await params
 
