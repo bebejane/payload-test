@@ -53,7 +53,8 @@ export const auth = betterAuth({
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
     sendVerificationEmail: async ({ user, token }) => {
-      const verificationUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/verify-email?token=${token}&callbackURL=${process.env.EMAIL_VERIFICATION_CALLBACK_URL}`;
+      const callbackUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/email-verified`
+      const verificationUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/verify-email?token=${token}&callbackURL=${callbackUrl}`;
       await sendEmail({
         to: user.email,
         subject: "Verify your email address",
