@@ -27,20 +27,18 @@ export default async function Post({ params }: Props) {
 
   return (
     <>
+      {typeof post.image === 'object' && post.image?.url && (
+        <Image
+          className={s.image}
+          src={post.image.url}
+          width={post.image.width ?? 0}
+          height={post.image.height ?? 0}
+          alt={post.image.alt ?? 'alt'}
+        />
+      )}
       <article className={s.post}>
-        <h1>
-          {post.title} ({post._status})
-        </h1>
-        <RichText data={post.content} />
-        {typeof post.image === 'object' && post.image?.url && (
-          <Image
-            className={s.image}
-            src={post.image.url}
-            width={post.image.width ?? 0}
-            height={post.image.height ?? 0}
-            alt={post.image.alt ?? 'alt'}
-          />
-        )}
+        <h1>{post.title}</h1>
+        <RichText className={s.content} data={post.content} />
         <section>
           <ul>{post.blocks?.map((block, index) => <li key={index}>{block.quoteHeader}</li>)}</ul>
         </section>

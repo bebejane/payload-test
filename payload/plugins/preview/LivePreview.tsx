@@ -29,31 +29,25 @@ export const LivePreview: React.FC<{
         console.log('live preview event')
         //router.refresh()
       } else if (isDocumentEvent(event, serverURL)) {
-        console.log('document event')
         const pathname = event.data?.data?._pathname
         console.log(pathname)
         if (pathname) router.replace(pathname)
         else router.refresh()
       }
     },
-    [router],
+    [router, serverURL],
   )
 
   useEffect(() => {
-    if (typeof window !== 'undefined') window.addEventListener('message', onMessage)
+    window.addEventListener('message', onMessage)
 
     if (!hasSentReadyMessage.current) {
       hasSentReadyMessage.current = true
-
-      ready({
-        serverURL,
-      })
+      ready({ serverURL })
     }
 
     return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('message', onMessage)
-      }
+      window.removeEventListener('message', onMessage)
     }
   }, [serverURL, onMessage, depth, apiRoute])
 

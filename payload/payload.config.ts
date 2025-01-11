@@ -9,7 +9,7 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import { en } from '@payloadcms/translations/languages/en'
 import { sv } from '@payloadcms/translations/languages/sv'
-import { translate } from '@/lib/routes'
+//import { translate } from '@/lib/routes'
 
 import path from 'path'
 import sharp from 'sharp'
@@ -20,6 +20,7 @@ import { Author, Media, Post, User } from './models/collections'
 import { Home } from './models/globals'
 import { QuoteBlock } from './models/collections/Post'
 
+const defaultLocale = 'en'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 const isMongo = process.env.DATABASE_URI?.includes('mongodb')
@@ -85,7 +86,7 @@ export default buildConfig({
         code: 'se',
       },
     ],
-    defaultLocale: 'en',
+    defaultLocale,
     fallback: true,
   },
   serverURL: process.env.NEXT_PUBLIC_SITE_URL,
@@ -154,7 +155,23 @@ export default buildConfig({
       endpoint: `/api/draft`,
       slugs: ['home', 'posts'],
       autosave: false,
-      translate: translate
+      translate: async (doc: any, slug: string, locale: string) => {
+        let path = null
+        switch (slug) {
+          case 'home':
+            path = `/`;
+            break;
+          case 'posts':
+            if (doc.slug)
+              path = `/posts/${doc.slug}`
+            break
+          default:
+            path = null
+            break;
+        }
+        const fullPath = `${locale !== defaultLocale ? `/${locale}` : ''}${path === '/' ? '' : path}`
+        return path ? [fullPath] : null
+      }
     })
     /*
     s3Storage({

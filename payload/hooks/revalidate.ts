@@ -20,7 +20,7 @@ export default async function revalidateHook(data: any) {
     default:
       break;
   }
-
+  console.log(paths)
   paths.forEach(path => revalidatePath(path))
   return doc
 }

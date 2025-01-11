@@ -35,7 +35,7 @@ type Access = {
 type Author = {
   __typename?: 'Author';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  id: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
   name: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
@@ -52,13 +52,14 @@ type Author_createdAt_operator = {
 };
 
 type Author_id_operator = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Int']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  less_than?: InputMaybe<Scalars['Int']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  not_equals?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 type Author_name_operator = {
@@ -363,7 +364,6 @@ enum FallbackLocaleInputType {
 type Home = {
   __typename?: 'Home';
   _pathname?: Maybe<Scalars['String']['output']>;
-  _slug?: Maybe<Scalars['String']['output']>;
   _status?: Maybe<Home__status>;
   content?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -387,7 +387,6 @@ type HomeimageArgs = {
 type HomeDocAccessFields = {
   __typename?: 'HomeDocAccessFields';
   _pathname?: Maybe<HomeDocAccessFields__pathname>;
-  _slug?: Maybe<HomeDocAccessFields__slug>;
   _status?: Maybe<HomeDocAccessFields__status>;
   content?: Maybe<HomeDocAccessFields_content>;
   createdAt?: Maybe<HomeDocAccessFields_createdAt>;
@@ -422,34 +421,6 @@ type HomeDocAccessFields__pathname_Read = {
 
 type HomeDocAccessFields__pathname_Update = {
   __typename?: 'HomeDocAccessFields__pathname_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type HomeDocAccessFields__slug = {
-  __typename?: 'HomeDocAccessFields__slug';
-  create?: Maybe<HomeDocAccessFields__slug_Create>;
-  delete?: Maybe<HomeDocAccessFields__slug_Delete>;
-  read?: Maybe<HomeDocAccessFields__slug_Read>;
-  update?: Maybe<HomeDocAccessFields__slug_Update>;
-};
-
-type HomeDocAccessFields__slug_Create = {
-  __typename?: 'HomeDocAccessFields__slug_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type HomeDocAccessFields__slug_Delete = {
-  __typename?: 'HomeDocAccessFields__slug_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type HomeDocAccessFields__slug_Read = {
-  __typename?: 'HomeDocAccessFields__slug_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type HomeDocAccessFields__slug_Update = {
-  __typename?: 'HomeDocAccessFields__slug_Update';
   permission: Scalars['Boolean']['output'];
 };
 
@@ -686,7 +657,6 @@ type HomeDocAccessFields_updatedAt_Update = {
 type HomeFields = {
   __typename?: 'HomeFields';
   _pathname?: Maybe<HomeFields__pathname>;
-  _slug?: Maybe<HomeFields__slug>;
   _status?: Maybe<HomeFields__status>;
   content?: Maybe<HomeFields_content>;
   createdAt?: Maybe<HomeFields_createdAt>;
@@ -721,34 +691,6 @@ type HomeFields__pathname_Read = {
 
 type HomeFields__pathname_Update = {
   __typename?: 'HomeFields__pathname_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type HomeFields__slug = {
-  __typename?: 'HomeFields__slug';
-  create?: Maybe<HomeFields__slug_Create>;
-  delete?: Maybe<HomeFields__slug_Delete>;
-  read?: Maybe<HomeFields__slug_Read>;
-  update?: Maybe<HomeFields__slug_Update>;
-};
-
-type HomeFields__slug_Create = {
-  __typename?: 'HomeFields__slug_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type HomeFields__slug_Delete = {
-  __typename?: 'HomeFields__slug_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type HomeFields__slug_Read = {
-  __typename?: 'HomeFields__slug_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type HomeFields__slug_Update = {
-  __typename?: 'HomeFields__slug_Update';
   permission: Scalars['Boolean']['output'];
 };
 
@@ -1021,7 +963,7 @@ type HomeUpdateDocAccess = {
 type HomeVersion = {
   __typename?: 'HomeVersion';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
   latest?: Maybe<Scalars['Boolean']['output']>;
   publishedLocale?: Maybe<HomeVersion_publishedLocale>;
   snapshot?: Maybe<Scalars['Boolean']['output']>;
@@ -1032,7 +974,6 @@ type HomeVersion = {
 type HomeVersion_Version = {
   __typename?: 'HomeVersion_Version';
   _pathname?: Maybe<Scalars['String']['output']>;
-  _slug?: Maybe<Scalars['String']['output']>;
   _status?: Maybe<HomeVersion_Version__status>;
   content?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -1112,7 +1053,7 @@ type Media = {
   focalX?: Maybe<Scalars['Float']['output']>;
   focalY?: Maybe<Scalars['Float']['output']>;
   height?: Maybe<Scalars['Float']['output']>;
-  id: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
   mimeType?: Maybe<Scalars['String']['output']>;
   sizes?: Maybe<Media_Sizes>;
   thumbnailURL?: Maybe<Scalars['String']['output']>;
@@ -3722,13 +3663,14 @@ type Media_height_operator = {
 };
 
 type Media_id_operator = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Int']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  less_than?: InputMaybe<Scalars['Int']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  not_equals?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 type Media_mimeType_operator = {
@@ -4191,73 +4133,73 @@ type MutationcreateUserArgs = {
 
 
 type MutationdeleteAuthorArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type MutationdeleteMediaArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type MutationdeleteNavArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type MutationdeletePayloadLockedDocumentArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type MutationdeletePayloadPreferenceArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type MutationdeletePostArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type MutationdeleteUserArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type MutationduplicateAuthorArgs = {
   data: mutationAuthorInput;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type MutationduplicateMediaArgs = {
   data: mutationMediaInput;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type MutationduplicateNavArgs = {
   data: mutationNavInput;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type MutationduplicatePayloadLockedDocumentArgs = {
   data: mutationPayloadLockedDocumentInput;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type MutationduplicatePayloadPreferenceArgs = {
   data: mutationPayloadPreferenceInput;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type MutationduplicatePostArgs = {
   data: mutationPostInput;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
@@ -4282,19 +4224,19 @@ type MutationresetPasswordUserArgs = {
 
 type MutationrestoreVersionHomeArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 type MutationrestoreVersionPostArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 type MutationrestoreVersionSettingArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -4307,7 +4249,7 @@ type MutationupdateAuthorArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: mutationAuthorUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -4323,7 +4265,7 @@ type MutationupdateMediaArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: mutationMediaUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -4332,7 +4274,7 @@ type MutationupdateNavArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: mutationNavUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -4341,7 +4283,7 @@ type MutationupdatePayloadLockedDocumentArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: mutationPayloadLockedDocumentUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -4350,7 +4292,7 @@ type MutationupdatePayloadPreferenceArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: mutationPayloadPreferenceUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -4359,7 +4301,7 @@ type MutationupdatePostArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: mutationPostUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -4375,7 +4317,7 @@ type MutationupdateUserArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: mutationUserUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -4390,7 +4332,7 @@ type Nav = {
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   href: Scalars['String']['output'];
   icon?: Maybe<Scalars['String']['output']>;
-  id: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
   label: Scalars['String']['output'];
   position?: Maybe<Scalars['Float']['output']>;
   slug: Scalars['String']['output'];
@@ -5024,13 +4966,14 @@ type Nav_icon_operator = {
 };
 
 type Nav_id_operator = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Int']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  less_than?: InputMaybe<Scalars['Int']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  not_equals?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 type Nav_label_operator = {
@@ -5149,7 +5092,7 @@ type PayloadLockedDocument = {
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   document?: Maybe<PayloadLockedDocument_Document_Relationship>;
   globalSlug?: Maybe<Scalars['String']['output']>;
-  id: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   user: PayloadLockedDocument_User_Relationship;
 };
@@ -5275,13 +5218,14 @@ type PayloadLockedDocument_globalSlug_operator = {
 };
 
 type PayloadLockedDocument_id_operator = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Int']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  less_than?: InputMaybe<Scalars['Int']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  not_equals?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 type PayloadLockedDocument_updatedAt_operator = {
@@ -5701,7 +5645,7 @@ type PayloadLockedDocumentsUpdateDocAccess = {
 type PayloadPreference = {
   __typename?: 'PayloadPreference';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  id: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
   key?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   user: PayloadPreference_User_Relationship;
@@ -5756,13 +5700,14 @@ type PayloadPreference_createdAt_operator = {
 };
 
 type PayloadPreference_id_operator = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Int']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  less_than?: InputMaybe<Scalars['Int']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  not_equals?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 type PayloadPreference_key_operator = {
@@ -6203,14 +6148,13 @@ type PayloadPreferencesUpdateDocAccess = {
 type Post = {
   __typename?: 'Post';
   _pathname?: Maybe<Scalars['String']['output']>;
-  _slug?: Maybe<Scalars['String']['output']>;
   _status?: Maybe<Post__status>;
   author?: Maybe<Author>;
   blocks?: Maybe<Array<Post_Blocks>>;
   content?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   date?: Maybe<Scalars['DateTime']['output']>;
-  id: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
   image?: Maybe<Media>;
   slug?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
@@ -6242,7 +6186,7 @@ enum PostUpdate__status_MutationInput {
 type PostVersion = {
   __typename?: 'PostVersion';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
   latest?: Maybe<Scalars['Boolean']['output']>;
   parent?: Maybe<Post>;
   publishedLocale?: Maybe<PostVersion_publishedLocale>;
@@ -6261,7 +6205,6 @@ type PostVersionparentArgs = {
 type PostVersion_Version = {
   __typename?: 'PostVersion_Version';
   _pathname?: Maybe<Scalars['String']['output']>;
-  _slug?: Maybe<Scalars['String']['output']>;
   _status?: Maybe<PostVersion_Version__status>;
   author?: Maybe<Author>;
   blocks?: Maybe<Array<PostVersion_Version_Blocks>>;
@@ -6306,17 +6249,6 @@ enum PostVersion_publishedLocale {
 type Post_Blocks = QuoteBlock;
 
 type Post__pathname_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type Post__slug_operator = {
   all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contains?: InputMaybe<Scalars['String']['input']>;
   equals?: InputMaybe<Scalars['String']['input']>;
@@ -6390,13 +6322,14 @@ type Post_date_operator = {
 };
 
 type Post_id_operator = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Int']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  less_than?: InputMaybe<Scalars['Int']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  not_equals?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 type Post_image_operator = {
@@ -6444,7 +6377,6 @@ type Post_where = {
   AND?: InputMaybe<Array<InputMaybe<Post_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<Post_where_or>>>;
   _pathname?: InputMaybe<Post__pathname_operator>;
-  _slug?: InputMaybe<Post__slug_operator>;
   _status?: InputMaybe<Post__status_operator>;
   author?: InputMaybe<Post_author_operator>;
   content?: InputMaybe<Post_content_operator>;
@@ -6461,7 +6393,6 @@ type Post_where_and = {
   AND?: InputMaybe<Array<InputMaybe<Post_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<Post_where_or>>>;
   _pathname?: InputMaybe<Post__pathname_operator>;
-  _slug?: InputMaybe<Post__slug_operator>;
   _status?: InputMaybe<Post__status_operator>;
   author?: InputMaybe<Post_author_operator>;
   content?: InputMaybe<Post_content_operator>;
@@ -6478,7 +6409,6 @@ type Post_where_or = {
   AND?: InputMaybe<Array<InputMaybe<Post_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<Post_where_or>>>;
   _pathname?: InputMaybe<Post__pathname_operator>;
-  _slug?: InputMaybe<Post__slug_operator>;
   _status?: InputMaybe<Post__status_operator>;
   author?: InputMaybe<Post_author_operator>;
   content?: InputMaybe<Post_content_operator>;
@@ -6533,7 +6463,6 @@ type PostsDeleteDocAccess = {
 type PostsDocAccessFields = {
   __typename?: 'PostsDocAccessFields';
   _pathname?: Maybe<PostsDocAccessFields__pathname>;
-  _slug?: Maybe<PostsDocAccessFields__slug>;
   _status?: Maybe<PostsDocAccessFields__status>;
   author?: Maybe<PostsDocAccessFields_author>;
   blocks?: Maybe<PostsDocAccessFields_blocks>;
@@ -6571,34 +6500,6 @@ type PostsDocAccessFields__pathname_Read = {
 
 type PostsDocAccessFields__pathname_Update = {
   __typename?: 'PostsDocAccessFields__pathname_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type PostsDocAccessFields__slug = {
-  __typename?: 'PostsDocAccessFields__slug';
-  create?: Maybe<PostsDocAccessFields__slug_Create>;
-  delete?: Maybe<PostsDocAccessFields__slug_Delete>;
-  read?: Maybe<PostsDocAccessFields__slug_Read>;
-  update?: Maybe<PostsDocAccessFields__slug_Update>;
-};
-
-type PostsDocAccessFields__slug_Create = {
-  __typename?: 'PostsDocAccessFields__slug_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type PostsDocAccessFields__slug_Delete = {
-  __typename?: 'PostsDocAccessFields__slug_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type PostsDocAccessFields__slug_Read = {
-  __typename?: 'PostsDocAccessFields__slug_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type PostsDocAccessFields__slug_Update = {
-  __typename?: 'PostsDocAccessFields__slug_Update';
   permission: Scalars['Boolean']['output'];
 };
 
@@ -6885,7 +6786,6 @@ type PostsDocAccessFields_updatedAt_Update = {
 type PostsFields = {
   __typename?: 'PostsFields';
   _pathname?: Maybe<PostsFields__pathname>;
-  _slug?: Maybe<PostsFields__slug>;
   _status?: Maybe<PostsFields__status>;
   author?: Maybe<PostsFields_author>;
   blocks?: Maybe<PostsFields_blocks>;
@@ -6923,34 +6823,6 @@ type PostsFields__pathname_Read = {
 
 type PostsFields__pathname_Update = {
   __typename?: 'PostsFields__pathname_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type PostsFields__slug = {
-  __typename?: 'PostsFields__slug';
-  create?: Maybe<PostsFields__slug_Create>;
-  delete?: Maybe<PostsFields__slug_Delete>;
-  read?: Maybe<PostsFields__slug_Read>;
-  update?: Maybe<PostsFields__slug_Update>;
-};
-
-type PostsFields__slug_Create = {
-  __typename?: 'PostsFields__slug_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type PostsFields__slug_Delete = {
-  __typename?: 'PostsFields__slug_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type PostsFields__slug_Read = {
-  __typename?: 'PostsFields__slug_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type PostsFields__slug_Update = {
-  __typename?: 'PostsFields__slug_Update';
   permission: Scalars['Boolean']['output'];
 };
 
@@ -7319,7 +7191,7 @@ type Query = {
 type QueryAuthorArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -7346,7 +7218,7 @@ type QueryHomeArgs = {
 type QueryMediaArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -7354,7 +7226,7 @@ type QueryMediaArgs = {
 type QueryNavArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -7374,7 +7246,7 @@ type QueryNavsArgs = {
 type QueryPayloadLockedDocumentArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -7394,7 +7266,7 @@ type QueryPayloadLockedDocumentsArgs = {
 type QueryPayloadPreferenceArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -7414,7 +7286,7 @@ type QueryPayloadPreferencesArgs = {
 type QueryPostArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -7441,7 +7313,7 @@ type QuerySettingArgs = {
 type QueryUserArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -7520,51 +7392,51 @@ type QuerycountallMediaArgs = {
 
 
 type QuerydocAccessAuthorArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type QuerydocAccessMediaArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type QuerydocAccessNavArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type QuerydocAccessPayloadLockedDocumentArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type QuerydocAccessPayloadPreferenceArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type QuerydocAccessPostArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type QuerydocAccessUserArgs = {
-  id: Scalars['Int']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 type QueryversionHomeArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  id?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   locale?: InputMaybe<LocaleInputType>;
 };
 
 
 type QueryversionPostArgs = {
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  id?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -7572,7 +7444,7 @@ type QueryversionPostArgs = {
 type QueryversionSettingArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  id?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -7628,7 +7500,7 @@ type Setting = {
 type SettingVersion = {
   __typename?: 'SettingVersion';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   version?: Maybe<SettingVersion_Version>;
 };
@@ -7863,7 +7735,7 @@ type User = {
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   email: Scalars['EmailAddress']['output'];
   hash?: Maybe<Scalars['String']['output']>;
-  id: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
   lockUntil?: Maybe<Scalars['DateTime']['output']>;
   loginAttempts?: Maybe<Scalars['Float']['output']>;
   resetPasswordExpiration?: Maybe<Scalars['DateTime']['output']>;
@@ -7900,13 +7772,14 @@ type User_email_operator = {
 };
 
 type User_id_operator = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Int']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  less_than?: InputMaybe<Scalars['Int']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  not_equals?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 enum User_role {
@@ -8404,18 +8277,17 @@ type mutationAuthorUpdateInput = {
 
 type mutationHomeInput = {
   _pathname?: InputMaybe<Scalars['String']['input']>;
-  _slug?: InputMaybe<Scalars['String']['input']>;
   _status?: InputMaybe<Home__status_MutationInput>;
   content?: InputMaybe<Scalars['JSON']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   header?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['Int']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
   other?: InputMaybe<mutationHome_OtherInput>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
 
 type mutationHome_OtherInput = {
-  posts?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  posts?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 type mutationMediaInput = {
@@ -8535,7 +8407,7 @@ type mutationMedia_Sizes_ThumbnailInput = {
 };
 
 type mutationNavInput = {
-  children?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  children?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   href: Scalars['String']['input'];
   icon?: InputMaybe<Scalars['String']['input']>;
@@ -8547,7 +8419,7 @@ type mutationNavInput = {
 };
 
 type mutationNavUpdateInput = {
-  children?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  children?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   href?: InputMaybe<Scalars['String']['input']>;
   icon?: InputMaybe<Scalars['String']['input']>;
@@ -8592,14 +8464,13 @@ type mutationPayloadPreferenceUpdateInput = {
 
 type mutationPostInput = {
   _pathname?: InputMaybe<Scalars['String']['input']>;
-  _slug?: InputMaybe<Scalars['String']['input']>;
   _status?: InputMaybe<Post__status_MutationInput>;
-  author?: InputMaybe<Scalars['Int']['input']>;
+  author?: InputMaybe<Scalars['String']['input']>;
   blocks?: InputMaybe<Scalars['JSON']['input']>;
   content?: InputMaybe<Scalars['JSON']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   date?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['Int']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
@@ -8607,14 +8478,13 @@ type mutationPostInput = {
 
 type mutationPostUpdateInput = {
   _pathname?: InputMaybe<Scalars['String']['input']>;
-  _slug?: InputMaybe<Scalars['String']['input']>;
   _status?: InputMaybe<PostUpdate__status_MutationInput>;
-  author?: InputMaybe<Scalars['Int']['input']>;
+  author?: InputMaybe<Scalars['String']['input']>;
   blocks?: InputMaybe<Scalars['JSON']['input']>;
   content?: InputMaybe<Scalars['JSON']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   date?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['Int']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
@@ -8827,13 +8697,14 @@ type versionsHome_createdAt_operator = {
 };
 
 type versionsHome_id_operator = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Int']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  less_than?: InputMaybe<Scalars['Int']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  not_equals?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 type versionsHome_latest_operator = {
@@ -8874,17 +8745,6 @@ type versionsHome_updatedAt_operator = {
 };
 
 type versionsHome_version___pathname_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type versionsHome_version___slug_operator = {
   all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contains?: InputMaybe<Scalars['String']['input']>;
   equals?: InputMaybe<Scalars['String']['input']>;
@@ -8976,7 +8836,6 @@ type versionsHome_where = {
   snapshot?: InputMaybe<versionsHome_snapshot_operator>;
   updatedAt?: InputMaybe<versionsHome_updatedAt_operator>;
   version___pathname?: InputMaybe<versionsHome_version___pathname_operator>;
-  version___slug?: InputMaybe<versionsHome_version___slug_operator>;
   version___status?: InputMaybe<versionsHome_version___status_operator>;
   version__content?: InputMaybe<versionsHome_version__content_operator>;
   version__createdAt?: InputMaybe<versionsHome_version__createdAt_operator>;
@@ -8996,7 +8855,6 @@ type versionsHome_where_and = {
   snapshot?: InputMaybe<versionsHome_snapshot_operator>;
   updatedAt?: InputMaybe<versionsHome_updatedAt_operator>;
   version___pathname?: InputMaybe<versionsHome_version___pathname_operator>;
-  version___slug?: InputMaybe<versionsHome_version___slug_operator>;
   version___status?: InputMaybe<versionsHome_version___status_operator>;
   version__content?: InputMaybe<versionsHome_version__content_operator>;
   version__createdAt?: InputMaybe<versionsHome_version__createdAt_operator>;
@@ -9016,7 +8874,6 @@ type versionsHome_where_or = {
   snapshot?: InputMaybe<versionsHome_snapshot_operator>;
   updatedAt?: InputMaybe<versionsHome_updatedAt_operator>;
   version___pathname?: InputMaybe<versionsHome_version___pathname_operator>;
-  version___slug?: InputMaybe<versionsHome_version___slug_operator>;
   version___status?: InputMaybe<versionsHome_version___status_operator>;
   version__content?: InputMaybe<versionsHome_version__content_operator>;
   version__createdAt?: InputMaybe<versionsHome_version__createdAt_operator>;
@@ -9038,13 +8895,14 @@ type versionsPost_createdAt_operator = {
 };
 
 type versionsPost_id_operator = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Int']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  less_than?: InputMaybe<Scalars['Int']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  not_equals?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 type versionsPost_latest_operator = {
@@ -9094,17 +8952,6 @@ type versionsPost_updatedAt_operator = {
 };
 
 type versionsPost_version___pathname_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type versionsPost_version___slug_operator = {
   all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contains?: InputMaybe<Scalars['String']['input']>;
   equals?: InputMaybe<Scalars['String']['input']>;
@@ -9219,7 +9066,6 @@ type versionsPost_where = {
   snapshot?: InputMaybe<versionsPost_snapshot_operator>;
   updatedAt?: InputMaybe<versionsPost_updatedAt_operator>;
   version___pathname?: InputMaybe<versionsPost_version___pathname_operator>;
-  version___slug?: InputMaybe<versionsPost_version___slug_operator>;
   version___status?: InputMaybe<versionsPost_version___status_operator>;
   version__author?: InputMaybe<versionsPost_version__author_operator>;
   version__content?: InputMaybe<versionsPost_version__content_operator>;
@@ -9242,7 +9088,6 @@ type versionsPost_where_and = {
   snapshot?: InputMaybe<versionsPost_snapshot_operator>;
   updatedAt?: InputMaybe<versionsPost_updatedAt_operator>;
   version___pathname?: InputMaybe<versionsPost_version___pathname_operator>;
-  version___slug?: InputMaybe<versionsPost_version___slug_operator>;
   version___status?: InputMaybe<versionsPost_version___status_operator>;
   version__author?: InputMaybe<versionsPost_version__author_operator>;
   version__content?: InputMaybe<versionsPost_version__content_operator>;
@@ -9265,7 +9110,6 @@ type versionsPost_where_or = {
   snapshot?: InputMaybe<versionsPost_snapshot_operator>;
   updatedAt?: InputMaybe<versionsPost_updatedAt_operator>;
   version___pathname?: InputMaybe<versionsPost_version___pathname_operator>;
-  version___slug?: InputMaybe<versionsPost_version___slug_operator>;
   version___status?: InputMaybe<versionsPost_version___status_operator>;
   version__author?: InputMaybe<versionsPost_version__author_operator>;
   version__content?: InputMaybe<versionsPost_version__content_operator>;
@@ -9319,13 +9163,14 @@ type versionsSetting_createdAt_operator = {
 };
 
 type versionsSetting_id_operator = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Int']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  less_than?: InputMaybe<Scalars['Int']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Int']['input']>;
-  not_equals?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 type versionsSetting_updatedAt_operator = {
@@ -9400,7 +9245,7 @@ type versionsSetting_where_or = {
   version__updatedAt?: InputMaybe<versionsSetting_version__updatedAt_operator>;
 };
 
-type MediaFragment = { __typename?: 'Media', id: number, url?: string | null, alt?: string | null, width?: number | null, height?: number | null };
+type MediaFragment = { __typename?: 'Media', id: string, url?: string | null, alt?: string | null, width?: number | null, height?: number | null };
 
 type HomeQueryVariables = Exact<{
   draft?: InputMaybe<Scalars['Boolean']['input']>;
@@ -9408,7 +9253,7 @@ type HomeQueryVariables = Exact<{
 }>;
 
 
-type HomeQuery = { __typename?: 'Query', Home?: { __typename?: 'Home', _status?: Home__status | null, header?: string | null, content?: any | null, other?: { __typename?: 'Home_Other', posts?: Array<{ __typename?: 'Post', id: number, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: number, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null }> | null } | null, image?: { __typename?: 'Media', id: number, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null } | null };
+type HomeQuery = { __typename?: 'Query', Home?: { __typename?: 'Home', _status?: Home__status | null, header?: string | null, content?: any | null, other?: { __typename?: 'Home_Other', posts?: Array<{ __typename?: 'Post', id: string, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: string, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null }> | null } | null, image?: { __typename?: 'Media', id: string, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null } | null };
 
 type PostQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -9417,7 +9262,7 @@ type PostQueryVariables = Exact<{
 }>;
 
 
-type PostQuery = { __typename?: 'Query', Posts?: { __typename?: 'Posts', docs?: Array<{ __typename?: 'Post', id: number, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: number, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null } | null> | null } | null };
+type PostQuery = { __typename?: 'Query', Posts?: { __typename?: 'Posts', docs?: Array<{ __typename?: 'Post', id: string, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: string, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null } | null> | null } | null };
 
 type AllPostsQueryVariables = Exact<{
   draft?: InputMaybe<Scalars['Boolean']['input']>;
@@ -9425,6 +9270,6 @@ type AllPostsQueryVariables = Exact<{
 }>;
 
 
-type AllPostsQuery = { __typename?: 'Query', Posts?: { __typename?: 'Posts', docs?: Array<{ __typename?: 'Post', id: number, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: number, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null } | null> | null } | null };
+type AllPostsQuery = { __typename?: 'Query', Posts?: { __typename?: 'Posts', docs?: Array<{ __typename?: 'Post', id: string, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: string, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null } | null> | null } | null };
 
-type PostFragment = { __typename?: 'Post', id: number, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: number, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null };
+type PostFragment = { __typename?: 'Post', id: string, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: string, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null };

@@ -36,9 +36,11 @@ const transform = <T extends CollectionConfig | GlobalConfig>(c: T, { endpoint, 
   c.admin.livePreview = {
     ...c.admin.livePreview,
     url: async ({ data: doc, locale }) => {
-      console.log(doc._pathname)
       //let path = doc._pathname ?? (await translate(doc, c.slug, locale.code))?.[0] ?? '/_'
+
       let path = (await translate(doc, c.slug, locale.code))?.[0] ?? '/_'
+
+      console.log('livePreview', path)
 
       if (doc._status === 'draft')
         path = `${endpoint}?secret=${secret}&slug=${path}&collection=${c.slug}&global=${c.slug}`

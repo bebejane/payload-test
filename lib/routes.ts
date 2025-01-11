@@ -1,3 +1,4 @@
+
 export async function translate(doc: any, slug: string, locale: string) {
   let path = null
   switch (slug) {

@@ -32,7 +32,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: number;
+    defaultIDType: string;
   };
   globals: {
     home: Home;
@@ -76,7 +76,7 @@ export interface UserAuthOperations {
  * via the `definition` "posts".
  */
 export interface Post {
-  id: number;
+  id: string;
   title: string;
   content: {
     root: {
@@ -93,13 +93,12 @@ export interface Post {
     };
     [k: string]: unknown;
   };
-  image?: (number | null) | Media;
-  author?: (number | null) | Author;
+  image?: (string | null) | Media;
+  author?: (string | null) | Author;
   slug?: string | null;
   date?: string | null;
   blocks?: QuoteBlock[] | null;
   _pathname?: string | null;
-  _slug?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -111,7 +110,7 @@ export interface Post {
  * via the `definition` "media".
  */
 export interface Media {
-  id: number;
+  id: string;
   alt?: string | null;
   cloudinary?: {
     public_id?: string | null;
@@ -165,7 +164,7 @@ export interface Media {
  * via the `definition` "authors".
  */
 export interface Author {
-  id: number;
+  id: string;
   name: string;
   updatedAt: string;
   createdAt: string;
@@ -188,7 +187,7 @@ export interface QuoteBlock {
  * via the `definition` "users".
  */
 export interface User {
-  id: number;
+  id: string;
   role: 'admin' | 'user';
   updatedAt: string;
   createdAt: string;
@@ -208,14 +207,14 @@ export interface User {
  * via the `definition` "nav".
  */
 export interface Nav {
-  id: number;
+  id: string;
   label: string;
   slug: string;
   href: string;
   type: string;
   icon?: string | null;
   position?: number | null;
-  children?: (number | Nav)[] | null;
+  children?: (string | Nav)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -224,32 +223,32 @@ export interface Nav {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: number;
+  id: string;
   document?:
     | ({
         relationTo: 'posts';
-        value: number | Post;
+        value: string | Post;
       } | null)
     | ({
         relationTo: 'authors';
-        value: number | Author;
+        value: string | Author;
       } | null)
     | ({
         relationTo: 'media';
-        value: number | Media;
+        value: string | Media;
       } | null)
     | ({
         relationTo: 'users';
-        value: number | User;
+        value: string | User;
       } | null)
     | ({
         relationTo: 'nav';
-        value: number | Nav;
+        value: string | Nav;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -259,10 +258,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: number;
+  id: string;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   key?: string | null;
   value?:
@@ -282,7 +281,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: number;
+  id: string;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -305,7 +304,6 @@ export interface PostsSelect<T extends boolean = true> {
         quoteBlock?: T | QuoteBlockSelect<T>;
       };
   _pathname?: T;
-  _slug?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -460,9 +458,9 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  * via the `definition` "home".
  */
 export interface Home {
-  id: number;
+  id: string;
   header: string;
-  image?: (number | null) | Media;
+  image?: (string | null) | Media;
   content: {
     root: {
       type: string;
@@ -479,10 +477,9 @@ export interface Home {
     [k: string]: unknown;
   };
   other?: {
-    posts?: (number | Post)[] | null;
+    posts?: (string | Post)[] | null;
   };
   _pathname?: string | null;
-  _slug?: string | null;
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -494,7 +491,7 @@ export interface Home {
  * via the `definition` "settings".
  */
 export interface Setting {
-  id: number;
+  id: string;
   setting1?: boolean | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -513,7 +510,6 @@ export interface HomeSelect<T extends boolean = true> {
         posts?: T;
       };
   _pathname?: T;
-  _slug?: T;
   _status?: T;
   updatedAt?: T;
   createdAt?: T;
