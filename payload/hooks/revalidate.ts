@@ -22,6 +22,5 @@ export default async function revalidateHook(data: any) {
   }
 
   paths.forEach(path => revalidatePath(path))
-
   return doc
 }

@@ -9,6 +9,7 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import { en } from '@payloadcms/translations/languages/en'
 import { sv } from '@payloadcms/translations/languages/sv'
+import { translate } from '@/lib/routes'
 
 import path from 'path'
 import sharp from 'sharp'
@@ -153,22 +154,7 @@ export default buildConfig({
       endpoint: `/api/draft`,
       slugs: ['home', 'posts'],
       autosave: false,
-      translate: async (doc, slug, locale) => {
-        let path = null
-        switch (slug) {
-          case 'home':
-            path = `/`;
-            break;
-          case 'posts':
-            if (doc.slug)
-              path = `/posts/${doc.slug}`
-            break
-          default:
-            path = null
-            break;
-        }
-        return path ? [`/${locale}${path === '/' ? '' : path}`] : null
-      }
+      translate: translate
     })
     /*
     s3Storage({

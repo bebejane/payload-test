@@ -99,6 +99,7 @@ export interface Post {
   date?: string | null;
   blocks?: QuoteBlock[] | null;
   _pathname?: string | null;
+  _slug?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -304,6 +305,7 @@ export interface PostsSelect<T extends boolean = true> {
         quoteBlock?: T | QuoteBlockSelect<T>;
       };
   _pathname?: T;
+  _slug?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -480,6 +482,7 @@ export interface Home {
     posts?: (number | Post)[] | null;
   };
   _pathname?: string | null;
+  _slug?: string | null;
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -510,6 +513,7 @@ export interface HomeSelect<T extends boolean = true> {
         posts?: T;
       };
   _pathname?: T;
+  _slug?: T;
   _status?: T;
   updatedAt?: T;
   createdAt?: T;

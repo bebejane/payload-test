@@ -363,6 +363,7 @@ enum FallbackLocaleInputType {
 type Home = {
   __typename?: 'Home';
   _pathname?: Maybe<Scalars['String']['output']>;
+  _slug?: Maybe<Scalars['String']['output']>;
   _status?: Maybe<Home__status>;
   content?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -386,6 +387,7 @@ type HomeimageArgs = {
 type HomeDocAccessFields = {
   __typename?: 'HomeDocAccessFields';
   _pathname?: Maybe<HomeDocAccessFields__pathname>;
+  _slug?: Maybe<HomeDocAccessFields__slug>;
   _status?: Maybe<HomeDocAccessFields__status>;
   content?: Maybe<HomeDocAccessFields_content>;
   createdAt?: Maybe<HomeDocAccessFields_createdAt>;
@@ -420,6 +422,34 @@ type HomeDocAccessFields__pathname_Read = {
 
 type HomeDocAccessFields__pathname_Update = {
   __typename?: 'HomeDocAccessFields__pathname_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeDocAccessFields__slug = {
+  __typename?: 'HomeDocAccessFields__slug';
+  create?: Maybe<HomeDocAccessFields__slug_Create>;
+  delete?: Maybe<HomeDocAccessFields__slug_Delete>;
+  read?: Maybe<HomeDocAccessFields__slug_Read>;
+  update?: Maybe<HomeDocAccessFields__slug_Update>;
+};
+
+type HomeDocAccessFields__slug_Create = {
+  __typename?: 'HomeDocAccessFields__slug_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeDocAccessFields__slug_Delete = {
+  __typename?: 'HomeDocAccessFields__slug_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeDocAccessFields__slug_Read = {
+  __typename?: 'HomeDocAccessFields__slug_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeDocAccessFields__slug_Update = {
+  __typename?: 'HomeDocAccessFields__slug_Update';
   permission: Scalars['Boolean']['output'];
 };
 
@@ -656,6 +686,7 @@ type HomeDocAccessFields_updatedAt_Update = {
 type HomeFields = {
   __typename?: 'HomeFields';
   _pathname?: Maybe<HomeFields__pathname>;
+  _slug?: Maybe<HomeFields__slug>;
   _status?: Maybe<HomeFields__status>;
   content?: Maybe<HomeFields_content>;
   createdAt?: Maybe<HomeFields_createdAt>;
@@ -690,6 +721,34 @@ type HomeFields__pathname_Read = {
 
 type HomeFields__pathname_Update = {
   __typename?: 'HomeFields__pathname_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeFields__slug = {
+  __typename?: 'HomeFields__slug';
+  create?: Maybe<HomeFields__slug_Create>;
+  delete?: Maybe<HomeFields__slug_Delete>;
+  read?: Maybe<HomeFields__slug_Read>;
+  update?: Maybe<HomeFields__slug_Update>;
+};
+
+type HomeFields__slug_Create = {
+  __typename?: 'HomeFields__slug_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeFields__slug_Delete = {
+  __typename?: 'HomeFields__slug_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeFields__slug_Read = {
+  __typename?: 'HomeFields__slug_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type HomeFields__slug_Update = {
+  __typename?: 'HomeFields__slug_Update';
   permission: Scalars['Boolean']['output'];
 };
 
@@ -973,6 +1032,7 @@ type HomeVersion = {
 type HomeVersion_Version = {
   __typename?: 'HomeVersion_Version';
   _pathname?: Maybe<Scalars['String']['output']>;
+  _slug?: Maybe<Scalars['String']['output']>;
   _status?: Maybe<HomeVersion_Version__status>;
   content?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -6143,6 +6203,7 @@ type PayloadPreferencesUpdateDocAccess = {
 type Post = {
   __typename?: 'Post';
   _pathname?: Maybe<Scalars['String']['output']>;
+  _slug?: Maybe<Scalars['String']['output']>;
   _status?: Maybe<Post__status>;
   author?: Maybe<Author>;
   blocks?: Maybe<Array<Post_Blocks>>;
@@ -6200,6 +6261,7 @@ type PostVersionparentArgs = {
 type PostVersion_Version = {
   __typename?: 'PostVersion_Version';
   _pathname?: Maybe<Scalars['String']['output']>;
+  _slug?: Maybe<Scalars['String']['output']>;
   _status?: Maybe<PostVersion_Version__status>;
   author?: Maybe<Author>;
   blocks?: Maybe<Array<PostVersion_Version_Blocks>>;
@@ -6244,6 +6306,17 @@ enum PostVersion_publishedLocale {
 type Post_Blocks = QuoteBlock;
 
 type Post__pathname_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+type Post__slug_operator = {
   all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contains?: InputMaybe<Scalars['String']['input']>;
   equals?: InputMaybe<Scalars['String']['input']>;
@@ -6371,6 +6444,7 @@ type Post_where = {
   AND?: InputMaybe<Array<InputMaybe<Post_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<Post_where_or>>>;
   _pathname?: InputMaybe<Post__pathname_operator>;
+  _slug?: InputMaybe<Post__slug_operator>;
   _status?: InputMaybe<Post__status_operator>;
   author?: InputMaybe<Post_author_operator>;
   content?: InputMaybe<Post_content_operator>;
@@ -6387,6 +6461,7 @@ type Post_where_and = {
   AND?: InputMaybe<Array<InputMaybe<Post_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<Post_where_or>>>;
   _pathname?: InputMaybe<Post__pathname_operator>;
+  _slug?: InputMaybe<Post__slug_operator>;
   _status?: InputMaybe<Post__status_operator>;
   author?: InputMaybe<Post_author_operator>;
   content?: InputMaybe<Post_content_operator>;
@@ -6403,6 +6478,7 @@ type Post_where_or = {
   AND?: InputMaybe<Array<InputMaybe<Post_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<Post_where_or>>>;
   _pathname?: InputMaybe<Post__pathname_operator>;
+  _slug?: InputMaybe<Post__slug_operator>;
   _status?: InputMaybe<Post__status_operator>;
   author?: InputMaybe<Post_author_operator>;
   content?: InputMaybe<Post_content_operator>;
@@ -6457,6 +6533,7 @@ type PostsDeleteDocAccess = {
 type PostsDocAccessFields = {
   __typename?: 'PostsDocAccessFields';
   _pathname?: Maybe<PostsDocAccessFields__pathname>;
+  _slug?: Maybe<PostsDocAccessFields__slug>;
   _status?: Maybe<PostsDocAccessFields__status>;
   author?: Maybe<PostsDocAccessFields_author>;
   blocks?: Maybe<PostsDocAccessFields_blocks>;
@@ -6494,6 +6571,34 @@ type PostsDocAccessFields__pathname_Read = {
 
 type PostsDocAccessFields__pathname_Update = {
   __typename?: 'PostsDocAccessFields__pathname_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsDocAccessFields__slug = {
+  __typename?: 'PostsDocAccessFields__slug';
+  create?: Maybe<PostsDocAccessFields__slug_Create>;
+  delete?: Maybe<PostsDocAccessFields__slug_Delete>;
+  read?: Maybe<PostsDocAccessFields__slug_Read>;
+  update?: Maybe<PostsDocAccessFields__slug_Update>;
+};
+
+type PostsDocAccessFields__slug_Create = {
+  __typename?: 'PostsDocAccessFields__slug_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsDocAccessFields__slug_Delete = {
+  __typename?: 'PostsDocAccessFields__slug_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsDocAccessFields__slug_Read = {
+  __typename?: 'PostsDocAccessFields__slug_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsDocAccessFields__slug_Update = {
+  __typename?: 'PostsDocAccessFields__slug_Update';
   permission: Scalars['Boolean']['output'];
 };
 
@@ -6780,6 +6885,7 @@ type PostsDocAccessFields_updatedAt_Update = {
 type PostsFields = {
   __typename?: 'PostsFields';
   _pathname?: Maybe<PostsFields__pathname>;
+  _slug?: Maybe<PostsFields__slug>;
   _status?: Maybe<PostsFields__status>;
   author?: Maybe<PostsFields_author>;
   blocks?: Maybe<PostsFields_blocks>;
@@ -6817,6 +6923,34 @@ type PostsFields__pathname_Read = {
 
 type PostsFields__pathname_Update = {
   __typename?: 'PostsFields__pathname_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsFields__slug = {
+  __typename?: 'PostsFields__slug';
+  create?: Maybe<PostsFields__slug_Create>;
+  delete?: Maybe<PostsFields__slug_Delete>;
+  read?: Maybe<PostsFields__slug_Read>;
+  update?: Maybe<PostsFields__slug_Update>;
+};
+
+type PostsFields__slug_Create = {
+  __typename?: 'PostsFields__slug_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsFields__slug_Delete = {
+  __typename?: 'PostsFields__slug_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsFields__slug_Read = {
+  __typename?: 'PostsFields__slug_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsFields__slug_Update = {
+  __typename?: 'PostsFields__slug_Update';
   permission: Scalars['Boolean']['output'];
 };
 
@@ -8270,6 +8404,7 @@ type mutationAuthorUpdateInput = {
 
 type mutationHomeInput = {
   _pathname?: InputMaybe<Scalars['String']['input']>;
+  _slug?: InputMaybe<Scalars['String']['input']>;
   _status?: InputMaybe<Home__status_MutationInput>;
   content?: InputMaybe<Scalars['JSON']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
@@ -8457,6 +8592,7 @@ type mutationPayloadPreferenceUpdateInput = {
 
 type mutationPostInput = {
   _pathname?: InputMaybe<Scalars['String']['input']>;
+  _slug?: InputMaybe<Scalars['String']['input']>;
   _status?: InputMaybe<Post__status_MutationInput>;
   author?: InputMaybe<Scalars['Int']['input']>;
   blocks?: InputMaybe<Scalars['JSON']['input']>;
@@ -8471,6 +8607,7 @@ type mutationPostInput = {
 
 type mutationPostUpdateInput = {
   _pathname?: InputMaybe<Scalars['String']['input']>;
+  _slug?: InputMaybe<Scalars['String']['input']>;
   _status?: InputMaybe<PostUpdate__status_MutationInput>;
   author?: InputMaybe<Scalars['Int']['input']>;
   blocks?: InputMaybe<Scalars['JSON']['input']>;
@@ -8747,6 +8884,17 @@ type versionsHome_version___pathname_operator = {
   not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+type versionsHome_version___slug_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 enum versionsHome_version___status_Input {
   draft = 'draft',
   published = 'published'
@@ -8828,6 +8976,7 @@ type versionsHome_where = {
   snapshot?: InputMaybe<versionsHome_snapshot_operator>;
   updatedAt?: InputMaybe<versionsHome_updatedAt_operator>;
   version___pathname?: InputMaybe<versionsHome_version___pathname_operator>;
+  version___slug?: InputMaybe<versionsHome_version___slug_operator>;
   version___status?: InputMaybe<versionsHome_version___status_operator>;
   version__content?: InputMaybe<versionsHome_version__content_operator>;
   version__createdAt?: InputMaybe<versionsHome_version__createdAt_operator>;
@@ -8847,6 +8996,7 @@ type versionsHome_where_and = {
   snapshot?: InputMaybe<versionsHome_snapshot_operator>;
   updatedAt?: InputMaybe<versionsHome_updatedAt_operator>;
   version___pathname?: InputMaybe<versionsHome_version___pathname_operator>;
+  version___slug?: InputMaybe<versionsHome_version___slug_operator>;
   version___status?: InputMaybe<versionsHome_version___status_operator>;
   version__content?: InputMaybe<versionsHome_version__content_operator>;
   version__createdAt?: InputMaybe<versionsHome_version__createdAt_operator>;
@@ -8866,6 +9016,7 @@ type versionsHome_where_or = {
   snapshot?: InputMaybe<versionsHome_snapshot_operator>;
   updatedAt?: InputMaybe<versionsHome_updatedAt_operator>;
   version___pathname?: InputMaybe<versionsHome_version___pathname_operator>;
+  version___slug?: InputMaybe<versionsHome_version___slug_operator>;
   version___status?: InputMaybe<versionsHome_version___status_operator>;
   version__content?: InputMaybe<versionsHome_version__content_operator>;
   version__createdAt?: InputMaybe<versionsHome_version__createdAt_operator>;
@@ -8943,6 +9094,17 @@ type versionsPost_updatedAt_operator = {
 };
 
 type versionsPost_version___pathname_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+type versionsPost_version___slug_operator = {
   all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contains?: InputMaybe<Scalars['String']['input']>;
   equals?: InputMaybe<Scalars['String']['input']>;
@@ -9057,6 +9219,7 @@ type versionsPost_where = {
   snapshot?: InputMaybe<versionsPost_snapshot_operator>;
   updatedAt?: InputMaybe<versionsPost_updatedAt_operator>;
   version___pathname?: InputMaybe<versionsPost_version___pathname_operator>;
+  version___slug?: InputMaybe<versionsPost_version___slug_operator>;
   version___status?: InputMaybe<versionsPost_version___status_operator>;
   version__author?: InputMaybe<versionsPost_version__author_operator>;
   version__content?: InputMaybe<versionsPost_version__content_operator>;
@@ -9079,6 +9242,7 @@ type versionsPost_where_and = {
   snapshot?: InputMaybe<versionsPost_snapshot_operator>;
   updatedAt?: InputMaybe<versionsPost_updatedAt_operator>;
   version___pathname?: InputMaybe<versionsPost_version___pathname_operator>;
+  version___slug?: InputMaybe<versionsPost_version___slug_operator>;
   version___status?: InputMaybe<versionsPost_version___status_operator>;
   version__author?: InputMaybe<versionsPost_version__author_operator>;
   version__content?: InputMaybe<versionsPost_version__content_operator>;
@@ -9101,6 +9265,7 @@ type versionsPost_where_or = {
   snapshot?: InputMaybe<versionsPost_snapshot_operator>;
   updatedAt?: InputMaybe<versionsPost_updatedAt_operator>;
   version___pathname?: InputMaybe<versionsPost_version___pathname_operator>;
+  version___slug?: InputMaybe<versionsPost_version___slug_operator>;
   version___status?: InputMaybe<versionsPost_version___status_operator>;
   version__author?: InputMaybe<versionsPost_version__author_operator>;
   version__content?: InputMaybe<versionsPost_version__content_operator>;

@@ -2,7 +2,7 @@
 
 import type React from 'react'
 
-import { isDocumentEvent, ready } from '@payloadcms/live-preview'
+import { isDocumentEvent, isLivePreviewEvent, ready } from '@payloadcms/live-preview'
 import { useCallback, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 
@@ -19,13 +19,24 @@ export const LivePreview: React.FC<{
   const hasSentReadyMessage = useRef<boolean>(false)
 
   const onMessage = useCallback(
-    (event: MessageEvent) => {
-      console.log(event.data?.data?._pathname)
-      if (isDocumentEvent(event, serverURL)) {
-        router.refresh()
+    async (event: MessageEvent) => {
+      const {
+        data,
+        data: { type },
+      } = event
+
+      if (isLivePreviewEvent(event, serverURL)) {
+        console.log('live preview event')
+        //router.refresh()
+      } else if (isDocumentEvent(event, serverURL)) {
+        console.log('document event')
+        const pathname = event.data?.data?._pathname
+        console.log(pathname)
+        if (pathname) router.replace(pathname)
+        else router.refresh()
       }
     },
-    [router, serverURL],
+    [router],
   )
 
   useEffect(() => {

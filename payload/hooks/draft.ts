@@ -8,5 +8,6 @@ export default async function draftHook(data: any) {
   } else if (doc?._status === 'draft') {
     (await draftMode()).enable()
   }
+  console.log('draft mode:', doc?._status === 'draft')
   return doc
 }

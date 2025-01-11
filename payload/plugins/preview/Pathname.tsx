@@ -3,11 +3,11 @@
 import { TextInput, useField } from '@payloadcms/ui'
 
 type Props = {
-  field: any
+  path: string
 }
 
-export default function Pathname({ field }: Props) {
-  const { value = '', setValue } = useField<string>({ path: field.name })
+export default function Pathname({ path }: Props) {
+  const { value = '', setValue } = useField<string>({ path })
 
   return (
     <div style={{ marginBottom: '1rem' }}>

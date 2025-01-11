@@ -5,6 +5,7 @@ import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { notFound } from 'next/navigation'
 import Navbar from '../components/Navbar'
 import ProgressProvider from '@/lib/progress'
+import { LivePreview } from '@/payload/plugins/preview'
 
 export type RootLayoutProps = {
   children: React.ReactNode
@@ -31,6 +32,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
         <main>
           <Body locale={locale}>{children}</Body>
         </main>
+        <LivePreview />
       </body>
     </html>
   )

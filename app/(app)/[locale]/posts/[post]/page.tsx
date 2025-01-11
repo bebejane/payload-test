@@ -6,7 +6,6 @@ import RichText from '@/lib/rich-text'
 import Image from 'next/image'
 import { setRequestLocale } from 'next-intl/server'
 import { PostDocument } from '@/graphql'
-import { LivePreview } from '@/payload/plugins/preview'
 
 export const metadata: Metadata = {
   title: 'Payload test',
@@ -46,7 +45,6 @@ export default async function Post({ params }: Props) {
           <ul>{post.blocks?.map((block, index) => <li key={index}>{block.quoteHeader}</li>)}</ul>
         </section>
       </article>
-      <LivePreview />
     </>
   )
 }
