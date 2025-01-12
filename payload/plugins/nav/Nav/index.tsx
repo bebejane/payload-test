@@ -43,6 +43,7 @@ const Navigation = async (props: { clientProps: ServerProps }) => {
     })
     .map((item, i) => ({ ...item, position: i })) as NavItemType[]
 
+  //return <NavTree items={items} />
   return <Nav items={items} />
 }
 

@@ -11,7 +11,7 @@ type Props = {
 }
 export const NavTree = ({ items: _items }: Props) => {
   const [items, setItems] = useState(_items)
-  console.log(items)
+
   return (
     <div className={cn('nav__scroll', s.nav)}>
       <nav className="nav__wrap">
@@ -28,7 +28,14 @@ type TreeItemData = any
 const MinimalTreeItemComponent = React.forwardRef<HTMLDivElement, TreeItemComponentProps<TreeItemData>>(
   (props, ref) => (
     /* you could also use FolderTreeItemWrapper if you want to show vertical lines.  */
-    <SimpleTreeItemWrapper {...props} contentClassName={s.item} ref={ref} showDragHandle={false} indentationWidth={5}>
+    <SimpleTreeItemWrapper
+      {...props}
+      hideCollapseButton={true}
+      contentClassName={s.item}
+      ref={ref}
+      showDragHandle={false}
+      indentationWidth={5}
+    >
       <Link href={props.item.href}>{props.item.label}</Link>
     </SimpleTreeItemWrapper>
   ),

@@ -7,7 +7,9 @@ export interface PluginOptions {
 const i18nField: Field = {
   name: 'i18n',
   type: 'text',
+
   admin: {
+    hidden: true,
     components: {
       Field: `@/payload/plugins/i18n/LocaleSwitcher`,
     },

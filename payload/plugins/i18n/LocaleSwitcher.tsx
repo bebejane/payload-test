@@ -3,23 +3,27 @@
 import s from './LocaleSwitcher.module.scss'
 import cn from 'classnames'
 import React, { useEffect, useState } from 'react'
-import { useSearchParams, usePathname, useRouter } from 'next/navigation'
-import { ModalContainer, ModalContext, ModalProvider } from '@faceless-ui/modal'
-import { useConfig } from '@payloadcms/ui'
-import { TabComponent } from '@payloadcms/ui'
+import { useSearchParams, usePathname } from 'next/navigation'
+import { useConfig, useForm, useDocumentInfo } from '@payloadcms/ui'
 import Link from 'next/link'
+import { Field } from 'payload'
 
 type Props = {}
 
 export default function LocaleSwitcher(props: Props) {
-  //console.log(props.loclization)
   const { config } = useConfig()
-  const router = useRouter()
   const pathname = usePathname()
-  //const params = use()
   const params = useSearchParams()
+  const doc = useDocumentInfo()
+  const slug = doc.collectionSlug ?? doc.globalSlug
+  const collection = config.collections.find((c) => c.slug === slug)
+  const global = config.globals.find((c) => c.slug === slug)
 
-  if (!config.localization) return null
+  if (
+    !config.localization ||
+    (collection?.fields.find((f) => f.localized) === undefined && global?.fields.find((f) => f.localized) === undefined)
+  )
+    return null
 
   const locales = config.localization.locales
   const currentLocale = params.get('locale') ?? config.localization.defaultLocale
