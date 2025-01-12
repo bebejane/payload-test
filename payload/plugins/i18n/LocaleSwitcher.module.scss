@@ -1,0 +1,29 @@
+.locales {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: row;
+  border-bottom: 1px solid var(--theme-elevation-150);
+  margin-bottom: 1rem;
+  background-color: var(--foreground);
+
+  li {
+    margin-right: 10;
+    padding-bottom: 10;
+
+    a {
+      text-decoration: none;
+    }
+
+    &.selected {
+      font-weight: bold;
+
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}

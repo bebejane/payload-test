@@ -70,13 +70,14 @@ export interface UserAuthOperations {
   };
 }
 /**
- * Posts
+ * Post
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts".
  */
 export interface Post {
   id: string;
+  i18n?: string | null;
   title: string;
   content: {
     root: {
@@ -111,6 +112,7 @@ export interface Post {
  */
 export interface Media {
   id: string;
+  i18n?: string | null;
   alt?: string | null;
   cloudinary?: {
     public_id?: string | null;
@@ -165,6 +167,7 @@ export interface Media {
  */
 export interface Author {
   id: string;
+  i18n?: string | null;
   name: string;
   updatedAt: string;
   createdAt: string;
@@ -188,6 +191,7 @@ export interface QuoteBlock {
  */
 export interface User {
   id: string;
+  i18n?: string | null;
   role: 'admin' | 'user';
   updatedAt: string;
   createdAt: string;
@@ -208,6 +212,7 @@ export interface User {
  */
 export interface Nav {
   id: string;
+  i18n?: string | null;
   label: string;
   slug: string;
   href: string;
@@ -292,6 +297,7 @@ export interface PayloadMigration {
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
+  i18n?: T;
   title?: T;
   content?: T;
   image?: T;
@@ -323,6 +329,7 @@ export interface QuoteBlockSelect<T extends boolean = true> {
  * via the `definition` "authors_select".
  */
 export interface AuthorsSelect<T extends boolean = true> {
+  i18n?: T;
   name?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -332,6 +339,7 @@ export interface AuthorsSelect<T extends boolean = true> {
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
+  i18n?: T;
   alt?: T;
   cloudinary?:
     | T
@@ -393,6 +401,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  i18n?: T;
   role?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -409,6 +418,7 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "nav_select".
  */
 export interface NavSelect<T extends boolean = true> {
+  i18n?: T;
   label?: T;
   slug?: T;
   href?: T;
@@ -459,6 +469,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Home {
   id: string;
+  i18n?: string | null;
   header: string;
   image?: (string | null) | Media;
   content: {
@@ -492,6 +503,7 @@ export interface Home {
  */
 export interface Setting {
   id: string;
+  i18n?: string | null;
   setting1?: boolean | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -501,6 +513,7 @@ export interface Setting {
  * via the `definition` "home_select".
  */
 export interface HomeSelect<T extends boolean = true> {
+  i18n?: T;
   header?: T;
   image?: T;
   content?: T;
@@ -520,6 +533,7 @@ export interface HomeSelect<T extends boolean = true> {
  * via the `definition` "settings_select".
  */
 export interface SettingsSelect<T extends boolean = true> {
+  i18n?: T;
   setting1?: T;
   updatedAt?: T;
   createdAt?: T;

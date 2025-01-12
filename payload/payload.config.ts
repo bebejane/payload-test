@@ -3,7 +3,7 @@ import { postgresAdapter } from '@payloadcms/db-postgres'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { previewPlugin, settingsPlugin, cloudinaryPlugin, navPlugin } from '@/payload/plugins'
+import { previewPlugin, settingsPlugin, cloudinaryPlugin, navPlugin, i18nPlugin } from '@/payload/plugins'
 import { BlocksFeature, lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -70,7 +70,9 @@ export default buildConfig({
         //Component: '@/payload/components/views/Dashboard',
         //}
       },
+
     },
+
   },
   i18n: {
     supportedLanguages: { en, sv },
@@ -172,7 +174,11 @@ export default buildConfig({
         const fullPath = `${locale !== defaultLocale ? `/${locale}` : ''}${path === '/' ? '' : path}`
         return path ? [fullPath] : null
       }
-    })
+    }),
+    i18nPlugin({
+      enabled: true
+    }),
+
     /*
     s3Storage({
       collections: {

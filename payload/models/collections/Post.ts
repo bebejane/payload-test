@@ -31,7 +31,7 @@ export const Post: CollectionConfig = {
   slug: 'posts',
   admin: {
     useAsTitle: 'title',
-    description: 'Posts',
+    description: 'Post',
   },
   access: {
     read: ({ req: { user } }) => true,
@@ -49,7 +49,7 @@ export const Post: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
-      localized: true
+      localized: true,
     }, {
       label: {
         en: 'Content',
@@ -61,7 +61,7 @@ export const Post: CollectionConfig = {
       localized: true
     },
     { label: 'Image', name: 'image', type: 'upload', required: false, relationTo: 'media' },
-    { label: 'Author', name: 'author', type: 'relationship', relationTo: 'authors', required: false },
+    { label: 'Author', name: 'author', type: 'relationship', relationTo: 'authors', required: false, admin: { position: 'sidebar' } },
     {
       name: 'slug',
       label: 'Slug',
@@ -73,7 +73,9 @@ export const Post: CollectionConfig = {
             path: `@/payload/components/fields/slug`,
             clientProps: { trackingField: 'title' }
           }
-        }
+        },
+        position: 'sidebar',
+
       },
     }, {
       name: 'date',
