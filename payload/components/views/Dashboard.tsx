@@ -6,13 +6,9 @@ import React from 'react'
 
 const Dashboard: React.FC<AdminViewProps> = (props) => {
   //@ts-ignore
-  const { params, searchParams, user, payload, locale, i18n, visibleEntities, permissions } = props
+  const { params, searchParams, user, payload, locale, i18n, visibleEntities, permissions } = props ?? {}
 
-  return (
-    <Gutter>
-      Custom Dashboard
-    </Gutter>
-  )
+  return <Gutter>Custom Dashboard</Gutter>
 }
 
 export default Dashboard
