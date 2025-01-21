@@ -15,7 +15,6 @@ import path from 'path'
 import sharp from 'sharp'
 import nodemailer from 'nodemailer'
 import postmarkTransport from 'nodemailer-postmark-transport'
-
 import { Author, Media, Post, User } from './models/collections'
 import { Home } from './models/globals'
 import { QuoteBlock } from './models/collections/Post'
