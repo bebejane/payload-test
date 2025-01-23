@@ -28,7 +28,6 @@ type Access = {
   payload_locked_documents?: Maybe<payload_locked_documentsAccess>;
   payload_preferences?: Maybe<payload_preferencesAccess>;
   posts?: Maybe<postsAccess>;
-  settings?: Maybe<settingsAccess>;
   users?: Maybe<usersAccess>;
 };
 
@@ -1094,6 +1093,7 @@ type HomeUpdateDocAccess = {
 
 type HomeVersion = {
   __typename?: 'HomeVersion';
+  autosave?: Maybe<Scalars['Boolean']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   latest?: Maybe<Scalars['Boolean']['output']>;
@@ -4274,7 +4274,6 @@ type Mutation = {
   resetPasswordUser?: Maybe<usersResetPassword>;
   restoreVersionHome?: Maybe<Home>;
   restoreVersionPost?: Maybe<Post>;
-  restoreVersionSetting?: Maybe<Setting>;
   unlockUser: Scalars['Boolean']['output'];
   updateAuthor?: Maybe<Author>;
   updateHome?: Maybe<Home>;
@@ -4283,7 +4282,6 @@ type Mutation = {
   updatePayloadLockedDocument?: Maybe<PayloadLockedDocument>;
   updatePayloadPreference?: Maybe<PayloadPreference>;
   updatePost?: Maybe<Post>;
-  updateSetting?: Maybe<Setting>;
   updateUser?: Maybe<User>;
   verifyEmailUser?: Maybe<Scalars['Boolean']['output']>;
 };
@@ -4440,12 +4438,6 @@ type MutationrestoreVersionPostArgs = {
 };
 
 
-type MutationrestoreVersionSettingArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id?: InputMaybe<Scalars['String']['input']>;
-};
-
-
 type MutationunlockUserArgs = {
   email: Scalars['String']['input'];
 };
@@ -4508,13 +4500,6 @@ type MutationupdatePostArgs = {
   data: mutationPostUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['String']['input'];
-  locale?: InputMaybe<LocaleInputType>;
-};
-
-
-type MutationupdateSettingArgs = {
-  data: mutationSettingInput;
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
   locale?: InputMaybe<LocaleInputType>;
 };
 
@@ -6465,6 +6450,7 @@ enum PostUpdate__status_MutationInput {
 
 type PostVersion = {
   __typename?: 'PostVersion';
+  autosave?: Maybe<Scalars['Boolean']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   latest?: Maybe<Scalars['Boolean']['output']>;
@@ -7510,7 +7496,6 @@ type Query = {
   PayloadPreferences?: Maybe<PayloadPreferences>;
   Post?: Maybe<Post>;
   Posts?: Maybe<Posts>;
-  Setting?: Maybe<Setting>;
   User?: Maybe<User>;
   Users?: Maybe<Users>;
   allMedia?: Maybe<allMedia>;
@@ -7528,16 +7513,13 @@ type Query = {
   docAccessPayloadLockedDocument?: Maybe<payload_locked_documentsDocAccess>;
   docAccessPayloadPreference?: Maybe<payload_preferencesDocAccess>;
   docAccessPost?: Maybe<postsDocAccess>;
-  docAccessSetting?: Maybe<settingsDocAccess>;
   docAccessUser?: Maybe<usersDocAccess>;
   initializedUser?: Maybe<Scalars['Boolean']['output']>;
   meUser?: Maybe<usersMe>;
   versionHome?: Maybe<HomeVersion>;
   versionPost?: Maybe<PostVersion>;
-  versionSetting?: Maybe<SettingVersion>;
   versionsHome?: Maybe<versionsHome>;
   versionsPosts?: Maybe<versionsPosts>;
-  versionsSetting?: Maybe<versionsSetting>;
 };
 
 
@@ -7653,13 +7635,6 @@ type QueryPostsArgs = {
   pagination?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<Post_where>;
-};
-
-
-type QuerySettingArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  locale?: InputMaybe<LocaleInputType>;
 };
 
 
@@ -7794,14 +7769,6 @@ type QueryversionPostArgs = {
 };
 
 
-type QueryversionSettingArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  id?: InputMaybe<Scalars['String']['input']>;
-  locale?: InputMaybe<LocaleInputType>;
-};
-
-
 type QueryversionsHomeArgs = {
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -7823,17 +7790,6 @@ type QueryversionsPostsArgs = {
   where?: InputMaybe<versionsPost_where>;
 };
 
-
-type QueryversionsSettingArgs = {
-  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale?: InputMaybe<LocaleInputType>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  pagination?: InputMaybe<Scalars['Boolean']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  where?: InputMaybe<versionsSetting_where>;
-};
-
 type QuoteBlock = {
   __typename?: 'QuoteBlock';
   blockName?: Maybe<Scalars['String']['output']>;
@@ -7841,306 +7797,6 @@ type QuoteBlock = {
   id?: Maybe<Scalars['String']['output']>;
   quoteHeader?: Maybe<Scalars['String']['output']>;
   quoteText?: Maybe<Scalars['String']['output']>;
-};
-
-type Setting = {
-  __typename?: 'Setting';
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  i18n?: Maybe<Scalars['String']['output']>;
-  setting1?: Maybe<Scalars['Boolean']['output']>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-type SettingVersion = {
-  __typename?: 'SettingVersion';
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  id?: Maybe<Scalars['String']['output']>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  version?: Maybe<SettingVersion_Version>;
-};
-
-type SettingVersion_Version = {
-  __typename?: 'SettingVersion_Version';
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  i18n?: Maybe<Scalars['String']['output']>;
-  setting1?: Maybe<Scalars['Boolean']['output']>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-type SettingsDocAccessFields = {
-  __typename?: 'SettingsDocAccessFields';
-  createdAt?: Maybe<SettingsDocAccessFields_createdAt>;
-  i18n?: Maybe<SettingsDocAccessFields_i18n>;
-  setting1?: Maybe<SettingsDocAccessFields_setting1>;
-  updatedAt?: Maybe<SettingsDocAccessFields_updatedAt>;
-};
-
-type SettingsDocAccessFields_createdAt = {
-  __typename?: 'SettingsDocAccessFields_createdAt';
-  create?: Maybe<SettingsDocAccessFields_createdAt_Create>;
-  delete?: Maybe<SettingsDocAccessFields_createdAt_Delete>;
-  read?: Maybe<SettingsDocAccessFields_createdAt_Read>;
-  update?: Maybe<SettingsDocAccessFields_createdAt_Update>;
-};
-
-type SettingsDocAccessFields_createdAt_Create = {
-  __typename?: 'SettingsDocAccessFields_createdAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_createdAt_Delete = {
-  __typename?: 'SettingsDocAccessFields_createdAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_createdAt_Read = {
-  __typename?: 'SettingsDocAccessFields_createdAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_createdAt_Update = {
-  __typename?: 'SettingsDocAccessFields_createdAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_i18n = {
-  __typename?: 'SettingsDocAccessFields_i18n';
-  create?: Maybe<SettingsDocAccessFields_i18n_Create>;
-  delete?: Maybe<SettingsDocAccessFields_i18n_Delete>;
-  read?: Maybe<SettingsDocAccessFields_i18n_Read>;
-  update?: Maybe<SettingsDocAccessFields_i18n_Update>;
-};
-
-type SettingsDocAccessFields_i18n_Create = {
-  __typename?: 'SettingsDocAccessFields_i18n_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_i18n_Delete = {
-  __typename?: 'SettingsDocAccessFields_i18n_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_i18n_Read = {
-  __typename?: 'SettingsDocAccessFields_i18n_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_i18n_Update = {
-  __typename?: 'SettingsDocAccessFields_i18n_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_setting1 = {
-  __typename?: 'SettingsDocAccessFields_setting1';
-  create?: Maybe<SettingsDocAccessFields_setting1_Create>;
-  delete?: Maybe<SettingsDocAccessFields_setting1_Delete>;
-  read?: Maybe<SettingsDocAccessFields_setting1_Read>;
-  update?: Maybe<SettingsDocAccessFields_setting1_Update>;
-};
-
-type SettingsDocAccessFields_setting1_Create = {
-  __typename?: 'SettingsDocAccessFields_setting1_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_setting1_Delete = {
-  __typename?: 'SettingsDocAccessFields_setting1_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_setting1_Read = {
-  __typename?: 'SettingsDocAccessFields_setting1_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_setting1_Update = {
-  __typename?: 'SettingsDocAccessFields_setting1_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_updatedAt = {
-  __typename?: 'SettingsDocAccessFields_updatedAt';
-  create?: Maybe<SettingsDocAccessFields_updatedAt_Create>;
-  delete?: Maybe<SettingsDocAccessFields_updatedAt_Delete>;
-  read?: Maybe<SettingsDocAccessFields_updatedAt_Read>;
-  update?: Maybe<SettingsDocAccessFields_updatedAt_Update>;
-};
-
-type SettingsDocAccessFields_updatedAt_Create = {
-  __typename?: 'SettingsDocAccessFields_updatedAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_updatedAt_Delete = {
-  __typename?: 'SettingsDocAccessFields_updatedAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_updatedAt_Read = {
-  __typename?: 'SettingsDocAccessFields_updatedAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsDocAccessFields_updatedAt_Update = {
-  __typename?: 'SettingsDocAccessFields_updatedAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields = {
-  __typename?: 'SettingsFields';
-  createdAt?: Maybe<SettingsFields_createdAt>;
-  i18n?: Maybe<SettingsFields_i18n>;
-  setting1?: Maybe<SettingsFields_setting1>;
-  updatedAt?: Maybe<SettingsFields_updatedAt>;
-};
-
-type SettingsFields_createdAt = {
-  __typename?: 'SettingsFields_createdAt';
-  create?: Maybe<SettingsFields_createdAt_Create>;
-  delete?: Maybe<SettingsFields_createdAt_Delete>;
-  read?: Maybe<SettingsFields_createdAt_Read>;
-  update?: Maybe<SettingsFields_createdAt_Update>;
-};
-
-type SettingsFields_createdAt_Create = {
-  __typename?: 'SettingsFields_createdAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_createdAt_Delete = {
-  __typename?: 'SettingsFields_createdAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_createdAt_Read = {
-  __typename?: 'SettingsFields_createdAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_createdAt_Update = {
-  __typename?: 'SettingsFields_createdAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_i18n = {
-  __typename?: 'SettingsFields_i18n';
-  create?: Maybe<SettingsFields_i18n_Create>;
-  delete?: Maybe<SettingsFields_i18n_Delete>;
-  read?: Maybe<SettingsFields_i18n_Read>;
-  update?: Maybe<SettingsFields_i18n_Update>;
-};
-
-type SettingsFields_i18n_Create = {
-  __typename?: 'SettingsFields_i18n_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_i18n_Delete = {
-  __typename?: 'SettingsFields_i18n_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_i18n_Read = {
-  __typename?: 'SettingsFields_i18n_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_i18n_Update = {
-  __typename?: 'SettingsFields_i18n_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_setting1 = {
-  __typename?: 'SettingsFields_setting1';
-  create?: Maybe<SettingsFields_setting1_Create>;
-  delete?: Maybe<SettingsFields_setting1_Delete>;
-  read?: Maybe<SettingsFields_setting1_Read>;
-  update?: Maybe<SettingsFields_setting1_Update>;
-};
-
-type SettingsFields_setting1_Create = {
-  __typename?: 'SettingsFields_setting1_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_setting1_Delete = {
-  __typename?: 'SettingsFields_setting1_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_setting1_Read = {
-  __typename?: 'SettingsFields_setting1_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_setting1_Update = {
-  __typename?: 'SettingsFields_setting1_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_updatedAt = {
-  __typename?: 'SettingsFields_updatedAt';
-  create?: Maybe<SettingsFields_updatedAt_Create>;
-  delete?: Maybe<SettingsFields_updatedAt_Delete>;
-  read?: Maybe<SettingsFields_updatedAt_Read>;
-  update?: Maybe<SettingsFields_updatedAt_Update>;
-};
-
-type SettingsFields_updatedAt_Create = {
-  __typename?: 'SettingsFields_updatedAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_updatedAt_Delete = {
-  __typename?: 'SettingsFields_updatedAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_updatedAt_Read = {
-  __typename?: 'SettingsFields_updatedAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsFields_updatedAt_Update = {
-  __typename?: 'SettingsFields_updatedAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-type SettingsReadAccess = {
-  __typename?: 'SettingsReadAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type SettingsReadDocAccess = {
-  __typename?: 'SettingsReadDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type SettingsReadVersionsAccess = {
-  __typename?: 'SettingsReadVersionsAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type SettingsReadVersionsDocAccess = {
-  __typename?: 'SettingsReadVersionsDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type SettingsUpdateAccess = {
-  __typename?: 'SettingsUpdateAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-type SettingsUpdateDocAccess = {
-  __typename?: 'SettingsUpdateDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
 };
 
 type User = {
@@ -8985,13 +8641,6 @@ type mutationPostUpdateInput = {
   updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
 
-type mutationSettingInput = {
-  createdAt?: InputMaybe<Scalars['String']['input']>;
-  i18n?: InputMaybe<Scalars['String']['input']>;
-  setting1?: InputMaybe<Scalars['Boolean']['input']>;
-  updatedAt?: InputMaybe<Scalars['String']['input']>;
-};
-
 type mutationUserInput = {
   createdAt?: InputMaybe<Scalars['String']['input']>;
   email: Scalars['String']['input'];
@@ -9096,22 +8745,6 @@ type postsDocAccess = {
   update?: Maybe<PostsUpdateDocAccess>;
 };
 
-type settingsAccess = {
-  __typename?: 'settingsAccess';
-  fields?: Maybe<SettingsFields>;
-  read?: Maybe<SettingsReadAccess>;
-  readVersions?: Maybe<SettingsReadVersionsAccess>;
-  update?: Maybe<SettingsUpdateAccess>;
-};
-
-type settingsDocAccess = {
-  __typename?: 'settingsDocAccess';
-  fields?: Maybe<SettingsDocAccessFields>;
-  read?: Maybe<SettingsReadDocAccess>;
-  readVersions?: Maybe<SettingsReadVersionsDocAccess>;
-  update?: Maybe<SettingsUpdateDocAccess>;
-};
-
 type usersAccess = {
   __typename?: 'usersAccess';
   create?: Maybe<UsersCreateAccess>;
@@ -9181,6 +8814,12 @@ type versionsHome = {
   prevPage?: Maybe<Scalars['Int']['output']>;
   totalDocs?: Maybe<Scalars['Int']['output']>;
   totalPages?: Maybe<Scalars['Int']['output']>;
+};
+
+type versionsHome_autosave_operator = {
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  not_equals?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 type versionsHome_createdAt_operator = {
@@ -9338,6 +8977,7 @@ type versionsHome_version__updatedAt_operator = {
 type versionsHome_where = {
   AND?: InputMaybe<Array<InputMaybe<versionsHome_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<versionsHome_where_or>>>;
+  autosave?: InputMaybe<versionsHome_autosave_operator>;
   createdAt?: InputMaybe<versionsHome_createdAt_operator>;
   id?: InputMaybe<versionsHome_id_operator>;
   latest?: InputMaybe<versionsHome_latest_operator>;
@@ -9358,6 +8998,7 @@ type versionsHome_where = {
 type versionsHome_where_and = {
   AND?: InputMaybe<Array<InputMaybe<versionsHome_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<versionsHome_where_or>>>;
+  autosave?: InputMaybe<versionsHome_autosave_operator>;
   createdAt?: InputMaybe<versionsHome_createdAt_operator>;
   id?: InputMaybe<versionsHome_id_operator>;
   latest?: InputMaybe<versionsHome_latest_operator>;
@@ -9378,6 +9019,7 @@ type versionsHome_where_and = {
 type versionsHome_where_or = {
   AND?: InputMaybe<Array<InputMaybe<versionsHome_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<versionsHome_where_or>>>;
+  autosave?: InputMaybe<versionsHome_autosave_operator>;
   createdAt?: InputMaybe<versionsHome_createdAt_operator>;
   id?: InputMaybe<versionsHome_id_operator>;
   latest?: InputMaybe<versionsHome_latest_operator>;
@@ -9393,6 +9035,12 @@ type versionsHome_where_or = {
   version__image?: InputMaybe<versionsHome_version__image_operator>;
   version__other__posts?: InputMaybe<versionsHome_version__other__posts_operator>;
   version__updatedAt?: InputMaybe<versionsHome_version__updatedAt_operator>;
+};
+
+type versionsPost_autosave_operator = {
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  not_equals?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 type versionsPost_createdAt_operator = {
@@ -9581,6 +9229,7 @@ type versionsPost_version__updatedAt_operator = {
 type versionsPost_where = {
   AND?: InputMaybe<Array<InputMaybe<versionsPost_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<versionsPost_where_or>>>;
+  autosave?: InputMaybe<versionsPost_autosave_operator>;
   createdAt?: InputMaybe<versionsPost_createdAt_operator>;
   id?: InputMaybe<versionsPost_id_operator>;
   latest?: InputMaybe<versionsPost_latest_operator>;
@@ -9604,6 +9253,7 @@ type versionsPost_where = {
 type versionsPost_where_and = {
   AND?: InputMaybe<Array<InputMaybe<versionsPost_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<versionsPost_where_or>>>;
+  autosave?: InputMaybe<versionsPost_autosave_operator>;
   createdAt?: InputMaybe<versionsPost_createdAt_operator>;
   id?: InputMaybe<versionsPost_id_operator>;
   latest?: InputMaybe<versionsPost_latest_operator>;
@@ -9627,6 +9277,7 @@ type versionsPost_where_and = {
 type versionsPost_where_or = {
   AND?: InputMaybe<Array<InputMaybe<versionsPost_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<versionsPost_where_or>>>;
+  autosave?: InputMaybe<versionsPost_autosave_operator>;
   createdAt?: InputMaybe<versionsPost_createdAt_operator>;
   id?: InputMaybe<versionsPost_id_operator>;
   latest?: InputMaybe<versionsPost_latest_operator>;
@@ -9660,129 +9311,6 @@ type versionsPosts = {
   prevPage?: Maybe<Scalars['Int']['output']>;
   totalDocs?: Maybe<Scalars['Int']['output']>;
   totalPages?: Maybe<Scalars['Int']['output']>;
-};
-
-type versionsSetting = {
-  __typename?: 'versionsSetting';
-  docs?: Maybe<Array<Maybe<SettingVersion>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
-  nextPage?: Maybe<Scalars['Int']['output']>;
-  offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
-  prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
-};
-
-type versionsSetting_createdAt_operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-type versionsSetting_id_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type versionsSetting_updatedAt_operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-type versionsSetting_version__createdAt_operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-type versionsSetting_version__i18n_operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-type versionsSetting_version__setting1_operator = {
-  equals?: InputMaybe<Scalars['Boolean']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  not_equals?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-type versionsSetting_version__updatedAt_operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-type versionsSetting_where = {
-  AND?: InputMaybe<Array<InputMaybe<versionsSetting_where_and>>>;
-  OR?: InputMaybe<Array<InputMaybe<versionsSetting_where_or>>>;
-  createdAt?: InputMaybe<versionsSetting_createdAt_operator>;
-  id?: InputMaybe<versionsSetting_id_operator>;
-  updatedAt?: InputMaybe<versionsSetting_updatedAt_operator>;
-  version__createdAt?: InputMaybe<versionsSetting_version__createdAt_operator>;
-  version__i18n?: InputMaybe<versionsSetting_version__i18n_operator>;
-  version__setting1?: InputMaybe<versionsSetting_version__setting1_operator>;
-  version__updatedAt?: InputMaybe<versionsSetting_version__updatedAt_operator>;
-};
-
-type versionsSetting_where_and = {
-  AND?: InputMaybe<Array<InputMaybe<versionsSetting_where_and>>>;
-  OR?: InputMaybe<Array<InputMaybe<versionsSetting_where_or>>>;
-  createdAt?: InputMaybe<versionsSetting_createdAt_operator>;
-  id?: InputMaybe<versionsSetting_id_operator>;
-  updatedAt?: InputMaybe<versionsSetting_updatedAt_operator>;
-  version__createdAt?: InputMaybe<versionsSetting_version__createdAt_operator>;
-  version__i18n?: InputMaybe<versionsSetting_version__i18n_operator>;
-  version__setting1?: InputMaybe<versionsSetting_version__setting1_operator>;
-  version__updatedAt?: InputMaybe<versionsSetting_version__updatedAt_operator>;
-};
-
-type versionsSetting_where_or = {
-  AND?: InputMaybe<Array<InputMaybe<versionsSetting_where_and>>>;
-  OR?: InputMaybe<Array<InputMaybe<versionsSetting_where_or>>>;
-  createdAt?: InputMaybe<versionsSetting_createdAt_operator>;
-  id?: InputMaybe<versionsSetting_id_operator>;
-  updatedAt?: InputMaybe<versionsSetting_updatedAt_operator>;
-  version__createdAt?: InputMaybe<versionsSetting_version__createdAt_operator>;
-  version__i18n?: InputMaybe<versionsSetting_version__i18n_operator>;
-  version__setting1?: InputMaybe<versionsSetting_version__setting1_operator>;
-  version__updatedAt?: InputMaybe<versionsSetting_version__updatedAt_operator>;
 };
 
 type MediaFragment = { __typename?: 'Media', id: string, url?: string | null, alt?: string | null, width?: number | null, height?: number | null };

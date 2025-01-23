@@ -150,7 +150,7 @@ export default buildConfig({
       folder: 'payload-test'
     }),
     previewPlugin({
-      enabled: false,
+      enabled: true,
       baseUrl: process.env.NEXT_PUBLIC_SITE_URL as string,
       secret: process.env.PAYLOAD_SECRET as string,
       endpoint: `/api/draft`,

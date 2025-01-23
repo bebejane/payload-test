@@ -97,8 +97,10 @@ export interface Post {
   slug?: string | null;
   date?: string | null;
   blocks?: QuoteBlock[] | null;
+  _pathname?: string | null;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * Media Library
@@ -305,8 +307,10 @@ export interface PostsSelect<T extends boolean = true> {
     | {
         quoteBlock?: T | QuoteBlockSelect<T>;
       };
+  _pathname?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -484,6 +488,7 @@ export interface Home {
   other?: {
     posts?: (string | Post)[] | null;
   };
+  _pathname?: string | null;
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -502,6 +507,7 @@ export interface HomeSelect<T extends boolean = true> {
     | {
         posts?: T;
       };
+  _pathname?: T;
   _status?: T;
   updatedAt?: T;
   createdAt?: T;
