@@ -36,11 +36,9 @@ export interface Config {
   };
   globals: {
     home: Home;
-    settings: Setting;
   };
   globalsSelect: {
     home: HomeSelect<false> | HomeSelect<true>;
-    settings: SettingsSelect<false> | SettingsSelect<true>;
   };
   locale: 'en' | 'se';
   user: User & {
@@ -99,10 +97,8 @@ export interface Post {
   slug?: string | null;
   date?: string | null;
   blocks?: QuoteBlock[] | null;
-  _pathname?: string | null;
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
 }
 /**
  * Media Library
@@ -309,10 +305,8 @@ export interface PostsSelect<T extends boolean = true> {
     | {
         quoteBlock?: T | QuoteBlockSelect<T>;
       };
-  _pathname?: T;
   updatedAt?: T;
   createdAt?: T;
-  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -490,21 +484,7 @@ export interface Home {
   other?: {
     posts?: (string | Post)[] | null;
   };
-  _pathname?: string | null;
   _status?: ('draft' | 'published') | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * Settings
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "settings".
- */
-export interface Setting {
-  id: string;
-  i18n?: string | null;
-  setting1?: boolean | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -522,19 +502,7 @@ export interface HomeSelect<T extends boolean = true> {
     | {
         posts?: T;
       };
-  _pathname?: T;
   _status?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "settings_select".
- */
-export interface SettingsSelect<T extends boolean = true> {
-  i18n?: T;
-  setting1?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

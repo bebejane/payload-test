@@ -6,8 +6,8 @@ import type { ServerProps } from 'payload'
 import { NavItemType } from './NavItem'
 import config from '@payload-config'
 
-const Navigation = async (props: { clientProps: ServerProps }) => {
-  const { visibleEntities } = props?.clientProps ?? {}
+const Navigation = async (props: ServerProps) => {
+  const { visibleEntities } = props ?? {}
 
   if (!visibleEntities) return null
 

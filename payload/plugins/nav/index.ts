@@ -1,5 +1,6 @@
 import { Plugin, Config, getPayload, CollectionAfterChangeHook } from 'payload'
 import configPromise from '@payload-config'
+import { TextFieldSingleValidation } from 'payload'
 
 export interface PluginOptions {
   enabled?: boolean
@@ -16,6 +17,14 @@ export const navPlugin = (pluginOptions: PluginOptions): Plugin => (incomingConf
     const { docs } = await payload.find({ collection: 'nav' })
     //console.log('afterChange', docs)
   }
+  const validateType = (value?: string | string[] | null): string | true => {
+    const validTypes = ['collection', 'global']
+    if (Array.isArray(value)) {
+      return value.every(v => validTypes.includes(v)) || 'Type must be either "collection" or "global"'
+    }
+    return value && validTypes.includes(value) || 'Type must be either "collection" or "global"'
+  }
+  const collections = config.collections ? config.collections : []
 
   return {
     ...config,
@@ -29,7 +38,7 @@ export const navPlugin = (pluginOptions: PluginOptions): Plugin => (incomingConf
         }
       }
     },
-    collections: [...config.collections ?? []].concat([
+    collections: collections.concat([
       {
         slug: 'nav',
         admin: {
@@ -59,8 +68,7 @@ export const navPlugin = (pluginOptions: PluginOptions): Plugin => (incomingConf
           label: 'Type',
           type: 'text',
           required: true,
-          //@ts-ignore
-          validate: (value: string) => ['collection', 'global'].includes(value),
+          validate: validateType,
         }, {
           name: 'icon',
           label: 'Icon',

@@ -137,7 +137,7 @@ export default buildConfig({
   sharp,
   plugins: [
     settingsPlugin({
-      enabled: true,
+      enabled: false,
       fields: [
         { label: 'Setting 1', name: 'setting1', type: 'checkbox', required: false, localized: false },
       ]
@@ -150,12 +150,12 @@ export default buildConfig({
       folder: 'payload-test'
     }),
     previewPlugin({
-      enabled: true,
+      enabled: false,
       baseUrl: process.env.NEXT_PUBLIC_SITE_URL as string,
       secret: process.env.PAYLOAD_SECRET as string,
       endpoint: `/api/draft`,
       slugs: ['home', 'posts'],
-      autosave: false,
+      autosave: true,
       translate: async (doc: any, slug: string, locale: string) => {
         let path = null
         switch (slug) {
