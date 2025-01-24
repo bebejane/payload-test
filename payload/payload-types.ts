@@ -15,7 +15,6 @@ export interface Config {
     authors: Author;
     media: Media;
     users: User;
-    nav: Nav;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -26,7 +25,6 @@ export interface Config {
     authors: AuthorsSelect<false> | AuthorsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
-    nav: NavSelect<false> | NavSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -203,25 +201,6 @@ export interface User {
   password?: string | null;
 }
 /**
- * Navigation
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "nav".
- */
-export interface Nav {
-  id: string;
-  i18n?: string | null;
-  label: string;
-  slug: string;
-  href: string;
-  type: string;
-  icon?: string | null;
-  position?: number | null;
-  children?: (string | Nav)[] | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
@@ -243,10 +222,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: string | User;
-      } | null)
-    | ({
-        relationTo: 'nav';
-        value: string | Nav;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -410,22 +385,6 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "nav_select".
- */
-export interface NavSelect<T extends boolean = true> {
-  i18n?: T;
-  label?: T;
-  slug?: T;
-  href?: T;
-  type?: T;
-  icon?: T;
-  position?: T;
-  children?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

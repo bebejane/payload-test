@@ -143,7 +143,7 @@ export default buildConfig({
       ]
     }),
     navPlugin({
-      enabled: true
+      enabled: false
     }),
     payloadCloudPlugin(),
     cloudinaryPlugin({
