@@ -1,4 +1,5 @@
 import type { CollectionConfig, Block } from 'payload'
+import { slugField } from 'payload'
 
 export const QuoteBlock: Block = {
   slug: 'quoteBlock',
@@ -50,7 +51,8 @@ export const Post: CollectionConfig = {
       type: 'text',
       required: true,
       localized: true,
-    }, {
+    },
+    {
       label: {
         en: 'Content',
         sv: 'Innehåll',
@@ -58,40 +60,39 @@ export const Post: CollectionConfig = {
       name: 'content',
       type: 'richText',
       required: true,
-      localized: true
+      localized: true,
     },
     { label: 'Image', name: 'image', type: 'upload', required: false, relationTo: 'media' },
-    { label: 'Author', name: 'author', type: 'relationship', relationTo: 'authors', required: false, admin: { position: 'sidebar' } },
     {
+      label: 'Author',
+      name: 'author',
+      type: 'relationship',
+      relationTo: 'authors',
+      required: false,
+      admin: { position: 'sidebar' },
+    },
+    slugField({
+      fieldToUse: 'title',
       name: 'slug',
-      label: 'Slug',
-      unique: true,
-      type: 'text',
-      admin: {
-        components: {
-          Field: {
-            path: `@/payload/components/fields/slug`,
-            clientProps: { trackingField: 'title' }
-          }
-        },
-        position: 'sidebar',
-
-      },
-    }, {
+      required: true,
+      localized: true,
+    }),
+    {
       name: 'date',
       label: {
         en: 'Date',
         sv: 'Datum',
       },
       type: 'date',
-    }, {
+    },
+    {
       name: 'blocks',
       label: {
         en: 'Blocks',
         sv: 'Block',
       },
       type: 'blocks',
-      blocks: [QuoteBlock]
-    }
-  ]
+      blocks: [QuoteBlock],
+    },
+  ],
 }

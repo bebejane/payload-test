@@ -1,0 +1,95 @@
+@use 'sass:map';
+@use 'sass:math';
+
+/// Base font size on the `<body>` element
+/// @type Number (unit)
+$mq-base-font-size: 16px !default;
+
+/// Convert pixels to ems
+///
+/// @param {Number} $px - value to convert
+/// @param {Number} $base-font-size ($mq-base-font-size) - `<body>` font size
+///
+/// @example scss
+///  $font-size-in-ems: mq-px2em(16px);
+///  p { font-size: mq-px2em(16px); }
+///
+/// @requires $mq-base-font-size
+/// @returns {Number}
+///
+@function mq-px2em($px, $base-font-size: $mq-base-font-size) {
+	@if math.is-unitless($px) {
+		@warn "Assuming #{$px} to be in pixels, attempting to convert it into pixels.";
+		@return mq-px2em($px * 1px, $base-font-size);
+	} @else if math.unit($px) == em {
+		@return $px;
+	}
+	@return math.div($px, $base-font-size) * 1em;
+}
+
+/// Get a breakpoint's width
+///
+/// @param {String} $name - Name of the breakpoint. One of $mq-breakpoints
+///
+/// @example scss
+///  $tablet-width: mq-get-breakpoint-width(tablet);
+///  @media (min-width: mq-get-breakpoint-width(desktop)) {}
+///
+/// @requires {Variable} $mq-breakpoints
+///
+/// @returns {Number} Value in pixels
+@function mq-get-breakpoint-width($name, $breakpoints: $mq-breakpoints) {
+	@if map.has-key($breakpoints, $name) {
+		@return map.get($breakpoints, $name);
+	} @else {
+		@warn "Breakpoint #{$name} wasn't found in $breakpoints.";
+	}
+}
+
+/// Media Query mixin
+///
+/// @param {String | Boolean} $from (false) - One of $mq-breakpoints
+/// @param {String | Boolean} $until (false) - One of $mq-breakpoints
+/// @param {String | Boolean} $and (false) - Additional media query parameters
+/// @param {String} $media-type ($mq-media-type) - Media type: screen, print…
+///
+/// @ignore Undocumented API, for advanced use only:
+/// @ignore @param {Map} $breakpoints ($mq-breakpoints)
+/// @ignore @param {String} $static-breakpoint ($mq-static-breakpoint)
+///
+/// @content styling rules, wrapped into a @media query when $responsive is true
+///
+/// @requires {Variable} $mq-media-type
+/// @requires {Variable} $mq-breakpoints
+/// @requires {Variable} $mq-static-breakpoint
+/// @requires {function} mq-px2em
+/// @requires {function} mq-get-breakpoint-width
+///
+/// @link https://github.com/sass-mq/sass-mq#responsive-mode-on-default Full documentation and examples
+///
+/// @example scss
+///  .element {
+///    @include mq($from: mobile) {
+///      color: red;
+///    }
+///    @include mq($until: tablet) {
+///      color: blue;
+///    }
+///    @include mq(mobile, tablet) {
+///      color: green;
+///    }
+///    @include mq($from: tablet, $and: '(orientation: landscape)') {
+///      color: teal;
+///    }
+///    @include mq(950px) {
+///      color: hotpink;
+///    }
+///    @include mq(tablet, $media-type: screen) {
+///      color: hotpink;
+///    }
+///    // Advanced use:
+///    $my-breakpoints: (L: 900px, XL: 1200px);
+///    @include mq(L, $breakpoints: $my-breakpoints, $static-breakpoint: L) {
+///      color: hotpink;
+///    }
+///  }

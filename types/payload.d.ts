@@ -22,8 +22,10 @@ type Access = {
   __typename?: 'Access';
   authors?: Maybe<authorsAccess>;
   canAccessAdmin: Scalars['Boolean']['output'];
+  folder?: Maybe<folderAccess>;
   home?: Maybe<homeAccess>;
   media?: Maybe<mediaAccess>;
+  payload_kv?: Maybe<payload_kvAccess>;
   payload_locked_documents?: Maybe<payload_locked_documentsAccess>;
   payload_preferences?: Maybe<payload_preferencesAccess>;
   posts?: Maybe<postsAccess>;
@@ -125,17 +127,17 @@ type Author_where_or = {
 
 type Authors = {
   __typename?: 'Authors';
-  docs?: Maybe<Array<Maybe<Author>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
+  docs: Array<Author>;
+  hasNextPage: Scalars['Boolean']['output'];
+  hasPrevPage: Scalars['Boolean']['output'];
+  limit: Scalars['Int']['output'];
   nextPage?: Maybe<Scalars['Int']['output']>;
   offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  page: Scalars['Int']['output'];
+  pagingCounter: Scalars['Int']['output'];
   prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
+  totalDocs: Scalars['Int']['output'];
+  totalPages: Scalars['Int']['output'];
 };
 
 type AuthorsCreateAccess = {
@@ -431,6 +433,568 @@ enum FallbackLocaleInputType {
   none = 'none',
   se = 'se'
 }
+
+type Folder = {
+  __typename?: 'Folder';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentsAndFolders?: Maybe<Folder_DocumentsAndFolders>;
+  folder?: Maybe<Folder>;
+  folderType?: Maybe<Array<Folder_folderType>>;
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+type FolderdocumentsAndFoldersArgs = {
+  count?: InputMaybe<Scalars['Boolean']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  where?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+
+type FolderfolderArgs = {
+  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
+  locale?: InputMaybe<LocaleInputType>;
+};
+
+type FolderCreateAccess = {
+  __typename?: 'FolderCreateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type FolderCreateDocAccess = {
+  __typename?: 'FolderCreateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type FolderDeleteAccess = {
+  __typename?: 'FolderDeleteAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type FolderDeleteDocAccess = {
+  __typename?: 'FolderDeleteDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type FolderDocAccessFields = {
+  __typename?: 'FolderDocAccessFields';
+  createdAt?: Maybe<FolderDocAccessFields_createdAt>;
+  documentsAndFolders?: Maybe<FolderDocAccessFields_documentsAndFolders>;
+  folder?: Maybe<FolderDocAccessFields_folder>;
+  folderType?: Maybe<FolderDocAccessFields_folderType>;
+  name?: Maybe<FolderDocAccessFields_name>;
+  updatedAt?: Maybe<FolderDocAccessFields_updatedAt>;
+};
+
+type FolderDocAccessFields_createdAt = {
+  __typename?: 'FolderDocAccessFields_createdAt';
+  create?: Maybe<FolderDocAccessFields_createdAt_Create>;
+  delete?: Maybe<FolderDocAccessFields_createdAt_Delete>;
+  read?: Maybe<FolderDocAccessFields_createdAt_Read>;
+  update?: Maybe<FolderDocAccessFields_createdAt_Update>;
+};
+
+type FolderDocAccessFields_createdAt_Create = {
+  __typename?: 'FolderDocAccessFields_createdAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_createdAt_Delete = {
+  __typename?: 'FolderDocAccessFields_createdAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_createdAt_Read = {
+  __typename?: 'FolderDocAccessFields_createdAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_createdAt_Update = {
+  __typename?: 'FolderDocAccessFields_createdAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_documentsAndFolders = {
+  __typename?: 'FolderDocAccessFields_documentsAndFolders';
+  create?: Maybe<FolderDocAccessFields_documentsAndFolders_Create>;
+  delete?: Maybe<FolderDocAccessFields_documentsAndFolders_Delete>;
+  read?: Maybe<FolderDocAccessFields_documentsAndFolders_Read>;
+  update?: Maybe<FolderDocAccessFields_documentsAndFolders_Update>;
+};
+
+type FolderDocAccessFields_documentsAndFolders_Create = {
+  __typename?: 'FolderDocAccessFields_documentsAndFolders_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_documentsAndFolders_Delete = {
+  __typename?: 'FolderDocAccessFields_documentsAndFolders_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_documentsAndFolders_Read = {
+  __typename?: 'FolderDocAccessFields_documentsAndFolders_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_documentsAndFolders_Update = {
+  __typename?: 'FolderDocAccessFields_documentsAndFolders_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_folder = {
+  __typename?: 'FolderDocAccessFields_folder';
+  create?: Maybe<FolderDocAccessFields_folder_Create>;
+  delete?: Maybe<FolderDocAccessFields_folder_Delete>;
+  read?: Maybe<FolderDocAccessFields_folder_Read>;
+  update?: Maybe<FolderDocAccessFields_folder_Update>;
+};
+
+type FolderDocAccessFields_folderType = {
+  __typename?: 'FolderDocAccessFields_folderType';
+  create?: Maybe<FolderDocAccessFields_folderType_Create>;
+  delete?: Maybe<FolderDocAccessFields_folderType_Delete>;
+  read?: Maybe<FolderDocAccessFields_folderType_Read>;
+  update?: Maybe<FolderDocAccessFields_folderType_Update>;
+};
+
+type FolderDocAccessFields_folderType_Create = {
+  __typename?: 'FolderDocAccessFields_folderType_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_folderType_Delete = {
+  __typename?: 'FolderDocAccessFields_folderType_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_folderType_Read = {
+  __typename?: 'FolderDocAccessFields_folderType_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_folderType_Update = {
+  __typename?: 'FolderDocAccessFields_folderType_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_folder_Create = {
+  __typename?: 'FolderDocAccessFields_folder_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_folder_Delete = {
+  __typename?: 'FolderDocAccessFields_folder_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_folder_Read = {
+  __typename?: 'FolderDocAccessFields_folder_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_folder_Update = {
+  __typename?: 'FolderDocAccessFields_folder_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_name = {
+  __typename?: 'FolderDocAccessFields_name';
+  create?: Maybe<FolderDocAccessFields_name_Create>;
+  delete?: Maybe<FolderDocAccessFields_name_Delete>;
+  read?: Maybe<FolderDocAccessFields_name_Read>;
+  update?: Maybe<FolderDocAccessFields_name_Update>;
+};
+
+type FolderDocAccessFields_name_Create = {
+  __typename?: 'FolderDocAccessFields_name_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_name_Delete = {
+  __typename?: 'FolderDocAccessFields_name_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_name_Read = {
+  __typename?: 'FolderDocAccessFields_name_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_name_Update = {
+  __typename?: 'FolderDocAccessFields_name_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_updatedAt = {
+  __typename?: 'FolderDocAccessFields_updatedAt';
+  create?: Maybe<FolderDocAccessFields_updatedAt_Create>;
+  delete?: Maybe<FolderDocAccessFields_updatedAt_Delete>;
+  read?: Maybe<FolderDocAccessFields_updatedAt_Read>;
+  update?: Maybe<FolderDocAccessFields_updatedAt_Update>;
+};
+
+type FolderDocAccessFields_updatedAt_Create = {
+  __typename?: 'FolderDocAccessFields_updatedAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_updatedAt_Delete = {
+  __typename?: 'FolderDocAccessFields_updatedAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_updatedAt_Read = {
+  __typename?: 'FolderDocAccessFields_updatedAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderDocAccessFields_updatedAt_Update = {
+  __typename?: 'FolderDocAccessFields_updatedAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields = {
+  __typename?: 'FolderFields';
+  createdAt?: Maybe<FolderFields_createdAt>;
+  documentsAndFolders?: Maybe<FolderFields_documentsAndFolders>;
+  folder?: Maybe<FolderFields_folder>;
+  folderType?: Maybe<FolderFields_folderType>;
+  name?: Maybe<FolderFields_name>;
+  updatedAt?: Maybe<FolderFields_updatedAt>;
+};
+
+type FolderFields_createdAt = {
+  __typename?: 'FolderFields_createdAt';
+  create?: Maybe<FolderFields_createdAt_Create>;
+  delete?: Maybe<FolderFields_createdAt_Delete>;
+  read?: Maybe<FolderFields_createdAt_Read>;
+  update?: Maybe<FolderFields_createdAt_Update>;
+};
+
+type FolderFields_createdAt_Create = {
+  __typename?: 'FolderFields_createdAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_createdAt_Delete = {
+  __typename?: 'FolderFields_createdAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_createdAt_Read = {
+  __typename?: 'FolderFields_createdAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_createdAt_Update = {
+  __typename?: 'FolderFields_createdAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_documentsAndFolders = {
+  __typename?: 'FolderFields_documentsAndFolders';
+  create?: Maybe<FolderFields_documentsAndFolders_Create>;
+  delete?: Maybe<FolderFields_documentsAndFolders_Delete>;
+  read?: Maybe<FolderFields_documentsAndFolders_Read>;
+  update?: Maybe<FolderFields_documentsAndFolders_Update>;
+};
+
+type FolderFields_documentsAndFolders_Create = {
+  __typename?: 'FolderFields_documentsAndFolders_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_documentsAndFolders_Delete = {
+  __typename?: 'FolderFields_documentsAndFolders_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_documentsAndFolders_Read = {
+  __typename?: 'FolderFields_documentsAndFolders_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_documentsAndFolders_Update = {
+  __typename?: 'FolderFields_documentsAndFolders_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_folder = {
+  __typename?: 'FolderFields_folder';
+  create?: Maybe<FolderFields_folder_Create>;
+  delete?: Maybe<FolderFields_folder_Delete>;
+  read?: Maybe<FolderFields_folder_Read>;
+  update?: Maybe<FolderFields_folder_Update>;
+};
+
+type FolderFields_folderType = {
+  __typename?: 'FolderFields_folderType';
+  create?: Maybe<FolderFields_folderType_Create>;
+  delete?: Maybe<FolderFields_folderType_Delete>;
+  read?: Maybe<FolderFields_folderType_Read>;
+  update?: Maybe<FolderFields_folderType_Update>;
+};
+
+type FolderFields_folderType_Create = {
+  __typename?: 'FolderFields_folderType_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_folderType_Delete = {
+  __typename?: 'FolderFields_folderType_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_folderType_Read = {
+  __typename?: 'FolderFields_folderType_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_folderType_Update = {
+  __typename?: 'FolderFields_folderType_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_folder_Create = {
+  __typename?: 'FolderFields_folder_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_folder_Delete = {
+  __typename?: 'FolderFields_folder_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_folder_Read = {
+  __typename?: 'FolderFields_folder_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_folder_Update = {
+  __typename?: 'FolderFields_folder_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_name = {
+  __typename?: 'FolderFields_name';
+  create?: Maybe<FolderFields_name_Create>;
+  delete?: Maybe<FolderFields_name_Delete>;
+  read?: Maybe<FolderFields_name_Read>;
+  update?: Maybe<FolderFields_name_Update>;
+};
+
+type FolderFields_name_Create = {
+  __typename?: 'FolderFields_name_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_name_Delete = {
+  __typename?: 'FolderFields_name_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_name_Read = {
+  __typename?: 'FolderFields_name_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_name_Update = {
+  __typename?: 'FolderFields_name_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_updatedAt = {
+  __typename?: 'FolderFields_updatedAt';
+  create?: Maybe<FolderFields_updatedAt_Create>;
+  delete?: Maybe<FolderFields_updatedAt_Delete>;
+  read?: Maybe<FolderFields_updatedAt_Read>;
+  update?: Maybe<FolderFields_updatedAt_Update>;
+};
+
+type FolderFields_updatedAt_Create = {
+  __typename?: 'FolderFields_updatedAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_updatedAt_Delete = {
+  __typename?: 'FolderFields_updatedAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_updatedAt_Read = {
+  __typename?: 'FolderFields_updatedAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderFields_updatedAt_Update = {
+  __typename?: 'FolderFields_updatedAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type FolderReadAccess = {
+  __typename?: 'FolderReadAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type FolderReadDocAccess = {
+  __typename?: 'FolderReadDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type FolderUpdateAccess = {
+  __typename?: 'FolderUpdateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type FolderUpdateDocAccess = {
+  __typename?: 'FolderUpdateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+enum FolderUpdate_folderType_MutationInput {
+  media = 'media'
+}
+
+type Folder_DocumentsAndFolders = {
+  __typename?: 'Folder_DocumentsAndFolders';
+  docs: Scalars['JSON']['output'];
+  hasNextPage: Scalars['Boolean']['output'];
+  totalDocs?: Maybe<Scalars['Int']['output']>;
+};
+
+type Folder_createdAt_operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+enum Folder_folderType {
+  media = 'media'
+}
+
+enum Folder_folderType_Input {
+  media = 'media'
+}
+
+enum Folder_folderType_MutationInput {
+  media = 'media'
+}
+
+type Folder_folderType_operator = {
+  all?: InputMaybe<Array<InputMaybe<Folder_folderType_Input>>>;
+  equals?: InputMaybe<Folder_folderType_Input>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Folder_folderType_Input>>>;
+  not_equals?: InputMaybe<Folder_folderType_Input>;
+  not_in?: InputMaybe<Array<InputMaybe<Folder_folderType_Input>>>;
+};
+
+type Folder_folder_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  equals?: InputMaybe<Scalars['JSON']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  not_equals?: InputMaybe<Scalars['JSON']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+};
+
+type Folder_id_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+type Folder_name_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+type Folder_updatedAt_operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+type Folder_where = {
+  AND?: InputMaybe<Array<InputMaybe<Folder_where_and>>>;
+  OR?: InputMaybe<Array<InputMaybe<Folder_where_or>>>;
+  createdAt?: InputMaybe<Folder_createdAt_operator>;
+  folder?: InputMaybe<Folder_folder_operator>;
+  folderType?: InputMaybe<Folder_folderType_operator>;
+  id?: InputMaybe<Folder_id_operator>;
+  name?: InputMaybe<Folder_name_operator>;
+  updatedAt?: InputMaybe<Folder_updatedAt_operator>;
+};
+
+type Folder_where_and = {
+  AND?: InputMaybe<Array<InputMaybe<Folder_where_and>>>;
+  OR?: InputMaybe<Array<InputMaybe<Folder_where_or>>>;
+  createdAt?: InputMaybe<Folder_createdAt_operator>;
+  folder?: InputMaybe<Folder_folder_operator>;
+  folderType?: InputMaybe<Folder_folderType_operator>;
+  id?: InputMaybe<Folder_id_operator>;
+  name?: InputMaybe<Folder_name_operator>;
+  updatedAt?: InputMaybe<Folder_updatedAt_operator>;
+};
+
+type Folder_where_or = {
+  AND?: InputMaybe<Array<InputMaybe<Folder_where_and>>>;
+  OR?: InputMaybe<Array<InputMaybe<Folder_where_or>>>;
+  createdAt?: InputMaybe<Folder_createdAt_operator>;
+  folder?: InputMaybe<Folder_folder_operator>;
+  folderType?: InputMaybe<Folder_folderType_operator>;
+  id?: InputMaybe<Folder_id_operator>;
+  name?: InputMaybe<Folder_name_operator>;
+  updatedAt?: InputMaybe<Folder_updatedAt_operator>;
+};
+
+type Folders = {
+  __typename?: 'Folders';
+  docs: Array<Folder>;
+  hasNextPage: Scalars['Boolean']['output'];
+  hasPrevPage: Scalars['Boolean']['output'];
+  limit: Scalars['Int']['output'];
+  nextPage?: Maybe<Scalars['Int']['output']>;
+  offset?: Maybe<Scalars['Int']['output']>;
+  page: Scalars['Int']['output'];
+  pagingCounter: Scalars['Int']['output'];
+  prevPage?: Maybe<Scalars['Int']['output']>;
+  totalDocs: Scalars['Int']['output'];
+  totalPages: Scalars['Int']['output'];
+};
 
 type Home = {
   __typename?: 'Home';
@@ -1184,6 +1748,7 @@ type Media = {
   filesize?: Maybe<Scalars['Float']['output']>;
   focalX?: Maybe<Scalars['Float']['output']>;
   focalY?: Maybe<Scalars['Float']['output']>;
+  folder?: Maybe<Folder>;
   height?: Maybe<Scalars['Float']['output']>;
   i18n?: Maybe<Scalars['String']['output']>;
   id: Scalars['String']['output'];
@@ -1193,6 +1758,12 @@ type Media = {
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   url?: Maybe<Scalars['String']['output']>;
   width?: Maybe<Scalars['Float']['output']>;
+};
+
+
+type MediafolderArgs = {
+  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
+  locale?: InputMaybe<LocaleInputType>;
 };
 
 type MediaCreateAccess = {
@@ -1228,6 +1799,7 @@ type MediaDocAccessFields = {
   filesize?: Maybe<MediaDocAccessFields_filesize>;
   focalX?: Maybe<MediaDocAccessFields_focalX>;
   focalY?: Maybe<MediaDocAccessFields_focalY>;
+  folder?: Maybe<MediaDocAccessFields_folder>;
   height?: Maybe<MediaDocAccessFields_height>;
   i18n?: Maybe<MediaDocAccessFields_i18n>;
   mimeType?: Maybe<MediaDocAccessFields_mimeType>;
@@ -1581,6 +2153,34 @@ type MediaDocAccessFields_focalY_Read = {
 
 type MediaDocAccessFields_focalY_Update = {
   __typename?: 'MediaDocAccessFields_focalY_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type MediaDocAccessFields_folder = {
+  __typename?: 'MediaDocAccessFields_folder';
+  create?: Maybe<MediaDocAccessFields_folder_Create>;
+  delete?: Maybe<MediaDocAccessFields_folder_Delete>;
+  read?: Maybe<MediaDocAccessFields_folder_Read>;
+  update?: Maybe<MediaDocAccessFields_folder_Update>;
+};
+
+type MediaDocAccessFields_folder_Create = {
+  __typename?: 'MediaDocAccessFields_folder_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type MediaDocAccessFields_folder_Delete = {
+  __typename?: 'MediaDocAccessFields_folder_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type MediaDocAccessFields_folder_Read = {
+  __typename?: 'MediaDocAccessFields_folder_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type MediaDocAccessFields_folder_Update = {
+  __typename?: 'MediaDocAccessFields_folder_Update';
   permission: Scalars['Boolean']['output'];
 };
 
@@ -2446,6 +3046,7 @@ type MediaFields = {
   filesize?: Maybe<MediaFields_filesize>;
   focalX?: Maybe<MediaFields_focalX>;
   focalY?: Maybe<MediaFields_focalY>;
+  folder?: Maybe<MediaFields_folder>;
   height?: Maybe<MediaFields_height>;
   i18n?: Maybe<MediaFields_i18n>;
   mimeType?: Maybe<MediaFields_mimeType>;
@@ -2799,6 +3400,34 @@ type MediaFields_focalY_Read = {
 
 type MediaFields_focalY_Update = {
   __typename?: 'MediaFields_focalY_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type MediaFields_folder = {
+  __typename?: 'MediaFields_folder';
+  create?: Maybe<MediaFields_folder_Create>;
+  delete?: Maybe<MediaFields_folder_Delete>;
+  read?: Maybe<MediaFields_folder_Read>;
+  update?: Maybe<MediaFields_folder_Update>;
+};
+
+type MediaFields_folder_Create = {
+  __typename?: 'MediaFields_folder_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type MediaFields_folder_Delete = {
+  __typename?: 'MediaFields_folder_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type MediaFields_folder_Read = {
+  __typename?: 'MediaFields_folder_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type MediaFields_folder_Update = {
+  __typename?: 'MediaFields_folder_Update';
   permission: Scalars['Boolean']['output'];
 };
 
@@ -3843,6 +4472,15 @@ type Media_focalY_operator = {
   not_equals?: InputMaybe<Scalars['Float']['input']>;
 };
 
+type Media_folder_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  equals?: InputMaybe<Scalars['JSON']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  not_equals?: InputMaybe<Scalars['JSON']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+};
+
 type Media_height_operator = {
   equals?: InputMaybe<Scalars['Float']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -4122,6 +4760,7 @@ type Media_where = {
   filesize?: InputMaybe<Media_filesize_operator>;
   focalX?: InputMaybe<Media_focalX_operator>;
   focalY?: InputMaybe<Media_focalY_operator>;
+  folder?: InputMaybe<Media_folder_operator>;
   height?: InputMaybe<Media_height_operator>;
   i18n?: InputMaybe<Media_i18n_operator>;
   id?: InputMaybe<Media_id_operator>;
@@ -4164,6 +4803,7 @@ type Media_where_and = {
   filesize?: InputMaybe<Media_filesize_operator>;
   focalX?: InputMaybe<Media_focalX_operator>;
   focalY?: InputMaybe<Media_focalY_operator>;
+  folder?: InputMaybe<Media_folder_operator>;
   height?: InputMaybe<Media_height_operator>;
   i18n?: InputMaybe<Media_i18n_operator>;
   id?: InputMaybe<Media_id_operator>;
@@ -4206,6 +4846,7 @@ type Media_where_or = {
   filesize?: InputMaybe<Media_filesize_operator>;
   focalX?: InputMaybe<Media_focalX_operator>;
   focalY?: InputMaybe<Media_focalY_operator>;
+  folder?: InputMaybe<Media_folder_operator>;
   height?: InputMaybe<Media_height_operator>;
   i18n?: InputMaybe<Media_i18n_operator>;
   id?: InputMaybe<Media_id_operator>;
@@ -4247,19 +4888,25 @@ type Media_width_operator = {
 type Mutation = {
   __typename?: 'Mutation';
   createAuthor?: Maybe<Author>;
+  createFolder?: Maybe<Folder>;
   createMedia?: Maybe<Media>;
+  createPayloadKv?: Maybe<PayloadKv>;
   createPayloadLockedDocument?: Maybe<PayloadLockedDocument>;
   createPayloadPreference?: Maybe<PayloadPreference>;
   createPost?: Maybe<Post>;
   createUser?: Maybe<User>;
   deleteAuthor?: Maybe<Author>;
+  deleteFolder?: Maybe<Folder>;
   deleteMedia?: Maybe<Media>;
+  deletePayloadKv?: Maybe<PayloadKv>;
   deletePayloadLockedDocument?: Maybe<PayloadLockedDocument>;
   deletePayloadPreference?: Maybe<PayloadPreference>;
   deletePost?: Maybe<Post>;
   deleteUser?: Maybe<User>;
   duplicateAuthor?: Maybe<Author>;
+  duplicateFolder?: Maybe<Folder>;
   duplicateMedia?: Maybe<Media>;
+  duplicatePayloadKv?: Maybe<PayloadKv>;
   duplicatePayloadLockedDocument?: Maybe<PayloadLockedDocument>;
   duplicatePayloadPreference?: Maybe<PayloadPreference>;
   duplicatePost?: Maybe<Post>;
@@ -4272,8 +4919,10 @@ type Mutation = {
   restoreVersionPost?: Maybe<Post>;
   unlockUser: Scalars['Boolean']['output'];
   updateAuthor?: Maybe<Author>;
+  updateFolder?: Maybe<Folder>;
   updateHome?: Maybe<Home>;
   updateMedia?: Maybe<Media>;
+  updatePayloadKv?: Maybe<PayloadKv>;
   updatePayloadLockedDocument?: Maybe<PayloadLockedDocument>;
   updatePayloadPreference?: Maybe<PayloadPreference>;
   updatePost?: Maybe<Post>;
@@ -4289,8 +4938,22 @@ type MutationcreateAuthorArgs = {
 };
 
 
+type MutationcreateFolderArgs = {
+  data: mutationFolderInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  locale?: InputMaybe<LocaleInputType>;
+};
+
+
 type MutationcreateMediaArgs = {
   data: mutationMediaInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  locale?: InputMaybe<LocaleInputType>;
+};
+
+
+type MutationcreatePayloadKvArgs = {
+  data: mutationPayloadKvInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   locale?: InputMaybe<LocaleInputType>;
 };
@@ -4326,31 +4989,49 @@ type MutationcreateUserArgs = {
 
 type MutationdeleteAuthorArgs = {
   id: Scalars['String']['input'];
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+type MutationdeleteFolderArgs = {
+  id: Scalars['String']['input'];
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 type MutationdeleteMediaArgs = {
   id: Scalars['String']['input'];
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+type MutationdeletePayloadKvArgs = {
+  id: Scalars['String']['input'];
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 type MutationdeletePayloadLockedDocumentArgs = {
   id: Scalars['String']['input'];
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 type MutationdeletePayloadPreferenceArgs = {
   id: Scalars['String']['input'];
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 type MutationdeletePostArgs = {
   id: Scalars['String']['input'];
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 type MutationdeleteUserArgs = {
   id: Scalars['String']['input'];
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -4360,8 +5041,20 @@ type MutationduplicateAuthorArgs = {
 };
 
 
+type MutationduplicateFolderArgs = {
+  data: mutationFolderInput;
+  id: Scalars['String']['input'];
+};
+
+
 type MutationduplicateMediaArgs = {
   data: mutationMediaInput;
+  id: Scalars['String']['input'];
+};
+
+
+type MutationduplicatePayloadKvArgs = {
+  data: mutationPayloadKvInput;
   id: Scalars['String']['input'];
 };
 
@@ -4397,6 +5090,11 @@ type MutationloginUserArgs = {
 };
 
 
+type MutationlogoutUserArgs = {
+  allSessions?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
 type MutationresetPasswordUserArgs = {
   password?: InputMaybe<Scalars['String']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
@@ -4426,6 +5124,17 @@ type MutationupdateAuthorArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+type MutationupdateFolderArgs = {
+  autosave?: InputMaybe<Scalars['Boolean']['input']>;
+  data: mutationFolderUpdateInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -4442,6 +5151,17 @@ type MutationupdateMediaArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+type MutationupdatePayloadKvArgs = {
+  autosave?: InputMaybe<Scalars['Boolean']['input']>;
+  data: mutationPayloadKvUpdateInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -4451,6 +5171,7 @@ type MutationupdatePayloadLockedDocumentArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -4460,6 +5181,7 @@ type MutationupdatePayloadPreferenceArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -4469,6 +5191,7 @@ type MutationupdatePostArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -4478,11 +5201,260 @@ type MutationupdateUserArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 type MutationverifyEmailUserArgs = {
   token?: InputMaybe<Scalars['String']['input']>;
+};
+
+type PayloadKv = {
+  __typename?: 'PayloadKv';
+  data: Scalars['JSON']['output'];
+  id: Scalars['String']['output'];
+  key: Scalars['String']['output'];
+};
+
+type PayloadKvCreateAccess = {
+  __typename?: 'PayloadKvCreateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type PayloadKvCreateDocAccess = {
+  __typename?: 'PayloadKvCreateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type PayloadKvDeleteAccess = {
+  __typename?: 'PayloadKvDeleteAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type PayloadKvDeleteDocAccess = {
+  __typename?: 'PayloadKvDeleteDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type PayloadKvDocAccessFields = {
+  __typename?: 'PayloadKvDocAccessFields';
+  data?: Maybe<PayloadKvDocAccessFields_data>;
+  key?: Maybe<PayloadKvDocAccessFields_key>;
+};
+
+type PayloadKvDocAccessFields_data = {
+  __typename?: 'PayloadKvDocAccessFields_data';
+  create?: Maybe<PayloadKvDocAccessFields_data_Create>;
+  delete?: Maybe<PayloadKvDocAccessFields_data_Delete>;
+  read?: Maybe<PayloadKvDocAccessFields_data_Read>;
+  update?: Maybe<PayloadKvDocAccessFields_data_Update>;
+};
+
+type PayloadKvDocAccessFields_data_Create = {
+  __typename?: 'PayloadKvDocAccessFields_data_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvDocAccessFields_data_Delete = {
+  __typename?: 'PayloadKvDocAccessFields_data_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvDocAccessFields_data_Read = {
+  __typename?: 'PayloadKvDocAccessFields_data_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvDocAccessFields_data_Update = {
+  __typename?: 'PayloadKvDocAccessFields_data_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvDocAccessFields_key = {
+  __typename?: 'PayloadKvDocAccessFields_key';
+  create?: Maybe<PayloadKvDocAccessFields_key_Create>;
+  delete?: Maybe<PayloadKvDocAccessFields_key_Delete>;
+  read?: Maybe<PayloadKvDocAccessFields_key_Read>;
+  update?: Maybe<PayloadKvDocAccessFields_key_Update>;
+};
+
+type PayloadKvDocAccessFields_key_Create = {
+  __typename?: 'PayloadKvDocAccessFields_key_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvDocAccessFields_key_Delete = {
+  __typename?: 'PayloadKvDocAccessFields_key_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvDocAccessFields_key_Read = {
+  __typename?: 'PayloadKvDocAccessFields_key_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvDocAccessFields_key_Update = {
+  __typename?: 'PayloadKvDocAccessFields_key_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvFields = {
+  __typename?: 'PayloadKvFields';
+  data?: Maybe<PayloadKvFields_data>;
+  key?: Maybe<PayloadKvFields_key>;
+};
+
+type PayloadKvFields_data = {
+  __typename?: 'PayloadKvFields_data';
+  create?: Maybe<PayloadKvFields_data_Create>;
+  delete?: Maybe<PayloadKvFields_data_Delete>;
+  read?: Maybe<PayloadKvFields_data_Read>;
+  update?: Maybe<PayloadKvFields_data_Update>;
+};
+
+type PayloadKvFields_data_Create = {
+  __typename?: 'PayloadKvFields_data_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvFields_data_Delete = {
+  __typename?: 'PayloadKvFields_data_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvFields_data_Read = {
+  __typename?: 'PayloadKvFields_data_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvFields_data_Update = {
+  __typename?: 'PayloadKvFields_data_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvFields_key = {
+  __typename?: 'PayloadKvFields_key';
+  create?: Maybe<PayloadKvFields_key_Create>;
+  delete?: Maybe<PayloadKvFields_key_Delete>;
+  read?: Maybe<PayloadKvFields_key_Read>;
+  update?: Maybe<PayloadKvFields_key_Update>;
+};
+
+type PayloadKvFields_key_Create = {
+  __typename?: 'PayloadKvFields_key_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvFields_key_Delete = {
+  __typename?: 'PayloadKvFields_key_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvFields_key_Read = {
+  __typename?: 'PayloadKvFields_key_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvFields_key_Update = {
+  __typename?: 'PayloadKvFields_key_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PayloadKvReadAccess = {
+  __typename?: 'PayloadKvReadAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type PayloadKvReadDocAccess = {
+  __typename?: 'PayloadKvReadDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type PayloadKvUpdateAccess = {
+  __typename?: 'PayloadKvUpdateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type PayloadKvUpdateDocAccess = {
+  __typename?: 'PayloadKvUpdateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+type PayloadKv_data_operator = {
+  contains?: InputMaybe<Scalars['JSON']['input']>;
+  equals?: InputMaybe<Scalars['JSON']['input']>;
+  intersects?: InputMaybe<Scalars['JSON']['input']>;
+  like?: InputMaybe<Scalars['JSON']['input']>;
+  not_equals?: InputMaybe<Scalars['JSON']['input']>;
+  within?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+type PayloadKv_id_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+type PayloadKv_key_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+type PayloadKv_where = {
+  AND?: InputMaybe<Array<InputMaybe<PayloadKv_where_and>>>;
+  OR?: InputMaybe<Array<InputMaybe<PayloadKv_where_or>>>;
+  data?: InputMaybe<PayloadKv_data_operator>;
+  id?: InputMaybe<PayloadKv_id_operator>;
+  key?: InputMaybe<PayloadKv_key_operator>;
+};
+
+type PayloadKv_where_and = {
+  AND?: InputMaybe<Array<InputMaybe<PayloadKv_where_and>>>;
+  OR?: InputMaybe<Array<InputMaybe<PayloadKv_where_or>>>;
+  data?: InputMaybe<PayloadKv_data_operator>;
+  id?: InputMaybe<PayloadKv_id_operator>;
+  key?: InputMaybe<PayloadKv_key_operator>;
+};
+
+type PayloadKv_where_or = {
+  AND?: InputMaybe<Array<InputMaybe<PayloadKv_where_and>>>;
+  OR?: InputMaybe<Array<InputMaybe<PayloadKv_where_or>>>;
+  data?: InputMaybe<PayloadKv_data_operator>;
+  id?: InputMaybe<PayloadKv_id_operator>;
+  key?: InputMaybe<PayloadKv_key_operator>;
+};
+
+type PayloadKvs = {
+  __typename?: 'PayloadKvs';
+  docs: Array<PayloadKv>;
+  hasNextPage: Scalars['Boolean']['output'];
+  hasPrevPage: Scalars['Boolean']['output'];
+  limit: Scalars['Int']['output'];
+  nextPage?: Maybe<Scalars['Int']['output']>;
+  offset?: Maybe<Scalars['Int']['output']>;
+  page: Scalars['Int']['output'];
+  pagingCounter: Scalars['Int']['output'];
+  prevPage?: Maybe<Scalars['Int']['output']>;
+  totalDocs: Scalars['Int']['output'];
+  totalPages: Scalars['Int']['output'];
 };
 
 type PayloadLockedDocument = {
@@ -4515,6 +5487,7 @@ type PayloadLockedDocumentUpdate_DocumentRelationshipInput = {
 
 enum PayloadLockedDocumentUpdate_DocumentRelationshipInputRelationTo {
   authors = 'authors',
+  folder = 'folder',
   media = 'media',
   posts = 'posts',
   users = 'users'
@@ -4529,7 +5502,7 @@ enum PayloadLockedDocumentUpdate_UserRelationshipInputRelationTo {
   users = 'users'
 }
 
-type PayloadLockedDocument_Document = Author | Media | Post | User;
+type PayloadLockedDocument_Document = Author | Folder | Media | Post | User;
 
 type PayloadLockedDocument_DocumentRelationshipInput = {
   relationTo?: InputMaybe<PayloadLockedDocument_DocumentRelationshipInputRelationTo>;
@@ -4538,6 +5511,7 @@ type PayloadLockedDocument_DocumentRelationshipInput = {
 
 enum PayloadLockedDocument_DocumentRelationshipInputRelationTo {
   authors = 'authors',
+  folder = 'folder',
   media = 'media',
   posts = 'posts',
   users = 'users'
@@ -4545,6 +5519,7 @@ enum PayloadLockedDocument_DocumentRelationshipInputRelationTo {
 
 enum PayloadLockedDocument_Document_RelationTo {
   authors = 'authors',
+  folder = 'folder',
   media = 'media',
   posts = 'posts',
   users = 'users'
@@ -4595,6 +5570,7 @@ type PayloadLockedDocument_document_Relation = {
 
 enum PayloadLockedDocument_document_Relation_RelationTo {
   authors = 'authors',
+  folder = 'folder',
   media = 'media',
   posts = 'posts',
   users = 'users'
@@ -4677,17 +5653,17 @@ type PayloadLockedDocument_where_or = {
 
 type PayloadLockedDocuments = {
   __typename?: 'PayloadLockedDocuments';
-  docs?: Maybe<Array<Maybe<PayloadLockedDocument>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
+  docs: Array<PayloadLockedDocument>;
+  hasNextPage: Scalars['Boolean']['output'];
+  hasPrevPage: Scalars['Boolean']['output'];
+  limit: Scalars['Int']['output'];
   nextPage?: Maybe<Scalars['Int']['output']>;
   offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  page: Scalars['Int']['output'];
+  pagingCounter: Scalars['Int']['output'];
   prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
+  totalDocs: Scalars['Int']['output'];
+  totalPages: Scalars['Int']['output'];
 };
 
 type PayloadLockedDocumentsCreateAccess = {
@@ -5180,17 +6156,17 @@ type PayloadPreference_where_or = {
 
 type PayloadPreferences = {
   __typename?: 'PayloadPreferences';
-  docs?: Maybe<Array<Maybe<PayloadPreference>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
+  docs: Array<PayloadPreference>;
+  hasNextPage: Scalars['Boolean']['output'];
+  hasPrevPage: Scalars['Boolean']['output'];
+  limit: Scalars['Int']['output'];
   nextPage?: Maybe<Scalars['Int']['output']>;
   offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  page: Scalars['Int']['output'];
+  pagingCounter: Scalars['Int']['output'];
   prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
+  totalDocs: Scalars['Int']['output'];
+  totalPages: Scalars['Int']['output'];
 };
 
 type PayloadPreferencesCreateAccess = {
@@ -5548,6 +6524,7 @@ type Post = {
   content?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   date?: Maybe<Scalars['DateTime']['output']>;
+  generateSlug?: Maybe<Scalars['Boolean']['output']>;
   i18n?: Maybe<Scalars['String']['output']>;
   id: Scalars['String']['output'];
   image?: Maybe<Media>;
@@ -5607,6 +6584,7 @@ type PostVersion_Version = {
   content?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   date?: Maybe<Scalars['DateTime']['output']>;
+  generateSlug?: Maybe<Scalars['Boolean']['output']>;
   i18n?: Maybe<Scalars['String']['output']>;
   image?: Maybe<Media>;
   slug?: Maybe<Scalars['String']['output']>;
@@ -5718,6 +6696,12 @@ type Post_date_operator = {
   not_equals?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
+type Post_generateSlug_operator = {
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  not_equals?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 type Post_i18n_operator = {
   all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contains?: InputMaybe<Scalars['String']['input']>;
@@ -5753,7 +6737,6 @@ type Post_slug_operator = {
   all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contains?: InputMaybe<Scalars['String']['input']>;
   equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   like?: InputMaybe<Scalars['String']['input']>;
   not_equals?: InputMaybe<Scalars['String']['input']>;
@@ -5790,6 +6773,7 @@ type Post_where = {
   content?: InputMaybe<Post_content_operator>;
   createdAt?: InputMaybe<Post_createdAt_operator>;
   date?: InputMaybe<Post_date_operator>;
+  generateSlug?: InputMaybe<Post_generateSlug_operator>;
   i18n?: InputMaybe<Post_i18n_operator>;
   id?: InputMaybe<Post_id_operator>;
   image?: InputMaybe<Post_image_operator>;
@@ -5807,6 +6791,7 @@ type Post_where_and = {
   content?: InputMaybe<Post_content_operator>;
   createdAt?: InputMaybe<Post_createdAt_operator>;
   date?: InputMaybe<Post_date_operator>;
+  generateSlug?: InputMaybe<Post_generateSlug_operator>;
   i18n?: InputMaybe<Post_i18n_operator>;
   id?: InputMaybe<Post_id_operator>;
   image?: InputMaybe<Post_image_operator>;
@@ -5824,6 +6809,7 @@ type Post_where_or = {
   content?: InputMaybe<Post_content_operator>;
   createdAt?: InputMaybe<Post_createdAt_operator>;
   date?: InputMaybe<Post_date_operator>;
+  generateSlug?: InputMaybe<Post_generateSlug_operator>;
   i18n?: InputMaybe<Post_i18n_operator>;
   id?: InputMaybe<Post_id_operator>;
   image?: InputMaybe<Post_image_operator>;
@@ -5834,17 +6820,17 @@ type Post_where_or = {
 
 type Posts = {
   __typename?: 'Posts';
-  docs?: Maybe<Array<Maybe<Post>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
+  docs: Array<Post>;
+  hasNextPage: Scalars['Boolean']['output'];
+  hasPrevPage: Scalars['Boolean']['output'];
+  limit: Scalars['Int']['output'];
   nextPage?: Maybe<Scalars['Int']['output']>;
   offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  page: Scalars['Int']['output'];
+  pagingCounter: Scalars['Int']['output'];
   prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
+  totalDocs: Scalars['Int']['output'];
+  totalPages: Scalars['Int']['output'];
 };
 
 type PostsCreateAccess = {
@@ -5880,6 +6866,7 @@ type PostsDocAccessFields = {
   content?: Maybe<PostsDocAccessFields_content>;
   createdAt?: Maybe<PostsDocAccessFields_createdAt>;
   date?: Maybe<PostsDocAccessFields_date>;
+  generateSlug?: Maybe<PostsDocAccessFields_generateSlug>;
   i18n?: Maybe<PostsDocAccessFields_i18n>;
   image?: Maybe<PostsDocAccessFields_image>;
   slug?: Maybe<PostsDocAccessFields_slug>;
@@ -6083,6 +7070,34 @@ type PostsDocAccessFields_date_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
+type PostsDocAccessFields_generateSlug = {
+  __typename?: 'PostsDocAccessFields_generateSlug';
+  create?: Maybe<PostsDocAccessFields_generateSlug_Create>;
+  delete?: Maybe<PostsDocAccessFields_generateSlug_Delete>;
+  read?: Maybe<PostsDocAccessFields_generateSlug_Read>;
+  update?: Maybe<PostsDocAccessFields_generateSlug_Update>;
+};
+
+type PostsDocAccessFields_generateSlug_Create = {
+  __typename?: 'PostsDocAccessFields_generateSlug_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsDocAccessFields_generateSlug_Delete = {
+  __typename?: 'PostsDocAccessFields_generateSlug_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsDocAccessFields_generateSlug_Read = {
+  __typename?: 'PostsDocAccessFields_generateSlug_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsDocAccessFields_generateSlug_Update = {
+  __typename?: 'PostsDocAccessFields_generateSlug_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
 type PostsDocAccessFields_i18n = {
   __typename?: 'PostsDocAccessFields_i18n';
   create?: Maybe<PostsDocAccessFields_i18n_Create>;
@@ -6232,6 +7247,7 @@ type PostsFields = {
   content?: Maybe<PostsFields_content>;
   createdAt?: Maybe<PostsFields_createdAt>;
   date?: Maybe<PostsFields_date>;
+  generateSlug?: Maybe<PostsFields_generateSlug>;
   i18n?: Maybe<PostsFields_i18n>;
   image?: Maybe<PostsFields_image>;
   slug?: Maybe<PostsFields_slug>;
@@ -6435,6 +7451,34 @@ type PostsFields_date_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
+type PostsFields_generateSlug = {
+  __typename?: 'PostsFields_generateSlug';
+  create?: Maybe<PostsFields_generateSlug_Create>;
+  delete?: Maybe<PostsFields_generateSlug_Delete>;
+  read?: Maybe<PostsFields_generateSlug_Read>;
+  update?: Maybe<PostsFields_generateSlug_Update>;
+};
+
+type PostsFields_generateSlug_Create = {
+  __typename?: 'PostsFields_generateSlug_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsFields_generateSlug_Delete = {
+  __typename?: 'PostsFields_generateSlug_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsFields_generateSlug_Read = {
+  __typename?: 'PostsFields_generateSlug_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type PostsFields_generateSlug_Update = {
+  __typename?: 'PostsFields_generateSlug_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
 type PostsFields_i18n = {
   __typename?: 'PostsFields_i18n';
   create?: Maybe<PostsFields_i18n_Create>;
@@ -6616,8 +7660,12 @@ type Query = {
   Access?: Maybe<Access>;
   Author?: Maybe<Author>;
   Authors?: Maybe<Authors>;
+  Folder?: Maybe<Folder>;
+  Folders?: Maybe<Folders>;
   Home?: Maybe<Home>;
   Media?: Maybe<Media>;
+  PayloadKv?: Maybe<PayloadKv>;
+  PayloadKvs?: Maybe<PayloadKvs>;
   PayloadLockedDocument?: Maybe<PayloadLockedDocument>;
   PayloadLockedDocuments?: Maybe<PayloadLockedDocuments>;
   PayloadPreference?: Maybe<PayloadPreference>;
@@ -6628,14 +7676,18 @@ type Query = {
   Users?: Maybe<Users>;
   allMedia?: Maybe<allMedia>;
   countAuthors?: Maybe<countAuthors>;
+  countFolders?: Maybe<countFolders>;
+  countPayloadKvs?: Maybe<countPayloadKvs>;
   countPayloadLockedDocuments?: Maybe<countPayloadLockedDocuments>;
   countPayloadPreferences?: Maybe<countPayloadPreferences>;
   countPosts?: Maybe<countPosts>;
   countUsers?: Maybe<countUsers>;
   countallMedia?: Maybe<countallMedia>;
   docAccessAuthor?: Maybe<authorsDocAccess>;
+  docAccessFolder?: Maybe<folderDocAccess>;
   docAccessHome?: Maybe<homeDocAccess>;
   docAccessMedia?: Maybe<mediaDocAccess>;
+  docAccessPayloadKv?: Maybe<payload_kvDocAccess>;
   docAccessPayloadLockedDocument?: Maybe<payload_locked_documentsDocAccess>;
   docAccessPayloadPreference?: Maybe<payload_preferencesDocAccess>;
   docAccessPost?: Maybe<postsDocAccess>;
@@ -6654,6 +7706,8 @@ type QueryAuthorArgs = {
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -6664,8 +7718,34 @@ type QueryAuthorsArgs = {
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
   pagination?: InputMaybe<Scalars['Boolean']['input']>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<Author_where>;
+};
+
+
+type QueryFolderArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<LocaleInputType>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+type QueryFoldersArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<LocaleInputType>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pagination?: InputMaybe<Scalars['Boolean']['input']>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<Folder_where>;
 };
 
 
@@ -6673,6 +7753,7 @@ type QueryHomeArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   locale?: InputMaybe<LocaleInputType>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -6681,6 +7762,32 @@ type QueryMediaArgs = {
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+type QueryPayloadKvArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<LocaleInputType>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+type QueryPayloadKvsArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<LocaleInputType>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pagination?: InputMaybe<Scalars['Boolean']['input']>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<PayloadKv_where>;
 };
 
 
@@ -6689,6 +7796,8 @@ type QueryPayloadLockedDocumentArgs = {
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -6699,7 +7808,9 @@ type QueryPayloadLockedDocumentsArgs = {
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
   pagination?: InputMaybe<Scalars['Boolean']['input']>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<PayloadLockedDocument_where>;
 };
 
@@ -6709,6 +7820,8 @@ type QueryPayloadPreferenceArgs = {
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -6719,7 +7832,9 @@ type QueryPayloadPreferencesArgs = {
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
   pagination?: InputMaybe<Scalars['Boolean']['input']>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<PayloadPreference_where>;
 };
 
@@ -6729,6 +7844,8 @@ type QueryPostArgs = {
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -6739,7 +7856,9 @@ type QueryPostsArgs = {
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
   pagination?: InputMaybe<Scalars['Boolean']['input']>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<Post_where>;
 };
 
@@ -6749,6 +7868,8 @@ type QueryUserArgs = {
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   id: Scalars['String']['input'];
   locale?: InputMaybe<LocaleInputType>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -6759,7 +7880,9 @@ type QueryUsersArgs = {
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
   pagination?: InputMaybe<Scalars['Boolean']['input']>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<User_where>;
 };
 
@@ -6771,7 +7894,9 @@ type QueryallMediaArgs = {
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
   pagination?: InputMaybe<Scalars['Boolean']['input']>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<Media_where>;
 };
 
@@ -6779,13 +7904,31 @@ type QueryallMediaArgs = {
 type QuerycountAuthorsArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<Author_where>;
+};
+
+
+type QuerycountFoldersArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<Folder_where>;
+};
+
+
+type QuerycountPayloadKvsArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<PayloadKv_where>;
 };
 
 
 type QuerycountPayloadLockedDocumentsArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<PayloadLockedDocument_where>;
 };
 
@@ -6793,6 +7936,7 @@ type QuerycountPayloadLockedDocumentsArgs = {
 type QuerycountPayloadPreferencesArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<PayloadPreference_where>;
 };
 
@@ -6800,6 +7944,7 @@ type QuerycountPayloadPreferencesArgs = {
 type QuerycountPostsArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<Post_where>;
 };
 
@@ -6807,6 +7952,7 @@ type QuerycountPostsArgs = {
 type QuerycountUsersArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<User_where>;
 };
 
@@ -6814,6 +7960,7 @@ type QuerycountUsersArgs = {
 type QuerycountallMediaArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<Media_where>;
 };
 
@@ -6823,7 +7970,17 @@ type QuerydocAccessAuthorArgs = {
 };
 
 
+type QuerydocAccessFolderArgs = {
+  id: Scalars['String']['input'];
+};
+
+
 type QuerydocAccessMediaArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+type QuerydocAccessPayloadKvArgs = {
   id: Scalars['String']['input'];
 };
 
@@ -6853,6 +8010,7 @@ type QueryversionHomeArgs = {
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   id?: InputMaybe<Scalars['String']['input']>;
   locale?: InputMaybe<LocaleInputType>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -6860,6 +8018,7 @@ type QueryversionPostArgs = {
   fallbackLocale?: InputMaybe<FallbackLocaleInputType>;
   id?: InputMaybe<Scalars['String']['input']>;
   locale?: InputMaybe<LocaleInputType>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -6869,6 +8028,7 @@ type QueryversionsHomeArgs = {
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
   pagination?: InputMaybe<Scalars['Boolean']['input']>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<versionsHome_where>;
 };
@@ -6880,7 +8040,9 @@ type QueryversionsPostsArgs = {
   locale?: InputMaybe<LocaleInputType>;
   page?: InputMaybe<Scalars['Int']['input']>;
   pagination?: InputMaybe<Scalars['Boolean']['input']>;
+  select?: InputMaybe<Scalars['Boolean']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
+  trash?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<versionsPost_where>;
 };
 
@@ -6906,6 +8068,7 @@ type User = {
   resetPasswordToken?: Maybe<Scalars['String']['output']>;
   role: User_role;
   salt?: Maybe<Scalars['String']['output']>;
+  sessions?: Maybe<Array<User_Sessions>>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
@@ -6913,6 +8076,13 @@ enum UserUpdate_role_MutationInput {
   admin = 'admin',
   user = 'user'
 }
+
+type User_Sessions = {
+  __typename?: 'User_Sessions';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  expiresAt?: Maybe<Scalars['DateTime']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+};
 
 type User_createdAt_operator = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
@@ -6980,6 +8150,37 @@ type User_role_operator = {
   not_in?: InputMaybe<Array<InputMaybe<User_role_Input>>>;
 };
 
+type User_sessions__createdAt_operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+type User_sessions__expiresAt_operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+type User_sessions__id_operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 type User_updatedAt_operator = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -6999,6 +8200,9 @@ type User_where = {
   i18n?: InputMaybe<User_i18n_operator>;
   id?: InputMaybe<User_id_operator>;
   role?: InputMaybe<User_role_operator>;
+  sessions__createdAt?: InputMaybe<User_sessions__createdAt_operator>;
+  sessions__expiresAt?: InputMaybe<User_sessions__expiresAt_operator>;
+  sessions__id?: InputMaybe<User_sessions__id_operator>;
   updatedAt?: InputMaybe<User_updatedAt_operator>;
 };
 
@@ -7010,6 +8214,9 @@ type User_where_and = {
   i18n?: InputMaybe<User_i18n_operator>;
   id?: InputMaybe<User_id_operator>;
   role?: InputMaybe<User_role_operator>;
+  sessions__createdAt?: InputMaybe<User_sessions__createdAt_operator>;
+  sessions__expiresAt?: InputMaybe<User_sessions__expiresAt_operator>;
+  sessions__id?: InputMaybe<User_sessions__id_operator>;
   updatedAt?: InputMaybe<User_updatedAt_operator>;
 };
 
@@ -7021,22 +8228,25 @@ type User_where_or = {
   i18n?: InputMaybe<User_i18n_operator>;
   id?: InputMaybe<User_id_operator>;
   role?: InputMaybe<User_role_operator>;
+  sessions__createdAt?: InputMaybe<User_sessions__createdAt_operator>;
+  sessions__expiresAt?: InputMaybe<User_sessions__expiresAt_operator>;
+  sessions__id?: InputMaybe<User_sessions__id_operator>;
   updatedAt?: InputMaybe<User_updatedAt_operator>;
 };
 
 type Users = {
   __typename?: 'Users';
-  docs?: Maybe<Array<Maybe<User>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
+  docs: Array<User>;
+  hasNextPage: Scalars['Boolean']['output'];
+  hasPrevPage: Scalars['Boolean']['output'];
+  limit: Scalars['Int']['output'];
   nextPage?: Maybe<Scalars['Int']['output']>;
   offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  page: Scalars['Int']['output'];
+  pagingCounter: Scalars['Int']['output'];
   prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
+  totalDocs: Scalars['Int']['output'];
+  totalPages: Scalars['Int']['output'];
 };
 
 type UsersCreateAccess = {
@@ -7069,6 +8279,7 @@ type UsersDocAccessFields = {
   email?: Maybe<UsersDocAccessFields_email>;
   i18n?: Maybe<UsersDocAccessFields_i18n>;
   role?: Maybe<UsersDocAccessFields_role>;
+  sessions?: Maybe<UsersDocAccessFields_sessions>;
   updatedAt?: Maybe<UsersDocAccessFields_updatedAt>;
 };
 
@@ -7184,6 +8395,126 @@ type UsersDocAccessFields_role_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
+type UsersDocAccessFields_sessions = {
+  __typename?: 'UsersDocAccessFields_sessions';
+  create?: Maybe<UsersDocAccessFields_sessions_Create>;
+  delete?: Maybe<UsersDocAccessFields_sessions_Delete>;
+  fields?: Maybe<UsersDocAccessFields_sessions_Fields>;
+  read?: Maybe<UsersDocAccessFields_sessions_Read>;
+  update?: Maybe<UsersDocAccessFields_sessions_Update>;
+};
+
+type UsersDocAccessFields_sessions_Create = {
+  __typename?: 'UsersDocAccessFields_sessions_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_Delete = {
+  __typename?: 'UsersDocAccessFields_sessions_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_Fields = {
+  __typename?: 'UsersDocAccessFields_sessions_Fields';
+  createdAt?: Maybe<UsersDocAccessFields_sessions_createdAt>;
+  expiresAt?: Maybe<UsersDocAccessFields_sessions_expiresAt>;
+  id?: Maybe<UsersDocAccessFields_sessions_id>;
+};
+
+type UsersDocAccessFields_sessions_Read = {
+  __typename?: 'UsersDocAccessFields_sessions_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_Update = {
+  __typename?: 'UsersDocAccessFields_sessions_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_createdAt = {
+  __typename?: 'UsersDocAccessFields_sessions_createdAt';
+  create?: Maybe<UsersDocAccessFields_sessions_createdAt_Create>;
+  delete?: Maybe<UsersDocAccessFields_sessions_createdAt_Delete>;
+  read?: Maybe<UsersDocAccessFields_sessions_createdAt_Read>;
+  update?: Maybe<UsersDocAccessFields_sessions_createdAt_Update>;
+};
+
+type UsersDocAccessFields_sessions_createdAt_Create = {
+  __typename?: 'UsersDocAccessFields_sessions_createdAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_createdAt_Delete = {
+  __typename?: 'UsersDocAccessFields_sessions_createdAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_createdAt_Read = {
+  __typename?: 'UsersDocAccessFields_sessions_createdAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_createdAt_Update = {
+  __typename?: 'UsersDocAccessFields_sessions_createdAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_expiresAt = {
+  __typename?: 'UsersDocAccessFields_sessions_expiresAt';
+  create?: Maybe<UsersDocAccessFields_sessions_expiresAt_Create>;
+  delete?: Maybe<UsersDocAccessFields_sessions_expiresAt_Delete>;
+  read?: Maybe<UsersDocAccessFields_sessions_expiresAt_Read>;
+  update?: Maybe<UsersDocAccessFields_sessions_expiresAt_Update>;
+};
+
+type UsersDocAccessFields_sessions_expiresAt_Create = {
+  __typename?: 'UsersDocAccessFields_sessions_expiresAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_expiresAt_Delete = {
+  __typename?: 'UsersDocAccessFields_sessions_expiresAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_expiresAt_Read = {
+  __typename?: 'UsersDocAccessFields_sessions_expiresAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_expiresAt_Update = {
+  __typename?: 'UsersDocAccessFields_sessions_expiresAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_id = {
+  __typename?: 'UsersDocAccessFields_sessions_id';
+  create?: Maybe<UsersDocAccessFields_sessions_id_Create>;
+  delete?: Maybe<UsersDocAccessFields_sessions_id_Delete>;
+  read?: Maybe<UsersDocAccessFields_sessions_id_Read>;
+  update?: Maybe<UsersDocAccessFields_sessions_id_Update>;
+};
+
+type UsersDocAccessFields_sessions_id_Create = {
+  __typename?: 'UsersDocAccessFields_sessions_id_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_id_Delete = {
+  __typename?: 'UsersDocAccessFields_sessions_id_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_id_Read = {
+  __typename?: 'UsersDocAccessFields_sessions_id_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersDocAccessFields_sessions_id_Update = {
+  __typename?: 'UsersDocAccessFields_sessions_id_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
 type UsersDocAccessFields_updatedAt = {
   __typename?: 'UsersDocAccessFields_updatedAt';
   create?: Maybe<UsersDocAccessFields_updatedAt_Create>;
@@ -7218,6 +8549,7 @@ type UsersFields = {
   email?: Maybe<UsersFields_email>;
   i18n?: Maybe<UsersFields_i18n>;
   role?: Maybe<UsersFields_role>;
+  sessions?: Maybe<UsersFields_sessions>;
   updatedAt?: Maybe<UsersFields_updatedAt>;
 };
 
@@ -7333,6 +8665,126 @@ type UsersFields_role_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
+type UsersFields_sessions = {
+  __typename?: 'UsersFields_sessions';
+  create?: Maybe<UsersFields_sessions_Create>;
+  delete?: Maybe<UsersFields_sessions_Delete>;
+  fields?: Maybe<UsersFields_sessions_Fields>;
+  read?: Maybe<UsersFields_sessions_Read>;
+  update?: Maybe<UsersFields_sessions_Update>;
+};
+
+type UsersFields_sessions_Create = {
+  __typename?: 'UsersFields_sessions_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_Delete = {
+  __typename?: 'UsersFields_sessions_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_Fields = {
+  __typename?: 'UsersFields_sessions_Fields';
+  createdAt?: Maybe<UsersFields_sessions_createdAt>;
+  expiresAt?: Maybe<UsersFields_sessions_expiresAt>;
+  id?: Maybe<UsersFields_sessions_id>;
+};
+
+type UsersFields_sessions_Read = {
+  __typename?: 'UsersFields_sessions_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_Update = {
+  __typename?: 'UsersFields_sessions_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_createdAt = {
+  __typename?: 'UsersFields_sessions_createdAt';
+  create?: Maybe<UsersFields_sessions_createdAt_Create>;
+  delete?: Maybe<UsersFields_sessions_createdAt_Delete>;
+  read?: Maybe<UsersFields_sessions_createdAt_Read>;
+  update?: Maybe<UsersFields_sessions_createdAt_Update>;
+};
+
+type UsersFields_sessions_createdAt_Create = {
+  __typename?: 'UsersFields_sessions_createdAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_createdAt_Delete = {
+  __typename?: 'UsersFields_sessions_createdAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_createdAt_Read = {
+  __typename?: 'UsersFields_sessions_createdAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_createdAt_Update = {
+  __typename?: 'UsersFields_sessions_createdAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_expiresAt = {
+  __typename?: 'UsersFields_sessions_expiresAt';
+  create?: Maybe<UsersFields_sessions_expiresAt_Create>;
+  delete?: Maybe<UsersFields_sessions_expiresAt_Delete>;
+  read?: Maybe<UsersFields_sessions_expiresAt_Read>;
+  update?: Maybe<UsersFields_sessions_expiresAt_Update>;
+};
+
+type UsersFields_sessions_expiresAt_Create = {
+  __typename?: 'UsersFields_sessions_expiresAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_expiresAt_Delete = {
+  __typename?: 'UsersFields_sessions_expiresAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_expiresAt_Read = {
+  __typename?: 'UsersFields_sessions_expiresAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_expiresAt_Update = {
+  __typename?: 'UsersFields_sessions_expiresAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_id = {
+  __typename?: 'UsersFields_sessions_id';
+  create?: Maybe<UsersFields_sessions_id_Create>;
+  delete?: Maybe<UsersFields_sessions_id_Delete>;
+  read?: Maybe<UsersFields_sessions_id_Read>;
+  update?: Maybe<UsersFields_sessions_id_Update>;
+};
+
+type UsersFields_sessions_id_Create = {
+  __typename?: 'UsersFields_sessions_id_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_id_Delete = {
+  __typename?: 'UsersFields_sessions_id_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_id_Read = {
+  __typename?: 'UsersFields_sessions_id_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+type UsersFields_sessions_id_Update = {
+  __typename?: 'UsersFields_sessions_id_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
 type UsersFields_updatedAt = {
   __typename?: 'UsersFields_updatedAt';
   create?: Maybe<UsersFields_updatedAt_Create>;
@@ -7399,17 +8851,17 @@ type UsersUpdateDocAccess = {
 
 type allMedia = {
   __typename?: 'allMedia';
-  docs?: Maybe<Array<Maybe<Media>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
+  docs: Array<Media>;
+  hasNextPage: Scalars['Boolean']['output'];
+  hasPrevPage: Scalars['Boolean']['output'];
+  limit: Scalars['Int']['output'];
   nextPage?: Maybe<Scalars['Int']['output']>;
   offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  page: Scalars['Int']['output'];
+  pagingCounter: Scalars['Int']['output'];
   prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
+  totalDocs: Scalars['Int']['output'];
+  totalPages: Scalars['Int']['output'];
 };
 
 type authorsAccess = {
@@ -7432,6 +8884,16 @@ type authorsDocAccess = {
 
 type countAuthors = {
   __typename?: 'countAuthors';
+  totalDocs?: Maybe<Scalars['Int']['output']>;
+};
+
+type countFolders = {
+  __typename?: 'countFolders';
+  totalDocs?: Maybe<Scalars['Int']['output']>;
+};
+
+type countPayloadKvs = {
+  __typename?: 'countPayloadKvs';
   totalDocs?: Maybe<Scalars['Int']['output']>;
 };
 
@@ -7458,6 +8920,24 @@ type countUsers = {
 type countallMedia = {
   __typename?: 'countallMedia';
   totalDocs?: Maybe<Scalars['Int']['output']>;
+};
+
+type folderAccess = {
+  __typename?: 'folderAccess';
+  create?: Maybe<FolderCreateAccess>;
+  delete?: Maybe<FolderDeleteAccess>;
+  fields?: Maybe<FolderFields>;
+  read?: Maybe<FolderReadAccess>;
+  update?: Maybe<FolderUpdateAccess>;
+};
+
+type folderDocAccess = {
+  __typename?: 'folderDocAccess';
+  create?: Maybe<FolderCreateDocAccess>;
+  delete?: Maybe<FolderDeleteDocAccess>;
+  fields?: Maybe<FolderDocAccessFields>;
+  read?: Maybe<FolderReadDocAccess>;
+  update?: Maybe<FolderUpdateDocAccess>;
 };
 
 type homeAccess = {
@@ -7508,6 +8988,22 @@ type mutationAuthorUpdateInput = {
   updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
 
+type mutationFolderInput = {
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  folder?: InputMaybe<Scalars['String']['input']>;
+  folderType?: InputMaybe<Array<InputMaybe<Folder_folderType_MutationInput>>>;
+  name: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+type mutationFolderUpdateInput = {
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  folder?: InputMaybe<Scalars['String']['input']>;
+  folderType?: InputMaybe<Array<InputMaybe<FolderUpdate_folderType_MutationInput>>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
 type mutationHomeInput = {
   _pathname?: InputMaybe<Scalars['String']['input']>;
   _status?: InputMaybe<Home__status_MutationInput>;
@@ -7532,6 +9028,7 @@ type mutationMediaInput = {
   filesize?: InputMaybe<Scalars['Float']['input']>;
   focalX?: InputMaybe<Scalars['Float']['input']>;
   focalY?: InputMaybe<Scalars['Float']['input']>;
+  folder?: InputMaybe<Scalars['String']['input']>;
   height?: InputMaybe<Scalars['Float']['input']>;
   i18n?: InputMaybe<Scalars['String']['input']>;
   mimeType?: InputMaybe<Scalars['String']['input']>;
@@ -7550,6 +9047,7 @@ type mutationMediaUpdateInput = {
   filesize?: InputMaybe<Scalars['Float']['input']>;
   focalX?: InputMaybe<Scalars['Float']['input']>;
   focalY?: InputMaybe<Scalars['Float']['input']>;
+  folder?: InputMaybe<Scalars['String']['input']>;
   height?: InputMaybe<Scalars['Float']['input']>;
   i18n?: InputMaybe<Scalars['String']['input']>;
   mimeType?: InputMaybe<Scalars['String']['input']>;
@@ -7642,6 +9140,16 @@ type mutationMedia_Sizes_ThumbnailInput = {
   width?: InputMaybe<Scalars['Float']['input']>;
 };
 
+type mutationPayloadKvInput = {
+  data: Scalars['JSON']['input'];
+  key: Scalars['String']['input'];
+};
+
+type mutationPayloadKvUpdateInput = {
+  data?: InputMaybe<Scalars['JSON']['input']>;
+  key?: InputMaybe<Scalars['String']['input']>;
+};
+
 type mutationPayloadLockedDocumentInput = {
   createdAt?: InputMaybe<Scalars['String']['input']>;
   document?: InputMaybe<PayloadLockedDocument_DocumentRelationshipInput>;
@@ -7682,6 +9190,7 @@ type mutationPostInput = {
   content?: InputMaybe<Scalars['JSON']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   date?: InputMaybe<Scalars['String']['input']>;
+  generateSlug?: InputMaybe<Scalars['Boolean']['input']>;
   i18n?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -7697,6 +9206,7 @@ type mutationPostUpdateInput = {
   content?: InputMaybe<Scalars['JSON']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   date?: InputMaybe<Scalars['String']['input']>;
+  generateSlug?: InputMaybe<Scalars['Boolean']['input']>;
   i18n?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -7716,6 +9226,7 @@ type mutationUserInput = {
   resetPasswordToken?: InputMaybe<Scalars['String']['input']>;
   role: User_role_MutationInput;
   salt?: InputMaybe<Scalars['String']['input']>;
+  sessions?: InputMaybe<Array<InputMaybe<mutationUser_SessionsInput>>>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -7731,7 +9242,38 @@ type mutationUserUpdateInput = {
   resetPasswordToken?: InputMaybe<Scalars['String']['input']>;
   role?: InputMaybe<UserUpdate_role_MutationInput>;
   salt?: InputMaybe<Scalars['String']['input']>;
+  sessions?: InputMaybe<Array<InputMaybe<mutationUserUpdate_SessionsInput>>>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+type mutationUserUpdate_SessionsInput = {
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  expiresAt: Scalars['String']['input'];
+  id: Scalars['String']['input'];
+};
+
+type mutationUser_SessionsInput = {
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  expiresAt: Scalars['String']['input'];
+  id: Scalars['String']['input'];
+};
+
+type payload_kvAccess = {
+  __typename?: 'payload_kvAccess';
+  create?: Maybe<PayloadKvCreateAccess>;
+  delete?: Maybe<PayloadKvDeleteAccess>;
+  fields?: Maybe<PayloadKvFields>;
+  read?: Maybe<PayloadKvReadAccess>;
+  update?: Maybe<PayloadKvUpdateAccess>;
+};
+
+type payload_kvDocAccess = {
+  __typename?: 'payload_kvDocAccess';
+  create?: Maybe<PayloadKvCreateDocAccess>;
+  delete?: Maybe<PayloadKvDeleteDocAccess>;
+  fields?: Maybe<PayloadKvDocAccessFields>;
+  read?: Maybe<PayloadKvReadDocAccess>;
+  update?: Maybe<PayloadKvUpdateDocAccess>;
 };
 
 type payload_locked_documentsAccess = {
@@ -7848,17 +9390,17 @@ type usersResetPassword = {
 
 type versionsHome = {
   __typename?: 'versionsHome';
-  docs?: Maybe<Array<Maybe<HomeVersion>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
+  docs: Array<HomeVersion>;
+  hasNextPage: Scalars['Boolean']['output'];
+  hasPrevPage: Scalars['Boolean']['output'];
+  limit: Scalars['Int']['output'];
   nextPage?: Maybe<Scalars['Int']['output']>;
   offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  page: Scalars['Int']['output'];
+  pagingCounter: Scalars['Int']['output'];
   prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
+  totalDocs: Scalars['Int']['output'];
+  totalPages: Scalars['Int']['output'];
 };
 
 type versionsHome_autosave_operator = {
@@ -8219,6 +9761,12 @@ type versionsPost_version__date_operator = {
   not_equals?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
+type versionsPost_version__generateSlug_operator = {
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  not_equals?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 type versionsPost_version__i18n_operator = {
   all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contains?: InputMaybe<Scalars['String']['input']>;
@@ -8243,7 +9791,6 @@ type versionsPost_version__slug_operator = {
   all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contains?: InputMaybe<Scalars['String']['input']>;
   equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   like?: InputMaybe<Scalars['String']['input']>;
   not_equals?: InputMaybe<Scalars['String']['input']>;
@@ -8288,6 +9835,7 @@ type versionsPost_where = {
   version__content?: InputMaybe<versionsPost_version__content_operator>;
   version__createdAt?: InputMaybe<versionsPost_version__createdAt_operator>;
   version__date?: InputMaybe<versionsPost_version__date_operator>;
+  version__generateSlug?: InputMaybe<versionsPost_version__generateSlug_operator>;
   version__i18n?: InputMaybe<versionsPost_version__i18n_operator>;
   version__image?: InputMaybe<versionsPost_version__image_operator>;
   version__slug?: InputMaybe<versionsPost_version__slug_operator>;
@@ -8312,6 +9860,7 @@ type versionsPost_where_and = {
   version__content?: InputMaybe<versionsPost_version__content_operator>;
   version__createdAt?: InputMaybe<versionsPost_version__createdAt_operator>;
   version__date?: InputMaybe<versionsPost_version__date_operator>;
+  version__generateSlug?: InputMaybe<versionsPost_version__generateSlug_operator>;
   version__i18n?: InputMaybe<versionsPost_version__i18n_operator>;
   version__image?: InputMaybe<versionsPost_version__image_operator>;
   version__slug?: InputMaybe<versionsPost_version__slug_operator>;
@@ -8336,6 +9885,7 @@ type versionsPost_where_or = {
   version__content?: InputMaybe<versionsPost_version__content_operator>;
   version__createdAt?: InputMaybe<versionsPost_version__createdAt_operator>;
   version__date?: InputMaybe<versionsPost_version__date_operator>;
+  version__generateSlug?: InputMaybe<versionsPost_version__generateSlug_operator>;
   version__i18n?: InputMaybe<versionsPost_version__i18n_operator>;
   version__image?: InputMaybe<versionsPost_version__image_operator>;
   version__slug?: InputMaybe<versionsPost_version__slug_operator>;
@@ -8345,17 +9895,17 @@ type versionsPost_where_or = {
 
 type versionsPosts = {
   __typename?: 'versionsPosts';
-  docs?: Maybe<Array<Maybe<PostVersion>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
+  docs: Array<PostVersion>;
+  hasNextPage: Scalars['Boolean']['output'];
+  hasPrevPage: Scalars['Boolean']['output'];
+  limit: Scalars['Int']['output'];
   nextPage?: Maybe<Scalars['Int']['output']>;
   offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  page: Scalars['Int']['output'];
+  pagingCounter: Scalars['Int']['output'];
   prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
+  totalDocs: Scalars['Int']['output'];
+  totalPages: Scalars['Int']['output'];
 };
 
 type MediaFragment = { __typename?: 'Media', id: string, url?: string | null, alt?: string | null, width?: number | null, height?: number | null };
@@ -8375,7 +9925,7 @@ type PostQueryVariables = Exact<{
 }>;
 
 
-type PostQuery = { __typename?: 'Query', Posts?: { __typename?: 'Posts', docs?: Array<{ __typename?: 'Post', id: string, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: string, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null } | null> | null } | null };
+type PostQuery = { __typename?: 'Query', Posts?: { __typename?: 'Posts', docs: Array<{ __typename?: 'Post', id: string, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: string, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null }> } | null };
 
 type AllPostsQueryVariables = Exact<{
   draft?: InputMaybe<Scalars['Boolean']['input']>;
@@ -8383,6 +9933,6 @@ type AllPostsQueryVariables = Exact<{
 }>;
 
 
-type AllPostsQuery = { __typename?: 'Query', Posts?: { __typename?: 'Posts', docs?: Array<{ __typename?: 'Post', id: string, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: string, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null } | null> | null } | null };
+type AllPostsQuery = { __typename?: 'Query', Posts?: { __typename?: 'Posts', docs: Array<{ __typename?: 'Post', id: string, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: string, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null }> } | null };
 
 type PostFragment = { __typename?: 'Post', id: string, title?: string | null, content?: any | null, _status?: Post__status | null, slug?: string | null, blocks?: Array<{ __typename: 'QuoteBlock', quoteHeader?: string | null, quoteText?: string | null }> | null, image?: { __typename?: 'Media', id: string, url?: string | null, alt?: string | null, width?: number | null, height?: number | null } | null };

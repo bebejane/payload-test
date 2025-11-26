@@ -54,6 +54,7 @@ export type SupportedTimezones =
   | 'Asia/Singapore'
   | 'Asia/Tokyo'
   | 'Asia/Seoul'
+  | 'Australia/Brisbane'
   | 'Australia/Sydney'
   | 'Pacific/Guam'
   | 'Pacific/Noumea'
@@ -70,16 +71,24 @@ export interface Config {
     authors: Author;
     media: Media;
     users: User;
+    'payload-kv': PayloadKv;
+    folder: FolderInterface;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    folder: {
+      documentsAndFolders: 'folder' | 'media';
+    };
+  };
   collectionsSelect: {
     posts: PostsSelect<false> | PostsSelect<true>;
     authors: AuthorsSelect<false> | AuthorsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
+    folder: FolderSelect<false> | FolderSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -87,6 +96,7 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'se') | ('en' | 'se')[];
   globals: {
     home: Home;
   };
@@ -134,7 +144,7 @@ export interface Post {
     root: {
       type: string;
       children: {
-        type: string;
+        type: any;
         version: number;
         [k: string]: unknown;
       }[];
@@ -147,7 +157,11 @@ export interface Post {
   };
   image?: (string | null) | Media;
   author?: (string | null) | Author;
-  slug?: string | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
   date?: string | null;
   blocks?: QuoteBlock[] | null;
   _pathname?: string | null;
@@ -172,6 +186,7 @@ export interface Media {
     secure_url?: string | null;
     resource_type?: string | null;
   };
+  folder?: (string | null) | FolderInterface;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -209,6 +224,32 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "folder".
+ */
+export interface FolderInterface {
+  id: string;
+  name: string;
+  folder?: (string | null) | FolderInterface;
+  documentsAndFolders?: {
+    docs?: (
+      | {
+          relationTo?: 'folder';
+          value: string | FolderInterface;
+        }
+      | {
+          relationTo?: 'media';
+          value: string | Media;
+        }
+    )[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  folderType?: 'media'[] | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * Authors
@@ -253,7 +294,31 @@ export interface User {
   hash?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv".
+ */
+export interface PayloadKv {
+  id: string;
+  key: string;
+  data:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -277,6 +342,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: string | User;
+      } | null)
+    | ({
+        relationTo: 'folder';
+        value: string | FolderInterface;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -330,6 +399,7 @@ export interface PostsSelect<T extends boolean = true> {
   content?: T;
   image?: T;
   author?: T;
+  generateSlug?: T;
   slug?: T;
   date?: T;
   blocks?:
@@ -378,6 +448,7 @@ export interface MediaSelect<T extends boolean = true> {
         secure_url?: T;
         resource_type?: T;
       };
+  folder?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -440,6 +511,33 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv_select".
+ */
+export interface PayloadKvSelect<T extends boolean = true> {
+  key?: T;
+  data?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "folder_select".
+ */
+export interface FolderSelect<T extends boolean = true> {
+  name?: T;
+  folder?: T;
+  documentsAndFolders?: T;
+  folderType?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -488,7 +586,7 @@ export interface Home {
     root: {
       type: string;
       children: {
-        type: string;
+        type: any;
         version: number;
         [k: string]: unknown;
       }[];

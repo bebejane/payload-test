@@ -1,134 +1,212 @@
+@use 'mediaqueries' as *;
+
 html,
 body {
-  font-size: 17px;
-  font-weight: normal;
-  font-family: "Helvetica Neu", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+	font-family: var(--body-font);
+	line-height: 1em;
 
-  @include mq($from: tablet) {
-    font-size: 17px;
-  }
+	@include mq($from: tablet) {
+		font-size: 18px;
+	}
 
-  @include mq($from: wide) {
-    font-size: 20px;
-  }
+	@include mq($from: wide) {
+		font-size: 20px;
+	}
 }
 
 h1,
 h2,
 h3,
-h4,
-h5 {
-  font-family: $headline-font;
-  font-weight: normal;
+h4 {
+	font-weight: normal;
+	line-height: 1;
 }
 
 h1,
 h2 {
-  font-weight: normal;
-  line-height: 1em;
-  font-family: $headline-font;
-  font-size: 1.3rem;
+	font-size: 2.2rem;
+	margin-bottom: 0.25em;
+	line-height: 0.95em;
 
-  @include mq($from: desktop) {
-    font-size: 2.0rem;
-  }
+	@include mq($from: desktop) {
+		font-size: 3.5rem;
+		margin-bottom: 0.5em;
+	}
 }
 
-footer {
-  font-weight: normal;
-  line-height: 1.25em;
-  font-family: $headline-font;
-  font-size: 1.2rem;
+h1.veryBig,
+h2.veryBig,
+h3.veryBig,
+.very-big {
+	font-size: 2.5rem !important;
+	margin-bottom: 0.3em !important;
+	text-align: justify;
+	text-align-last: justify;
+	font-family: var(--body-font) !important;
+	line-height: 0.95em;
 
-  @include mq($from: desktop) {
-    font-size: 2rem;
-  }
+	@include mq($from: desktop) {
+		font-size: 4.3rem !important;
+	}
 }
 
-h1,
-h2 {
-  padding-bottom: 1rem;
+.about .very-big {
+	margin-bottom: -0.45em !important;
+
+	& + p {
+		margin-top: 3.5rem !important;
+	}
 }
 
-h1 {
-  text-transform: uppercase;
+h2,
+.about h1 {
+	width: 100%;
+	text-align: justify;
+	//text-align-last: justify;
 }
 
-.logo {
-  letter-spacing: 0.3em;
-  transition: all 0.5s;
-  line-height: 1 !important;
+.about h1,
+.about h2 {
+	margin-bottom: 0.6rem;
+	padding-top: 1rem;
 
-  &:hover {
-    letter-spacing: 0.4em;
-    -webkit-text-stroke-width: 0px;
-    -webkit-text-stroke-color: black;
-    -webkit-text-fill-color: var(--orange);
-  }
+	@include mq($from: desktop) {
+		margin-bottom: 1rem;
+	}
 }
 
 h3 {
-  font-size: 1.4rem;
-  font-family: $headline-font;
-  margin-bottom: 0;
-  padding-bottom: 1em;
-  //letter-spacing: 0.1em;
-  text-transform: uppercase;
+	font-size: 1.2rem;
+	line-height: 0.95em;
+
+	@include mq($from: desktop) {
+		font-size: 1.4rem;
+	}
 }
 
+h5 {
+	font-size: 1rem;
+	font-weight: normal;
+	padding-bottom: 1em;
+	padding-top: 1.5em;
+}
+
+form,
+input,
+select,
+textarea,
+button {
+	font-family: var(--body-font);
+	line-height: 1;
+}
+
+.nav,
+.about h3 {
+	font-size: var(--nav-size);
+	line-height: 1;
+}
+
+.about h3 {
+	margin-bottom: 0.5em;
+}
+
+.nav-hover {
+	@include mq($from: desktop) {
+		&:hover {
+			letter-spacing: var(--letter-space);
+		}
+	}
+}
+
+.nav-small {
+	font-size: calc(var(--nav-size) * 0.8);
+}
+
+p,
+.body,
+ol li,
+button.full,
 h4 {
-  font-size: 1.1rem;
-  font-family: $headline-font;
-  padding-bottom: 1rem;
+	font-size: 1.2rem;
+	line-height: 1.25em;
+	margin-bottom: 0;
+
+	@include mq($from: desktop) {
+		font-size: 1.4rem;
+	}
 }
 
-p {
-  line-height: var(--line-height);
-
-  strong {
-    font-family: $headline-font;
-    font-size: 0.95em;
-  }
+.light,
+.about p,
+.legal p {
+	font-family: var(--body-font)-light;
 }
 
-p {
-  @include mq($until: desktop) {
-    font-size: 0.85em;
-  }
+.about .nav {
+	line-height: 1.25;
 }
 
-.intro,
-.intro p {
-  font-size: 1rem;
+.big p,
+.big {
+	font-size: 1.4rem;
 
-  @include mq($from: desktop) {
-    font-size: 1.2rem;
-  }
+	@include mq($from: desktop) {
+		font-size: 1.6rem;
+	}
 }
 
-figcaption {
-  line-height: var(--line-height);
+.mid,
+.mid p,
+ol li {
+	font-size: 1.2rem;
 }
 
-.meta {
-  line-height: 1;
+p.small,
+.small,
+.small p,
+.legal p {
+	font-size: 1rem !important;
 }
 
-.date {
-  white-space: nowrap;
+.very-small {
+	font-size: 0.8rem;
 }
 
-nav,
-.nav {
-  font-family: $headline-font;
-  text-transform: uppercase;
-  font-size: 0.8rem;
+.default-small {
+	font-size: 1rem;
 
-  @include mq($from: desktop) {
-    font-size: 0.9rem;
-  }
+	@include mq($from: desktop) {
+		font-size: 1.4rem;
+	}
 }
 
-strong {
-  font-weight: normal;
+.mid-small {
+	font-size: 1rem;
+
+	@include mq($from: desktop) {
+		font-size: 1.2rem;
+	}
+}
+
+.structured p strong {
+	font-weight: normal;
+	font-family: var(--body-font);
+}
+
+.symbol {
+	font-family: var(--symbol-font);
+}
+
+.page-title {
+	font-size: 1rem;
+	font-family: var(--body-font) !important;
+	@include mq($from: desktop) {
+		padding-top: 0.5rem;
+	}
+}
+
+.small-text {
+	font-size: 1.2rem;
 }

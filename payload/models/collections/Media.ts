@@ -8,6 +8,7 @@ export const Media: CollectionConfig = {
   admin: {
     description: 'Media Library',
   },
+  folders: true,
   upload: {
     disableLocalStorage: true,
     imageSizes: [

@@ -41,7 +41,6 @@ export default async function Home({ params }: LocaleParams) {
           </React.Fragment>
         ))}
       </article>
-      <LivePreview />
     </>
   )
 }

@@ -4,15 +4,11 @@ import draftHook from '@/payload/hooks/draft'
 
 export const Settings: GlobalConfig = {
   slug: 'settings',
-  admin: {
-
-  },
+  admin: {},
   versions: {
-    drafts: false
+    drafts: false,
   },
-  fields: [
-    { label: 'Setting 1', name: 'setting1', type: 'checkbox', required: false }
-  ],
+  fields: [{ label: 'Setting 1', name: 'setting1', type: 'checkbox', required: false }],
   hooks: {
     afterChange: [revalidateHook, draftHook],
   },

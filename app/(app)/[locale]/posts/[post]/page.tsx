@@ -18,7 +18,7 @@ export default async function Post({ params }: Props) {
   const { post: slug, locale } = await params
   setRequestLocale(locale)
 
-  const { Posts } = await executeQuery<PostQuery, PostQueryVariables>(PostDocument, {
+  const { Posts } = await executeQuery(PostDocument, {
     variables: { slug },
   })
 

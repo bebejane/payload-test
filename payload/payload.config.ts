@@ -7,10 +7,6 @@ import { previewPlugin, settingsPlugin, cloudinaryPlugin, navPlugin, i18nPlugin 
 import { BlocksFeature, lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
-import { en } from '@payloadcms/translations/languages/en'
-import { sv } from '@payloadcms/translations/languages/sv'
-//import { translate } from '@/lib/routes'
-
 import path from 'path'
 import sharp from 'sharp'
 import nodemailer from 'nodemailer'
@@ -18,6 +14,8 @@ import postmarkTransport from 'nodemailer-postmark-transport'
 import { Author, Media, Post, User } from './models/collections'
 import { Home } from './models/globals'
 import { QuoteBlock } from './models/collections/Post'
+import { en } from '@payloadcms/translations/languages/en'
+import { sv } from '@payloadcms/translations/languages/sv'
 
 const defaultLocale = 'en'
 const filename = fileURLToPath(import.meta.url)
@@ -25,27 +23,25 @@ const dirname = path.dirname(filename)
 const isMongo = process.env.DATABASE_URI?.includes('mongodb')
 const isPostgres = process.env.DATABASE_URI?.includes('postgres')
 
-const db = isMongo ?
-  mongooseAdapter({
-    url: process.env.DATABASE_URI || '',
-    connectOptions: {
-      maxIdleTimeMS: 1000 * 60 * 5,
-    }
-  })
-  :
-  isPostgres ?
-    postgresAdapter({
-      pool: {
-        connectionString: process.env.DATABASE_URI,
-      }
+const db = isMongo
+  ? mongooseAdapter({
+      url: process.env.DATABASE_URI || '',
+      connectOptions: {
+        maxIdleTimeMS: 1000 * 60 * 5,
+      },
     })
-    :
-    sqliteAdapter({
-      client: {
-        url: process.env.DATABASE_URI || '',
-        authToken: process.env.DATABASE_AUTH_TOKEN || '',
-      }
-    })
+  : isPostgres
+    ? postgresAdapter({
+        pool: {
+          connectionString: process.env.DATABASE_URI,
+        },
+      })
+    : sqliteAdapter({
+        client: {
+          url: process.env.DATABASE_URI || '',
+          authToken: process.env.DATABASE_AUTH_TOKEN || '',
+        },
+      })
 
 export default buildConfig({
   db,
@@ -69,9 +65,14 @@ export default buildConfig({
         //Component: '@/payload/components/views/Dashboard',
         //}
       },
-
     },
-
+  },
+  folders: {
+    collectionSpecific: true,
+    browseByFolder: true,
+    fieldName: 'folder',
+    debug: true,
+    slug: 'folder',
   },
   i18n: {
     supportedLanguages: { en, sv },
@@ -91,7 +92,7 @@ export default buildConfig({
     fallback: true,
   },
   serverURL: process.env.NEXT_PUBLIC_SITE_URL,
-  cors: "*",
+  cors: '*',
   editor: lexicalEditor({
     features: ({ defaultFeatures, rootFeatures }) => [
       ...defaultFeatures,
@@ -124,11 +125,13 @@ export default buildConfig({
     transportOptions: {
       transactionLog: true,
     },
-    transport: nodemailer.createTransport(postmarkTransport({
-      auth: {
-        apiKey: process.env.POSTMARK_API_KEY as string,
-      }
-    })),
+    transport: nodemailer.createTransport(
+      postmarkTransport({
+        auth: {
+          apiKey: process.env.POSTMARK_API_KEY as string,
+        },
+      }),
+    ),
   }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -138,16 +141,14 @@ export default buildConfig({
   plugins: [
     settingsPlugin({
       enabled: false,
-      fields: [
-        { label: 'Setting 1', name: 'setting1', type: 'checkbox', required: false, localized: false },
-      ]
+      fields: [{ label: 'Setting 1', name: 'setting1', type: 'checkbox', required: false, localized: false }],
     }),
     navPlugin({
-      enabled: false
+      enabled: false,
     }),
     payloadCloudPlugin(),
     cloudinaryPlugin({
-      folder: 'payload-test'
+      folder: 'payload-test',
     }),
     previewPlugin({
       enabled: true,
@@ -160,22 +161,21 @@ export default buildConfig({
         let path = null
         switch (slug) {
           case 'home':
-            path = `/`;
-            break;
+            path = `/`
+            break
           case 'posts':
-            if (doc.slug)
-              path = `/posts/${doc.slug}`
+            if (doc.slug) path = `/posts/${doc.slug}`
             break
           default:
             path = null
-            break;
+            break
         }
         const fullPath = `${locale !== defaultLocale ? `/${locale}` : ''}${path === '/' ? '' : path}`
         return path ? [fullPath] : null
-      }
+      },
     }),
     i18nPlugin({
-      enabled: true
+      enabled: true,
     }),
 
     /*
@@ -193,5 +193,5 @@ export default buildConfig({
       },
     }),
     */
-  ]
+  ],
 })

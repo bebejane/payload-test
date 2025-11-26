@@ -11,70 +11,60 @@ though, go for it.
 ******************************************************************/
 
 * {
-  background: transparent !important;
-  color: black !important;
-  text-shadow: none !important;
-  filter: none !important;
-  -ms-filter: none !important;
+	background: transparent !important;
+	color: black !important;
+	text-shadow: none !important;
+	filter: none !important;
+	-ms-filter: none !important;
 }
 
 a,
 a:visited {
-  color: #444 !important;
-  text-decoration: underline;
-
-  // show links on printed pages
-  .logo &:after {
-    //content: " (" attr(href) ")";
-  }
-
-  // show title too
-  abbr[title]:after {
-    //content: " (" attr(title) ")";
-  }
+	color: #444 !important;
+	text-decoration: underline;
 }
 
 .ir a:after,
-a[href^="javascript:"]:after,
-a[href^="#"]:after {
-  content: "";
+a[href^='javascript:']:after,
+a[href^='#']:after {
+	content: '';
 }
 
 pre,
 blockquote {
-  border: 1px solid #999;
-  page-break-inside: avoid;
+	border: 1px solid #999;
+	page-break-inside: avoid;
 }
 
 thead {
-  display: table-header-group;
+	display: table-header-group;
 }
 
 tr,
 img {
-  page-break-inside: avoid;
+	page-break-inside: avoid;
 }
 
 img {
-  max-width: none !important;
-  width: 100%;
+	max-width: none !important;
+	width: 100%;
 }
 
 @page {
-  margin-top: 1.8cm;
-  margin-left: 2cm;
-  margin-right: 2cm;
-  margin-bottom: 1.8cm;
+	margin-top: 1.8cm;
+	margin-left: 2cm;
+	margin-right: 2cm;
+	margin-bottom: 1.8cm;
 }
 
 p,
 h2,
 h3 {
-  orphans: 3;
-  widows: 3;
+	orphans: 3;
+	widows: 3;
 }
 
 h2,
 h3 {
-  page-break-after: avoid;
+	page-break-after: avoid;
 }

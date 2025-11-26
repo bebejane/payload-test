@@ -7,9 +7,6 @@ export const Home: GlobalConfig = {
   admin: {
     description: 'Home',
   },
-  versions: {
-    drafts: true
-  },
   access: { read: () => true },
   graphQL: {
     name: 'Home',
@@ -21,12 +18,13 @@ export const Home: GlobalConfig = {
     {
       label: 'Other',
       name: 'other',
-      type: 'group', fields: [
+      type: 'group',
+      fields: [
         { label: 'Posts', name: 'posts', type: 'relationship', relationTo: 'posts', required: false, hasMany: true },
-      ]
+      ],
     },
   ],
-  hooks: {
-    afterChange: [revalidateHook, draftHook],
-  },
+  // hooks: {
+  //   afterChange: [revalidateHook, draftHook],
+  // },
 }
